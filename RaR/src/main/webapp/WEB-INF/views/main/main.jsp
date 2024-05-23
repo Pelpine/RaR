@@ -11,7 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-<div class="page-main">
+<div class="page-main"> 
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h4>메인 페이지</h4>
