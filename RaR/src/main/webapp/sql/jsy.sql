@@ -13,7 +13,7 @@ CREATE TABLE TRADE_BOARD (
 	constraint trade_board_pk primary key(board_num),
 	constraint trade_board_fk foreign key(user_num) references member(user_num)
 );
-
+s
 
 -----자유 거래 게시판 좋아요
 create table TRADE_FAV(
