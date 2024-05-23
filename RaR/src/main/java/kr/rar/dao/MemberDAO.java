@@ -78,8 +78,17 @@ public class MemberDAO {
 	}//회원가입 end
 	
 	//ID 중복 체크 및 로그인 처리
-	public MemberVO checkMember(String id)throws Exception{
+	public MemberVO checkMember(String User_email)throws Exception{
 		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO member = null;
+		String sql = null;
+		
+		
+		
+		return member;
 	}
 	
 }
