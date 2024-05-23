@@ -1,5 +1,5 @@
 package kr.rar.dao;
 
-public class EventListDAO {
+public class EventDAO {
 
 }
