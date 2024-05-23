@@ -9,4 +9,4 @@ CREATE TABLE EVENT_LIST(
 	event_end date not null,
 	constraint event_list_fk foreign key (user_num) 
                                 references user (user_num)
-);
+);   
