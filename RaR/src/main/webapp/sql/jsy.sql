@@ -21,7 +21,7 @@ create table TRADE_FAV(
 	board_num number not null,
 	constraint trade_fav_fk foreign key(user_num) references member(user_num),
 	constraint trade_fav_fk2 foreign key(board_num) references board(board_num)
-);123
+);123s
 
 -----자유 거래 게시판 답글 테이블
 create table TRADE_REPLY(
