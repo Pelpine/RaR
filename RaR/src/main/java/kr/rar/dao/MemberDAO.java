@@ -1,10 +1,11 @@
 package kr.rar.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import kr.member.vo.MemberVO;
+import kr.rar.vo.MemberVO;
 import kr.util.DBUtil;
 
 public class MemberDAO {
@@ -52,7 +53,7 @@ public class MemberDAO {
 				+ "?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, num);
-			pstmt3.setString(2, member.getUser_password());
+			pstmt3.setString(2, member.getPassword());
 			pstmt3.setString(3, member.getUser_phone());
 			pstmt3.setString(4, member.getUser_zipcode());
 			pstmt3.setString(5, member.getUser_address1());
@@ -78,7 +79,7 @@ public class MemberDAO {
 	}//회원가입 end
 	
 	//ID 중복 체크 및 로그인 처리
-	public MemberVO checkMember(String User_email)throws Exception{
+	public MemberVO checkMember(String id)throws Exception{
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -86,9 +87,156 @@ public class MemberDAO {
 		MemberVO member = null;
 		String sql = null;
 		
-		
-		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			//zmember와 zmember_detail 테이블을 조인할 때
+			//누락된 데이터가 보여야 id 중복 체크 가능
+			sql = "SELECT * FROM member LEFT OUTER JOIN "
+				+ "member_detail USING(user_num) WHERE user_email = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, id);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				member = new MemberVO();
+				member.setUser_num(rs.getInt("user_num"));
+				member.setUser_email(rs.getString("user_email"));
+				member.setUser_auth(rs.getInt("user_auth"));
+				member.setPassword(rs.getString("password"));
+				member.setUser_photo(rs.getString("photo"));
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}	
 		return member;
 	}
 	
+	//회원상세 정보
+	public MemberVO getMember(int user_num) throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO member = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM member JOIN member_detail "
+				+ "USING(user_num) WHERE user_num=?";
+			//PreparedStatement 객체를 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, user_num);
+			//SQL문 실행
+			if(rs.next()) {
+				member = new MemberVO();
+				member.setUser_num(rs.getInt("user_num"));
+				member.setUser_name(rs.getString("user_name"));
+				member.setUser_email(rs.getString("user_email"));
+				member.setUser_auth(rs.getInt("user_auth"));
+				member.setPassword(rs.getString("password"));
+				member.setUser_phone(rs.getString("user_phone"));
+				member.setUser_zipcode(rs.getString("user_zipcode"));
+				member.setUser_address1(rs.getString("user_address1"));
+				member.setUser_address2(rs.getString("user_address2"));
+				member.setUser_photo(rs.getString("user_photo"));
+				member.setUser_date(rs.getDate("user_date"));
+				member.setUser_ip(rs.getString("user_ip"));
+				member.setUser_point(rs.getInt(user_num));
+				member.setUser_comment(rs.getString("user_comment"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return member;
+	}
+	//회원정보 수정
+	public void updateMember(MemberVO member)throws Exception{
+		System.out.println(member);
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE member_detail SET user_phone=?,user_zipcode=?,"
+				+ "user_address1=?,user_address2=?,user_photo=?,"
+				+ "user_comment=? WHERE user_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, member.getUser_phone());
+			pstmt.setString(2, member.getUser_zipcode());
+			pstmt.setString(3, member.getUser_address1());
+			pstmt.setString(4, member.getUser_address2());
+			pstmt.setString(5, member.getUser_photo());
+			pstmt.setString(6, member.getUser_comment());
+			pstmt.setInt(7, member.getUser_num());
+			//SQL문 실행
+			pstmt.executeUpdate();	
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//비밀번호 수정
+	public void updatePassword(String password,int user_num)
+                                        throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE member_detail SET password=? WHERE user_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, password);
+			pstmt.setInt(2, user_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e){
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
