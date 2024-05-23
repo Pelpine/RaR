@@ -30,16 +30,16 @@ CREATE TABLE EVENT_REWARDS(
 );
 CREATE SEQUENCE reward_seq;
 
-CREATE TABLE TRADE_BOARD(
-    board_num number primary key not null,
-    user_num number not null,
-    title varchar2(150) not null,
-    content clob not null,
-    hit number default 0 not null,
-    reg_date date default sysdate not null,
-    modify_date date,
-    filename varchar2,
-    user_ip varchar2(100) not null,
+CREATE TABLE TRADE_BOARD (
+    board_num NUMBER PRIMARY KEY NOT NULL,
+    user_num NUMBER NOT NULL,
+    title VARCHAR2(150) NOT NULL,
+    content CLOB NOT NULL,
+    hit NUMBER DEFAULT 0 NOT NULL,
+    reg_date DATE DEFAULT SYSDATE NOT NULL,
+    modify_date DATE,
+    filename VARCHAR2(255), -- 길이를 설정함
+    user_ip VARCHAR2(100) NOT NULL,
     FOREIGN KEY (user_num) REFERENCES MEMBER(user_num)
 );
 
@@ -52,16 +52,17 @@ CREATE TABLE TRADE_FAV(
     FOREIGN KEY (board_num) REFERENCES TRADE_BOARD(board_num)
 );
 
-CREATE TABLE TRADE_REPLY(
-    re_num number primary key not null,
-    content clob not null,
-    reg_date date not null,
-    modify_date date,
-    user_ip varchar2 not null,
-    user_num number not null,
-    board_num number not null,
+CREATE TABLE TRADE_REPLY (
+    re_num NUMBER PRIMARY KEY NOT NULL,
+    content CLOB NOT NULL,
+    reg_date DATE NOT NULL,
+    modify_date DATE,
+    user_ip VARCHAR2(100) NOT NULL, -- 길이를 설정함
+    user_num NUMBER NOT NULL,
+    board_num NUMBER NOT NULL,
     FOREIGN KEY (user_num) REFERENCES MEMBER(user_num),
     FOREIGN KEY (board_num) REFERENCES TRADE_BOARD(board_num)
 );
+
 
 CREATE SEQUENCE trreply_seq;
