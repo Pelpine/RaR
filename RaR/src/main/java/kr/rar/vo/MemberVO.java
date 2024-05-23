@@ -1,4 +1,4 @@
-package kr.member.vo;
+package kr.rar.vo;
 
 import java.sql.Date;
 
@@ -8,7 +8,7 @@ public class MemberVO {
 	private String user_email;//이메일(아이디)
 	private int user_auth;//회원등급
 	
-	private String user_password;//비밀번호
+	private String password;//비밀번호
 	private String user_phone;//전화번호
 
 	private String user_zipcode;//우편번호
@@ -23,7 +23,7 @@ public class MemberVO {
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
 		//회원 등급(user_auth) : 0탈퇴회원,1정지회원,2일반회원,9관리자
-		if(user_auth> 1 && user_password.equals(userPasswd)) {
+		if(user_auth> 1 && password.equals(userPasswd)) {
 			return true;
 		}
 		return false;
@@ -61,12 +61,12 @@ public class MemberVO {
 		this.user_auth = user_auth;
 	}
 
-	public String getUser_password() {
-		return user_password;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getUser_phone() {
@@ -144,7 +144,7 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [user_num=" + user_num + ", user_name=" + user_name + ", user_email=" + user_email
-				+ ", user_auth=" + user_auth + ", user_password=" + user_password + ", user_phone=" + user_phone
+				+ ", user_auth=" + user_auth + ", password=" + password + ", user_phone=" + user_phone
 				+ ", user_zipcode=" + user_zipcode + ", user_address1=" + user_address1 + ", user_address2="
 				+ user_address2 + ", user_photo=" + user_photo + ", user_date=" + user_date + ", user_ip=" + user_ip
 				+ ", user_point=" + user_point + ", user_comment=" + user_comment + "]";
