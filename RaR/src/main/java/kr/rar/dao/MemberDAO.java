@@ -144,14 +144,12 @@ public class MemberDAO {
 				member.setUser_name(rs.getString("user_name"));
 				member.setUser_email(rs.getString("user_email"));
 				member.setUser_auth(rs.getInt("user_auth"));
-				member.setPassword(rs.getString("password"));
 				member.setUser_phone(rs.getString("user_phone"));
 				member.setUser_zipcode(rs.getString("user_zipcode"));
 				member.setUser_address1(rs.getString("user_address1"));
 				member.setUser_address2(rs.getString("user_address2"));
 				member.setUser_photo(rs.getString("user_photo"));
 				member.setUser_date(rs.getDate("user_date"));
-				member.setUser_ip(rs.getString("user_ip"));
 				member.setUser_point(rs.getInt(user_num));
 				member.setUser_comment(rs.getString("user_comment"));
 			}
@@ -220,6 +218,18 @@ public class MemberDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//프로필 사진 수정
+	
+	//회원 탈퇴(회원정보 삭제)
+	
+	//관리자
+	//전체 내용 개수, 검색 내용 개수
+	
+	//목록, 검색 목록
+	
+	//회원등급 수정
+	
 }
 
 
