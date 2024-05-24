@@ -12,6 +12,9 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/board/list.do">게시판</a>
 		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/event/insertEventForm.do">이벤트 등록</a>
+		</li>
 		<c:if test="${!empty user_num && user_auth == 9}">
 		<li>
 			<a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
