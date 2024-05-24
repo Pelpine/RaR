@@ -30,6 +30,7 @@ public class OrderVO {
 	private String bk_name;		//도서명
 	private String bk_img;		//도서 사진
 	private int bk_price;		//정가
+	
 	public int getOrder_num() {
 		return order_num;
 	}
