@@ -31,6 +31,7 @@ window.onload=function(){
 <div class="page-main">
 	<h2>이벤트 등록</h2>
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="content-main">
 	<form id="write_form" action="insertEvent.do" method="post"
 	                          enctype="multipart/form-data">
 		<ul>
@@ -65,6 +66,7 @@ window.onload=function(){
 			                onclick="location.href='list.do'">
 		</div>                         
 	</form>
+	</div>
 </div>
 </body>
 </html>

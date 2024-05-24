@@ -3,6 +3,8 @@ package kr.rar.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
+
 import kr.rar.vo.EventVO;
 import kr.util.DBUtil;
 
@@ -37,32 +39,79 @@ public class EventDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//이벤트 게시판 목록 가져오기(현재 진행중인 이벤트만)
-
-	//이벤트 상세
-	//이벤트 수정
-	//이벤트 삭제
-	//이벤트 개수 구하기
-	public int getCount() throws Exception{
+	//이벤트 게시판 목록 가져오기(현재 진행중인 이벤트만 볼 수 있게 선택 가능)
+	/*public List<EventVO> getEventBoard() throws Exception{
+		List<EventVO> list = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		int count = 0;
+		String sub_sql ="";
+		int cnt = 0;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT count(*) FROM EVENT_LIST";
-			pstmt = conn.prepareStatement(sql);
-			rs= pstmt.executeQuery();
-			if(rs.next()) {
-				count = rs.getInt(1);
-			}
+			sql = "";
+			pstmt = conn.
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		return count;
-	}
+		return list;
+ 	}*/
+	//이벤트 상세
+	//이벤트 수정
+	//이벤트 삭제
+	//이벤트 개수 구하기
+	public int getBoardCount(String keyfield, String keyword, String start_date, String end_date) throws Exception{
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    String sql = null;
+	    String sub_sql = "";
+	    String date_sql = "";
+	    ResultSet rs = null;
+	    int cnt = 0;
+	    int count = 0;
+	    try {
+	        conn = DBUtil.getConnection();
+	        
+	        if(keyword != null && !"".equals(keyword)) {
+	            // 검색 처리
+	            if(keyfield.equals("1")) sub_sql += "WHERE name LIKE '%' || ? || '%'";
+	            else if(keyfield.equals("2")) sub_sql += "WHERE content LIKE '%' || ? || '%'";
+	        }
+	        
+	        // 날짜 조건 처리
+	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
+	            if(sub_sql.isEmpty()) {
+	                date_sql = "WHERE SYSDATE BETWEEN ? AND ?";
+	            } else {
+	                date_sql = " AND SYSDATE BETWEEN ? AND ?";
+	            }
+	        }
 
+	        sql = "SELECT count(*) FROM zboard " + sub_sql + date_sql;
+	        pstmt = conn.prepareStatement(sql);
+	        
+	        
+	        if(keyword != null && !"".equals(keyword)) {
+	            pstmt.setString(cnt++, keyword);
+	        }
+	        
+	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
+	            pstmt.setString(cnt++, start_date);
+	            pstmt.setString(cnt++, end_date);
+	        }
+	        
+	        rs = pstmt.executeQuery();
+	        if(rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch(Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return count;
+	}
 }
