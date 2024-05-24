@@ -1,4 +1,4 @@
-CREATE TABLE member (
+	CREATE TABLE member (
  user_num number NOT NULL,
  user_name varchar2(12) NOT NULL,
  user_email	varchar2(50) NOT NULL, --아이디/이메일
@@ -17,7 +17,7 @@ CREATE TABLE member_detail (
 	user_date date DEFAULT SYSDATE NOT NULL,
 	user_ip	varchar2 (40) NOT NULL,
 	user_point varchar2(10) DEFAULT 0 NOT NULL,
-	user_comment clob NULL,
+	user_comment clob NULL, --관리자->유저 코멘트
  constraint member_detail_pk primary key (user_num),
  constraint member_detail_fk foreign key (user_num)
                                 references member (user_num)

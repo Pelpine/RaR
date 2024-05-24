@@ -9,7 +9,7 @@
 </c:if>
 <c:if test="${!check}">
 	<script>
-		alert('비밀번호 변경 실패');
+		alert('비밀번호를 정확하게 입력해주세요.');
 		history.go(-1);
 	</script>
 </c:if>

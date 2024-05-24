@@ -178,9 +178,9 @@ public class MemberDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE member_detail SET user_phone=?,user_zipcode=?,"
-				+ "user_address1=?,user_address2=?,user_photo=?,"
-				+ "user_comment=? WHERE user_num=?";
+			sql = "UPDATE member_detail SET user_phone=?,"
+					+ "user_zipcode=?,user_address1=?,user_address2=?"
+					+ "WHERE user_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -188,9 +188,7 @@ public class MemberDAO {
 			pstmt.setString(2, member.getUser_zipcode());
 			pstmt.setString(3, member.getUser_address1());
 			pstmt.setString(4, member.getUser_address2());
-			pstmt.setString(5, member.getUser_photo());
-			pstmt.setString(6, member.getUser_comment());
-			pstmt.setInt(7, member.getUser_num());
+			pstmt.setInt(5, member.getUser_num());
 			//SQL문 실행
 			pstmt.executeUpdate();	
 		}catch(Exception e) {
