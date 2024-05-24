@@ -63,7 +63,22 @@ public class BoardDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-		
+			if(keyword!=null && !"".equals(keyword)) {
+				//검색 처리 sub_sql 조건
+				if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2"))sub_sql += "WHERE id LIKE '%' || ? || '%'";
+				else if(keyfield.equals("3"))sub_sql += "WHERE content LIKE '%' || ? || '%'";
+			}
+			sql = "SELECT COUNT(*) FROM board JOIN member USING(user_num)" +sub_sql;
+			pstmt = conn.prepareStatement(sql);
+			if(keyword!=null && !"".equals(keyword)) {
+				pstmt.setString(1, keyword);
+			}
+			//SQL 실행
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -72,6 +87,7 @@ public class BoardDAO {
 		return count;
 	}
 	//글 목록, 검색 글 목록
+	
 	//글 상세
 	//글 조회수 증가
 	//글 수정
