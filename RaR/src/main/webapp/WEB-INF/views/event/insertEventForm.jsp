@@ -30,6 +30,7 @@ window.onload=function(){
 <body>
 <div class="page-main">
 	<h2>이벤트 등록</h2>
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<form id="write_form" action="insertEvent.do" method="post"
 	                          enctype="multipart/form-data">
 		<ul>

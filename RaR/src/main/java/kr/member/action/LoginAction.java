@@ -1,5 +1,7 @@
 package kr.member.action;
 
+import java.io.Console;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,7 +37,7 @@ public class LoginAction implements Action{
 			session.setAttribute("user_email", member.getUser_email());
 			session.setAttribute("user_auth", member.getUser_auth());
 			session.setAttribute("user_photo", member.getUser_photo());
-			
+		
 			//메인으로 리다이렉트
 			return "redirect:/main/main.do";
 		}
