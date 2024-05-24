@@ -41,10 +41,12 @@ public class MemberDAO {
 				num = rs.getInt(1);
 			}
 			
-			sql = "INSERT INTO member (user_num,user_email) VALUES (?,?)";
+			sql = "INSERT INTO member (user_num,user_name,user_email) VALUES (?,?,?)";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, num);//시퀀스 번호
-			pstmt2.setString(2, member.getUser_email());//아이디
+			pstmt2.setString(2, member.getUser_name());
+			pstmt2.setString(3, member.getUser_email());//아이디
+			
 			pstmt2.executeUpdate();
 			
 			sql = "INSERT INTO member_detail (user_num,passwd,user_phone,"
