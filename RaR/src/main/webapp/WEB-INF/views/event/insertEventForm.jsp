@@ -23,6 +23,12 @@ window.onload=function(){
 				return false;
 			}
 		}
+	const start = document.getElementById('start_date');
+	const end = document.getElementById('end_date');
+	if(start.value>end.value){
+		alert('이벤트 시작일과 종료일을 확인해주세요.');
+		return false;
+	}
 	};
 };
 </script>
