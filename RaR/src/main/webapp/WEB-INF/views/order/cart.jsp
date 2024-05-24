@@ -19,20 +19,15 @@
 				<th>상태</th>
 				<th>삭제</th>
 			</tr>
+			<c:forEach var="cart" items="${list}">
 			<tr>
 				<td><input type="checkbox"></td>
-				<td><img src="../images/face.png" width="30" height="40">상품명</td>
-				<td>10,000</td>
-				<td>상</td>
+				<td>${cart.bk_img} ${cart.bk_name}</td>
+				<td>${cart.bk_price}<br>${cart.item_price}</td>
+				<td>${cart.item_grade}</td>
 				<td><input type="button" value="삭제"></td>
 			</tr>
-			<tr>
-				<td><input type="checkbox"></td>
-				<td><img src="../images/face.png" width="30" height="40">상품명</td>
-				<td>10,000</td>
-				<td>상</td>
-				<td><input type="button" value="삭제"></td>
-			</tr>
+			</c:forEach>
 		</table>
 		<p>
 		<input type="button" value="선택상품 삭제">
