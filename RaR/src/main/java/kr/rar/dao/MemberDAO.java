@@ -137,6 +137,8 @@ public class MemberDAO {
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setInt(1, user_num);
+			
+			rs = pstmt.executeQuery();
 			//SQL문 실행
 			if(rs.next()) {
 				member = new MemberVO();
@@ -150,7 +152,7 @@ public class MemberDAO {
 				member.setUser_address2(rs.getString("user_address2"));
 				member.setUser_photo(rs.getString("user_photo"));
 				member.setUser_date(rs.getDate("user_date"));
-				member.setUser_point(rs.getInt(user_num));
+				member.setUser_point(rs.getInt("user_point"));
 				member.setUser_comment(rs.getString("user_comment"));
 			}
 		}catch(Exception e) {
