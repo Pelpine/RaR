@@ -47,11 +47,11 @@ window.onload=function(){
 			</li>
 			<li>
 				<label for="start-date">시작일</label>
-     		  	<input type="date" id="start-date" name="start-date">
+     		  	<input type="date" id="start_date" name="start_date">
      		</li>
      		<li>
 				<label for="end-date">종료일</label>
-     		  	<input type="date" id="end-date" name="end-date">
+     		  	<input type="date" id="end_date" name="end_date">
      		</li>
 			<li>
 				<label for="filename">이벤트 사진 첨부</label>

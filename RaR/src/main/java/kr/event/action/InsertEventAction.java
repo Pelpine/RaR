@@ -42,7 +42,7 @@ public class InsertEventAction implements Action{
 		dao.insertEvent(event);
 		
 		request.setAttribute("notice_msg", "이벤트 등록 완료");
-		request.setAttribute("notice_url", request.getContextPath()+"/board/list.do");
+		request.setAttribute("notice_url", request.getContextPath()+"/main/main.do");
 		
 		return "/WEB-INF/views/common/alert_view.jsp";
 	}
