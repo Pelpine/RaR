@@ -79,7 +79,7 @@ public class MemberDAO {
 	}//회원가입 end
 	
 	//ID 중복 체크 및 로그인 처리
-	public MemberVO checkMember(String id)throws Exception{
+	public MemberVO checkMember(String user_email)throws Exception{
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -98,7 +98,7 @@ public class MemberDAO {
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setString(1, id);
+			pstmt.setString(1, user_email);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -107,7 +107,7 @@ public class MemberDAO {
 				member.setUser_email(rs.getString("user_email"));
 				member.setUser_auth(rs.getInt("user_auth"));
 				member.setPassword(rs.getString("password"));
-				member.setUser_photo(rs.getString("photo"));
+				member.setUser_photo(rs.getString("user_photo"));
 			}
 			
 		}catch(Exception e) {
