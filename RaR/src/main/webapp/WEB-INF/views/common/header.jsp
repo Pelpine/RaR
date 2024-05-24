@@ -37,7 +37,7 @@
 		</c:if>
 		<c:if test="${!empty user_num}">
 		<li>
-			<a href="${pageContext.request.contextPath}/order.cart.do">장바구니</a>
+			<a href="${pageContext.request.contextPath}/order/cart.do">장바구니</a>
 		</li>
 		<li class="menu-logout">
 			[<span>${user_id}</span>]
