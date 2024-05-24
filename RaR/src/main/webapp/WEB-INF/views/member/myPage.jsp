@@ -103,7 +103,6 @@ $(function(){
 	<div class="content-main">
 		<h2>회원정보</h2>
 		<div class="mypage-div">
-			<h3>프로필 사진</h3>
 			<ul>
 				<li>
 					<c:if test="${empty member.user_photo}">
@@ -117,7 +116,7 @@ $(function(){
 				</li>
 				<li>
 					<div class="align-center">
-						<input type="button" value="수정"
+						<input type="button" value="프로필 수정"
 						                     id="photo_btn">
 					</div>
 					<div id="photo_choice" style="display:none;">
@@ -128,23 +127,24 @@ $(function(){
 					</div>
 				</li>
 			</ul>
-			<h3>연락처 <input type="button" value="연락처 수정"
-			        onclick="location.href='modifyUserForm.do'"></h3>
 			<ul>
 				<li>이름 : ${member.user_name}</li>
-				<li>전화번호 : ${member.user_phone}</li>
 				<li>이메일 : ${member.user_email}</li>
-				<li>우편번호 : ${member.user_zipcode}</li>
-				<li>주소 : ${member.user_address1} ${member.user_address2}</li>
-				<li>가입일 : ${member.user_date}</li>
-				<c:if test="${empty member.user_point}">
-						<li>포인트 : ${member.user_point = 0}</li>
-				</c:if>
+				<c:choose>
+				<c:when test="${empty member.user_point}">
+						<li>포인트 : 0</li>
+				</c:when>
+				<c:when test="${!empty member.user_point}">
+						<li>포인트 : ${member.user_point}</li>
+				</c:when>
+				</c:choose>
 			</ul> 
-			<h3>비밀번호 수정 <input type="button" value="비밀번호 수정" 
-			               onclick="location.href='modifyPasswordForm.do'"></h3>
-			<h3>회원탈퇴 <input type="button" value="회원탈퇴" 
-			               onclick="location.href='deleteUserForm.do'"></h3>       
+			<input type="button" value="회원정보 수정" 
+			               onclick="location.href='modifyUserForm.do'">
+			<input type="button" value="비밀번호 수정" 
+			               onclick="location.href='modifyPasswordForm.do'">
+			<input type="button" value="회원탈퇴" 
+			               onclick="location.href='deleteUserForm.do'">
 		</div>
 		<div class="mypage-div">
 		<div class="mypage-end"></div>
