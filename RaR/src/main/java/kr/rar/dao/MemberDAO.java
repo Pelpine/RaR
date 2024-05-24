@@ -4,9 +4,12 @@ import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.rar.vo.MemberVO;
 import kr.util.DBUtil;
+import oracle.jdbc.proxy.annotation.Pre;
 
 public class MemberDAO {
 	//싱글턴 패턴
@@ -224,16 +227,198 @@ public class MemberDAO {
 	}
 	
 	//프로필 사진 수정
+	public void uploadMyPhoto(String user_photo,int user_num)
+	                                        throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE member_detail SET user_photo=? WHERE user_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, user_photo);
+			pstmt.setInt(2, user_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//회원 탈퇴(회원정보 삭제)
+	public void deleteMember(int user_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//auto  commit 삭제
+			conn.setAutoCommit(false);
+			
+			//member의 user_auth 값 변경
+			sql = "UPDATE member SET auth=0 WHERE user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			pstmt.executeUpdate();
+			
+			//member_detail의 레코드 삭제
+			sql = "DELETE FROM member_detail WHERE user_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, user_num);
+			pstmt2.executeUpdate();
+			
+			//모든 SQL문의 실행이 성공하면 커밋
+			conn.commit();
+		}catch(Exception e) {
+			//SQL문이 하나라도 실패하면 롤백
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//관리자
 	//전체 내용 개수, 검색 내용 개수
+	public int getMemberCountByAdmin(String keyfield,String keyword)
+	                                               throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = null;
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword!=null && !"".equals(keyword)) {
+				//검색 처리
+				if(keyfield.equals("1")) sub_sql += "WHERE user_name LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += "WHERE user_email LIKE '%' || ? || '%'";
+			}
+			
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM member LEFT OUTER JOIN "
+				+ "member_detail USING(user_num) " + sub_sql;
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sub_sql);
+			
+			if(keyword!=null && !"".equals(keyword)) {
+				pstmt.setString(1, keyword);
+			}
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	
 	//목록, 검색 목록
+	public List<MemberVO> getListMemberByAdmin(int start, int end,
+			                                   String keyfield, String keyword)
+	                      throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MemberVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword!=null && !"".equals(keyword)) {
+				//검색 처리
+				if(keyfield.equals("1")) sub_sql += "WHERE user_name LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += "WHERE user_email LIKE '%' || ? || '%'";
+			}
+			
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT * FROM member LEFT OUTER JOIN "
+				+ "member_detail USING(user_num) " + sub_sql + " ORDER BY user_num DESC)a) "
+				+ "WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			if(keyword!=null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, keyword);
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<MemberVO>();
+			
+			while(rs.next()) {
+				MemberVO member = new MemberVO();
+				member.setUser_num(rs.getInt("user_num"));
+				member.setUser_name(rs.getString("user_name"));
+				member.setUser_email(rs.getString("user_email"));
+				member.setUser_auth(rs.getInt("user_auth"));
+				member.setUser_phone(rs.getString("user_phone"));
+				member.setUser_date(rs.getDate("user_date"));
+				
+				list.add(member);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	
 	//회원등급 수정
-	
+	public void updateMemberByAdmin(int user_auth, int user_num)
+	                                throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE member SET user_auth=? WHERE user_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, user_auth);
+			pstmt.setInt(2, user_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
 
 
