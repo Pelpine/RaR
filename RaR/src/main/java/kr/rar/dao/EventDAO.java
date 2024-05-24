@@ -3,6 +3,7 @@ package kr.rar.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.rar.vo.EventVO;
@@ -40,25 +41,65 @@ public class EventDAO {
 		}
 	}
 	//이벤트 게시판 목록 가져오기(현재 진행중인 이벤트만 볼 수 있게 선택 가능)
-	/*public List<EventVO> getEventBoard() throws Exception{
-		List<EventVO> list = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		String sub_sql ="";
-		int cnt = 0;
-		try {
-			conn = DBUtil.getConnection();
-			sql = "";
-			pstmt = conn.
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
-		return list;
- 	}*/
+	public List<EventVO> getBoard(int start, int end, String keyfield, String keyword, String start_date, String end_date) throws Exception{
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    String sql = null;
+	    String sub_sql = "";
+	    String date_sql = "";
+	    ResultSet rs = null;
+	    int cnt = 0;
+	    List<EventVO> list = null;
+	    try {
+	        conn = DBUtil.getConnection();
+	        
+	        if(keyword != null && !"".equals(keyword)) {
+	            // 검색 처리
+	            if(keyfield.equals("1")) sub_sql += "WHERE name LIKE '%' || ? || '%'";
+	            else if(keyfield.equals("2")) sub_sql += "WHERE content LIKE '%' || ? || '%'";
+	        }
+	        
+	        // 날짜 조건 처리
+	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
+	            if(sub_sql.isEmpty()) {
+	                date_sql = "WHERE SYSDATE BETWEEN ? AND ?";
+	            } else {
+	                date_sql = " AND SYSDATE BETWEEN ? AND ?";
+	            }
+	        }
+
+	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM event_list JOIN member USING(user_num) " + sub_sql + date_sql
+					+ " ORDER BY event_num DESC)a) WHERE rnum >=? AND rnum <=?";
+	        pstmt = conn.prepareStatement(sql);
+	      	        
+	        if(keyword != null && !"".equals(keyword)) {
+	            pstmt.setString(cnt++, keyword);
+	        }	        
+	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
+	            pstmt.setString(cnt++, start_date);
+	            pstmt.setString(cnt++, end_date);
+	        }
+	        pstmt.setInt(cnt++, start);
+	        pstmt.setInt(cnt++, end);
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<EventVO>();
+	        while(rs.next()) {
+	        	EventVO event = new EventVO();
+	        	event.setEvent_num(rs.getInt("event_num"));
+	        	event.setName(rs.getString("name"));
+	        	event.setStart_date(rs.getDate("start_date"));
+	        	event.setEnd_date(rs.getDate("end_date"));
+	        	
+	        	list.add(event);
+	        }
+	    } catch(Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return list;
+	}
 	//이벤트 상세
 	//이벤트 수정
 	//이벤트 삭제
