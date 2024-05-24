@@ -69,19 +69,19 @@ public class EventDAO {
 	        }
 
 	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM event_list JOIN member USING(user_num) " + sub_sql + date_sql
+					+ "(SELECT * FROM event_list " + sub_sql + date_sql
 					+ " ORDER BY event_num DESC)a) WHERE rnum >=? AND rnum <=?";
 	        pstmt = conn.prepareStatement(sql);
 	      	        
 	        if(keyword != null && !"".equals(keyword)) {
-	            pstmt.setString(cnt++, keyword);
+	            pstmt.setString(++cnt, keyword);
 	        }	        
 	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
-	            pstmt.setString(cnt++, start_date);
-	            pstmt.setString(cnt++, end_date);
+	            pstmt.setString(++cnt, start_date);
+	            pstmt.setString(++cnt, end_date);
 	        }
-	        pstmt.setInt(cnt++, start);
-	        pstmt.setInt(cnt++, end);
+	        pstmt.setInt(++cnt, start);
+	        pstmt.setInt(++cnt, end);
 	        rs = pstmt.executeQuery();
 	        list = new ArrayList<EventVO>();
 	        while(rs.next()) {
@@ -131,17 +131,17 @@ public class EventDAO {
 	            }
 	        }
 
-	        sql = "SELECT count(*) FROM zboard " + sub_sql + date_sql;
+	        sql = "SELECT count(*) FROM event_list " + sub_sql + date_sql;
 	        pstmt = conn.prepareStatement(sql);
 	        
 	        
 	        if(keyword != null && !"".equals(keyword)) {
-	            pstmt.setString(cnt++, keyword);
+	            pstmt.setString(++cnt, keyword);
 	        }
 	        
 	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
-	            pstmt.setString(cnt++, start_date);
-	            pstmt.setString(cnt++, end_date);
+	            pstmt.setString(++cnt, start_date);
+	            pstmt.setString(++cnt, end_date);
 	        }
 	        
 	        rs = pstmt.executeQuery();

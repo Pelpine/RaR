@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록</title>
+<title>이벤트 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
 	window.onload=function(){
@@ -17,7 +17,12 @@
 				keyword.value = '';
 				keyword.focus();
 				return false; 
-			}	
+			}
+		const underway_btn = document.getElementById('underway_btn');
+			if(underway_btn.checked){
+				const underway = document.getElementById('underway');
+				underway.value = 1;
+			}
 		};
 	};
 </script>
@@ -37,6 +42,11 @@
 					</li>
 					<li>
 						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+					</li>
+					<li>
+						<label for="underway-btn">현재 진행중인 이벤트만 보기</label>
+						<input type="checkbox" name="underway_btn" id="underway_btn">
+						<input type="hidden" id="underway" name="underway">
 					</li>
 					<li>
 						<input type="submit" value="검색">
@@ -66,9 +76,8 @@
 					<c:forEach var="event" items="${list}">
 						<tr>
 							<td>${event.event_num}</td>
-							<td><a href="detail.do?event_num=${event.event_num}">${evnet.name}</a></td>
-							<td>${event.id}</td>
-							<td>${evnet.start_date}</td>
+							<td><a href="detail.do?event_num=${event.event_num}">${event.name}</a></td>
+							<td>${event.start_date}</td>
 							<td>${event.end_date}</td>
 						</tr>
 					</c:forEach>

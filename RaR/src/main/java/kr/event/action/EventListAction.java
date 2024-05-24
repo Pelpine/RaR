@@ -21,13 +21,21 @@ public class EventListAction implements Action{
 		}
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
-		String start_date = request.getParameter("start_date");
-		String end_date = request.getParameter("end_date");
+		String start_date =null;
+		String end_date = null;
+		System.out.println(request.getParameter("underway"));
+		int underway = Integer.parseInt(request.getParameter("underway"));
+		
+		if(underway ==1) {
+		start_date = request.getParameter("start_date");
+		end_date = request.getParameter("end_date");
+		}
+		
 		EventDAO dao = EventDAO.getInstance();
 		int count = dao.getBoardCount(keyfield, keyword, start_date, end_date);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"list.do");
+		PagingUtil page = new PagingUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"eventList.do");
 		
 		List<EventVO> list = null;
 		if(count > 0) {
@@ -37,7 +45,7 @@ public class EventListAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
-		return "/WEB-INF/views/board/list.jsp";
+		return "/WEB-INF/views/event/eventList.jsp";
 	}
 
 }
