@@ -35,5 +35,4 @@ public class AdminUserFormAction implements Action{
 		
 		return "/WEB-INF/views/member/detailUserForm.jsp";
 	}
-	
 }
