@@ -15,9 +15,9 @@ $(function(){
 			$('#email').val('').focus();
 			return false;;
 		}
-		if($('#passwd').val().trim()==''){
+		if($('#password').val().trim()==''){
 			alert('비밀번호를 입력하세요');
-			$('#passwd').val('').focus();
+			$('#password').val('').focus();
 			return false;;
 		}
 	});
