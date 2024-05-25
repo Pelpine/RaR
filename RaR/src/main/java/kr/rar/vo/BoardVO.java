@@ -12,6 +12,21 @@ public class BoardVO {
 	private String filename;
 	private String user_ip;
 	private int user_num;
+	
+	private String email;			//회원 아이디
+	private String photo;		//회원 프로필 사진명
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public int getBoard_num() {
 		return board_num;
 	}

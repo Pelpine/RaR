@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.rar.vo.BoardVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 
 public class BoardDAO {
@@ -66,7 +67,7 @@ public class BoardDAO {
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색 처리 sub_sql 조건
 				if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
-				else if(keyfield.equals("2"))sub_sql += "WHERE id LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2"))sub_sql += "WHERE email LIKE '%' || ? || '%'";
 				else if(keyfield.equals("3"))sub_sql += "WHERE content LIKE '%' || ? || '%'";
 			}
 			sql = "SELECT COUNT(*) FROM board JOIN member USING(user_num)" +sub_sql;
@@ -87,7 +88,58 @@ public class BoardDAO {
 		return count;
 	}
 	//글 목록, 검색 글 목록
-	
+	public List<BoardVO> getListBoard(int start, int end, String keyfield, String keyword)
+			throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BoardVO> list = null;
+		String sql = null;
+		String sub_sql="";
+		int cnt = 0;
+		try {
+			conn=DBUtil.getConnection();
+			if(keyword!=null && !"".equals(keyword)) {
+				
+			
+			//글 검색
+			if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
+			else if(keyfield.equals("2"))sub_sql += "WHERE email LIKE '%' || ? || '%'";
+			else if(keyfield.equals("3"))sub_sql += "WHERE content LIKE '%' || ? || '%'";
+			}
+			//SQL문 작성
+			sql="SELECT * FROM (SELECT a.*,rownum rnum FROM "
+					+ "(SELECT * FROM board JOIN member USING(user_num)" +sub_sql
+					+ "ORDER BY board_num DESC)a) WHERE rnum >= ? AND rnum<= ?";
+			
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			if(keyword!=null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, keyword);
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<BoardVO>();
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setBoard_num(rs.getInt("board_num"));
+				board.setTitle(StringUtil.useNoHTML(rs.getString("title")));//HTML태그를 허용하지 않음
+				board.setHit(rs.getInt("hit"));
+				board.setReg_date(rs.getDate("reg_date"));
+				board.setEmail(rs.getString("email"));
+				
+				list.add(board);
+			}			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	//글 상세
 	//글 조회수 증가
 	//글 수정

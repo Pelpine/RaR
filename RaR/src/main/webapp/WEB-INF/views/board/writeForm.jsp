@@ -13,7 +13,8 @@ window.onload=function(){
 	//이벤트 연결
 	myForm.onsubmit=function(){
 		const title = document.getElementById('title');
-		if(title.value.trim()=='');
+		if(title.value.trim()=='');{
+		alert('제목을 입력하세요');
 		title.value='';
 		title.focus();
 	}
@@ -24,8 +25,8 @@ window.onload=function(){
 		content.focus();
 		return false;
 
-	}
-	
+		}
+	};
 };
 </script>
 </head>
@@ -53,7 +54,7 @@ window.onload=function(){
 							id="filename" accept="image/gif,image/png,image/jpeg">
 				</li>
 			</ul>
-			<div class="align-cente r">
+			<div class="align-center">
 				<input type="submit" value="등록">
 				<input type="button" value="목록"
 					onclick="location.href='list.do'">
