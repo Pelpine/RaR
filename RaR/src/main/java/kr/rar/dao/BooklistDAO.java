@@ -2,6 +2,7 @@ package kr.rar.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import kr.rar.vo.BooklistVO;
 import kr.util.DBUtil;
@@ -39,5 +40,40 @@ public class BooklistDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
+	
+	//책 정보 불러오기
+	public BooklistVO selectBooklist(int num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BooklistVO book = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "select * from Book where bk_num = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				book = new BooklistVO();
+				book.setBk_num(rs.getInt("bk_num"));
+				book.setBk_name(rs.getString("bk_name"));
+				book.setBk_writer(rs.getString("bk_writer"));
+				book.setBk_publisher(rs.getString("bk_publisher"));
+				book.setBk_price(rs.getInt("bk_price"));
+				book.setBk_img(rs.getString("bk_img"));
+				book.setBk_genre(rs.getString("bk_genre"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return book;
 	}
 }

@@ -52,6 +52,9 @@
 			<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 		</li>
 		</c:if>
+		<li>
+			<a href="${pageContext.request.contextPath}/book/bookForm.do">검색</a>
+		</li>
 	</ul>
 </div>
 <!-- header 끝 -->
