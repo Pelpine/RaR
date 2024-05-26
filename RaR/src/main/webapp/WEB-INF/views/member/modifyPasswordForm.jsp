@@ -23,27 +23,27 @@ $(function(){
 			}
 		}//end of for
 		
-		if($('#passwd').val()!=$('#cpasswd').val()){
+		if($('#password').val()!=$('#cpassword').val()){
 			alert('새비밀번호와 새비밀번호 확인이 불일치');
-			$('#passwd').val('').focus();
-			$('#cpasswd').val('');
+			$('#password').val('').focus();
+			$('#cpassword').val('');
 			return false;
 		}
 	});//end of submit
 	
 	//새비밀번호 확인까지 한 후 다시 새비밀번호를 수정하려고 하면 새비밀번호 확인을
 	//초기화
-	$('#passwd').keyup(function(){
-		$('#cpasswd').val('');
-		$('#message_cpasswd').text('');
+	$('#password').keyup(function(){
+		$('#cpassword').val('');
+		$('#message_cpassword').text('');
 	});
 	
 	//새비밀번호와 새비밀번호 확인 일치 여부 체크
-	$('#cpasswd').keyup(function(){
-		if($('#passwd').val()==$('#cpasswd').val()){
-			$('#message_cpasswd').text('새비밀번호 일치');
+	$('#cpassword').keyup(function(){
+		if($('#password').val()==$('#cpassword').val()){
+			$('#message_cpassword').text('새비밀번호 일치');
 		}else{
-			$('#message_cpasswd').text('');
+			$('#message_cpassword').text('');
 		}
 	});
 });
@@ -58,21 +58,21 @@ $(function(){
 		                                      method="post">
 			<ul>
 				<li>
-					<label for="origin_passwd">현재 비밀번호</label>
-					<input type="password" name="origin_passwd" 
-					    id="origin_passwd"
+					<label for="origin_password">현재 비밀번호</label>
+					<input type="password" name="origin_password" 
+					    id="origin_password"
 					       maxlength="12" class="input-check">
 				</li>
 				<li>
-					<label for="passwd">새비밀번호</label>
-					<input type="password" name="passwd" id="passwd"
+					<label for="password">새비밀번호</label>
+					<input type="password" name="password" id="password"
 					       maxlength="12" class="input-check">
 				</li>
 				<li>
-					<label for="cpasswd">새비밀번호 확인</label>
-					<input type="password" id="cpasswd"
+					<label for="cpassword">새비밀번호 확인</label>
+					<input type="password" id="cpassword"
 					       maxlength="12" class="input-check">
-					<span id="message_cpasswd"></span>       
+					<span id="message_cpassword"></span>       
 				</li>
 			</ul>    
 			<div class="align-center">

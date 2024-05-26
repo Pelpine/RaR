@@ -40,7 +40,7 @@ $(function(){
             <form id="register_form" action="registerUser.do" method="post">
                 <ul>
                     <li>
-                        <label for="user_email">이메일</label> <input type="text" name="user_email"
+                        <label for="user_email">이메일</label> <input type="email" name="user_email"
                          id="user_email" maxLength="50" class="intput-check">
                     </li>
                     <li>

@@ -32,7 +32,7 @@ $(function(){
         <form id="login_form" action="login.do" method="post">
             <ul>
                 <li class="floating-label">
-                   <input type="text" class="form-input"
+                   <input type="email" class="form-input"
                     placeholder="이메일" name="user_email" id="user_email"
                     maxlength="50" autocomplete="off">
                    <label for="id">이메일</label>
