@@ -100,8 +100,6 @@ public class BoardDAO {
 		try {
 			conn=DBUtil.getConnection();
 			if(keyword!=null && !"".equals(keyword)) {
-				
-			
 			//글 검색
 			if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
 			else if(keyfield.equals("2"))sub_sql += "WHERE email LIKE '%' || ? || '%'";
