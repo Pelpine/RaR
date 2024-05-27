@@ -24,11 +24,20 @@ body {
 <jsp:include page="/WEB-INF/views/book/headera.jsp"/>
 <c:forEach var="book" items="${book}">
 	<tr>
-    	<td>제목 : ${book.title}<br></td>
+    	<td>제목 : ${book.bk_name}<br></td>
     	<td>저자 : ${book.author}<br></td>
     	<td>책등록일 : ${book.pubDate}<br></td>
+    	<td>장르 : ${book.categoryName}<br></td>
     	<td><img src="${book.coverUrl}"><br></td>
 	</tr>
+	<form action="/book/book.do" method="post" name="shForm">
+		<input type="hidden" value="${book.bk_name}" name="bk_name">
+		<input type="hidden" value="${book.author}" name="author">
+		<input type="hidden" value="${book.pubDate}" name="pubDate">
+		<input type="hidden" value="${book.categoryName}" name="categoryName">
+		<input type="hidden" value="${book.coverUrl}" name="coverUrl">
+		<input type="submit" value="선택">
+	</form>
 </c:forEach>
 </body>
 </html>

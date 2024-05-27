@@ -24,7 +24,7 @@ public class BookDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "insert into book_approval (approval_id,status,request_at,approved_at,itme_grade,bk_name,ad_comment,user_num,bk_num) values (approval_id_seq.nextval,?,sysdate,?,?,?,?,?,?)";
+				sql = "insert into book_approval (approval_id,status,request_at,approved_at,itme_grade,bk_name,ad_comment,user_num) values (approval_id_seq.nextval,?,sysdate,?,?,?,?,?)";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, vo.getStatus());
@@ -33,7 +33,6 @@ public class BookDAO {
 				pstmt.setString(4, vo.getBk_name());
 				pstmt.setString(5, vo.getAd_comment());
 				pstmt.setInt(6, vo.getUser_num());
-				pstmt.setInt(7, vo.getBk_num());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {
@@ -69,7 +68,6 @@ public class BookDAO {
 					vo.setBk_name(rs.getString("bk_name"));
 					vo.setAd_comment(rs.getString("ad_comment"));
 					vo.setUser_num(rs.getInt("user_num"));
-					vo.setBk_num(rs.getInt("bk_num"));
 				}
 			}catch(Exception e) {
 				throw new Exception(e);

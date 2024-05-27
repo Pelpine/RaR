@@ -3,25 +3,24 @@ package kr.rar.vo;
 import java.sql.Date;
 
 public class BookVO {
-	private int approval_id;
-	private int status;
-	private Date request_at;
-	private Date approved_at;
-	private int item_grade;
-	private String bk_name;
-	private String ad_comment;
-	private int user_num;
-	private int bk_num;
-	private String title;
-	private String author;
-	private String pubDate;
-	private String coverUrl;
+	private int approval_id;	//책 코드
+	private int status;			//승인상태
+	private Date request_at;	//요청날짜
+	private Date approved_at;	//승인 확정일
+	private int item_grade;		//상품 상태
+	private String bk_name;		//도서명
+	private String ad_comment;	//코맨트
+	private int user_num;		//유저코드
+	private String author;		//저자
+	private String pubDate;		//책등록일
+	private String coverUrl;	//커버
+	private String categoryName; //장르
 	
-	public String getTitle() {
-		return title;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	public String getAuthor() {
 		return author;
@@ -89,10 +88,5 @@ public class BookVO {
 	public void setUser_num(int user_num) {
 		this.user_num = user_num;
 	}
-	public int getBk_num() {
-		return bk_num;
-	}
-	public void setBk_num(int bk_num) {
-		this.bk_num = bk_num;
-	}
+	
 }
