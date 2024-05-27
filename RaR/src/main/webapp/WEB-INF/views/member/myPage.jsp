@@ -98,7 +98,7 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="main-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>회원정보</h2>
@@ -149,6 +149,7 @@ $(function(){
 		<div class="mypage-div">
 		<div class="mypage-end"></div>
 	</div>
+</div>
 </div>
 </body>
 </html>

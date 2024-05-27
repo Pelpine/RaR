@@ -22,6 +22,7 @@ public class RegisterUserAction implements Action{
 		member.setUser_zipcode(request.getParameter("user_zipcode"));
 		member.setUser_address1(request.getParameter("user_address1"));
 		member.setUser_address2(request.getParameter("user_address2"));
+		member.setUser_ip(request.getRemoteAddr());
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.insertMember(member);

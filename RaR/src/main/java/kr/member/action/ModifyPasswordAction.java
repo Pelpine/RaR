@@ -21,10 +21,11 @@ public class ModifyPasswordAction implements Action{
 		//로그인 된 경우
 		//전송된 데이터 인코딩 타입 지정
 		request.setCharacterEncoding("utf-8");
+		
 		//현재 비밀번호
-		String origin_passwd = 
-				request.getParameter("origin_passwd");
-		String passwd = request.getParameter("passwd");
+		String origin_password = 
+				request.getParameter("origin_password");
+		String password = request.getParameter("password");
 		//현재 로그인 한 이메일
 		String user_email = 
 				(String)session.getAttribute("user_email");
@@ -34,11 +35,11 @@ public class ModifyPasswordAction implements Action{
 		boolean check =false;
 		
 		//사용자가 입력한 아이디가 존재하고 로그인한 아이디와 일치하는지 체크
-		check = member.isCheckedPassword(origin_passwd);
+		check = member.isCheckedPassword(origin_password);
 		
 		if(check) {//인증 성공
 			//비밀번호 변경
-			dao.updatePassword(passwd,user_num);
+			dao.updatePassword(password,user_num);
 		}
 		
 		request.setAttribute("check", check);
