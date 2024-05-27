@@ -46,7 +46,7 @@ public class UpdateEventAction implements Action{
 			 FileUtil.removeFile(request, event.getFilename());
 		 }
 		
-		return "redirect:/board/eventDetail.do?event_num="+event_num;
+		return "redirect:/event/eventDetail.do?event_num="+event_num;
 	}
 
 }

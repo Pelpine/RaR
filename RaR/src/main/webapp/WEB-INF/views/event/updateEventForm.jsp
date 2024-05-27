@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ 	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -62,17 +62,17 @@ window.onload=function(){
      		  	<input type="date" id="end_date" name="end_date" value="${event.end_date}">
      		</li>
 			<li>
-    			<label for="filename">이미지</label>
-    			<input type="file" name="filename" id="filename"
-    			 accept="image/gif,image/png,image/jpeg" value="${event.filename}">
-        		<br>
-    			<img src="${pageContext.request.contextPath}/upload/${event.filename}" width="100" style="margin-left:125px;">
-    		</li>
+   				 <label for="filename">이미지</label>
+  				 <input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg">
+  				  <br>
+   				 <img src="${pageContext.request.contextPath}/upload/${event.filename}" width="100" style="margin-left:125px;">
+			</li>
+
 		</ul> 
 		<div class="align-center">
 			<input type="submit" value="등록">
 			<input type="button" value="목록"
-			                onclick="location.href='list.do'">
+			                onclick="location.href='eventList.do'">
 		</div>                         
 	</form>
 	</div>

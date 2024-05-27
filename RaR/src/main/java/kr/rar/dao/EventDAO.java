@@ -131,6 +131,7 @@ public class EventDAO {
 	public void updateReadCount(int event_num) throws Exception {
 		Connection conn = null;
 		String sql = null;
+		
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBUtil.getConnection();
@@ -148,16 +149,26 @@ public class EventDAO {
 	public void updateEvent (EventVO event) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		int cnt = 0;
 		String sql = null;
+		String sub_sql = "";
 		try {
 			conn = DBUtil.getConnection();
-			sql = "UPDATE EVENT_LIST SET name=?, filename=?, start_date=?, end_date=? WHERE event_num=?";
+			if(event.getFilename()!=null && 
+					!event.getFilename().isEmpty()) {
+				sub_sql += ",filename=?";
+			}
+			sql = "UPDATE EVENT_LIST SET name=?"+sub_sql+",content =? ,start_date=?, end_date=? WHERE event_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, event.getName());
-			pstmt.setString(2, event.getFilename());
-			pstmt.setDate(3, event.getStart_date());
-			pstmt.setDate(4, event.getEnd_date());
-			pstmt.setInt(5, event.getEvent_num());
+			pstmt.setString(++cnt, event.getName());
+			if(event.getFilename()!=null 
+					&& !event.getFilename().isEmpty()) {
+				pstmt.setString(++cnt, event.getFilename());
+			}
+			pstmt.setString(++cnt, event.getContent());
+			pstmt.setDate(++cnt, event.getStart_date());
+			pstmt.setDate(++cnt, event.getEnd_date());
+			pstmt.setInt(++cnt, event.getEvent_num());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
