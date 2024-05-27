@@ -29,16 +29,20 @@ public class AdminUserAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
 		int mem_num = Integer.parseInt(
-				         request.getParameter("mem_num"));
+				         request.getParameter("user_num"));
 		int auth = Integer.parseInt(
-				           request.getParameter("auth"));
+				           request.getParameter("user_auth"));
+		
+		String user_comment = request.getParameter("user_comment");
+		
+		int point = Integer.parseInt(request.getParameter("user_point"));
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		dao.updateMemberByAdmin(auth, mem_num);
+		dao.updateMemberByAdmin(auth, mem_num, user_comment, point);
 		
 		request.setAttribute("notice_msg", "회원등급이 수정되었습니다.");
 		request.setAttribute("notice_url", 
-				   request.getContextPath()+"/member/adminUserForm.do?mem_num="+mem_num);
+				   request.getContextPath()+"/member/adminUserForm.do?user_num="+mem_num);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/common/alert_view.jsp";

@@ -393,27 +393,42 @@ public class MemberDAO {
 	}
 	
 	//회원등급 수정
-	public void updateMemberByAdmin(int user_auth, int user_num)
+	public void updateMemberByAdmin(int user_auth, int user_num, String user_comment, int point)
 	                                throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		String sql = null;
+		String sql2 = null;
 		
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "UPDATE member SET user_auth=? WHERE user_num=?";
+		
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setInt(1, user_auth);
 			pstmt.setInt(2, user_num);
+
 			//SQL문 실행
 			pstmt.executeUpdate();
+			
+			sql2 = "UPDATE member_detail SET user_comment=?, user_point=? WHERE user_num=?";
+			
+			pstmt2 = conn.prepareStatement(sql2);
+			
+			pstmt2.setString(1, user_comment);
+			pstmt2.setInt(2, point);
+			pstmt2.setInt(3, user_num);
+			
+			pstmt2.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}

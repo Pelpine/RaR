@@ -70,10 +70,10 @@ window.onload=function(){
 			</tr>
 			<c:forEach var="member" items="${list}">
 			<tr>
-				<td>${member.user_num }</td>
+				<td>${member.user_num}</td>
 				<td>
 					<c:if test="${member.user_auth > 0}">
-					<a href="adminUserForm.do?mem_num=${member.user_num}">${member.user_email}</a>
+					<a href="adminUserForm.do?user_num=${member.user_num}">${member.user_email}</a>
 					</c:if>
 					<c:if test="${member.user_auth == 0}">${member.user_email}</c:if>
 				</td>
@@ -85,6 +85,9 @@ window.onload=function(){
 					<c:if test="${member.user_auth == 0}">탈퇴</c:if>
 					<c:if test="${member.user_auth == 1}">정지</c:if>
 					<c:if test="${member.user_auth == 2}">일반</c:if>
+					<c:if test="${member.user_auth == 3}">실버</c:if>
+					<c:if test="${member.user_auth == 4}">골드</c:if>
+					<c:if test="${member.user_auth == 5}">플레티넘</c:if>
 					<c:if test="${member.user_auth == 9}">관리</c:if>
 				</td>
 			</tr>
