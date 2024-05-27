@@ -36,11 +36,11 @@ public class UpdateMyPhotoAction implements Action{
 			dao.uploadMyPhoto(user_photo, user_num);
 			
 			//이전 파일 삭제 처리
-			String photo = (String)session.getAttribute("photo");
+			String photo = (String)session.getAttribute("user_photo");
 			FileUtil.removeFile(request, photo);
 			
 			//현재 파일로 세션 정보 갱신
-			session.setAttribute("photo", user_photo);
+			session.setAttribute("user_photo", user_photo);
 			
 			mapAjax.put("result", "success");
 		}

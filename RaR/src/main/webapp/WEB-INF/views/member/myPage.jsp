@@ -56,7 +56,7 @@ $(function(){
 		//$('#photo')[0].files[0] 또는
 		//document.getElementById('photo').files[0]
 		//형식으로 호출 가능
-		form_data.append('photo',$('#photo')[0].files[0]);
+		form_data.append('user_photo',$('#photo')[0].files[0]);
 		
 		$.ajax({
 			url:'updateMyPhoto.do',
