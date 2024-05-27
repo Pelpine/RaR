@@ -1,4 +1,4 @@
-package kr.order.action;
+package kr.cart.action;
 
 import java.util.List;
 
@@ -28,6 +28,6 @@ public class CartAction implements Action{
 		
 		request.setAttribute("list", list);
 		
-		return "/WEB-INF/views/order/cart.jsp";
+		return "/WEB-INF/views/cart/cart.jsp";
 	}
 }
