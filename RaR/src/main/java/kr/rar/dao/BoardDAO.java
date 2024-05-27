@@ -28,8 +28,8 @@ public class BoardDAO {
 		
 	try {
 		conn = DBUtil.getConnection();
-		sql="INSERT INTO board(board_num,title,content"
-				+ "filename,user_num,ip) VALUES (board_seq.nextval,"
+		sql="INSERT INTO board(board_num,title,content,"
+				+ "filename,user_num,user_ip) VALUES (board_seq.nextval,"
 				+ "?,?,?,?,?)";
 		
 		pstmt=conn.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class BoardDAO {
 			if(keyword!=null && !"".equals(keyword)) {
 			//글 검색
 			if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
-			else if(keyfield.equals("2"))sub_sql += "WHERE email LIKE '%' || ? || '%'";
+			else if(keyfield.equals("2"))sub_sql += "WHERE user_email LIKE '%' || ? || '%'";
 			else if(keyfield.equals("3"))sub_sql += "WHERE content LIKE '%' || ? || '%'";
 			}
 			//SQL문 작성
@@ -127,7 +127,7 @@ public class BoardDAO {
 				board.setTitle(StringUtil.useNoHTML(rs.getString("title")));//HTML태그를 허용하지 않음
 				board.setHit(rs.getInt("hit"));
 				board.setReg_date(rs.getDate("reg_date"));
-				board.setEmail(rs.getString("email"));
+				board.setUser_email(rs.getString("user_email"));
 				
 				list.add(board);
 			}			
@@ -139,6 +139,42 @@ public class BoardDAO {
 		return list;
 	}
 	//글 상세
+	public BoardVO getBoard(int board_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardVO board = null;
+		String sql = null;
+		try {
+			conn=DBUtil.getConnection();
+			sql="SELECT * FROM board JOIN member USING(user_num) "
+				+ "LEFT OUTER JOIN member_detail "
+				+ "USING(user_num) WHERE board_num=?";
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				board = new BoardVO();
+				board.setBoard_num(rs.getInt("board_num"));
+				board.setTitle(rs.getString("title"));
+				board.setUser_email(rs.getString("user_email"));
+				board.setContent(rs.getString("content"));
+				board.setHit(rs.getInt("hit"));
+				board.setReg_date(rs.getDate("reg_date"));
+				board.setModify_date(rs.getDate("modify_date"));
+				board.setUser_photo(rs.getString("user_photo"));
+				board.setUser_num(rs.getInt("user_num"));
+				board.setFilename(rs.getString("filename"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return board;
+	}
 	//글 조회수 증가
 	//글 수정
 	//좋아요
@@ -151,3 +187,8 @@ public class BoardDAO {
 	//댓글 수정
 	//댓글 삭제
 }
+
+
+
+
+

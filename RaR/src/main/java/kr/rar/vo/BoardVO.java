@@ -13,19 +13,23 @@ public class BoardVO {
 	private String user_ip;
 	private int user_num;
 	
-	private String email;			//회원 아이디
-	private String photo;		//회원 프로필 사진명
-	public String getEmail() {
-		return email;
+	
+	private String user_email;			//회원 아이디
+	private String user_photo;		//회원 프로필 사진명
+	
+	
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
-	public String getPhoto() {
-		return photo;
+	
+	public String getUser_photo() {
+		return user_photo;
 	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setUser_photo(String user_photo) {
+		this.user_photo = user_photo;
 	}
 	public int getBoard_num() {
 		return board_num;
