@@ -151,12 +151,13 @@ public class EventDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "UPDATE EVENT_LIST SET name=?, filename=?, start_date=?, end_date=?";
+			sql = "UPDATE EVENT_LIST SET name=?, filename=?, start_date=?, end_date=? WHERE event_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, event.getName());
 			pstmt.setString(2, event.getFilename());
 			pstmt.setDate(3, event.getStart_date());
 			pstmt.setDate(4, event.getEnd_date());
+			pstmt.setInt(5, event.getEvent_num());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
