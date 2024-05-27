@@ -19,6 +19,18 @@ body {
     max-width: 100px;
 }
 </style>
+<script type="text/javascript">
+function funtest() {
+	var bk_name = document.getElementById("bk_name").value;
+	var author = document.getElementById("author").value;
+	var pubDate = document.getElementById("pubdate").value;
+	var coverUrl = document.getElementById("coverurl").value;
+	var categoryName = document.getElementById("categoryname").value;
+	
+	window.opener.updateParent(bk_name, author, pubDate, coverUrl, categoryName);
+ 	window.close();
+}
+</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/book/headera.jsp"/>
@@ -30,14 +42,15 @@ body {
     	<td>장르 : ${book.categoryName}<br></td>
     	<td><img src="${book.coverUrl}"><br></td>
 	</tr>
-	<form action="/book/book.do" method="post" name="shForm">
-		<input type="hidden" value="${book.bk_name}" name="bk_name">
-		<input type="hidden" value="${book.author}" name="author">
-		<input type="hidden" value="${book.pubDate}" name="pubDate">
-		<input type="hidden" value="${book.categoryName}" name="categoryName">
-		<input type="hidden" value="${book.coverUrl}" name="coverUrl">
-		<input type="submit" value="선택">
+	<form action="#"  method="post" name="shForm" onsubmit="funtest(); return false;">
+		<input type="hidden" value="${book.bk_name}" id="bk_name" name="bk_name">
+		<input type="hidden" value="${book.author}" id="author" name="author">
+		<input type="hidden" value="${book.pubDate}" id="pubdate" name="pubdate">
+		<input type="hidden" value="${book.categoryName}" id="categoryname" name="categoryname">
+		<input type="hidden" value="${book.coverUrl}" id="coverurl" name="coverUrl">
+		<input type="submit" value="전달">
 	</form>
 </c:forEach>
+
 </body>
 </html>

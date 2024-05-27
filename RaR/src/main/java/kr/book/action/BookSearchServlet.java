@@ -43,16 +43,16 @@ public class BookSearchServlet implements Action {
 	                Element itemElement = (Element) itemNode;
 	                String bk_name = itemElement.getElementsByTagName("title").item(0).getTextContent();
 	                String author = itemElement.getElementsByTagName("author").item(0).getTextContent();
-	                String pubDate = itemElement.getElementsByTagName("pubDate").item(0).getTextContent();
-	                String uel = itemElement.getElementsByTagName("cover").item(0).getTextContent();
-	                String categoryName = itemElement.getElementsByTagName("categoryName").item(0).getTextContent();
+	                String pubdate = itemElement.getElementsByTagName("pubDate").item(0).getTextContent();
+	                String Coverurl = itemElement.getElementsByTagName("cover").item(0).getTextContent();
+	                String categoryname = itemElement.getElementsByTagName("categoryName").item(0).getTextContent();
 	                
 	                BookVO vo = new BookVO();
 	                vo.setBk_name(bk_name);
 	                vo.setAuthor(author);
-	                vo.setPubDate(pubDate);
-	                vo.setCoverUrl(uel);
-	                vo.setCategoryName(categoryName);
+	                vo.setPubDate(pubdate);
+	                vo.setCoverUrl(Coverurl);
+	                vo.setCategoryName(categoryname);
 	                list.add(vo);
 	            }
 	        }

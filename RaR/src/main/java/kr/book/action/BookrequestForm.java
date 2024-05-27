@@ -20,16 +20,16 @@ public class BookrequestForm implements Action{
 		}
 		String bk_name = request.getParameter("bk_name");
 		String author = request.getParameter("author");
-		String pubDate = request.getParameter("pubDate");
-		String coverUrl = request.getParameter("coverUrl");
-		String categoryName = request.getParameter("categoryName");
+		String pubdate = request.getParameter("pubdate");
+		String coverurl = request.getParameter("coverurl");
+		String categoryname = request.getParameter("categoryname");
 		
 		BookVO vo = new BookVO();
         vo.setBk_name(bk_name);
         vo.setAuthor(author);
-        vo.setPubDate(pubDate);
-        vo.setCoverUrl(coverUrl);
-        vo.setCategoryName(categoryName);
+        vo.setPubDate(pubdate);
+        vo.setCoverUrl(coverurl);
+        vo.setCategoryName(categoryname);
         
         request.setAttribute("books", vo);
 		

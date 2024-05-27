@@ -24,15 +24,17 @@ public class BookDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "insert into book_approval (approval_id,status,request_at,approved_at,itme_grade,bk_name,ad_comment,user_num) values (approval_id_seq.nextval,?,sysdate,?,?,?,?,?)";
+				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?)";
 				
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, vo.getStatus());
-				pstmt.setDate(2,vo.getApproved_at());
-				pstmt.setInt(3, vo.getItem_grade());
-				pstmt.setString(4, vo.getBk_name());
-				pstmt.setString(5, vo.getAd_comment());
-				pstmt.setInt(6, vo.getUser_num());
+				pstmt.setInt(1, vo.getItem_grade());
+				pstmt.setString(2, vo.getBk_name());
+				pstmt.setString(3, vo.getAd_comment());
+				pstmt.setInt(4, vo.getUser_num());
+				pstmt.setString(5, vo.getAuthor());
+				pstmt.setString(6, vo.getCoverUrl());
+				pstmt.setString(7, vo.getPubDate());
+				pstmt.setString(8, vo.getCategoryName());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {
