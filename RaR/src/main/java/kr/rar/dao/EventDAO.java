@@ -67,6 +67,7 @@ public class EventDAO {
 	            	date_sql = "AND SYSDATE BETWEEN start_date AND end_date";
 	            }
 	        }
+	        
 	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM event_list " + sub_sql + date_sql +
 	        	      " ORDER BY event_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
 
