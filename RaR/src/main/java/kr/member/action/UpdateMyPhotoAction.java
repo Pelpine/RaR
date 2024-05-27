@@ -1,10 +1,13 @@
 package kr.member.action;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
 import kr.rar.dao.MemberDAO;
@@ -36,10 +39,14 @@ public class UpdateMyPhotoAction implements Action{
 			//현재 파일로 세션 정보 갱신
 			session.setAttribute("user_photo", user_photo);
 			
-			mapAjax.put
+			mapAjax.put("result", "success");
 		}
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String ajaxData = mapper.writeValueAsString(mapAjax);
+		
+		request.setAttribute("ajaxData", ajaxData);
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
-
 }
