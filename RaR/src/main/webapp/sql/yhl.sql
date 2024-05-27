@@ -44,14 +44,17 @@ CREATE TABLE RAR_ORDER_ITEM (
 
 --CART(장바구니)
 CREATE TABLE CART (
+	cart_num	NUMBER		NOT NULL,
 	user_num	NUMBER		NOT NULL,
 	item_num	NUMBER		NOT NULL,
 	bk_num		NUMBER		NOT NULL,
+	reg_date	DATE	default	sysdate	not null,
+	constraint CART_pk primary key (cart_num),
 	constraint CART_user_fk foreign key (user_num) references MEMBER(user_num),
 	constraint CART_item_fk foreign key (item_num) references ITEM (item_num),
 	constraint CART_bk_fk foreign key (bk_num) references BOOK (bk_num)
 );
-
+CREATE sequence CART_SEQ;
 
 
 

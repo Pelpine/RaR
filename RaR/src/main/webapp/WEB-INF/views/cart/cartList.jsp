@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/cart.js"></script>
 </head>
 <body>
 <div class="page-main">
@@ -25,7 +27,7 @@
 				<td>${cart.bk_img} ${cart.bk_name}</td>
 				<td>${cart.bk_price}<br>${cart.item_price}</td>
 				<td>${cart.item_grade}</td>
-				<td><input type="button" value="삭제"></td>
+				<td><input type="button" data-cartnum="${cart.cart_num}" value="삭제" class="delete-btn"></td>
 			</tr>
 			</c:forEach>
 		</table>

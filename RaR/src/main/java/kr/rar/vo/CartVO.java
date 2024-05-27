@@ -2,13 +2,16 @@ package kr.rar.vo;
 
 import java.sql.Date;
 
-public class OrderVO {
-	//주문정보 테이블
+public class CartVO {
+	//장바구니
+	private int cart_num;		//장바구니 번호
 	private int order_num;		//주문번호
 	private int user_num;		//회원번호
 	private int item_num;		//상품번호
 	private int bk_num;			//도서번호
+	private Date reg_date;		//등록일
 	
+	//주문 정보
 	private int total_amount;	//총 금액
 	private Date order_date;	//주문일
 	private String order_name;	//수령인
@@ -31,6 +34,12 @@ public class OrderVO {
 	private String bk_img;		//도서 사진
 	private int bk_price;		//정가
 	
+	public int getCart_num() {
+		return cart_num;
+	}
+	public void setCart_num(int cart_num) {
+		this.cart_num = cart_num;
+	}
 	public int getOrder_num() {
 		return order_num;
 	}
@@ -54,6 +63,12 @@ public class OrderVO {
 	}
 	public void setBk_num(int bk_num) {
 		this.bk_num = bk_num;
+	}
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 	}
 	public int getTotal_amount() {
 		return total_amount;
