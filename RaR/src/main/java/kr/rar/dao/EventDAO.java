@@ -97,7 +97,73 @@ public class EventDAO {
 	    return list;
 	}
 	//이벤트 상세
+	public EventVO EventDetail(int event_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		EventVO event = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM EVENT_LIST WHERE event_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, event_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				event = new EventVO();
+				event.setEvent_num(event_num);
+				event.setName(rs.getString("name"));
+				event.setContent(rs.getString("content"));
+				event.setFilename(rs.getString("filename"));
+				event.setReg_date(rs.getDate("reg_date"));
+				event.setStart_date(rs.getDate("start_date"));
+				event.setEnd_date(rs.getDate("end_date"));
+				event.setHit(rs.getInt("hit"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return event;
+	}
+	//이벤트 조회수 증가
+	public void updateReadCount(int event_num) throws Exception {
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE event_list SET hit = hit+1 WHERE event_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, event_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//이벤트 수정
+	public void updateEvent (EventVO event) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE EVENT_LIST SET name=?, filename=?, start_date=?, end_date=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, event.getName());
+			pstmt.setString(2, event.getFilename());
+			pstmt.setDate(3, event.getStart_date());
+			pstmt.setDate(4, event.getEnd_date());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//이벤트 삭제
 	//이벤트 개수 구하기
 	public int getBoardCount(String keyfield, String keyword, String underway) throws Exception{
