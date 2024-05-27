@@ -33,8 +33,8 @@ window.onload=function(){
 			<ul class="search">
 				<li>
 					<select name="keyfield">
-						<option value="1" <c:if test="${param.keyfield==2}">selected</c:if>>이름</option>
-						<option value="2" <c:if test="${param.keyfield==3}">selected</c:if>>email</option>
+						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>이름</option>
+						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>email</option>
 					</select>
 				</li>
 				<li>
@@ -70,21 +70,22 @@ window.onload=function(){
 			</tr>
 			<c:forEach var="member" items="${list}">
 			<tr>
+				<td>${member.user_num }</td>
 				<td>
-					<c:if test="${member.auth > 0}">
-					<a href="adminUserForm.do?mem_num=${member.mem_num}">${member.id}</a>
+					<c:if test="${member.user_auth > 0}">
+					<a href="adminUserForm.do?mem_num=${member.user_num}">${member.user_email}</a>
 					</c:if>
-					<c:if test="${member.auth == 0}">${member.id}</c:if>
+					<c:if test="${member.user_auth == 0}">${member.user_email}</c:if>
 				</td>
-				<td>${member.name}</td>
-				<td>${member.email}</td>
-				<td>${member.phone}</td>
-				<td>${member.reg_date}</td>
+				<td>${member.user_name}</td>
+				<td>${member.user_phone}</td>
+				<td>${member.user_address1 }</td>
+				<td>${member.user_date}</td>
 				<td>
-					<c:if test="${member.auth == 0}">탈퇴</c:if>
-					<c:if test="${member.auth == 1}">정지</c:if>
-					<c:if test="${member.auth == 2}">일반</c:if>
-					<c:if test="${member.auth == 9}">관리</c:if>
+					<c:if test="${member.user_auth == 0}">탈퇴</c:if>
+					<c:if test="${member.user_auth == 1}">정지</c:if>
+					<c:if test="${member.user_auth == 2}">일반</c:if>
+					<c:if test="${member.user_auth == 9}">관리</c:if>
 				</td>
 			</tr>
 			</c:forEach>

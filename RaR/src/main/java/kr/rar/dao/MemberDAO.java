@@ -294,7 +294,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		String sub_sql = null;
+		String sub_sql = "";
 		int count = 0;
 		
 		try {
@@ -311,7 +311,7 @@ public class MemberDAO {
 			sql = "SELECT COUNT(*) FROM member LEFT OUTER JOIN "
 				+ "member_detail USING(user_num) " + sub_sql;
 			//PreparedStatement 객체 생성
-			pstmt = conn.prepareStatement(sub_sql);
+			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword!=null && !"".equals(keyword)) {
 				pstmt.setString(1, keyword);
@@ -374,11 +374,12 @@ public class MemberDAO {
 			while(rs.next()) {
 				MemberVO member = new MemberVO();
 				member.setUser_num(rs.getInt("user_num"));
-				member.setUser_name(rs.getString("user_name"));
 				member.setUser_email(rs.getString("user_email"));
-				member.setUser_auth(rs.getInt("user_auth"));
+				member.setUser_name(rs.getString("user_name"));
 				member.setUser_phone(rs.getString("user_phone"));
+				member.setUser_address1(rs.getString("user_address1"));
 				member.setUser_date(rs.getDate("user_date"));
+				member.setUser_auth(rs.getInt("user_auth"));
 				
 				list.add(member);
 			}
