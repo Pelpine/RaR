@@ -1,15 +1,13 @@
 package kr.rar.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import kr.rar.vo.MemberVO;
 import kr.util.DBUtil;
-import oracle.jdbc.proxy.annotation.Pre;
+
 
 public class MemberDAO {
 	//싱글턴 패턴
