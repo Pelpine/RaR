@@ -98,11 +98,12 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="main-page">
+<div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>회원정보</h2>
 		<div class="mypage-div">
+		    <h3>프로필 사진</h3>
 			<ul>
 				<li>
 					<c:if test="${empty member.user_photo}">
@@ -110,7 +111,7 @@ $(function(){
 					                   width="200" height="200" class="my-photo">
 					</c:if>
 					<c:if test="${!empty member.user_photo}">
-					<img src="${pageContext.request.contextPath}/upload/${member.photo}" 
+					<img src="${pageContext.request.contextPath}/upload/${member.user_photo}" 
 					                   width="200" height="200" class="my-photo">
 					</c:if>
 				</li>
@@ -160,6 +161,7 @@ $(function(){
 	</div>
 	<div>
 		<input type="button" value="내가 쓴 QnA" onclick="location.href=">
+	</div>
 	</div>
 </div>
 </body>
