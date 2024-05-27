@@ -11,6 +11,7 @@ public class EventVO {
 	private Date start_date;
 	private Date end_date;
 	private int user_num;
+	private int hit;
 	public int getEvent_num() {
 		return event_num;
 	}
@@ -59,4 +60,12 @@ public class EventVO {
 	public void setUser_num(int user_num) {
 		this.user_num = user_num;
 	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
+	
 }

@@ -15,9 +15,8 @@
             const underway_btn = document.getElementById('underway_btn');
             if(underway_btn.checked){
                 underway_btn.value = "1";
-            } else {
+            }else{
                 underway_btn.value = "0";
-  
             }
             console.log(underway.value);
         };
@@ -72,7 +71,7 @@
 					<c:forEach var="event" items="${list}">
 						<tr>
 							<td>${event.event_num}</td>
-							<td><a href="detail.do?event_num=${event.event_num}">${event.name}</a></td>
+							<td><a href="eventDetail.do?event_num=${event.event_num}">${event.name}</a></td>
 							<td>${event.start_date}</td>
 							<td>${event.end_date}</td>
 						</tr>
