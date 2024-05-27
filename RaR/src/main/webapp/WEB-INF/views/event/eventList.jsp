@@ -7,24 +7,21 @@
 <meta charset="UTF-8">
 <title>이벤트 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
 <script type="text/javascript">
-	window.onload=function(){
-		const myForm = document.getElementById('search_form');
-		myForm.onsubmit = function(){
-			const keyword = document.getElementById('keyword');
-			if(keyword.value.trim()==''){
-				alert('검색어를 입력하세요');
-				keyword.value = '';
-				keyword.focus();
-				return false; 
-			}
-		const underway_btn = document.getElementById('underway_btn');
-			if(underway_btn.checked){
-				const underway = document.getElementById('underway');
-				underway.value = 1;
-			}
-		};
-	};
+    window.onload = function(){
+        const myForm = document.getElementById('search_form');
+        myForm.onsubmit = function(){
+            const underway_btn = document.getElementById('underway_btn');
+            if(underway_btn.checked){
+                underway_btn.value = "1";
+            } else {
+                underway_btn.value = "0";
+  
+            }
+            console.log(underway.value);
+        };
+    };
 </script>
 </head>
 <body>
@@ -44,12 +41,11 @@
 						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
 					</li>
 					<li>
-						<label for="underway-btn">현재 진행중인 이벤트만 보기</label>
-						<input type="checkbox" name="underway_btn" id="underway_btn">
-						<input type="hidden" id="underway" name="underway">
+						<input type="submit" value="검색">
 					</li>
 					<li>
-						<input type="submit" value="검색">
+						<label for="underway_btn">현재 진행중인 이벤트만 보기</label>
+						<input type="checkbox" name="underway" id="underway_btn">				
 					</li>
 				</ul>
 			</form>
@@ -57,7 +53,7 @@
 				<input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
-				<input type="button" value="목록" onclick="location.href='list.do'">
+				<input type="button" value="목록" onclick="location.href='eventList.do'">
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 			<c:if test="${count == 0 }">

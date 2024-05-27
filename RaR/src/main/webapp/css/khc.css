@@ -1,1 +1,23 @@
 @charset "UTF-8";
+/* 더 구체적인 선택자로 우선순위 높이기 */
+form#search_form ul.search {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+form#search_form ul.search li {
+    display: inline-block;
+    margin-right: 10px;
+    white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+form#search_form ul.search label {
+    vertical-align: middle;
+    margin-right: 90px; /* 필요에 따라 조정 */
+}
+
+form#search_form ul.search input[type="checkbox"] {
+    vertical-align: middle;
+    margin-right: 5px; /* 필요에 따라 조정 */
+}

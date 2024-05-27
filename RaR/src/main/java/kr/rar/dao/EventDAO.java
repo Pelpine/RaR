@@ -41,7 +41,7 @@ public class EventDAO {
 		}
 	}
 	//이벤트 게시판 목록 가져오기(현재 진행중인 이벤트만 볼 수 있게 선택 가능)
-	public List<EventVO> getBoard(int start, int end, String keyfield, String keyword, String start_date, String end_date) throws Exception{
+	public List<EventVO> getBoard(int start, int end, String keyfield, String keyword, String underway) throws Exception{
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    String sql = null;
@@ -60,26 +60,21 @@ public class EventDAO {
 	        }
 	        
 	        // 날짜 조건 처리
-	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
+	        if(underway.equals("1")) {
 	            if(sub_sql.isEmpty()) {
-	                date_sql = "WHERE SYSDATE BETWEEN ? AND ?";
+	                date_sql = "WHERE SYSDATE BETWEEN start_date AND end_date";
 	            } else {
-	                date_sql = " AND SYSDATE BETWEEN ? AND ?";
+	            	date_sql = "AND SYSDATE BETWEEN start_date AND end_date";
 	            }
 	        }
+	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM event_list " + sub_sql + date_sql +
+	        	      " ORDER BY event_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
 
-	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM event_list " + sub_sql + date_sql
-					+ " ORDER BY event_num DESC)a) WHERE rnum >=? AND rnum <=?";
 	        pstmt = conn.prepareStatement(sql);
 	      	        
 	        if(keyword != null && !"".equals(keyword)) {
 	            pstmt.setString(++cnt, keyword);
 	        }	        
-	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
-	            pstmt.setString(++cnt, start_date);
-	            pstmt.setString(++cnt, end_date);
-	        }
 	        pstmt.setInt(++cnt, start);
 	        pstmt.setInt(++cnt, end);
 	        rs = pstmt.executeQuery();
@@ -104,7 +99,7 @@ public class EventDAO {
 	//이벤트 수정
 	//이벤트 삭제
 	//이벤트 개수 구하기
-	public int getBoardCount(String keyfield, String keyword, String start_date, String end_date) throws Exception{
+	public int getBoardCount(String keyfield, String keyword, String underway) throws Exception{
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    String sql = null;
@@ -123,11 +118,11 @@ public class EventDAO {
 	        }
 	        
 	        // 날짜 조건 처리
-	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
+	        if(underway.equals("1")) {
 	            if(sub_sql.isEmpty()) {
-	                date_sql = "WHERE SYSDATE BETWEEN ? AND ?";
+	                date_sql = "WHERE SYSDATE BETWEEN start_date AND end_date";
 	            } else {
-	                date_sql = " AND SYSDATE BETWEEN ? AND ?";
+	                date_sql = " AND SYSDATE BETWEEN start_date AND end_date";
 	            }
 	        }
 
@@ -139,10 +134,6 @@ public class EventDAO {
 	            pstmt.setString(++cnt, keyword);
 	        }
 	        
-	        if(start_date != null && !"".equals(start_date) && end_date != null && !"".equals(end_date)) {
-	            pstmt.setString(++cnt, start_date);
-	            pstmt.setString(++cnt, end_date);
-	        }
 	        
 	        rs = pstmt.executeQuery();
 	        if(rs.next()) {
