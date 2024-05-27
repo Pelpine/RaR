@@ -62,42 +62,12 @@ window.onload=function(){
      		  	<input type="date" id="end_date" name="end_date" value="${event.end_date}">
      		</li>
 			<li>
-					<label for="filename">파일네임</label> 
-					<input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg"> 
-					<c:if test="${!empty event.filename}">
-							<div id="file_detail">
-								<img src="${pageContext.request.contextPath}/upload/${event.filename}" width="100">
-								<input type="button" value="파일 삭제" id="file_del">
-							</div>
-					</c:if>
-					<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-					<script type="text/javascript">
-					$('#file_del').click(function(){
-						let choice = confirm('삭제하시겠습니까?');
-						if(choice){
-							$.ajax({
-								url:'deleteEventFile.do',
-								type:'post',
-								data:{event_num:${event.event_num}},
-								dataType:'json',
-								success:function(param){
-									if(param.result == 'logout'){
-											alert('로그인 후 사용하세요');
-									}else if(param.result=='success'){
-										 $('#file_detail').hide();
-									}else if(param.result=='wrongAccess'){
-										 alert('잘못된 접속입니다.');
-									}else{
-									 	alert('파일 삭제 오류 발생');
-									}	
-								},
-								error: function(){
-									alert('네트워크 오류 발생');
-								}
-							});
-						}
-                	}); 
-					</script>
+    			<label for="filename">이미지</label>
+    			<input type="file" name="filename" id="filename"
+    			 accept="image/gif,image/png,image/jpeg" value="${event.filename}">
+        		<br>
+    			<img src="${pageContext.request.contextPath}/upload/${event.filename}" width="100" style="margin-left:125px;">
+    		</li>
 		</ul> 
 		<div class="align-center">
 			<input type="submit" value="등록">

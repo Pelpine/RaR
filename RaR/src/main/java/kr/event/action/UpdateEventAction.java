@@ -24,14 +24,11 @@ public class UpdateEventAction implements Action{
 		int event_num = Integer.parseInt(request.getParameter("event_num"));
 	
 		EventDAO dao = EventDAO.getInstance();
-		//수정전 데이터
-		EventVO db_event = dao.EventDetail(event_num);
 		//로그인한 회원 번호와 작성자 회원번호 일치 여부 체크
 		Integer user_auth = (Integer) session.getAttribute("user_auth");
 		if(user_auth!=9) {//관리자로 로그인하지 않은 경우
 		return "/WEB-INF/views/common/notice.jsp";
 		}
-		//로그인한 회원 번호와 작성자 회원번호 일치
 		
 		EventVO event =  new EventVO();
 		event.setEvent_num(event_num);
@@ -44,11 +41,10 @@ public class UpdateEventAction implements Action{
 		event.setFilename(FileUtil.createFile(request, "filename"));
 		dao.updateEvent(event);
 		
-		if(event.getFilename()!=null && !"".equals(event.getFilename())) {
-			//새 파일로 교체됨
-			FileUtil.removeFile(request, db_event.getFilename());
-		}
-		
+		 if(event.getFilename()!=null && !event.getFilename().isEmpty()) {
+			 //새 파일로 교체할 때 원래 파일 제거
+			 FileUtil.removeFile(request, event.getFilename());
+		 }
 		
 		return "redirect:/board/eventDetail.do?event_num="+event_num;
 	}

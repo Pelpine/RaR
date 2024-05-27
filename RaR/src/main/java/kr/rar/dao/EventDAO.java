@@ -164,6 +164,7 @@ public class EventDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 	//이벤트 삭제
 	//이벤트 개수 구하기
 	public int getBoardCount(String keyfield, String keyword, String underway) throws Exception{

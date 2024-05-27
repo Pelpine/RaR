@@ -10,7 +10,6 @@ import kr.rar.dao.EventDAO;
 import kr.rar.vo.EventVO;
 import kr.util.PagingUtil;
 
-
 public class EventListAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
