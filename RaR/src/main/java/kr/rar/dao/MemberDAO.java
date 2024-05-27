@@ -69,6 +69,8 @@ public class MemberDAO {
 			pstmt3.setInt(10, member.getUser_point());
 			pstmt3.setString(11, member.getUser_comment());
 			
+			pstmt3.executeUpdate();
+			
 			//SQL 실행시 모두 성공하면 commit
 			conn.commit();
 			
