@@ -17,5 +17,4 @@ public class LogoutAction implements Action{
 		//메인으로 리다이렉트
 		return "redirect:/main/main.do";
 	}
-
 }
