@@ -139,17 +139,28 @@ $(function(){
 				</c:when>
 				</c:choose>
 			</ul> 
+			<div>
 			<input type="button" value="회원정보 수정" 
 			               onclick="location.href='modifyUserForm.do'">
 			<input type="button" value="비밀번호 수정" 
 			               onclick="location.href='modifyPasswordForm.do'">
 			<input type="button" value="회원탈퇴" 
 			               onclick="location.href='deleteUserForm.do'">
-		</div>
-		<div class="mypage-div">
-		<div class="mypage-end"></div>
+			</div>
+
 	</div>
-</div>
+	<div>
+		<input type="button" value="최근 구매 내역" onclick="location.href=">
+	</div>
+	<div>
+		<input type="button" value="내가 쓴 게시물" onclick="location.href=">
+	</div>
+	<div>
+		<input type="button" value="내가 쓴 댓글" onclick="location.href=">
+	</div>
+	<div>
+		<input type="button" value="내가 쓴 QnA" onclick="location.href=">
+	</div>
 </div>
 </body>
 </html>

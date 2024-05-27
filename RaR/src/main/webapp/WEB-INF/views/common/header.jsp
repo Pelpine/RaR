@@ -18,7 +18,10 @@
 		<c:if test="${!empty user_num && user_auth == 9}">
 		<li>
 			<a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
-		</li>	
+		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}">상품승인</a>
+		</li>
 		</c:if>
 		<c:if test="${!empty user_num}">
 		<li>
