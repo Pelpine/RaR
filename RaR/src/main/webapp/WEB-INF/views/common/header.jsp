@@ -46,9 +46,6 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
 		</li>
-		<li>
-			<a href="${pageContext.request.contextPath}/book/booklist.do">등록된책목록</a>
-		</li>
 		</c:if>
 		<c:if test="${empty user_num}">
 		<li>
@@ -56,6 +53,9 @@
 		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/book/booklist.do">책목록</a>
 		</li>
 		</c:if>
 	</ul>

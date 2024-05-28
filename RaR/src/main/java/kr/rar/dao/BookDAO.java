@@ -114,6 +114,7 @@ public class BookDAO {
 						vo.setBk_name(rs.getNString("bk_name"));
 						vo.setBk_writer(rs.getString("bk_writer"));
 						vo.setBk_publisher(rs.getString("bk_publisher"));
+						vo.setBk_img(rs.getString("bk_img"));
 						
 						list.add(vo);
 					}
