@@ -34,7 +34,7 @@ public class DeleteUserAction implements Action{
 		boolean check = false;
 		//사용자가 입력한 아이디가 존재하고 로그인한 아이디와 일치하는지 체크,
 		//입력한 이메일과 저장된 이메일 일치 여부 체크
-		if(db_member!=null && user_email.equals(login_email)) {
+		if(db_member!=null && user_email.equals(db_member.getUser_email())) {
 			//비밀번호 일치 여부 체크
 			check = db_member.isCheckedPassword(password);
 		}
