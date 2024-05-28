@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import kr.rar.vo.BookVO;
+import kr.rar.vo.BookApprovalVO;
 import kr.util.DBUtil;
 
 public class BookDAO {
@@ -17,7 +17,7 @@ public class BookDAO {
 		private BookDAO() {}
 		
 		//책 등록 요청 저장
-		public void insertBook(BookVO vo)throws Exception{
+		public void insertBook(BookApprovalVO vo)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
@@ -45,11 +45,11 @@ public class BookDAO {
 		}
 		
 		//책 등록 요청 불러오기
-		public BookVO selectbook(int num)throws Exception{
+		public BookApprovalVO selectbook(int num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			BookVO vo = null;
+			BookApprovalVO vo = null;
 			String sql = null;
 			try {
 				conn = DBUtil.getConnection();
@@ -61,7 +61,7 @@ public class BookDAO {
 				
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					vo = new BookVO();
+					vo = new BookApprovalVO();
 					vo.setApproval_id(rs.getInt("approval_id"));
 					vo.setStatus(rs.getInt("status"));
 					vo.setRequest_at(rs.getDate("request_at"));

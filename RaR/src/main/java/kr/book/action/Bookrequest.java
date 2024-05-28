@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.rar.dao.BookDAO;
-import kr.rar.vo.BookVO;
+import kr.rar.vo.BookApprovalVO;
 
 public class Bookrequest implements Action{
 
@@ -19,7 +19,7 @@ public class Bookrequest implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		BookDAO dao = BookDAO.instance;
-		BookVO vo = new BookVO();
+		BookApprovalVO vo = new BookApprovalVO();
 		 
         vo.setBk_name(request.getParameter("bk_name"));
         vo.setAuthor(request.getParameter("author"));

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.rar.dao.BookDAO;
-import kr.rar.vo.BookVO;
+import kr.rar.vo.BookApprovalVO;
 
 public class BookrequestForm implements Action{
 
@@ -24,7 +24,7 @@ public class BookrequestForm implements Action{
 		String coverurl = request.getParameter("coverurl");
 		String categoryname = request.getParameter("categoryname");
 		
-		BookVO vo = new BookVO();
+		BookApprovalVO vo = new BookApprovalVO();
         vo.setBk_name(bk_name);
         vo.setAuthor(author);
         vo.setPubDate(pubdate);

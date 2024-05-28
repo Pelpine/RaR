@@ -7,6 +7,7 @@
     <input type="submit" value="검색" id="sk">
     <br>
     <button type="button" id="prev">이전 페이지</button>
+    <div id="count"></div>
     <button type="button" id="next">다음 페이지</button>
 </form>
 <script type="text/javascript">
@@ -17,21 +18,26 @@
         const nextButton = document.getElementById('next');
         const searchInput = document.getElementById('sheck');
         const currentSearchInput = document.getElementById('currentSearch');
-
+        const count = document.getElementById('count');
+        count.text() = 1;
         prevButton.addEventListener('click', function () {
             let currentPage = parseInt(startInput.value);
             if (currentPage <= 1) {
                 alert('첫 페이지 입니다.');
                 return;
             }
-            startInput.value = currentPage - 1;
+            currentPage -= 1;
+            count.textContent = currentPage;
+            startInput.value = currentPage;
             currentSearchInput.value = searchInput.value;
             searchForm.submit();
         });
 
         nextButton.addEventListener('click', function () {
             let currentPage = parseInt(startInput.value);
-            startInput.value = currentPage + 1;
+            currentPage += 1;
+            count.textContent = currentPage;
+            startInput.value = currentPage;
             currentSearchInput.value = searchInput.value;
             searchForm.submit();
         });

@@ -15,7 +15,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import kr.controller.Action;
-import kr.rar.vo.BookVO;
+import kr.rar.vo.BookApprovalVO;
 
 public class BookSearchServlet implements Action {
 
@@ -25,7 +25,7 @@ public class BookSearchServlet implements Action {
 		String sheck = request.getParameter("sheck");//검색어
 		int start = 1; //검색결과 시작페이지
 		start = Integer.parseInt(request.getParameter("start"));
-		 ArrayList<BookVO> list = new ArrayList<>();
+		 ArrayList<BookApprovalVO> list = new ArrayList<>();
 	    	String key = "ttbtkdrl45620853001";
 	    	String sk = "Title";//검색종류 - Keyword: 제목,저자 , Title:제목 , Author:저자 , Publisher:출판사
 	    	int maxresults = 20; //검색결과 한페이지당 최데 출력 개수
@@ -48,7 +48,7 @@ public class BookSearchServlet implements Action {
 	                String Coverurl = itemElement.getElementsByTagName("cover").item(0).getTextContent();
 	                String categoryname = itemElement.getElementsByTagName("categoryName").item(0).getTextContent();
 	                
-	                BookVO vo = new BookVO();
+	                BookApprovalVO vo = new BookApprovalVO();
 	                vo.setBk_name(bk_name);
 	                vo.setAuthor(author);
 	                vo.setPubDate(pubdate);
