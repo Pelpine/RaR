@@ -25,7 +25,7 @@
 						</select>
 					</li>
 					<li>
-						<input type="hidden" value="">
+						<input type="hidden" value="" id="keyword" name="keyword">
 						<input type="submit" value="검색">
 					</li>
 				</ul>
@@ -53,7 +53,7 @@
 				<c:forEach var="book" items="${list}">
 				<tr>
 					<td>${book.approval_id}</td>
-					<td><a href="detail.do?board_num=${board.approval_id}">${book.bk_name}</a></td>
+					<td><a href="bookdetail.do?approval_id=${book.approval_id}">${book.bk_name}</a></td>
 					<td>${book.status}</td>
 					<td>${book.request_at}</td>
 					<td>${book.approved_at}</td>
