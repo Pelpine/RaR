@@ -43,6 +43,13 @@ public class UpdateEventAction implements Action{
 			 FileUtil.removeFile(request, event.getFilename());
 		 }
 		event.setFilename(FileUtil.createFile(request, "filename"));
+		String notice = request.getParameter("notice");
+		if(notice==null) {
+		event.setNotice(0);
+		}else if(notice.equals("1")){
+		event.setNotice(1);
+		}
+		
 		dao.updateEvent(event);
 		
 		

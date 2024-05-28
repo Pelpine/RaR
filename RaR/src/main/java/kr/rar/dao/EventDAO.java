@@ -161,7 +161,7 @@ public class EventDAO {
 					!event.getFilename().isEmpty()) {
 				sub_sql += ",filename=?";
 			}
-			sql = "UPDATE EVENT_LIST SET name=?"+sub_sql+",content =? ,start_date=?, end_date=? WHERE event_num=?";
+			sql = "UPDATE EVENT_LIST SET name=?"+sub_sql+",content =? ,start_date=?, end_date=?, notice=? WHERE event_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(++cnt, event.getName());
 			if(event.getFilename()!=null 
@@ -171,6 +171,7 @@ public class EventDAO {
 			pstmt.setString(++cnt, event.getContent());
 			pstmt.setDate(++cnt, event.getStart_date());
 			pstmt.setDate(++cnt, event.getEnd_date());
+			pstmt.setInt(++cnt, event.getNotice());
 			pstmt.setInt(++cnt, event.getEvent_num());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
