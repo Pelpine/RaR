@@ -239,6 +239,8 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, favVO.getBoard_num());
 			pstmt.setInt(2, favVO.getUser_num());
+			
+			pstmt.executeUpdate();
 		}catch(Exception e) {
 			pstmt.executeUpdate();
 		}finally {
@@ -282,7 +284,7 @@ public class BoardDAO {
 		try {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql="SELECT * FROM zboard_fav WHERE board_num=? AND user_num=?";
+			sql="SELECT * FROM board_fav WHERE board_num=? AND user_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -337,7 +339,7 @@ public class BoardDAO {
 				//검색되어야 하기때문에 f.user_num으로 표기해야 함
 				
 				sql="SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM zboard b JOIN "
+					+ "(SELECT * FROM board b JOIN "
 					+ "member m USING(user_num) JOIN board_fav f "
 					+ "USING(board_num) WHERE f.user_num=? ORDER BY "
 					+ "board_num DESC)a) WHERE rnum>=? AND rnum <= ?";
