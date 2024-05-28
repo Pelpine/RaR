@@ -27,7 +27,7 @@ public class BookApprovalDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?)";
+				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname,price) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?,?)";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, vo.getItem_grade());
@@ -38,6 +38,7 @@ public class BookApprovalDAO {
 				pstmt.setString(6, vo.getCoverUrl());
 				pstmt.setString(7, vo.getPubDate());
 				pstmt.setString(8, vo.getCategoryName());
+				pstmt.setInt(9, vo.getPrice());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {
@@ -169,8 +170,8 @@ public class BookApprovalDAO {
 			return vo;
 		}
 		
-		//승인 상태 변경
-		public void updatestatus(int num)throws Exception{
+		//승인 상태 변경 및 수정
+		public void updatestatus(BookApprovalVO vo)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
@@ -179,7 +180,7 @@ public class BookApprovalDAO {
 				
 				sql = "update book_approval where approval_id = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, num);
+				pstmt.setInt(1, vo.getApproval_id());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {

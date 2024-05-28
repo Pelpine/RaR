@@ -28,6 +28,7 @@ public class Bookrequest implements Action{
         vo.setCategoryName(request.getParameter("categoryname"));
         vo.setUser_num(user_num);
         vo.setAd_comment(request.getParameter("comment"));
+        vo.setPrice(Integer.parseInt(request.getParameter("price")));
         vo.setItem_grade(Integer.parseInt(request.getParameter("item_grade")));
         
         dao.insertBook(vo);

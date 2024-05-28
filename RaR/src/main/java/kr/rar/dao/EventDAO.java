@@ -250,27 +250,27 @@ public class EventDAO {
 	    return count;
 	}
 	//오늘 출석 여부 파악
-	public Date getAttendance(int user_num) throws Exception{
+	public boolean checkAttendance(int user_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Date date = null;
 		String sql = null;
+		boolean checkat = true;
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM event_attendance WHERE user_num=? AND attendance_date=sysdate";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				
+			if(rs.next()) {
+				checkat = false;
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
-		}
-		
-		return date;
+		}		
+		return checkat; // checkat가 1이면 출석, 0이면 미출석
 	}
 	
 	//출석하기
@@ -291,7 +291,21 @@ public class EventDAO {
 		}
 	}
 	//리워드 지급
-	
-	//지금까지 지급받은 포인트 구하기
+	public void updatePoint(int user_num) throws Exception{
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE MEMBER_DETAIL SET user_point=user_point+50 WHERE user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//
 }
