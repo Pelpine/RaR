@@ -29,7 +29,7 @@ public class BookSearchServlet implements Action {
 	    	String key = "ttbtkdrl45620853001";
 	    	String sk = "Title";//검색종류 - Keyword: 제목,저자 , Title:제목 , Author:저자 , Publisher:출판사
 	    	int maxresults = 20; //검색결과 한페이지당 최데 출력 개수
-	        String urlStr = "https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey="+key+"&Query="+sheck+"&QueryType="+sk+"&MaxResults="+maxresults+"&start="+start+"&SearchTarget=Book&output=xml&Cover=MidBig";
+	        String urlStr = "https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey="+key+"&Query="+sheck+"&QueryType="+sk+"&MaxResults="+maxresults+"&start="+start+"&SearchTarget=Book&output=xml&Cover=MidBig&pricesales";
 	        URL url = new URL(urlStr);
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	        conn.setRequestMethod("GET");
@@ -47,6 +47,7 @@ public class BookSearchServlet implements Action {
 	                String pubdate = itemElement.getElementsByTagName("pubDate").item(0).getTextContent();
 	                String Coverurl = itemElement.getElementsByTagName("cover").item(0).getTextContent();
 	                String categoryname = itemElement.getElementsByTagName("categoryName").item(0).getTextContent();
+	                int price = Integer.parseInt(itemElement.getElementsByTagName("priceStandard").item(0).getTextContent());
 	                
 	                BookApprovalVO vo = new BookApprovalVO();
 	                vo.setBk_name(bk_name);
@@ -54,6 +55,7 @@ public class BookSearchServlet implements Action {
 	                vo.setPubDate(pubdate);
 	                vo.setCoverUrl(Coverurl);
 	                vo.setCategoryName(categoryname);
+	                vo.setPrice(price);
 	                list.add(vo);
 	            }
 	        }

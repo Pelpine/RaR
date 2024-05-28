@@ -25,8 +25,9 @@ public class Bookdetailupdate implements Action{
 		BookApprovalDAO dao = BookApprovalDAO.getInstance();
 		BookApprovalVO vo = new BookApprovalVO();
 		vo.setStatus(Integer.parseInt(request.getParameter("status")));
+		vo.setApproval_id(Integer.parseInt(request.getParameter("Approval_id")));
 		
-		//더해야함
+		dao.updatestatus(vo);
 		
 		
 		request.setAttribute("notice_msg", "글 등록 완료");

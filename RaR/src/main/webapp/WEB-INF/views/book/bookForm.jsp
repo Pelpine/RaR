@@ -30,8 +30,9 @@ $(document).ready(function(){
         var pubDate = $(this).find('input[name="pubdate"]').val();
         var coverUrl = $(this).find('input[name="coverurl"]').val();
         var categoryName = $(this).find('input[name="categoryname"]').val();
-
-        window.opener.updateParent(bk_name, author, pubDate, coverUrl, categoryName);
+        var price = $(this).find('input[name="price"]').val();
+        
+        window.opener.updateParent(bk_name, author, pubDate, coverUrl, categoryName, price);
         window.close();
     });
 });
@@ -45,9 +46,11 @@ $(document).ready(function(){
         <div>저자 : ${book.author}</div>
         <div>책등록일 : ${book.pubDate}</div>
         <div>장르 : ${book.categoryName}</div>
+        <div>정가 : ${book.price} 원</div>
         <div><img src="${book.coverUrl}" alt="Book Cover"></div>
         <form action="#" method="post" class="shForm">
             <input type="hidden" value="${book.bk_name}" name="bk_name">
+            <input type="hidden" value="${book.price}" name="price">
             <input type="hidden" value="${book.author}" name="author">
             <input type="hidden" value="${book.pubDate}" name="pubdate">
             <input type="hidden" value="${book.categoryName}" name="categoryname">

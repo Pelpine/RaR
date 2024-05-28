@@ -15,7 +15,7 @@ public class Bookdetail implements Action{
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		if(user_num == null) {
 			return "redirect:/book/loginForm.do";
 		}
@@ -23,7 +23,8 @@ public class Bookdetail implements Action{
 		BookApprovalDAO dao = BookApprovalDAO.getInstance();
 		BookApprovalVO vo = dao.selectbook(id);
 		
+		request.setAttribute("user_auth", user_auth);
 		request.setAttribute("detail", vo);
-		return "/WEB-INF/views/book/bookdetail";
+		return "/WEB-INF/views/book/bookdetail.jsp";
 	}
 }

@@ -15,6 +15,14 @@ public class BookApprovalVO {
 	private String pubDate;		//책등록일
 	private String coverUrl;	//커버
 	private String categoryName; //장르
+	private int price; //가격
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	private MemberVO MemberVO;
 	
 	public void setMemberVO(MemberVO memberVO) {
