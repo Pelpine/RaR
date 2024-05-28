@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import kr.rar.vo.BooklistVO;
+import kr.rar.vo.BookVO;
 import kr.util.DBUtil;
 
 public class BooklistDAO {
@@ -17,7 +17,7 @@ public class BooklistDAO {
 	private BooklistDAO() {}
 	
 	//책 정보 저장
-	public void insertBooklist(BooklistVO vo)throws Exception{
+	public void insertBooklist(BookVO vo)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -43,11 +43,11 @@ public class BooklistDAO {
 	}
 	
 	//책 정보 불러오기
-	public BooklistVO selectBooklist(int num)throws Exception{
+	public BookVO selectBooklist(int num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		BooklistVO book = null;
+		BookVO book = null;
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
@@ -59,7 +59,7 @@ public class BooklistDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				book = new BooklistVO();
+				book = new BookVO();
 				book.setBk_num(rs.getInt("bk_num"));
 				book.setBk_name(rs.getString("bk_name"));
 				book.setBk_writer(rs.getString("bk_writer"));

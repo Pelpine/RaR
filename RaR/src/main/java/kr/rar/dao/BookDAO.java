@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import kr.rar.vo.BookVO;
+import kr.rar.vo.BookApprovalVO;
 import kr.util.DBUtil;
 
 public class BookDAO {
@@ -17,22 +17,24 @@ public class BookDAO {
 		private BookDAO() {}
 		
 		//책 등록 요청 저장
-		public void insertBook(BookVO vo)throws Exception{
+		public void insertBook(BookApprovalVO vo)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "insert into book_approval (approval_id,status,request_at,approved_at,itme_grade,bk_name,ad_comment,user_num) values (approval_id_seq.nextval,?,sysdate,?,?,?,?,?)";
+				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?)";
 				
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, vo.getStatus());
-				pstmt.setDate(2,vo.getApproved_at());
-				pstmt.setInt(3, vo.getItem_grade());
-				pstmt.setString(4, vo.getBk_name());
-				pstmt.setString(5, vo.getAd_comment());
-				pstmt.setInt(6, vo.getUser_num());
+				pstmt.setInt(1, vo.getItem_grade());
+				pstmt.setString(2, vo.getBk_name());
+				pstmt.setString(3, vo.getAd_comment());
+				pstmt.setInt(4, vo.getUser_num());
+				pstmt.setString(5, vo.getAuthor());
+				pstmt.setString(6, vo.getCoverUrl());
+				pstmt.setString(7, vo.getPubDate());
+				pstmt.setString(8, vo.getCategoryName());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {
@@ -43,11 +45,11 @@ public class BookDAO {
 		}
 		
 		//책 등록 요청 불러오기
-		public BookVO selectbook(int num)throws Exception{
+		public BookApprovalVO selectbook(int num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			BookVO vo = null;
+			BookApprovalVO vo = null;
 			String sql = null;
 			try {
 				conn = DBUtil.getConnection();
@@ -59,7 +61,7 @@ public class BookDAO {
 				
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					vo = new BookVO();
+					vo = new BookApprovalVO();
 					vo.setApproval_id(rs.getInt("approval_id"));
 					vo.setStatus(rs.getInt("status"));
 					vo.setRequest_at(rs.getDate("request_at"));

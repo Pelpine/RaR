@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.rar.dao.OrderDAO;
-import kr.rar.vo.OrderVO;
+import kr.rar.dao.CartDAO;
+import kr.rar.vo.CartVO;
 
-public class CartAction implements Action{
+public class CartListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -21,13 +21,13 @@ public class CartAction implements Action{
 		}
 		//로그인 된 경우
 		
-		OrderDAO dao = OrderDAO.getInstance();
+		CartDAO dao = CartDAO.getInstance();
 		
-		List<OrderVO> list = null;
+		List<CartVO> list = null;
 		list = dao.getCartList(user_num);
 		
 		request.setAttribute("list", list);
 		
-		return "/WEB-INF/views/cart/cart.jsp";
+		return "/WEB-INF/views/cart/cartList.jsp";
 	}
 }

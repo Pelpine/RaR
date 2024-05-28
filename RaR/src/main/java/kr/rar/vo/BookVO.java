@@ -1,74 +1,19 @@
 package kr.rar.vo;
 
-import java.sql.Date;
-
 public class BookVO {
-	private int approval_id;	//책 코드
-	private int status;			//승인상태
-	private Date request_at;	//요청날짜
-	private Date approved_at;	//승인 확정일
-	private int item_grade;		//상품 상태
-	private String bk_name;		//도서명
-	private String ad_comment;	//코맨트
-	private int user_num;		//유저코드
-	private String author;		//저자
-	private String pubDate;		//책등록일
-	private String coverUrl;	//커버
-	private String categoryName; //장르
+	private int bk_num;
+	private String bk_name;
+	private String bk_writer;
+	private String bk_publisher;
+	private int bk_price;
+	private String bk_img;
+	private String bk_genre;
 	
-	public String getCategoryName() {
-		return categoryName;
+	public int getBk_num() {
+		return bk_num;
 	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getPubDate() {
-		return pubDate;
-	}
-	public void setPubDate(String pubDate) {
-		this.pubDate = pubDate;
-	}
-	public String getCoverUrl() {
-		return coverUrl;
-	}
-	public void setCoverUrl(String coverUrl) {
-		this.coverUrl = coverUrl;
-	}
-	public int getApproval_id() {
-		return approval_id;
-	}
-	public void setApproval_id(int approval_id) {
-		this.approval_id = approval_id;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	public Date getRequest_at() {
-		return request_at;
-	}
-	public void setRequest_at(Date request_at) {
-		this.request_at = request_at;
-	}
-	public Date getApproved_at() {
-		return approved_at;
-	}
-	public void setApproved_at(Date approved_at) {
-		this.approved_at = approved_at;
-	}
-	public int getItem_grade() {
-		return item_grade;
-	}
-	public void setItem_grade(int item_grade) {
-		this.item_grade = item_grade;
+	public void setBk_num(int bk_num) {
+		this.bk_num = bk_num;
 	}
 	public String getBk_name() {
 		return bk_name;
@@ -76,17 +21,34 @@ public class BookVO {
 	public void setBk_name(String bk_name) {
 		this.bk_name = bk_name;
 	}
-	public String getAd_comment() {
-		return ad_comment;
+	public String getBk_writer() {
+		return bk_writer;
 	}
-	public void setAd_comment(String ad_comment) {
-		this.ad_comment = ad_comment;
+	public void setBk_writer(String bk_writer) {
+		this.bk_writer = bk_writer;
 	}
-	public int getUser_num() {
-		return user_num;
+	public String getBk_publisher() {
+		return bk_publisher;
 	}
-	public void setUser_num(int user_num) {
-		this.user_num = user_num;
+	public void setBk_publisher(String bk_publisher) {
+		this.bk_publisher = bk_publisher;
 	}
-	
+	public int getBk_price() {
+		return bk_price;
+	}
+	public void setBk_price(int bk_price) {
+		this.bk_price = bk_price;
+	}
+	public String getBk_img() {
+		return bk_img;
+	}
+	public void setBk_img(String bk_img) {
+		this.bk_img = bk_img;
+	}
+	public String getBk_genre() {
+		return bk_genre;
+	}
+	public void setBk_genre(String bk_genre) {
+		this.bk_genre = bk_genre;
+	}
 }
