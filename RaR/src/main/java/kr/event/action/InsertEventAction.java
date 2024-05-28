@@ -52,7 +52,7 @@ public class InsertEventAction implements Action{
 		request.setAttribute("notice_url", request.getContextPath()+"/event/eventList.do");
 		
 		return "/WEB-INF/views/common/alert_view.jsp";
-	}
+ 	}
 
 }
 
