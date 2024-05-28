@@ -31,10 +31,9 @@
 		<div class="carousel-inner">
 			<!-- 첫 번째 item -->
 			<div class="carousel-item active">
-				<img src="../images/Koala02.jpg" class="d-block w-100">
+				<a href="../event/eventDetail.do?event_num=35"><img src="../images/출석체크 이벤트.jpg" class="d-block w-100"></a>
 				<div class="carousel-caption">
-					<h5>First slide label</h5>
-					<p>코알라 이미지~~</p>
+					<p>출석체크 페이지로 이동</p>
 				</div>
 			</div>
 			<!-- 두 번째 item -->
