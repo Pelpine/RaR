@@ -25,6 +25,7 @@
 						</select>
 					</li>
 					<li>
+						<input type="hidden" value="">
 						<input type="submit" value="검색">
 					</li>
 				</ul>
