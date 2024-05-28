@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등록 요청 목록</title>
+<title>등록된 책 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
 </script>
@@ -14,18 +14,20 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
-			<h2>등록 요청 목록</h2>
+			<h2>등록된 책 목록</h2>
 			<form action="list.do" id="search_form" method="post">
 				<ul class="search">
 					<li>
 						<select name="keyfield">
-							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>미등록</option>
-							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>등록</option>
-							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>반려</option>
+							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>책이름</option>
+							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작가</option>
+							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>출판사</option>
 						</select>
 					</li>
 					<li>
-						<input type="hidden" value="" id="keyword" name="keyword">
+						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+					</li>
+					<li>
 						<input type="submit" value="검색">
 					</li>
 				</ul>
@@ -43,21 +45,17 @@
 			<c:if test="${count > 0 }">
 			<table>
 				<tr>
-					<th>요청 번호</th>
+					<th>책번호</th>
 					<th>책이름</th>
-					<th>승인상태</th>
-					<th>승인요청날짜</th>
-					<th>승인날짜</th>
-					<th>승인요청아이디</th>
+					<th>작가</th>
+					<th>출판사</th>
 				</tr>
 				<c:forEach var="book" items="${list}">
 				<tr>
-					<td>${book.approval_id}</td>
-					<td><a href="bookdetail.do?approval_id=${book.approval_id}">${book.bk_name}</a></td>
-					<td>${book.status}</td>
-					<td>${book.request_at}</td>
-					<td>${book.approved_at}</td>
-					<td>${book.memberVO.user_email}</td>
+					<td>${book.bk_num}</td>
+					<td><a href="bookdetail.do?bk_num=${book.bk_num}">${book.bk_name}</a></td>
+					<td>${book.bk_writer}</td>
+					<td>${book.bk_publisher}</td>
 				</tr>
 				</c:forEach>
 			</table>

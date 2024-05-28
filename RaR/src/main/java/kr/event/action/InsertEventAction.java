@@ -43,7 +43,7 @@ public class InsertEventAction implements Action{
 		event.setNotice(1);
 		}
 		
-		System.out.println(event);
+	
 		
 		EventDAO dao = EventDAO.getInstance();
 		dao.insertEvent(event);

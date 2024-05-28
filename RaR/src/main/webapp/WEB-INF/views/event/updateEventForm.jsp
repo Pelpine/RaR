@@ -30,6 +30,13 @@ window.onload=function(){
 		alert('이벤트 시작일과 종료일을 확인해주세요.');
 		return false;
 	}
+	const notice = document.getElementById('notice');
+    // 체크박스가 체크되지 않은 경우 0으로 설정
+    if(notice.checked){
+    	notice.value=1;
+    }else {
+    	notice.value=0;
+    }
 	};
 };
 </script>
@@ -43,6 +50,10 @@ window.onload=function(){
 	                          enctype="multipart/form-data">
 	    <input type="hidden" name="event_num" value="${event.event_num}">
 		<ul>
+			<li>
+				<label for="notice">공지사항 등록</label>
+				<input type="checkbox" name="notice" id="notice" value="0">
+			</li>
 			<li>
 				<label for="name">이벤트명</label>
 				<input type="text" name="name" id="name"

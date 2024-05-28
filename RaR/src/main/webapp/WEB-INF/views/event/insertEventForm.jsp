@@ -73,7 +73,7 @@ window.onload=function(){
 				  accept="image/gif,image/png,image/jpeg">
 			</li>
 			<li>
-				<label for="notice">공지사항 등록 여부</label>
+				<label for="notice">공지사항 등록</label>
 				<input type="checkbox" name="notice" id="notice" value="0">
 			</li>
 		</ul> 

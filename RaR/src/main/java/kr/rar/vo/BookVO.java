@@ -1,13 +1,13 @@
 package kr.rar.vo;
 
 public class BookVO {
-	private int bk_num;
-	private String bk_name;
-	private String bk_writer;
-	private String bk_publisher;
-	private int bk_price;
-	private String bk_img;
-	private String bk_genre;
+	private int bk_num;//책 번호
+	private String bk_name;//책이름
+	private String bk_writer;//작가
+	private String bk_publisher;//출판사
+	private int bk_price;//정가
+	private String bk_img;//도서사진
+	private String bk_genre;//장르
 	
 	public int getBk_num() {
 		return bk_num;

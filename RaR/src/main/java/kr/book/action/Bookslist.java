@@ -8,12 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.rar.dao.BookApprovalDAO;
-import kr.rar.dao.MemberDAO;
+import kr.rar.dao.BookDAO;
 import kr.rar.vo.BookApprovalVO;
-import kr.rar.vo.MemberVO;
+import kr.rar.vo.BookVO;
 import kr.util.PagingUtil;
 
-public class BookapprovalForm implements Action{
+public class Bookslist implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -29,19 +29,19 @@ public class BookapprovalForm implements Action{
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
-		BookApprovalDAO dao = BookApprovalDAO.getInstance();
-		int count = dao.getBookCount(keyfield, keyword);
+		BookDAO dao = BookDAO.getInstance();
+		int count = dao.getBooksCount(keyfield, keyword);
 		
-		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count,20,10,"list.do");
-		List<BookApprovalVO> list = null;
+		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count,20,10,"booklist.do");
+		List<BookVO> list = null;
 		if(count > 0) {
-			list = dao.getListbookapproval(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			list = dao.getListbookslist(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
-		return "/WEB-INF/views/book/bookapprovalList.jsp";
+		return "/WEB-INF/views/book/booklist.jsp";
 	}
 
 }
