@@ -4,80 +4,76 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import kr.rar.vo.BookApprovalVO;
+import kr.rar.vo.BookVO;
 import kr.util.DBUtil;
 
 public class BookDAO {
 	//싱글턴 패턴
-		public static BookDAO instance = new BookDAO();
-		
-		public static BookDAO getInstance() {
-			return instance;
-		}
-		private BookDAO() {}
-		
-		//책 등록 요청 저장
-		public void insertBook(BookApprovalVO vo)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			String sql = null;
-			try {
-				conn = DBUtil.getConnection();
-				
-				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?)";
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, vo.getItem_grade());
-				pstmt.setString(2, vo.getBk_name());
-				pstmt.setString(3, vo.getAd_comment());
-				pstmt.setInt(4, vo.getUser_num());
-				pstmt.setString(5, vo.getAuthor());
-				pstmt.setString(6, vo.getCoverUrl());
-				pstmt.setString(7, vo.getPubDate());
-				pstmt.setString(8, vo.getCategoryName());
-				
-				pstmt.executeUpdate();
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
-			}
-		}
-		
-		//책 등록 요청 불러오기
-		public BookApprovalVO selectbook(int num)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			BookApprovalVO vo = null;
-			String sql = null;
-			try {
-				conn = DBUtil.getConnection();
-				
-				sql = "select * from book_approval where approval_id = ? ";
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, num);
-				
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					vo = new BookApprovalVO();
-					vo.setApproval_id(rs.getInt("approval_id"));
-					vo.setStatus(rs.getInt("status"));
-					vo.setRequest_at(rs.getDate("request_at"));
-					vo.setApproved_at(rs.getDate("approved_at"));
-					vo.setItem_grade(rs.getInt("item_grade"));
-					vo.setBk_name(rs.getString("bk_name"));
-					vo.setAd_comment(rs.getString("ad_comment"));
-					vo.setUser_num(rs.getInt("user_num"));
-				}
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(rs, pstmt, conn);
-			}
+	public static BookDAO instance = new BookDAO();
+	
+	public static BookDAO getInstance() {
+		return instance;
+	}
+	private BookDAO() {}
+	
+	//책 정보 저장
+	public void insertBooklist(BookVO vo)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
 			
-			return vo;
+			sql = "insert into book (bk_num,bk_name,bk_writer,bk_publisher,bk_price,bk_img,bk_genre) values (book_seq.nextval,?,?,?,?,?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getBk_name());
+			pstmt.setString(2, vo.getBk_writer());
+			pstmt.setString(3, vo.getBk_publisher());
+			pstmt.setInt(4, vo.getBk_price());
+			pstmt.setString(5, vo.getBk_img());
+			pstmt.setString(6, vo.getBk_genre());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//책 정보 불러오기
+	public BookVO selectBooklist(int num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BookVO book = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "select * from Book where bk_num = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				book = new BookVO();
+				book.setBk_num(rs.getInt("bk_num"));
+				book.setBk_name(rs.getString("bk_name"));
+				book.setBk_writer(rs.getString("bk_writer"));
+				book.setBk_publisher(rs.getString("bk_publisher"));
+				book.setBk_price(rs.getInt("bk_price"));
+				book.setBk_img(rs.getString("bk_img"));
+				book.setBk_genre(rs.getString("bk_genre"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
+		return book;
+	}
 }
