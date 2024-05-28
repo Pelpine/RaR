@@ -42,10 +42,13 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
 		</li>
+<<<<<<< HEAD
 		<li class="menu-logout">
 			[<span>${user_id}</span>]
 			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 		</li>
+=======
+>>>>>>> branch 'main' of https://github.com/Pelpine/RaR.git
 		</c:if>
 		<c:if test="${empty user_num}">
 		<li>
@@ -56,7 +59,11 @@
 		</li>
 		</c:if>
 		<li>
+<<<<<<< HEAD
 			<a href="${pageContext.request.contextPath}/book/list.do">검색</a>
+=======
+			<a href="${pageContext.request.contextPath}/book/booklist.do">책목록</a>
+>>>>>>> branch 'main' of https://github.com/Pelpine/RaR.git
 		</li>
 	</ul>
 </div>

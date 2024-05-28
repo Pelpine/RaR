@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등록된 책 목록</title>
+<title>책 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
 </script>
@@ -14,7 +14,36 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
-			<h2>등록된 책 목록</h2>
+			<div class="list-space align-right">
+				<input type="button" value="등록요청목록" onclick="location.href='list.do'">
+				<input type="button" value="목록" onclick="location.href='list.do'">
+				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+			</div>
+			<c:if test="${count == 0}">
+				<div class="result-display">
+				표시할 게시물이 없습니다.
+				</div>
+			</c:if>
+			<c:if test="${count > 0 }">
+			<table>
+				<tr>
+					<th></th>
+					<th>책번호</th>
+					<th>책이름</th>
+					<th>작가</th>
+					<th>출판사</th>
+				</tr>
+				<c:forEach var="book" items="${list}">
+				<tr>
+					<td><img src="{book.bk_img}"></td>
+					<td>${book.bk_num}</td>
+					<td><a href="bookdetail.do?bk_num=${book.bk_num}">${book.bk_name}</a></td>
+					<td>${book.bk_writer}</td>
+					<td>${book.bk_publisher}</td>
+					
+				</tr>
+				</c:forEach>
+			</table>
 			<form action="list.do" id="search_form" method="post">
 				<ul class="search">
 					<li>
@@ -32,33 +61,6 @@
 					</li>
 				</ul>
 			</form>
-			<div class="list-space align-right">
-				<input type="button" value="등록" onclick="location.href='bookssd.do'">
-				<input type="button" value="목록" onclick="location.href='list.do'">
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-			<c:if test="${count == 0}">
-				<div class="result-display">
-				표시할 게시물이 없습니다.
-				</div>
-			</c:if>
-			<c:if test="${count > 0 }">
-			<table>
-				<tr>
-					<th>책번호</th>
-					<th>책이름</th>
-					<th>작가</th>
-					<th>출판사</th>
-				</tr>
-				<c:forEach var="book" items="${list}">
-				<tr>
-					<td>${book.bk_num}</td>
-					<td><a href="bookdetail.do?bk_num=${book.bk_num}">${book.bk_name}</a></td>
-					<td>${book.bk_writer}</td>
-					<td>${book.bk_publisher}</td>
-				</tr>
-				</c:forEach>
-			</table>
 			<div class="align-center">${page}</div>
 			</c:if>
 		</div>

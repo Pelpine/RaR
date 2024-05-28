@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.rar.vo.BoardFavVO;
 import kr.rar.vo.BoardVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -67,7 +68,7 @@ public class BoardDAO {
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색 처리 sub_sql 조건
 				if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
-				else if(keyfield.equals("2"))sub_sql += "WHERE email LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2"))sub_sql += "WHERE user_email LIKE '%' || ? || '%'";
 				else if(keyfield.equals("3"))sub_sql += "WHERE content LIKE '%' || ? || '%'";
 			}
 			sql = "SELECT COUNT(*) FROM board JOIN member USING(user_num)" +sub_sql;
@@ -228,61 +229,200 @@ public class BoardDAO {
 		}
 	}
 	//좋아요
+	public void insertFav(BoardFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql="INSERT INTO board_fav (board_num,user_num)VALUES(?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, favVO.getBoard_num());
+			pstmt.setInt(2, favVO.getUser_num());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			pstmt.executeUpdate();
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//총 좋아요 수
+	public int selectFavCount(int board_num)throws Exception{
+		int count = 0;
+		Connection conn =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql="SELECT COUNT(*) FROM board_fav WHERE board_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			//SQL문 실행
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
+	//회원 번호와 게시물 번호를 이용한 좋아요 정보
+	//(회원이 게시물을 호출했을 때 좋아요 선택 여부 표시)
+	public BoardFavVO selectFav(BoardFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardFavVO fav = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql="SELECT * FROM board_fav WHERE board_num=? AND user_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, favVO.getBoard_num());
+			pstmt.setInt(2, favVO.getUser_num());
+			//sql문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				fav= new BoardFavVO();
+				fav.setBoard_num(rs.getInt("board_num"));
+				fav.setUser_num(rs.getInt("user_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return fav;
+	}
 	//좋아요 삭제
+	public void deleteFav(BoardFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn=DBUtil.getConnection();
+			sql="DELETE FROM board_fav WHERE board_num=? AND user_num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, favVO.getBoard_num());
+			pstmt.setInt(2, favVO.getUser_num());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	//내가 선택한 좋아요 목록
+		public List<BoardVO> getListBoardFav(int start, int end, int user_num)throws Exception{
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			ResultSet rs = null;
+			List<BoardVO> list = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				//(주의)board_fav의 회원번호(좋아요 클릭한 회원번호)
+				//검색되어야 하기때문에 f.user_num으로 표기해야 함
+				
+				sql="SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM board b JOIN "
+					+ "member m USING(user_num) JOIN board_fav f "
+					+ "USING(board_num) WHERE f.user_num=? ORDER BY "
+					+ "board_num DESC)a) WHERE rnum>=? AND rnum <= ?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, user_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				//SQL문장 실행
+				rs=pstmt.executeQuery();
+				list = new ArrayList<BoardVO>();
+				while(rs.next()) {
+					BoardVO board = new BoardVO();
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setTitle(StringUtil.useNoHTML(rs.getString("title")));
+					board.setReg_date(rs.getDate("reg_date"));
+					board.setUser_email(rs.getString("user_email"));
+					
+					list.add(board);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			
+			return list;
+		}
 	//댓글 등록
 	//댓글 수
 	//댓글 목록
 	//댓글 상세
 	//댓글 수정
 	//댓글 삭제
-	
 	//내가 작성한 글 조회
-	public List<BoardVO> getMyPosting(int start, int end,
-			int user_num)throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<BoardVO> list = null;
-		String sql = null;
-		try {
-			//커넥션풀로부터 커넥션 할당
-			conn = DBUtil.getConnection();
-			//SQL문 작성
-			//(주의)zboard_fav의 회원번호(좋아요 클릭한 회원번호)로
-			//검색되어야 하기때문에 f.mem_num으로 표기해야 함
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM board b JOIN "
-					+ "member m USING(user_num) WHERE user_num=? ORDER BY "
-					+ "board_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
-			//PreparedStatement 객체 생성
-			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
-			pstmt.setInt(1, user_num);
-			pstmt.setInt(2, start);
-			pstmt.setInt(3, end);
-			//SQL문 실행
-			rs = pstmt.executeQuery();
-			list = new ArrayList<BoardVO>();
-			while(rs.next()) {
-				BoardVO board = new BoardVO();
-				board.setBoard_num(rs.getInt("board_num"));
-				board.setTitle(StringUtil.useNoHTML(rs.getString("title")));//HTML태그를 허용하지 않음
-				board.setHit(rs.getInt("hit"));
-				board.setReg_date(rs.getDate("reg_date"));
-				board.setUser_email(rs.getString("user_email"));
-				
-				list.add(board);
-			}
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
-		}		
-		return list;
+		public List<BoardVO> getMyPosting(int start, int end,
+				int user_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<BoardVO> list = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				//(주의)zboard_fav의 회원번호(좋아요 클릭한 회원번호)로
+				//검색되어야 하기때문에 f.mem_num으로 표기해야 함
+				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+						+ "(SELECT * FROM board b JOIN "
+						+ "member m USING(user_num) WHERE user_num=? ORDER BY "
+						+ "board_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, user_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<BoardVO>();
+				while(rs.next()) {
+					BoardVO board = new BoardVO();
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setTitle(StringUtil.useNoHTML(rs.getString("title")));//HTML태그를 허용하지 않음
+					board.setHit(rs.getInt("hit"));
+					board.setReg_date(rs.getDate("reg_date"));
+					board.setUser_email(rs.getString("user_email"));
+					
+					list.add(board);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return list;
+		}
+
 	}
 
-}
+
 
 
 

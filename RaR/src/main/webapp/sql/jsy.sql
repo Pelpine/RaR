@@ -89,10 +89,10 @@ board_num number not null,
 content clob not null,
 reg_date date not null,
 modify_date date,
-user_ip varchar2 not null,
+user_ip varchar2(50) not null,
 constraint board_reply_pk primary key(re_num),
 constraint board_reply_fk foreign key(user_num)references member(user_num),
-constraint board_reply_fk foreign key(board_num)references board(board_num)
+constraint board_reply_fk2 foreign key(board_num)references board(board_num)
 );
 
 create SEQUENCE board_seq;
