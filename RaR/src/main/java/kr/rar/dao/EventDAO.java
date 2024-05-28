@@ -1,6 +1,7 @@
 package kr.rar.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class EventDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	
 	//이벤트 게시판 목록 가져오기(현재 진행중인 이벤트만 볼 수 있게 선택 가능)
 	public List<EventVO> getBoard(int start, int end, String keyfield, String keyword, String underway) throws Exception{
 	    Connection conn = null;
@@ -246,4 +249,49 @@ public class EventDAO {
 	    }
 	    return count;
 	}
+	//오늘 출석 여부 파악
+	public Date getAttendance(int user_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Date date = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM event_attendance WHERE user_num=? AND attendance_date=sysdate";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return date;
+	}
+	
+	//출석하기
+	public void attendance(int user_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO EVENT_ATTENDANCE(user_num) VALUES(?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	//리워드 지급
+	
+	//지금까지 지급받은 포인트 구하기
+	//
 }
