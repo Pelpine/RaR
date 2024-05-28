@@ -1,14 +1,14 @@
 package kr.cart.action;
 
-import java.util.List;
+//import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.rar.dao.CartDAO;
-import kr.rar.vo.CartVO;
+//import kr.rar.dao.CartDAO;
+//import kr.rar.vo.CartVO;
 
 public class CartListAction implements Action{
 
@@ -21,12 +21,12 @@ public class CartListAction implements Action{
 		}
 		//로그인 된 경우
 		
-		CartDAO dao = CartDAO.getInstance();
-		
-		List<CartVO> list = null;
-		list = dao.getCartList(user_num);
-		
-		request.setAttribute("list", list);
+//		CartDAO dao = CartDAO.getInstance();
+//		
+//		List<CartVO> list = null;
+//		list = dao.getCartList(user_num);
+//		
+//		request.setAttribute("list", list);
 		
 		return "/WEB-INF/views/cart/cartList.jsp";
 	}
