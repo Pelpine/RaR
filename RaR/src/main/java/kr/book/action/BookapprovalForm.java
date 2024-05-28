@@ -13,7 +13,7 @@ import kr.rar.vo.BookApprovalVO;
 import kr.rar.vo.MemberVO;
 import kr.util.PagingUtil;
 
-public class bookapprovalForm implements Action{
+public class BookapprovalForm implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

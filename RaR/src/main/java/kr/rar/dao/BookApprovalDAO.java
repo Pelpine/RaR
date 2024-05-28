@@ -60,16 +60,14 @@ public class BookApprovalDAO {
 				
 				if(keyword!=null) {
 					//검색 처리
-					if(keyfield.equals("1")) sub_sql += "where status = 1 "; 
-					else if(keyfield.equals("2")) sub_sql += "where status = 2 ";  
+					if(keyfield.equals("1")) sub_sql += " where status = 1 "; 
+					else if(keyfield.equals("2")) sub_sql += " where status = 2 ";
+					else if(keyfield.equals("3")) sub_sql += " where status = 0 ";
 				}
 				
 				sql = "select count(*) from book_approval " + sub_sql;
 				
 				pstmt = conn.prepareStatement(sql);
-				if(keyword!=null) {
-					pstmt.setString(1, keyword);
-				}
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					count = rs.getInt(1);
@@ -94,14 +92,12 @@ public class BookApprovalDAO {
 				conn = DBUtil.getConnection();
 				if(keyword!=null) {
 					//검색 처리
-					if(keyfield.equals("1")) sub_sql += "where status = 1 "; 
-					else if(keyfield.equals("2")) sub_sql += "where status = 2 ";  
+					if(keyfield.equals("1")) sub_sql += " where status = 1 "; 
+					else if(keyfield.equals("2")) sub_sql += "where status = 2 ";
+					else if(keyfield.equals("3")) sub_sql += " where status = 0 ";
 				}
 				sql = "select * from(select a.*,rownum rnum from(select * from book_approval join member using (user_num) "+sub_sql+" order by approval_id desc)a) where rnum >= ? and rnum <= ?";
 				pstmt = conn.prepareStatement(sql);
-				if(keyword!=null) {
-					pstmt.setString(++cnt,keyword);
-				}
 				pstmt.setInt(++cnt, start);
 				pstmt.setInt(++cnt, end);
 				
@@ -140,7 +136,7 @@ public class BookApprovalDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "select * from book_approval where approval_id = ? ";
+				sql = "select * from book_approval join member using(user_num) where approval_id = ? ";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, num);
@@ -148,14 +144,21 @@ public class BookApprovalDAO {
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					vo = new BookApprovalVO();
-					vo.setApproval_id(rs.getInt("approval_id"));
-					vo.setStatus(rs.getInt("status"));
-					vo.setRequest_at(rs.getDate("request_at"));
-					vo.setApproved_at(rs.getDate("approved_at"));
-					vo.setItem_grade(rs.getInt("item_grade"));
-					vo.setBk_name(rs.getString("bk_name"));
-					vo.setAd_comment(rs.getString("ad_comment"));
-					vo.setUser_num(rs.getInt("user_num"));
+					vo.setApproval_id(rs.getInt("approval_id"));//책코드
+					vo.setStatus(rs.getInt("status"));//승인상태
+					vo.setRequest_at(rs.getDate("request_at"));//요청날짜
+					vo.setApproved_at(rs.getDate("approved_at"));//승인날짜
+					vo.setItem_grade(rs.getInt("item_grade"));//상품상태
+					vo.setBk_name(rs.getString("bk_name"));//도서명
+					vo.setAd_comment(rs.getString("ad_comment"));//코맨트
+					vo.setAuthor(rs.getString("author"));
+					vo.setPubDate(rs.getString("pubDate"));
+					vo.setCoverUrl(rs.getString("coverUrl"));
+					vo.setCategoryName(rs.getString("categoryName"));
+					
+					MemberVO member = new MemberVO();
+					member.setUser_email(rs.getString("user_email"));//유저 이메일
+					vo.setMemberVO(member);
 				}
 			}catch(Exception e) {
 				throw new Exception(e);
@@ -167,10 +170,22 @@ public class BookApprovalDAO {
 		}
 		
 		//승인 상태 변경
-		public void update(int num)throws Exception{
+		public void updatestatus(int num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
-			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "update book_approval where approval_id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
 		}
 }

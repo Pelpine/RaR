@@ -404,6 +404,10 @@ public class MemberDAO {
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
+			
+			//auto  commit 삭제
+			conn.setAutoCommit(false);
+			
 			//SQL문 작성
 			sql = "UPDATE member SET user_auth=? WHERE user_num=?";
 		
@@ -425,7 +429,11 @@ public class MemberDAO {
 			pstmt2.setInt(3, user_num);
 			
 			pstmt2.executeUpdate();
+			
+			//모든 SQL문의 실행이 성공하면 커밋
+			conn.commit();
 		}catch(Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(null, pstmt2, null);
