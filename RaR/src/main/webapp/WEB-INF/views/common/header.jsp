@@ -39,15 +39,12 @@
 		</li>
 		</c:if>
 		<c:if test="${!empty user_num}">
-		<li class="menu-logout">
-			[<span>${user_email}</span>]
-			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
 		</li>
-		<li>
-			<a href="${pageContext.request.contextPath}/book/booklist.do">등록된책목록</a>
+		<li class="menu-logout">
+			[<span>${user_id}</span>]
+			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 		</li>
 		</c:if>
 		<c:if test="${empty user_num}">
@@ -58,14 +55,12 @@
 			<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 		</li>
 		</c:if>
+		<li>
+			<a href="${pageContext.request.contextPath}/book/list.do">검색</a>
+		</li>
 	</ul>
 </div>
 <!-- header 끝 -->
-
-
-
-
-
 
 
 
