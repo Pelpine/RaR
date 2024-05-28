@@ -176,7 +176,57 @@ public class BoardDAO {
 		return board;
 	}
 	//글 조회수 증가
+	public void updateReadCount(int board_num)throws Exception{
+		Connection conn =null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn=DBUtil.getConnection();
+			sql="UPDATE board SET hit=hit+1 WHERE board_num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	//파일 삭제
 	//글 수정
+	public void updateBoard(BoardVO board)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql="";
+		int cnt = 0;
+		try {
+			conn=DBUtil.getConnection();
+			if(board.getFilename()!=null && !"".equals(board.getFilename())) {
+				sub_sql+=",filename=?";
+			}
+			//SQL문장 작성
+			sql="UPDATE board SET title=?,content=?,modify_date=SYSDATE,user_ip=?" +
+			sub_sql+"WHERE board_num=?";
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(++cnt, board.getTitle());
+			pstmt.setString(++cnt, board.getContent());
+			pstmt.setString(++cnt, board.getUser_ip());
+			if(board.getFilename()!=null 
+					&& !"".equals(board.getFilename())) {
+				pstmt.setString(++cnt, board.getFilename());
+			}
+			pstmt.setInt(++cnt, board.getBoard_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//좋아요
 	//총 좋아요 수
 	//좋아요 삭제
