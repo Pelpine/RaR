@@ -236,6 +236,52 @@ public class BoardDAO {
 	//댓글 상세
 	//댓글 수정
 	//댓글 삭제
+	
+	//내가 작성한 글 조회
+	public List<BoardVO> getMyPosting(int start, int end,
+			int user_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BoardVO> list = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			//(주의)zboard_fav의 회원번호(좋아요 클릭한 회원번호)로
+			//검색되어야 하기때문에 f.mem_num으로 표기해야 함
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM board b JOIN "
+					+ "member m USING(user_num) WHERE user_num=? ORDER BY "
+					+ "board_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, user_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<BoardVO>();
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setBoard_num(rs.getInt("board_num"));
+				board.setTitle(StringUtil.useNoHTML(rs.getString("title")));//HTML태그를 허용하지 않음
+				board.setHit(rs.getInt("hit"));
+				board.setReg_date(rs.getDate("reg_date"));
+				board.setUser_email(rs.getString("user_email"));
+				
+				list.add(board);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return list;
+	}
+
 }
 
 

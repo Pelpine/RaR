@@ -151,10 +151,12 @@ $(function(){
 
 	</div>
 	<div>
-		<input type="button" value="최근 구매 내역" onclick="location.href=">
+		<input type="button" value="최근 구매 내역" 
+		onclick="">
 	</div>
 	<div>
-		<input type="button" value="내가 쓴 게시물" onclick="location.href=">
+		<input type="button" value="내가 쓴 게시물"
+		 onclick="location.href='${pageContext.request.contextPath}/board/myPostingList.do?user_num=${member.user_num}'">
 	</div>
 	<div>
 		<input type="button" value="내가 쓴 댓글" onclick="location.href=">
