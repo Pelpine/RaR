@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,8 +30,20 @@
 	<hr size="1" width="100%" noshade="noshade">
 	
 	<div class="align-right">
-		<input type="button" value="수정" onclick="location.href='updateEventForm.do?event_num=${event.event_num}'">
-		<input type="button" value="삭제" onclick="location.href='deleteEventForm.do?event_num=${event.event_num}'">
+		<c:if test="${user_num == event.user_num}">
+			<input type="button" value="수정" onclick="location.href='updateEventForm.do?event_num=${event.event_num}'">
+			<input type="button" value="삭제" id="delete_btn">
+			<script type="text/javascript">
+				const delete_btn = document.getElementById('delete_btn');
+				delete_btn.onclick = function(){
+				let choice = confirm('삭제하시겠습니까?');
+				if(choice){
+					location.replace('deleteEvent.do?event_num=${event.event_num}');
+					}
+				};
+			</script>
+		</c:if>
+		
 		<input type="button" value="목록"
 		       onclick="location.href='eventList.do'">
 	</div>

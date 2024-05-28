@@ -13,7 +13,7 @@ import kr.rar.vo.BookApprovalVO;
 import kr.rar.vo.MemberVO;
 import kr.util.PagingUtil;
 
-public class bookapprovalForm implements Action{
+public class BookapprovalForm implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -37,7 +37,6 @@ public class bookapprovalForm implements Action{
 		if(count > 0) {
 			list = dao.getListbookapproval(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
@@ -46,3 +45,4 @@ public class bookapprovalForm implements Action{
 	}
 
 }
+

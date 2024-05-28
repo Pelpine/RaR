@@ -36,16 +36,23 @@ public class InsertEventAction implements Action{
 		event.setFilename(FileUtil.createFile(request, "filename"));
 		event.setUser_num(user_num);
 		
+		String notice = request.getParameter("notice");
+		if(notice==null) {
+		event.setNotice(0);
+		}else if(notice.equals("1")){
+		event.setNotice(1);
+		}
+		
 		System.out.println(event);
 		
 		EventDAO dao = EventDAO.getInstance();
 		dao.insertEvent(event);
 		
 		request.setAttribute("notice_msg", "이벤트 등록 완료");
-		request.setAttribute("notice_url", request.getContextPath()+"/main/main.do");
+		request.setAttribute("notice_url", request.getContextPath()+"/event/eventList.do");
 		
 		return "/WEB-INF/views/common/alert_view.jsp";
-	}
+ }
 
 }
 

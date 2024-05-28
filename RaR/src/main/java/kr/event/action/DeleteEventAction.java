@@ -5,8 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.rar.dao.EventDAO;
+import kr.rar.vo.EventVO;
+import kr.util.FileUtil;
 
-public class DeleteEventFormAction implements Action{
+public class DeleteEventAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -19,8 +22,15 @@ public class DeleteEventFormAction implements Action{
 		return "/WEB-INF/views/common/notice.jsp";
 		}
 		int event_num = Integer.parseInt(request.getParameter("event_num"));
-		request.setAttribute("event_num", event_num);
-		return "/WEB-INF/views/event/deleteEventForm.jsp";
-	}
+		EventDAO dao = EventDAO.getInstance();
+	
+		EventVO db_event = dao.EventDetail(event_num);
+		FileUtil.removeFile(request,db_event.getFilename());
+		
+		dao.deleteEvent(event_num);
+		request.setAttribute("notice_msg", "글 삭제 완료");
+		request.setAttribute("notice_url", request.getContextPath()+"/event/eventList.do");
+		return "/WEB-INF/views/common/alert_view.jsp";
 
+}
 }
