@@ -70,7 +70,7 @@
 					</tr>
 					<c:forEach var="event" items="${list}">
 						<tr>
-							<c:if test="${event.notice == 1}"><td>공지사항</td></c:if>
+							<c:if test="${event.notice == 1}"><td><span style="color:blue;">공지사항</span></td></c:if>
 							<c:if test="${event.notice == 0}"><td>${event.event_num}</td></c:if>
 							<td><a href="eventDetail.do?event_num=${event.event_num}">${event.name}</a></td>
 							<td>${event.start_date}</td>
