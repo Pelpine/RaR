@@ -25,7 +25,7 @@ public class EventDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO EVENT_list(event_num,name,filename,content,start_date,end_date,user_num) VALUES(EVENT_SEQ.nextval,?,?,?,?,?,?)";
+			sql = "INSERT INTO EVENT_list(event_num,name,filename,content,start_date,end_date,user_num,notice) VALUES(EVENT_SEQ.nextval,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, event.getName());
 			pstmt.setString(2, event.getFilename());
@@ -33,6 +33,7 @@ public class EventDAO {
 			pstmt.setDate(4, event.getStart_date());
 			pstmt.setDate(5, event.getEnd_date());
 			pstmt.setInt(6, event.getUser_num());
+			pstmt.setInt(7, event.getNotice());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -69,7 +70,7 @@ public class EventDAO {
 	        }
 	        
 	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM event_list " + sub_sql + date_sql +
-	        	      " ORDER BY event_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
+	        	      " ORDER BY notice DESC, event_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
 
 	        pstmt = conn.prepareStatement(sql);
 	      	        
@@ -86,7 +87,7 @@ public class EventDAO {
 	        	event.setName(rs.getString("name"));
 	        	event.setStart_date(rs.getDate("start_date"));
 	        	event.setEnd_date(rs.getDate("end_date"));
-	        	
+	        	event.setNotice(rs.getInt("notice"));
 	        	list.add(event);
 	        }
 	    } catch(Exception e) {
@@ -113,12 +114,14 @@ public class EventDAO {
 				event = new EventVO();
 				event.setEvent_num(event_num);
 				event.setName(rs.getString("name"));
+				event.setUser_num(rs.getInt("user_num"));
 				event.setContent(rs.getString("content"));
 				event.setFilename(rs.getString("filename"));
 				event.setReg_date(rs.getDate("reg_date"));
 				event.setStart_date(rs.getDate("start_date"));
 				event.setEnd_date(rs.getDate("end_date"));
 				event.setHit(rs.getInt("hit"));
+				event.setNotice(rs.getInt("notice"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);

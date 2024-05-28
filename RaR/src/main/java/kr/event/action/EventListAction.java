@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import kr.controller.Action;
 import kr.rar.dao.EventDAO;
 import kr.rar.vo.EventVO;
@@ -13,7 +15,7 @@ import kr.util.PagingUtil;
 public class EventListAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		HttpSession session = request.getSession();
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
 			pageNum="1";
@@ -21,6 +23,8 @@ public class EventListAction implements Action{
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		String underway = request.getParameter("underway");
+		// 이벤트 등록 버튼 표시 여부 결정하기 위해 등급 조회
+		Integer user_auth = (Integer) session.getAttribute("user_auth");
 		if(underway == null) {
 			underway ="2";
 		}
@@ -34,6 +38,8 @@ public class EventListAction implements Action{
 		if(count > 0) {
 			list = dao.getBoard(page.getStartRow(), page.getEndRow(), keyfield, keyword,underway);
 		}
+		// 이벤트 등록 버튼 표시 여부 결정하기 위해 등급 조회
+		request.setAttribute("user_auth", user_auth);
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());

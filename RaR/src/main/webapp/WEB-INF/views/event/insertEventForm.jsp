@@ -29,6 +29,13 @@ window.onload=function(){
 		alert('이벤트 시작일과 종료일을 확인해주세요.');
 		return false;
 	}
+	const notice = document.getElementById('notice');
+    // 체크박스가 체크되지 않은 경우 0으로 설정
+    if(notice.checked){
+    	notice.value=1;
+    }else {
+    	notice.value=0;
+    }
 	};
 };
 </script>
@@ -64,6 +71,10 @@ window.onload=function(){
 				<input type="file" name="filename" id="filename"
 				  class="input-check" 
 				  accept="image/gif,image/png,image/jpeg">
+			</li>
+			<li>
+				<label for="notice">공지사항 등록 여부</label>
+				<input type="checkbox" name="notice" id="notice" value="0">
 			</li>
 		</ul> 
 		<div class="align-center">

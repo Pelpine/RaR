@@ -49,9 +49,9 @@
 				</ul>
 			</form>
 			<div class="list-space align-right">
-				<input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'"
-				<c:if test="${empty user_num}">disabled="disabled"</c:if>
-				>
+				<input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
+				<c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>
+				
 				<input type="button" value="목록" onclick="location.href='eventList.do'">
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
@@ -70,7 +70,8 @@
 					</tr>
 					<c:forEach var="event" items="${list}">
 						<tr>
-							<td>${event.event_num}</td>
+							<c:if test="${event.notice == 1}"><td>공지사항</td></c:if>
+							<c:if test="${event.notice == 0}"><td>${event.event_num}</td></c:if>
 							<td><a href="eventDetail.do?event_num=${event.event_num}">${event.name}</a></td>
 							<td>${event.start_date}</td>
 							<td>${event.end_date}</td>
