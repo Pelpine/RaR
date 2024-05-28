@@ -17,7 +17,7 @@ public class DetailAction implements Action {
 				
 				BoardDAO dao = BoardDAO.getInstance();
 				//조회수 증가
-				//dao.updateReadcount(board_num);
+				dao.updateReadCount(board_num);
 				
 				BoardVO board = dao.getBoard(board_num);
 				//HTML을 사용하지 않음
