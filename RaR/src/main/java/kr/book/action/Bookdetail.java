@@ -17,7 +17,7 @@ public class Bookdetail implements Action{
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
 		if(user_num == null) {
-			return "redirect:/member/loginForm.do";
+			return "redirect:/book/loginForm.do";
 		}
 		int id = Integer.parseInt(request.getParameter("appapproval_id"));
 		BookApprovalDAO dao = BookApprovalDAO.getInstance();
