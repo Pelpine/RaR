@@ -15,7 +15,7 @@ public class Bookdetail implements Action{
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		
 		if(user_num == null) {
 			return "redirect:/member/loginForm.do";
 		}
