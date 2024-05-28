@@ -22,7 +22,7 @@ public class AttendanceEventAction implements Action{
 		if(checkat) {
 			dao.attendance(user_num);
 			dao.updatePoint(user_num);			
-			request.setAttribute("notice_msg", "출석체크 완료!");
+			request.setAttribute("notice_msg", "출석체크 완료! 50point 지급");
 			request.setAttribute("notice_url", request.getContextPath()+"/member/myPage.do");		
 		}else if(!checkat) {
 			request.setAttribute("notice_msg", "오늘은 이미 출석 체크 완료!");
