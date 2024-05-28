@@ -54,10 +54,10 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 		</li>
+		</c:if>
 		<li>
 			<a href="${pageContext.request.contextPath}/book/booklist.do">책목록</a>
 		</li>
-		</c:if>
 	</ul>
 </div>
 <!-- header 끝 -->
