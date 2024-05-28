@@ -39,12 +39,12 @@
 		</li>
 		</c:if>
 		<c:if test="${!empty user_num}">
+		<li class="menu-logout">
+			[<span>${user_email}</span>]
+			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
-		</li>
-		<li class="menu-logout">
-			[<span>${user_id}</span>]
-			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 		</li>
 		</c:if>
 		<c:if test="${empty user_num}">

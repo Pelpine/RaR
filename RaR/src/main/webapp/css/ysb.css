@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /* 전체 레이아웃
 ---------------------*/
 body{
@@ -81,6 +82,24 @@ a:hover{
 #main_nav ul li.menu-logout{
 	width:150px;
 	text-align:left;
+}
+/* 메인
+---------------------*/
+.image-space .horizontal-area{
+	margin:2px;
+	padding:3px;
+	width:220px;
+	height:240px;
+	float:left;
+	overflow:hidden;
+	text-align:center;
+}
+.image-space .horizontal-area img{
+	width:215px;
+	height:195px;
+}
+.image-space .float-clear{
+	clear:both;
 }
 /* 공통 등록, 수정 폼
 ---------------------*/
@@ -285,8 +304,61 @@ form#mre_form{
 #file_detail{
 	margin:5px 0 0 130px;
 }
-
-
+/* 상품
+---------------------*/
+.item-space .horizontal-area{
+	margin:2px;
+	padding:3px;
+	width:200px;
+	height:220px;
+	float:left;
+	overflow:hidden;
+	text-align:center;
+}
+.item-space .horizontal-area img{
+	width:195px;
+	height:175px;
+}
+.item-space .horizontal-area span{
+	padding:5px;
+	margin:5px;
+}
+.item-space .float-clear{
+	clear:both;
+}
+label[for="order_quatity"]{
+	width:80px;
+}
+.item-image{
+	width:400px;
+	margin:0 0 10px 0;
+	float:left;
+}
+.item-image li{
+	padding:0 0 5px 0;
+}
+.item-detail form{
+	border:none;
+	width:470px;
+	margin:0;
+	float:left;
+}
+#item_total_txt{
+	color:#000;
+	font-weight:bold;
+}
+input[type="number"].quantity-width{
+	width:40px;
+	margin-bottom:3px;
+}
+.sold-out{
+	color:red;
+}
+/* 장바구니
+---------------------*/
+form[id="cart_order"]{
+	border:none;
+}
 
 
 
