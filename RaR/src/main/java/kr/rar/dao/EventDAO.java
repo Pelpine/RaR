@@ -178,6 +178,22 @@ public class EventDAO {
 	}
 	
 	//이벤트 삭제
+	public void deleteEvent(int event_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM EVENT_LIST WHERE event_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, event_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//이벤트 개수 구하기
 	public int getBoardCount(String keyfield, String keyword, String underway) throws Exception{
 	    Connection conn = null;

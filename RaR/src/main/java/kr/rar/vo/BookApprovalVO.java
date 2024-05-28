@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class BookApprovalVO {
 	private int approval_id;	//책 코드
-	private int status;			//승인상태
+	private int status;			//승인상태 1:미승인, 2:승인
 	private Date request_at;	//요청날짜
 	private Date approved_at;	//승인 확정일
 	private int item_grade;		//상품 상태
@@ -15,7 +15,14 @@ public class BookApprovalVO {
 	private String pubDate;		//책등록일
 	private String coverUrl;	//커버
 	private String categoryName; //장르
+	private MemberVO MemberVO;
 	
+	public void setMemberVO(MemberVO memberVO) {
+		MemberVO = memberVO;
+	}
+	public MemberVO getMemberVO() {
+		return MemberVO;
+	}
 	public String getCategoryName() {
 		return categoryName;
 	}

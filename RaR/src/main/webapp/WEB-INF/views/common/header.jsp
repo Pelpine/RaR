@@ -56,7 +56,7 @@
 		</li>
 		</c:if>
 		<li>
-			<a href="${pageContext.request.contextPath}/book/bookssd.do">검색</a>
+			<a href="${pageContext.request.contextPath}/book/list.do">검색</a>
 		</li>
 	</ul>
 </div>

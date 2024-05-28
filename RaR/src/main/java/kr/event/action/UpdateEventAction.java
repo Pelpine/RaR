@@ -38,13 +38,14 @@ public class UpdateEventAction implements Action{
         String endDateStr = request.getParameter("end_date");
         event.setStart_date(Date.valueOf(startDateStr));
         event.setEnd_date(Date.valueOf(endDateStr));
-		event.setFilename(FileUtil.createFile(request, "filename"));
-		dao.updateEvent(event);
-		
-		 if(event.getFilename()!=null && !event.getFilename().isEmpty()) {
+        if(event.getFilename()!=null && !event.getFilename().isEmpty()) {
 			 //새 파일로 교체할 때 원래 파일 제거
 			 FileUtil.removeFile(request, event.getFilename());
 		 }
+		event.setFilename(FileUtil.createFile(request, "filename"));
+		dao.updateEvent(event);
+		
+		
 		
 		return "redirect:/event/eventDetail.do?event_num="+event_num;
 	}

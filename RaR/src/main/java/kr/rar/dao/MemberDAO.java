@@ -263,7 +263,7 @@ public class MemberDAO {
 			conn.setAutoCommit(false);
 			
 			//member의 user_auth 값 변경
-			sql = "UPDATE member SET auth=0 WHERE user_num=?";
+			sql = "UPDATE member SET user_auth=0 WHERE user_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
 			pstmt.executeUpdate();
