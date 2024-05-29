@@ -25,7 +25,7 @@
         <div class="carousel-inner">
             <!-- 첫 번째 item -->
             <div class="carousel-item active">
-                <a href="../event/eventDetail.do?event_num=35"><img src="../images/출석체크 이벤트.jpg" class="d-block w-100"></a>
+                <a href="../event/eventDetail.do?event_num=35"><img src="../images/출석체크 이벤트.png" class="d-block w-100"></a>
                 <div class="carousel-caption">
                     <p>출석체크 페이지로 이동</p>
                 </div>
