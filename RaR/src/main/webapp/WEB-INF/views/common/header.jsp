@@ -3,9 +3,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header 시작 -->
 <div id="main_logo">
-	<h1 class="align-center">
-		<a href="${pageContext.request.contextPath}/main/main.do">회원제 게시판</a>
-	</h1>
+	<h1 class="" style="align-text:Left">
+		<a href="${pageContext.request.contextPath}/main/main.do">회원제 게시판</a></h1>
+		<form action="list.do" id="search_form" method="post">
+				<ul class="search">
+					<li>
+						<select name="keyfield">
+							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>책이름</option>
+							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작가</option>
+							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>출판사</option>
+						</select>
+					</li>
+					<li>
+						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+					</li>
+					<li>
+						<input type="submit" value="검색">
+					</li>
+				</ul>
+			</form>
 </div>
 <div id="main_nav">
 	<ul>
