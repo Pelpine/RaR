@@ -5,7 +5,7 @@
 <div id="main_login">
     <ul>
 		<c:if test="${!empty user_num}">
-			<li class="menu-logout">[<span>${user_id}</span>] 
+			<li class="menu-logout">
 			    <a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 			</li>
 		</c:if>
@@ -18,15 +18,6 @@
 			</li>
 		</c:if>
 	</ul>
-</div>
-<div id="log_check">
-    <ul>
-        <c:if test="${!empty user_num}">
-        <li>
-			<input type="button" onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'" value="출석체크">
-		</li>
-		</c:if>
-    </ul>
 </div>
 <div id="main_logo">
 	<h1 class="align-center">
@@ -52,17 +43,21 @@
 		</c:if>
 		<c:if test="${!empty user_num}">
 		<li>
-			<a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
+			<input type="button" onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'" value="출석체크">
 		</li>
 		</c:if>
 		<c:if test="${!empty user_num && !empty user_photo}">
 		<li	class="menu-profile">
-			<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo">
+		   <a href="${pageContext.request.contextPath}/member/myPage.do">
+		      <img src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo">
+		   </a> 
 		</li>
 		</c:if>
 		<c:if test="${!empty user_num && empty user_photo}">
 		<li	class="menu-profile">
-			<img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="my-photo">
+		   <a href="${pageContext.request.contextPath}/member/myPage.do">
+		      <img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="my-photo">
+		   </a>
 		</li>
 		</c:if>
 		<c:if test="${!empty user_num}">
@@ -71,8 +66,8 @@
 		</li>
 		</c:if>
 		<li>
-			<a href="${pageContext.request.contextPath}/book/list.do">검색</a>
-			<a href="${pageContext.request.contextPath}/book/booklist.do">책목록</a>
+			<a href="${pageContext.request.contextPath}/book/list.do">책 검색</a>
+			<a href="${pageContext.request.contextPath}/book/booklist.do">책 목록</a>
 		</li>
 	</ul>
 </div>
