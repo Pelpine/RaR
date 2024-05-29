@@ -10,9 +10,9 @@
 <script type="text/javascript">
 $(function(){
 	$('#login_form').submit(function(){
-		if($('#email').val().trim()==''){
+		if($('#user_email').val().trim()==''){
 			alert('이메일을 입력하세요');
-			$('#email').val('').focus();
+			$('#user_email').val('').focus();
 			return false;;
 		}
 		if($('#password').val().trim()==''){

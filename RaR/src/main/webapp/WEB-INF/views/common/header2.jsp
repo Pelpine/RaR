@@ -5,16 +5,16 @@
 <div id="main_login">
     <ul>
 		<c:if test="${!empty user_num}">
-			<li class="menu-logout">[<span>${user_id}</span>] <a
-				href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+			<li class="menu-logout">[<span>${user_id}</span>] 
+			    <a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 			</li>
 		</c:if>
 		<c:if test="${empty user_num}">
-			<li><a
-				href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
+		    <li>
+		        <a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 			</li>
-			<li><a
-				href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+			<li>
+			    <a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
 			</li>
 		</c:if>
 	</ul>
