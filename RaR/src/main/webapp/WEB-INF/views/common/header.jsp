@@ -27,6 +27,9 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
 		</li>
+		<li>
+			<input type="button" onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'" value="출석체크">
+		</li>
 		</c:if>
 		<c:if test="${!empty user_num && !empty user_photo}">
 		<li	class="menu-profile">
