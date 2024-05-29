@@ -73,7 +73,7 @@ $(function(){
 					</li>
 					<li>
 					    <label for="cpassword">비밀번호 확인</label> <input type="password"
-						 name="cpassword" id="cpassword" maxlength="12" class="input-check" placeholder="비밀번호와 같게 입력해주세요!">
+						 name="cpassword" id="cpassword" maxlength="12" class="input-check" placeholder="비밀번호와 같은 번호를 입력하세요.">
 					</li>
 					<li>
 					    <label for="user_phone">전화번호</label> <input type="text"
