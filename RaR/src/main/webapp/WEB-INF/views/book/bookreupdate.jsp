@@ -68,7 +68,8 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 				<input type="text" id="comment" name="comment">
 			</li>
 		</ul>
-		<input type="submit" value="등록요청">
+		<input type="hidden" value="${user_num}" name="user">
+		<input type="submit" value="수정">
 		<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</form>
 </div>

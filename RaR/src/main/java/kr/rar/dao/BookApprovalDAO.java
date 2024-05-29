@@ -193,4 +193,33 @@ public class BookApprovalDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
+		//승인 상태 변경 및 수정
+		public void update(BookApprovalVO vo)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
+						
+				sql = "update book_approval set status=?,cover=?,bk_name=?,author=?,pubdate=?,price=?,categoryname=?,publisher=?,item_grade=?,comment=?,approved_at=null where approval_id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, vo.getStatus());
+				pstmt.setString(2, vo.getCover());
+				pstmt.setString(3, vo.getBk_name());
+				pstmt.setString(4, vo.getAuthor());
+				pstmt.setString(5,vo.getPubDate());
+				pstmt.setInt(6, vo.getPrice());
+				pstmt.setString(7, vo.getCategoryName());
+				pstmt.setString(8, vo.getPublisher());
+				pstmt.setString(9, vo.getAd_comment());
+				pstmt.setInt(10, vo.getApproval_id());
+						
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 }
