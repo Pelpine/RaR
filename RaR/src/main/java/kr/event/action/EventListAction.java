@@ -26,7 +26,7 @@ public class EventListAction implements Action{
 		// 이벤트 등록 버튼 표시 여부 결정하기 위해 등급 조회
 		Integer user_auth = (Integer) session.getAttribute("user_auth");
 		if(underway == null) {
-			underway ="2";
+			underway ="off"; // getBoard에 null을 넘기지 않음.
 		}
 		EventDAO dao = EventDAO.getInstance();
 		int count = dao.getBoardCount(keyfield, keyword, underway);

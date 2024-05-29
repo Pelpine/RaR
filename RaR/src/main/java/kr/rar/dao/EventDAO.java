@@ -64,7 +64,7 @@ public class EventDAO {
 	        }
 	        
 	        // 날짜 조건 처리
-	        if(underway.equals("1")) {
+	        if(underway.equals("on")) {
 	            if(sub_sql.isEmpty()) {
 	                date_sql = "WHERE SYSDATE BETWEEN start_date AND end_date";
 	            } else {

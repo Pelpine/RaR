@@ -8,20 +8,6 @@
 <title>이벤트 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet"href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
-<script type="text/javascript">
-    window.onload = function(){
-        const myForm = document.getElementById('search_form');
-        myForm.onsubmit = function(){
-            const underway_btn = document.getElementById('underway_btn');
-            if(underway_btn.checked){
-                underway_btn.value = "1";
-            }else{
-                underway_btn.value = "0";
-            }
-            console.log(underway.value);
-        };
-    };
-</script>
 </head>
 <body>
 	<div class="page-main">
