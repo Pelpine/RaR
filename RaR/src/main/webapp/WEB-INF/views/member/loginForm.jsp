@@ -26,7 +26,7 @@ $(function(){
 </head>
 <body>
 <div class="page-main">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <jsp:include page="/WEB-INF/views/common/header2.jsp"/>
     <div class="content-main">
         <h2>로그인</h2>
         <form id="login_form" action="login.do" method="post">
