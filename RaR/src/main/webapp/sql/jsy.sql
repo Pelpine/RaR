@@ -98,3 +98,4 @@ constraint board_reply_fk2 foreign key(board_num)references board(board_num)
 create SEQUENCE board_seq;
 create SEQUENCE board_genre_seq;
 create SEQUENCE trade_seq;
+create SEQUENCE reply_seq;

@@ -21,8 +21,8 @@ window.onload=function(){
 			keyword.focus();
 			return false;
 		}
-	}
-}
+	};
+};
 </script>
 </head>
 <body>
