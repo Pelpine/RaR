@@ -38,7 +38,6 @@
 				<input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
 				<c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>
 				
-				<input type="button" value="목록" onclick="location.href='eventList.do'">
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 			<c:if test="${count == 0 }">
