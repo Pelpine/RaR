@@ -35,7 +35,7 @@ $(function(){
                    <input type="email" class="form-input"
                     placeholder="이메일" name="user_email" id="user_email"
                     maxlength="50" autocomplete="off">
-                   <label for="id">이메일</label>
+                   <label for="user_email">이메일</label>
                 </li>
                 <li class="floating-label">
                    <input type="password" class="form-input"
