@@ -38,7 +38,7 @@
             </div>
             <!-- 세 번째 item -->
             <div class="carousel-item">
-                <img src="../images/Lighthouse02.jpg" class="d-block w-100">
+                <a href="../event/eventDetail.do?event_num=32"><img src="../images/독후감 이벤트.jpg" class="d-block w-100"></a>
                 <div class="carousel-caption">
                     <h5>Third slide label</h5>
                     <p>Lighthouse 이미지~~</p>
