@@ -85,6 +85,15 @@ a:hover{
 	width:150px;
 	text-align:left;
 }
+/*드롭다운---------------------------*/
+.tag > li:hover {
+  background-color: #94a9ff;
+  transition-duration: 0.5s;
+}
+
+.tag > li:hover .subtag {
+  height: 250px; /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 1s;
 /*---------------------------*/
 #main_login{
 	padding:2px 10px 20px 10px;
