@@ -21,8 +21,11 @@ $(function(){
 					let output = '<tr>';
 					output += '<td><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
 					output += '<td><img src="' + item.bookVO.bk_img + '" width="60">' + item.bookVO.bk_name + '</td>';
-					output += '<td> 정가 : ' + item.bookVO.bk_price
-							+ '원<br> 판매가 : <span id="item_price_' + item.cart_num + '">' + item.itemVO.item_price + '</span>원</td>';
+					output += '<td>'
+							+ '정가 : ' + item.bookVO.bk_price + '원<br>'
+							+ '판매가 : <span id="item_price_' + item.cart_num + '">' + item.itemVO.item_price + '</span>원<br>'
+							+ '포인트 : ' + item.itemVO.item_price * 0.01 + 'p'
+							+ '</td>';
 					output += '<td>' + item.itemVO.item_grade + '</td>';
 					output += '<td><input type="button" data-cartnum="' + item.cart_num + '" value="삭제" class="delete-btn"></td>';
 					output += '</tr>';
@@ -123,7 +126,7 @@ $(function(){
 	    $('#cart_total td:eq(1)').text(totalPrice.toLocaleString() + '원');
 	    $('#cart_total td:eq(2)').text(ship.toLocaleString() + '원');
 	    $('#cart_total td:eq(3)').text(totalPayment.toLocaleString() + '원');
-	    $('#cart_total td:eq(4)').text(totalPoints.toLocaleString() + '점');
+	    $('#cart_total td:eq(4)').text(totalPoints.toLocaleString() + 'p');
 	    
 	    //전송할 데이터 값 입력
 	    $('#totalCount').val(totalCount);

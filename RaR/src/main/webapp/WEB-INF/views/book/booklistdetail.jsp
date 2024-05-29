@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>?</h1>
+<jsp:include page="/WEB-INF/views/book/booklistdetail_include.jsp"/>
 </body>
 </html>

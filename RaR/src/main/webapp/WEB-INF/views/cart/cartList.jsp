@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cart.js"></script>
 </head>
@@ -32,7 +33,6 @@
 				</tr>
 				<!-- 장바구니 총 구매비용 계산, 주문정보에 전송할 데이터 포함 -->
 				<tr id="cart_total">
-				
 					<!-- 주문상품 수량 -->
 					<td><input type="hidden" name="totalCount" id="totalCount" value="0">0</td>
 					<!-- 총 주문상품 금액 -->
@@ -42,9 +42,10 @@
 					<!-- 총 결제금액 -->
 					<td><input type="hidden" name="totalPayment" id="totalPayment" value="0">0</td>
 					<!-- 예상 적립 포인트 -->
-					<td><input type="hidden" name="totalPoints" id="totalPoints" value="0">0</td>
+					<td><input type="hidden" name="totalPoints" id="totalPoints" value="0">0</td>	
 				</tr>
 			</table>
+			<span>총 주문상품 금액이 30000원 미만인 경우 배송비 4000원이 추가됩니다.<br> </span>
 			<input type="submit" value="주문하기">
 		</form>
 	</div>
