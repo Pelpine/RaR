@@ -12,45 +12,34 @@
 </head>
 <body>
 <div class="page-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-		<table>
-			<tr>
-				<th><input type="checkbox"></th>
-				<th>상품정보</th>
-				<th>가격</th>
-				<th>상태</th>
-				<th>삭제</th>
-			</tr>
-			<c:forEach var="cart" items="${list}">
-			<tr>
-				<td><input type="checkbox"></td>
-				<td>${cart.bk_img} ${cart.bk_name}</td>
-				<td>${cart.bk_price}<br>${cart.item_price}</td>
-				<td>${cart.item_grade}</td>
-				<td><input type="button" data-cartnum="${cart.cart_num}" value="삭제" class="delete-btn"></td>
-			</tr>
-			</c:forEach>
-		</table>
-		<p>
-		<input type="button" value="선택상품 삭제">
-		<p>
-		<table>
-			<tr>
-				<th>주문상품 수량</th>
-				<th>총 주문상품 금액</th>
-				<th>배송비</th>
-				<th>총 결제금액</th>
-				<th>예상 적립 포인트</th>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>20,000</td>
-				<td>4,000</td>
-				<td>24,000</td>
-				<td>240</td>
-			</tr>
-		</table>
-		<input type="submit" value="주문하기">
+		<form id="cart_order" action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
+			<!-- 장바구니 상품 목록, 동적으로 생성 -->
+			<table id="output"></table>
+			<p>
+			<!-- 전체 상품 삭제 버튼 -->
+			<input type="button" value="선택상품 삭제" id="selectAll-btn">
+			<p>
+			<!-- 장바구니 연산 결과 -->
+			<table>
+				<tr>
+					<th>주문상품 수량</th>
+					<th>총 주문상품 금액</th>
+					<th>배송비</th>
+					<th>총 결제금액</th>
+					<th>예상 적립 포인트</th>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>20,000</td>
+					<td>4,000</td>
+					<td>24,000</td>
+					<td>240</td>
+				</tr>
+			</table>
+			<input type="submit" value="주문하기">
+		</form>
 	</div>
 </div>
 </body>
