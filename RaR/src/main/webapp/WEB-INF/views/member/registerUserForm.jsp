@@ -21,6 +21,12 @@ $(function(){
 				items[i].focus();
 				return false;
 			}
+			if(items[i].id == 'password' && 
+					!/^[A-Za-z0-9]{8,12}$/.test($('#password').val())){
+				alert('영문 또는 숫자 사용, 최소 8자 ~ 최대 12자 사용');
+				$('#password').val('').focus();
+				return false;
+			}
 			if(items[i].id == 'user_zipcode' 
 					&& !/^[0-9]{5}$/.test($('#user_zipcode').val())){
 				alert('우편번호를 입력하세요(숫자5자리)');
@@ -38,7 +44,7 @@ $(function(){
 
 	    //비밀번호와 비밀번호 확인 일치 여부 체크
 		if($('#password').val()==$('#cpassword').val()){
-			$('#message_cpassword').text('새비밀번호 일치');
+			$('#message_cpassword').text('비밀번호 일치');
 		}else{
 			$('#message_cpassword').text('');
 		}
@@ -62,12 +68,12 @@ $(function(){
 						 name="user_name" id="user_name" maxlength="10" class="input-check">
 					</li>
 					<li>
-					    <label for="password">비밀번호</label> <input type="password"
-						 name="password" id="password" maxlength="12" class="input-check">
+					    <label for="password" title="영문 또는 숫자,8~12자">비밀번호</label> <input type="password"
+						 name="password" id="password" maxlength="12" class="input-check" placeholder="영문 또는 숫자 사용, 최소 8자 ~ 최대 12자 사용">
 					</li>
 					<li>
 					    <label for="cpassword">비밀번호 확인</label> <input type="password"
-						 name="cpassword" id="cpassword" maxlength="12" class="input-check">
+						 name="cpassword" id="cpassword" maxlength="12" class="input-check" placeholder="비밀번호와 같게 입력해주세요!">
 					</li>
 					<li>
 					    <label for="user_phone">전화번호</label> <input type="text"
