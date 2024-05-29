@@ -32,13 +32,13 @@
             </div>
             <!-- 두 번째 item -->
             <div class="carousel-item">
-               <a href="../event/eventDetail.do?event_num=32"><img src="../images/친구초대 이벤트.png" class="d-block w-100"></a>
+               <a href="../event/eventDetail.do?event_num=42"><img src="../images/친구초대 이벤트.png" class="d-block w-100"></a>
                 <div class="carousel-caption">
                 </div>
             </div>
             <!-- 세 번째 item -->
             <div class="carousel-item">
-                <a href="../event/eventDetail.do?event_num=32"><img src="../images/독후감 이벤트.jpg" class="d-block w-100"></a>
+                <a href="../event/eventDetail.do?event_num=38"><img src="../images/독후감 이벤트.jpg" class="d-block w-100"></a>
                 <div class="carousel-caption">
                     <h5>Third slide label</h5>
                     <p>Lighthouse 이미지~~</p>
