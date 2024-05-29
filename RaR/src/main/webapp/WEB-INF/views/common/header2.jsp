@@ -19,6 +19,15 @@
 		</c:if>
 	</ul>
 </div>
+<div id="log_check">
+    <ul>
+        <c:if test="${!empty user_num}">
+        <li>
+			<input type="button" onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'" value="출석체크">
+		</li>
+		</c:if>
+    </ul>
+</div>
 <div id="main_logo">
 	<h1 class="align-center">
 		<a href="${pageContext.request.contextPath}/main/main.do">회원제 게시판</a>

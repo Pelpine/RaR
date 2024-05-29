@@ -28,6 +28,20 @@ $(function(){
 				return false;
 			}
 		}
+		//아이디,비밀번호 유효성 체크
+		if($('#password').val()!=$('#cpassword').val()){
+			alert('비밀번호와 비밀번호 확인이 불일치');
+			$('#password').val('').focus();
+			$('#cpassword').val('');
+			return false;
+		}
+
+	    //비밀번호와 비밀번호 확인 일치 여부 체크
+		if($('#password').val()==$('#cpassword').val()){
+			$('#message_cpassword').text('새비밀번호 일치');
+		}else{
+			$('#message_cpassword').text('');
+		}
 	});
 });
 </script>
@@ -50,6 +64,10 @@ $(function(){
 					<li>
 					    <label for="password">비밀번호</label> <input type="password"
 						 name="password" id="password" maxlength="12" class="input-check">
+					</li>
+					<li>
+					    <label for="cpassword">비밀번호 확인</label> <input type="password"
+						 name="cpassword" id="cpassword" maxlength="12" class="input-check">
 					</li>
 					<li>
 					    <label for="user_phone">전화번호</label> <input type="text"
