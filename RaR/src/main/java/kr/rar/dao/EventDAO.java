@@ -255,15 +255,15 @@ public class EventDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		boolean checkat = true;
+		boolean checkat = false;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM event_attendance WHERE user_num=? AND attendance_date=sysdate";
+			 sql = "SELECT * FROM event_attendance WHERE user_num=? AND TO_CHAR(attendance_date, 'YY-MM-DD') = TO_CHAR(SYSDATE, 'YY-MM-DD')";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				checkat = false;
+				checkat = true;
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
