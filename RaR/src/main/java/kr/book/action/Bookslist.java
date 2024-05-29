@@ -17,7 +17,7 @@ public class Bookslist implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum="1";
 		
@@ -27,7 +27,7 @@ public class Bookslist implements Action{
 		BookDAO dao = BookDAO.getInstance();
 		int count = dao.getBooksCount(keyfield, keyword);
 		
-		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count,20,10,"list.do");
+		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count,20,10,"booklist.do");
 		List<BookVO> list = null;
 		if(count > 0) {
 			list = dao.getListbookslist(page.getStartRow(), page.getEndRow(), keyfield, keyword);

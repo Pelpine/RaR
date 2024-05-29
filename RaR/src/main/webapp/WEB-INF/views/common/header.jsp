@@ -5,7 +5,7 @@
 <div id="main_logo">
 	<h1 class="" style="align-text:Left">
 		<a href="${pageContext.request.contextPath}/main/main.do">회원제 게시판</a></h1>
-		<form action="list.do" id="search_form" method="post">
+		<form action="${pageContext.request.contextPath}/book/booklist.do" id="search_form" method="post">
 				<ul class="search">
 					<li>
 						<select name="keyfield">

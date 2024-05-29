@@ -44,7 +44,7 @@
 				</tr>
 				</c:forEach>
 			</table>
-			<form action="list.do" id="search_form" method="post">
+			<form action="booklist.do" id="search_form" method="post">
 				<ul class="search">
 					<li>
 						<select name="keyfield">
