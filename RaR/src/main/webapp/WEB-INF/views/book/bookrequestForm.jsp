@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>책 등록 요청</title>
 <script type="text/javascript">
-function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=400, height=300, left=100, top=50");
-}
+function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=400, height=300, left=100, top=50");}
 function updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher) {
     document.getElementById("bk_name").value = bk_name;
     document.getElementById("author").value = author;
@@ -27,7 +26,8 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 	<form action="book.do" method="post" name="test">
 		<ul>
 			<li>
-				<img src="${books.cover}" id="cover" >
+				<img src="${books.cover}" id="cover">
+				
 				<input type="hidden" value="${books.cover}" name="cover" id="coverUrl">
 			</li>
 			<li>

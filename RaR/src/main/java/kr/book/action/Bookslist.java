@@ -27,7 +27,7 @@ public class Bookslist implements Action{
 		BookDAO dao = BookDAO.getInstance();
 		int count = dao.getBooksCount(keyfield, keyword);
 		
-		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count,20,10,"booklist.do");
+		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count,20,10,"list.do");
 		List<BookVO> list = null;
 		if(count > 0) {
 			list = dao.getListbookslist(page.getStartRow(), page.getEndRow(), keyfield, keyword);
