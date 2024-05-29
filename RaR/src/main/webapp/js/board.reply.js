@@ -28,18 +28,18 @@ $(function(){
 				
 				$(param.list).each(function(index,item){
 					let output = '<div class="item">';
-					output +='<h4>' + item.id + '<h4>';
+					output +='<h4>' + item.user_email + '<h4>';
 					output +='<div class="sub-item">';
-					output +='<p>' + item.re_content + '</p>';
+					output +='<p>' + item.content + '</p>';
 					
-					if(item.re_modifydate){
-						output += '<span class="modify-date">최근 수정일 : ' + item.re_modifydate + '</span>';
+					if(item.modify_date){
+						output += '<span class="modify-date">최근 수정일 : ' + item.modify_date + '</span>';
 					}else{
-						output += '<span class="modify-date">최근 등록일 : ' + item.re_date + '</span>';
+						output += '<span class="modify-date">최근 등록일 : ' + item.reg_date + '</span>';
 					}
 					
 					//로그인한 회원번호와 작성자의 회원번호가 일치하는 지 여부 체크
-					if(param.user_num==item.mem_num){
+					if(param.user_num==item.user_num){
 						output += ' <input type="button" data-renum="'+ item.re_num +'" value="수정" class="modify-btn">';
 						output += ' <input type="button" data-renum="'+ item.re_num +'" value="삭제" class="delete-btn">';
 					}
@@ -79,7 +79,7 @@ $(function(){
 	$('#re_form').submit(function(event){
 		if($('#re_content').val().trim()==''){
 			alert('내용을 입력하세요');
-			$('re_content').val('').focus();
+			$('#re_content').val('').focus();
 			return false;
 		}
 		
@@ -134,7 +134,7 @@ $(function(){
 		//댓글 수정폼 ui
 		let modifyUI='<form id="mre_form">';
 		modifyUI +='<input type="hidden" name="re_num" id="mre_num" value="'+ re_num +'">';
-		modifyUI +='<textarea rows="3" cols="50" name="re_content" id="mre_content" class= "rep-content">'+content+'</textarea>'	
+		modifyUI +='<textarea rows="3" cols="50" name="content" id="mre_content" class= "rep-content">'+content+'</textarea>'	
 		modifyUI +='<div id="mre_first"><span class="letter-count">300/300</span></div>';
 		modifyUI +='<div id="mre_second" class="align-right">';
 		modifyUI +=' <input type="submit" value="수정">';
