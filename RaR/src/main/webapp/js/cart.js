@@ -18,7 +18,7 @@ $(function(){
 				$(param.list).each(function(index,item){
 					let output = '<tr>';
 					output += '<td><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck"></td>';
-					output += '<td><img src="../images/' + item.bookVO.bk_img + '" width="80">' + item.bookVO.bk_name + '</td>';
+					output += '<td><img src="' + contextPath + '/upload/' + item.bookVO.bk_img + '" width="80">' + item.bookVO.bk_name + '</td>';
 					output += '<td> 정가 : ' + item.bookVO.bk_price
 							+ '<br> 판매가 : ' + item.itemVO.item_price + '</td>';
 					output += '<td>' + item.itemVO.item_grade + '</td>';

@@ -8,7 +8,12 @@
 <title>장바구니</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+	<!-- 동적인 이미지 생성을 위해 경로 저장 -->
+	let contextPath = '<%= request.getContextPath() %>';
+</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cart.js"></script>
+
 </head>
 <body>
 <div class="page-main">
