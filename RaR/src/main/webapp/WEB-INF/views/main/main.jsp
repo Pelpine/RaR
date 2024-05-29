@@ -32,7 +32,7 @@
             </div>
             <!-- 두 번째 item -->
             <div class="carousel-item">
-               <a href="../event/eventDetail.do?event_num=32"><img src="../images/친구초대 이벤트.jpg" class="d-block w-100"></a>
+               <a href="../event/eventDetail.do?event_num=32"><img src="../images/친구초대 이벤트.png" class="d-block w-100"></a>
                 <div class="carousel-caption">
                 </div>
             </div>
