@@ -28,11 +28,12 @@ $(document).ready(function(){
         var bk_name = $(this).find('input[name="bk_name"]').val();
         var author = $(this).find('input[name="author"]').val();
         var pubDate = $(this).find('input[name="pubdate"]').val();
-        var coverUrl = $(this).find('input[name="coverurl"]').val();
+        var cover = $(this).find('input[name="cover"]').val();
         var categoryName = $(this).find('input[name="categoryname"]').val();
         var price = $(this).find('input[name="price"]').val();
+        var publisher = $(this).find('input[name="publisher"]').val();
         
-        window.opener.updateParent(bk_name, author, pubDate, coverUrl, categoryName, price);
+        window.opener.updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher);
         window.close();
     });
 });
@@ -44,17 +45,19 @@ $(document).ready(function(){
     <div class="book">
         <div>제목 : ${book.bk_name}</div>
         <div>저자 : ${book.author}</div>
-        <div>책등록일 : ${book.pubDate}</div>
+        <div>출간일 : ${book.pubDate}</div>
         <div>장르 : ${book.categoryName}</div>
         <div>정가 : ${book.price} 원</div>
-        <div><img src="${book.coverUrl}" alt="Book Cover"></div>
+        <div>출판사 : ${book.publisher}</div>
+        <div><img src="${book.cover}" alt="Book Cover"></div>
         <form action="#" method="post" class="shForm">
             <input type="hidden" value="${book.bk_name}" name="bk_name">
             <input type="hidden" value="${book.price}" name="price">
             <input type="hidden" value="${book.author}" name="author">
             <input type="hidden" value="${book.pubDate}" name="pubdate">
             <input type="hidden" value="${book.categoryName}" name="categoryname">
-            <input type="hidden" value="${book.coverUrl}" name="coverurl">
+            <input type="hidden" value="${book.cover}" name="cover">
+            <input type="hidden" value="${book.publisher}" name="publisher">
             <input type="submit" value="전달">
         </form>
     </div>

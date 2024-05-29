@@ -27,7 +27,7 @@ public class BookApprovalDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname,price) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?,?)";
+				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname,price,publisher) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?,?,?)";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, vo.getItem_grade());
@@ -35,10 +35,11 @@ public class BookApprovalDAO {
 				pstmt.setString(3, vo.getAd_comment());
 				pstmt.setInt(4, vo.getUser_num());
 				pstmt.setString(5, vo.getAuthor());
-				pstmt.setString(6, vo.getCoverUrl());
+				pstmt.setString(6, vo.getCover());
 				pstmt.setString(7, vo.getPubDate());
 				pstmt.setString(8, vo.getCategoryName());
 				pstmt.setInt(9, vo.getPrice());
+				pstmt.setString(10, vo.getPublisher());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {
@@ -154,8 +155,10 @@ public class BookApprovalDAO {
 					vo.setAd_comment(rs.getString("ad_comment"));//코맨트
 					vo.setAuthor(rs.getString("author"));
 					vo.setPubDate(rs.getString("pubDate"));
-					vo.setCoverUrl(rs.getString("coverUrl"));
+					vo.setCover(rs.getString("cover"));
 					vo.setCategoryName(rs.getString("categoryName"));
+					vo.setPublisher(rs.getString("publisher"));
+					vo.setPrice(rs.getInt("price"));
 					
 					MemberVO member = new MemberVO();
 					member.setUser_email(rs.getString("user_email"));//유저 이메일
@@ -178,9 +181,10 @@ public class BookApprovalDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "update book_approval where approval_id = ?";
+				sql = "update book_approval set status=?, approved_at=sysdate where approval_id = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, vo.getApproval_id());
+				pstmt.setInt(1, vo.getStatus());
+				pstmt.setInt(2, vo.getApproval_id());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {

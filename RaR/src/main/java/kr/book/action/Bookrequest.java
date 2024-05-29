@@ -18,18 +18,19 @@ public class Bookrequest implements Action{
 		if(user_num == null){
 			return "redirect:/member/loginForm.do";
 		}
-		BookApprovalDAO dao = BookApprovalDAO.instance;
+		BookApprovalDAO dao = BookApprovalDAO.getInstance();
 		BookApprovalVO vo = new BookApprovalVO();
 		 
         vo.setBk_name(request.getParameter("bk_name"));
         vo.setAuthor(request.getParameter("author"));
         vo.setPubDate(request.getParameter("pubdate"));
-        vo.setCoverUrl(request.getParameter("coverurl"));
+        vo.setCover(request.getParameter("cover"));
         vo.setCategoryName(request.getParameter("categoryname"));
         vo.setUser_num(user_num);
         vo.setAd_comment(request.getParameter("comment"));
         vo.setPrice(Integer.parseInt(request.getParameter("price")));
         vo.setItem_grade(Integer.parseInt(request.getParameter("item_grade")));
+        vo.setPublisher(request.getParameter("publisher"));
         
         dao.insertBook(vo);
         request.setAttribute("notice_msg", "글 등록 완료");

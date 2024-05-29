@@ -19,12 +19,12 @@ public class Bookdetail implements Action{
 		if(user_num == null) {
 			return "redirect:/book/loginForm.do";
 		}
-		int id = Integer.parseInt(request.getParameter("appapproval_id"));
+		int id = Integer.parseInt(request.getParameter("approval_id"));
 		BookApprovalDAO dao = BookApprovalDAO.getInstance();
 		BookApprovalVO vo = dao.selectbook(id);
 		
 		request.setAttribute("user_auth", user_auth);
-		request.setAttribute("detail", vo);
+		request.setAttribute("book", vo);
 		return "/WEB-INF/views/book/bookdetail.jsp";
 	}
 }

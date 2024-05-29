@@ -48,14 +48,16 @@ public class BookSearchServlet implements Action {
 	                String Coverurl = itemElement.getElementsByTagName("cover").item(0).getTextContent();
 	                String categoryname = itemElement.getElementsByTagName("categoryName").item(0).getTextContent();
 	                int price = Integer.parseInt(itemElement.getElementsByTagName("priceStandard").item(0).getTextContent());
+	                String publisher = itemElement.getElementsByTagName("publisher").item(0).getTextContent();
 	                
 	                BookApprovalVO vo = new BookApprovalVO();
 	                vo.setBk_name(bk_name);
 	                vo.setAuthor(author);
 	                vo.setPubDate(pubdate);
-	                vo.setCoverUrl(Coverurl);
+	                vo.setCover(Coverurl);
 	                vo.setCategoryName(categoryname);
 	                vo.setPrice(price);
+	                vo.setPublisher(publisher);
 	                list.add(vo);
 	            }
 	        }

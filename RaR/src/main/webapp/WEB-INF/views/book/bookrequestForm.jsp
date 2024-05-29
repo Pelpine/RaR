@@ -9,13 +9,15 @@
 <script type="text/javascript">
 function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=400, height=300, left=100, top=50");
 }
-function updateParent(bk_name, author, pubDate, coverUrl, categoryName, price) {
+function updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher) {
     document.getElementById("bk_name").value = bk_name;
     document.getElementById("author").value = author;
     document.getElementById("pubdate").value = pubDate;
-    document.getElementById("coverurl").src = coverUrl;
+    document.getElementById("cover").src = cover;
+    document.getElementById("coverUrl").value = cover;
     document.getElementById("categoryname").value = categoryName;
     document.getElementById("price").value = price;
+    document.getElementById("publisher").value = publisher;
 }
 </script>
 </head>
@@ -25,7 +27,8 @@ function updateParent(bk_name, author, pubDate, coverUrl, categoryName, price) {
 	<form action="book.do" method="post" name="test">
 		<ul>
 			<li>
-				<img src="${books.coverUrl}" id="coverurl">
+				<img src="${books.cover}" id="cover" >
+				<input type="hidden" value="${books.cover}" name="cover" id="coverUrl">
 			</li>
 			<li>
 				<label for="bk_name">책 이름</label>
@@ -37,7 +40,7 @@ function updateParent(bk_name, author, pubDate, coverUrl, categoryName, price) {
 				<input type="text" id="author" name="author" value="${books.author}" readonly>
 			</li>
 			<li>
-				<label for="pubdate">책 등록 날짜</label>
+				<label for="pubdate">출간일</label>
 				<input type="text" id="pubdate" name="pubdate" value="${books.pubDate}" readonly>
 			</li>
 			<li>
@@ -47,6 +50,10 @@ function updateParent(bk_name, author, pubDate, coverUrl, categoryName, price) {
 			<li>
 				<label for="categoryname">장르</label>
 				<input type="text" id="categoryname" name="categoryname" value="${books.categoryName}" readonly>
+			</li>
+			<li>
+				<label for="publisher">출판사</label>
+				<input type="text" id="publisher" name="publisher" value="${books.publisher}" readonly>
 			</li>
 			<li>
 				<label for="item_grade">상품상태</label>

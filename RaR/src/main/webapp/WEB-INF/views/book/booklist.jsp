@@ -35,7 +35,7 @@
 				</tr>
 				<c:forEach var="book" items="${list}">
 				<tr>
-					<td><img src="{book.bk_img}"></td>
+					<td><img src="${book.bk_img}"></td>
 					<td>${book.bk_num}</td>
 					<td><a href="bookdetail.do?bk_num=${book.bk_num}">${book.bk_name}</a></td>
 					<td>${book.bk_writer}</td>

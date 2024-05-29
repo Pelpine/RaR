@@ -12,18 +12,27 @@ public class BookApprovalVO {
 	private String ad_comment;	//코맨트
 	private int user_num;		//유저코드
 	private String author;		//저자
-	private String pubDate;		//책등록일
-	private String coverUrl;	//커버
+	private String pubDate;		//출간일
+	private String cover;		//커버
 	private String categoryName; //장르
+	private String publisher;	//출판사
 	private int price; //가격
 	
+	private MemberVO MemberVO;
+	
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
 	public int getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	private MemberVO MemberVO;
+	
 	
 	public void setMemberVO(MemberVO memberVO) {
 		MemberVO = memberVO;
@@ -49,11 +58,11 @@ public class BookApprovalVO {
 	public void setPubDate(String pubDate) {
 		this.pubDate = pubDate;
 	}
-	public String getCoverUrl() {
-		return coverUrl;
+	public String getCover() {
+		return cover;
 	}
-	public void setCoverUrl(String coverUrl) {
-		this.coverUrl = coverUrl;
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 	public int getApproval_id() {
 		return approval_id;
