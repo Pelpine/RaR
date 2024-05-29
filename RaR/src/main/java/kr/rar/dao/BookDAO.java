@@ -59,9 +59,9 @@ public class BookDAO {
 					
 					if(keyword!=null && !"".equals(keyword)) {
 						//검색 처리
-						if(keyfield.equals("1")) sub_sql += " where bk_name = '%' || ? || '%' "; 
-						else if(keyfield.equals("2")) sub_sql += " where bk_writer = '%' || ? || '%' ";
-						else if(keyfield.equals("3")) sub_sql += " where bk_publisher = '%' || ? || '%' ";
+						if(keyfield.equals("1")) sub_sql += " where bk_name like '%' || ? || '%' "; 
+						else if(keyfield.equals("2")) sub_sql += " where bk_writer like '%' || ? || '%' ";
+						else if(keyfield.equals("3")) sub_sql += " where bk_publisher like '%' || ? || '%' ";
 					}
 					
 					sql = "select count(*) from book " + sub_sql;
@@ -94,9 +94,9 @@ public class BookDAO {
 					conn = DBUtil.getConnection();
 					if(keyword!=null) {
 						//검색 처리
-						if(keyfield.equals("1")) sub_sql += " where bk_name = '%' || ? || '%' "; 
-						else if(keyfield.equals("2")) sub_sql += " where bk_writer = '%' || ? || '%' ";
-						else if(keyfield.equals("3")) sub_sql += " where bk_publisher = '%' || ? || '%' ";
+						if(keyfield.equals("1")) sub_sql += " where bk_name like '%' || ? || '%' "; 
+						else if(keyfield.equals("2")) sub_sql += " where bk_writer like '%' || ? || '%' ";
+						else if(keyfield.equals("3")) sub_sql += " where bk_publisher like '%' || ? || '%' ";
 					}
 					sql = "select * from(select a.*,rownum rnum from(select * from book "+sub_sql+" order by bk_num desc)a) where rnum >= ? and rnum <= ?";
 					pstmt = conn.prepareStatement(sql);
