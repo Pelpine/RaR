@@ -26,13 +26,14 @@
 	
 </div>
 <div id="main_nav">
-	<ul>
-		<li>
-			<a href="${pageContext.request.contextPath}/board/list.do">게시판</a>
+    <div class="pull-left"></div>
+	<ul class="outer-menu">
+		<li class="outer-menu-item"><span class="menu-title">게시판</span>
+		     <ul>
+		         <li class="inner-menu-item"><a href="${pageContext.request.contextPath}/board/list.do">일반 게시판</a></li>
+		     </ul>
 		</li>
-		<li>
-			<a href="${pageContext.request.contextPath}/event/eventList.do">이벤트 게시판</a>  
-		</li>
+		<li><a href="${pageContext.request.contextPath}/event/eventList.do">이벤트 게시판</a></li>
 		<c:if test="${!empty user_num && user_auth == 9}">
 		<li>
 			<a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
@@ -67,6 +68,8 @@
 		</c:if>
 		<li>
 			<a href="${pageContext.request.contextPath}/book/list.do">책 검색</a>
+		</li>
+		<li>
 			<a href="${pageContext.request.contextPath}/book/booklist.do">책 목록</a>
 		</li>
 	</ul>

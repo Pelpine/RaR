@@ -1,0 +1,178 @@
+/*기본 설정*/
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    font-family:'맑은 고딕','Malgun Gothic',Gothic,sans-serif;
+    width:960px;
+    margin:0 auto;
+    background:#E6E6E6;
+}
+#page_wrap{
+    background:white;
+    margin:40px 0;
+    padding:10px 20px;
+    border-radius:5px;
+    box-shadow:0 2px 6px rgba(100,100,100,0.3);
+}
+a{
+    text-decoration:none;
+}
+ul{
+    list-style:none;
+} 
+/*헤더 구성하기*/
+#main_header{
+    padding:40px 50px;
+}
+.master-title{
+    font-size:30px;
+    color:#181818;
+}
+.master-desc{
+    font-size:15px;
+    font-weight:500;
+    color:#383838;
+}
+/*내비게이션 및 풀다운 메뉴 구성하기*/
+#main_nav{
+    border-top:1px solid #C8C8C8;
+    border-bottom:1px solid #C8C8C8;
+    margin-bottom:20px;
+    height:40px;
+}
+.pull-left{
+    float:left;
+}
+.pull-right{
+    float:right;
+}
+/*메뉴 타이틀*/
+.menu-title{
+    display:block;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    padding:5px 20px;
+}
+/*메뉴를 가로 방향으로 배치*/
+.outer-menu-item{
+    float:left;
+    position:relative;
+}
+/*메뉴 위에 커서를 올려놓았을 때 스타일 지정*/
+.outer-menu-item:hover{
+    background:black;
+    color:white;
+}
+/*커서를 메뉴에 올려놓았을 때 하위 메뉴 설정*/
+.outer-menu-item:hover .inner-menu{
+    display:block;/*하위 메뉴 노출*/
+}
+
+/*기본 하위 메뉴 설정*/
+.inner-menu{
+    display:none;/*하위 메뉴 숨기기*/
+    position:absolute;
+    top:35px;
+    left:0;
+    width:175%;
+    background:white;
+    text-align:center;
+    box-shadow:0 2px 6px rgba(5,5,5,0.9);
+    z-index:100;
+}
+/*하위 메뉴 링크에 스타일 적용*/
+.inner-menu-item > a {
+    display:block;
+    padding:5px 10px;
+    color:black;
+    margin-left:-23%;
+}
+.inner-menu-item > a:hover{
+    background:black;
+    color:white;
+}
+/*검색 양식 추가하기(내비게이션 내부 검색)*/
+.search-bar{
+    height:26px;
+    padding:7px;
+}
+.input-search{
+    display:block;
+    float:left;
+    background-color:#FFFFFF;
+    border:1px solid #CCCCCC;
+                /*상좌 상우 하우 하좌*/
+    border-radius:15px 0 0 15px;
+    width:120px;
+    height:26px;
+          /*상 우 하 좌*/
+    padding:0 0 0 10px;
+    font-size:12px;
+    color:#555555;
+}
+.input-search:focus{
+    border-color:rgba(82,168,236,0.8);
+    /*border 바깥 외곽선*/
+    outline:0;
+    box-shadow:0 1px 1px rgba(0,0,0,0.05);
+}
+/*검색 버튼 스타일 처리*/
+.input-search-submit{
+    width:50px;
+    height:26px;
+                /*상좌 상우 하우 하좌*/
+    border-radius:0 15px 15px 0;
+    border:1px solid #CCCCCC;
+    margin-left:-1px;
+}
+/*본문*/
+#content{
+    overflow:hidden;
+}
+#main_section{
+    float:left;
+    width:701px;
+}
+#main_aside{
+    float:right;
+    width:200px;
+}
+/*내용*/
+article{
+    padding:0 10px 20px 10px;
+    border-bottom:1px solid #C8C8C8;
+}
+.article-header{
+    padding:20px 0;
+}
+.article-title{
+    font-size:25px;
+    font-weight:500;
+    padding-bottom:10px;
+}
+.article-date{
+    font-size:13px;
+}
+.article-body{
+    font-size:14px;
+}
+/*사이드 메뉴*/
+.aside-list{
+    padding:10px 0 30px 0;
+}
+.aside-list > h3{
+    font-size:15px;
+    font-weight:600;
+}
+.aside-list li a{
+    margin-left:8px;
+    font-size:13px;
+    color:#6C6C6C;
+}
+/*커서 처리*/
+.outer-menu-item, .input-search-submit{
+    cursor:pointer;
+}
