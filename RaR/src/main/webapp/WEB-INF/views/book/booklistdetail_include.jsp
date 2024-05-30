@@ -31,7 +31,6 @@
 						<input type="hidden" name="bk_num" value="${item.bk_num}">
 						<input type="submit" value="장바구니 담기">
 					</form>
-					<input type="button" value="장바구니로 이동" onclick="location.href='${pageContext.request.contextPath}/cart/cartList.do'">
 					</td>						
 				</tr>
 				</c:forEach>

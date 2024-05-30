@@ -46,6 +46,37 @@ public class CartDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	//장바구니 중복 체크
+	public boolean isItemExists(int user_num, int item_num) throws Exception{
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    boolean isExists = false;
+	    String sql = null;
+	    int count = 0;
+	    
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        sql = "SELECT COUNT(*) FROM cart WHERE user_num = ? AND item_num = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, user_num);
+	        pstmt.setInt(2, item_num);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	            if (count > 0) {
+	                isExists = true;
+	            }
+	        }
+	    }catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	    return isExists;
+	}
 	//장바구니 목록
 	public List<CartVO> getCartList(int user_num)throws Exception{
 		Connection conn = null;

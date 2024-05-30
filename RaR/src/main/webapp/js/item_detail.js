@@ -1,29 +1,31 @@
 $(function(){
 	//장바구니에 담기
 	
-$('#insertCart').submit(function(){
-		
+	$('#insertCart').submit(function(){
+			
 		let form_data = $(this).serialize();
 	
-        $.ajax({
-            url:'../cart/cartWrite.do',
-            type:'post',
-            data:form_data,
-            dataType:'json',
-            success: function(param) {
-               if(param.result == 'logout'){
+	    $.ajax({
+	        url:'../cart/cartWrite.do',
+	        type:'post',
+	        data:form_data,
+	        dataType:'json',
+	        success: function(param) {
+	           if(param.result == 'logout'){
 					alert('로그인 후 사용하세요');
+				}else if(param.result == 'duplicated'){
+					alert('상품이 이미 장바구니에 담겨져있습니다.');
 				}else if(param.result == 'success'){
 					alert('장바구니에 상품을 담았습니다.');
 				}else{
 					alert('장바구니 담기 오류');
 				}
-            },
-            error: function() {
-                alert('네트워크 오류 발생');
-            }
-        });
-    });
+	        },
+	        error: function() {
+	            alert('네트워크 오류 발생');
+	        }
+	    });
+	});
 
 /*AJAX로 목록호출 하려했으나 실패.. 일단 코드 남겨둠
 	//목록 호출
