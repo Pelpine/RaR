@@ -74,6 +74,10 @@
 		<input type="hidden" value="${book.categoryName}" name="categoryName">
 		<input type="hidden" value="${book.cover}" name="cover">
 		<input type="hidden" value="${book.publisher}" name="publisher">
+		<input type="hidden" value="${book.photo}" name="photo">
+		<input type="hidden" value="${book.isbn}" name="isbn">
+		<input type="hidden" value="${book.description}" name="description">
+		<input type="hidden" value="${book.bk_num}" name="bk_num">
 		<input type="submit" value="등록">
 		</c:if>
 		
