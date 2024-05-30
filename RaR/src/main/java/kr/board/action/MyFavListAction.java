@@ -10,7 +10,7 @@ import kr.rar.vo.BoardVO;
 import kr.controller.Action;
 import kr.util.PagingUtil;
 
-public class MyReplyListAction implements Action {
+public class MyFavListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -27,18 +27,18 @@ public class MyReplyListAction implements Action {
 		
 		//페이지 처리
 		PagingUtil page = new PagingUtil(keyfield, keyword,
-				Integer.parseInt(pageNum),count,20,10,"myReplyList.do");
+				Integer.parseInt(pageNum),count,20,10,"MyPosting.do");
 		
-		List<BoardReplyVO> list = null;
+		List<BoardVO> list = null;
 		if(count > 0) {
-			list = dao.getMyReply(page.getStartRow(),page.getEndRow(), user_num);
+			list = dao.getListBoardFav(page.getStartRow(),page.getEndRow(), user_num);
 		}
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
 		
-		return "/WEB-INF/views/board/myReplyList.jsp";
+		return "/WEB-INF/views/board/myFavList.jsp";
 	}
 
 }

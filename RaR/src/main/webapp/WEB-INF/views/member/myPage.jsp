@@ -163,12 +163,19 @@ $(function(){
 		onclick="location.href='${pageContext.request.contextPath}/board/myReplyList.do?user_num=${member.user_num}'">
 	</div>
 	<div>
+		<input type="button" value="내가 좋아요 누른 글" 
+		onclick="location.href='${pageContext.request.contextPath}/board/myFavList.do?user_num=${member.user_num}'">
+	</div>
+	<div>
 		<input type="button" value="내가 쓴 QnA" onclick="location.href=">
 	</div>
 	</div>
 </div>
 </body>
 </html>
+
+
+
 
 
 

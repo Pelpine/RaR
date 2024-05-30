@@ -26,7 +26,7 @@ public class MyPostingListAction implements Action {
 		
 		//페이지 처리
 		PagingUtil page = new PagingUtil(keyfield, keyword,
-				Integer.parseInt(pageNum),count,20,10,"MyPosting.do");
+				Integer.parseInt(pageNum),count,20,10,"myPostingList.do");
 		
 		List<BoardVO> list = null;
 		if(count > 0) {
