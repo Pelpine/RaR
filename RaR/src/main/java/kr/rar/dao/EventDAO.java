@@ -318,7 +318,7 @@ public class EventDAO {
 	    List<EventVO> list = null;
 	    try {
 	        conn = DBUtil.getConnection();        
-	        sql = "SELECT banner FROM event_list WHERE SYSDATE BETWEEN start_date AND end_date";
+	        sql = "SELECT banner,event_num FROM event_list WHERE SYSDATE BETWEEN start_date AND end_date";
 
 	        pstmt = conn.prepareStatement(sql);
 	      	  
@@ -326,6 +326,7 @@ public class EventDAO {
 	        list = new ArrayList<EventVO>();
 	        while(rs.next()) {
 	        	EventVO event = new EventVO();
+	        	event.setEvent_num(rs.getInt("event_num"));
 	        	event.setBanner(rs.getString("banner"));
 	        	list.add(event);
 	        }

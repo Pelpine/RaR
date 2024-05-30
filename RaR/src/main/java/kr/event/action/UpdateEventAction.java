@@ -43,6 +43,12 @@ public class UpdateEventAction implements Action{
 			 FileUtil.removeFile(request, event.getFilename());
 		 }
 		event.setFilename(FileUtil.createFile(request, "filename"));
+		
+		if(event.getBanner()!=null && !event.getBanner().isEmpty()) {
+			 //새 배너로 교체할 때 원래 배너 제거
+			 FileUtil.removeFile(request, event.getBanner());
+		 }
+		event.setBanner(FileUtil.createFile(request, "banner"));
 		String notice = request.getParameter("notice");
 		if(notice==null) {
 		event.setNotice(0);
