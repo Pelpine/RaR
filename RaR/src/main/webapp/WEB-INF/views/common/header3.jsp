@@ -17,20 +17,6 @@
 		<div class="pull-left">
 			<!-- main 메뉴 -->
 			<ul class="outer-menu">
-				<c:if test="${!empty user_num && !empty user_photo}">
-					<li class="menu-profile"><a
-						href="${pageContext.request.contextPath}/member/myPage.do"> <img
-							src="${pageContext.request.contextPath}/upload/${user_photo}"
-							width="25" height="25" class="my-photo">
-					</a></li>
-				</c:if>
-				<c:if test="${!empty user_num && empty user_photo}">
-					<li class="menu-profile"><a
-						href="${pageContext.request.contextPath}/member/myPage.do"> <img
-							src="${pageContext.request.contextPath}/images/face.png"
-							width="25" height="25" class="my-photo">
-					</a></li>
-				</c:if>
 				<li class="outer-menu-item"><span class="menu-title">게시판</span>
 					<!-- sub 메뉴 -->
 					<ul class="inner-menu">
@@ -40,16 +26,22 @@
 						<li class="inner-menu-item"><a
 							href="${pageContext.request.contextPath}/event/eventList.do">이벤트
 								게시판</a></li>
-					    <li class="inner-menu-item"><a
-							href="${pageContext.request.contextPath}/">장르
-								게시판</a></li>
+						<li class="inner-menu-item"><a
+							href="${pageContext.request.contextPath}/">장르 게시판</a></li>
 					</ul></li>
-				<li class="outer-menu-item"><span class="menu-title">관리자
+				<li class="outer-menu-item"><span class="menu-title">책
 						전용</span> <!-- sub 메뉴 -->
 					<ul class="inner-menu">
-						<li class="inner-menu-item"><a href="#">선택자</a></li>
-						<li class="inner-menu-item"><a href="#">속성</a></li>
-						<li class="inner-menu-item"><a href="#">박스</a></li>
+						<c:if test="${!empty user_num}">
+							<li><a
+								href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
+							</li>
+						</c:if>
+						<li><a href="${pageContext.request.contextPath}/book/list.do">책
+								검색</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/book/booklist.do">책
+								목록</a></li>
 					</ul></li>
 				<li class="outer-menu-item"><span class="menu-title">JavaScript</span>
 					<!-- sub 메뉴 -->
@@ -66,14 +58,20 @@
 		</div>
 		<!-- 메뉴 끝 -->
 		<!-- 검색 시작 -->
-		<div class="pull-right">
-			<div class="search-bar">
-				<form>
-					<input type="search" class="input-search"> <input
-						type="submit" class="input-search-submit" value="검색">
-				</form>
-			</div>
-		</div>
+		<c:if test="${!empty user_num && !empty user_photo}">
+			<li class="menu-profile"><a
+				href="${pageContext.request.contextPath}/member/myPage.do"> <img
+					src="${pageContext.request.contextPath}/upload/${user_photo}"
+					width="25" height="25" class="my-photo">
+			</a></li>
+		</c:if>
+		<c:if test="${!empty user_num && empty user_photo}">
+			<li class="menu-profile"><a
+				href="${pageContext.request.contextPath}/member/myPage.do"> <img
+					src="${pageContext.request.contextPath}/images/face.png" width="25"
+					height="25" class="my-photo">
+			</a></li>
+		</c:if>
 		<!-- 검색 끝 -->
 	</nav>
 	<!-- 내비게이션 끝 -->
