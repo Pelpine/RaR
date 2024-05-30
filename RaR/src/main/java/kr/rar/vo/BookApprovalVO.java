@@ -16,10 +16,31 @@ public class BookApprovalVO {
 	private String cover;		//커버
 	private String categoryName; //장르
 	private String publisher;	//출판사
-	private int price; //가격
+	private int price; 			//가격
+	private int isbn;			//isbn코드
+	private String description;	//책 설명
+	private String photo;		//사진
 	
 	private MemberVO MemberVO;
 	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public int getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getPublisher() {
 		return publisher;
 	}

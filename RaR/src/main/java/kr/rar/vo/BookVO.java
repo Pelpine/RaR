@@ -8,7 +8,21 @@ public class BookVO {
 	private int bk_price;//정가
 	private String bk_img;//도서사진
 	private String bk_genre;//장르
+	private int bk_isbn;
+	private String bk_description;
 	
+	public int getBk_isbn() {
+		return bk_isbn;
+	}
+	public void setBk_isbn(int bk_isbn) {
+		this.bk_isbn = bk_isbn;
+	}
+	public String getBk_description() {
+		return bk_description;
+	}
+	public void setBk_description(String bk_description) {
+		this.bk_description = bk_description;
+	}
 	public int getBk_num() {
 		return bk_num;
 	}
