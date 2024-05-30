@@ -26,12 +26,12 @@
 	
 </div>
 <div id="main_nav">
-	<ul class="tag">
-		<li><a>게시판</a>
-		   <ul class="subtag">
-		       <li><a href="${pageContext.request.contextPath}/board/list.do">일반 게시판</a>
-		       <li><a href="${pageContext.request.contextPath}/event/eventList.do">이벤트<br>게시판</a></li>
-		   </ul>
+	<ul>
+		<li>
+			<a href="${pageContext.request.contextPath}/board/list.do">게시판</a>
+		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/event/eventList.do">이벤트 게시판</a>  
 		</li>
 		<c:if test="${!empty user_num && user_auth == 9}">
 		<li>
