@@ -22,6 +22,7 @@ public class EventDetailAction implements Action{
 		//HTML를 허용하지 않으면서 줄바꿈
 		event.setContent(StringUtil.useBrNoHTML(event.getContent()));
 		request.setAttribute("event", event);
+		
 		return "/WEB-INF/views/event/eventDetail.jsp";
 	}
 

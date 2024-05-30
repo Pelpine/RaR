@@ -78,7 +78,12 @@ window.onload=function(){
   				  <br>
    				 <img src="${pageContext.request.contextPath}/upload/${event.filename}" width="100" style="margin-left:125px;">
 			</li>
-
+			<li>
+				<label for="banner">이벤트 배너</label>
+				<input type="file" name="banner" id="banner" 
+				  accept="image/gif,image/png,image/jpeg">
+				  (배너 사이즈 : 900x300)
+			</li>
 		</ul> 
 		<div class="align-center">
 			<input type="submit" value="등록">
