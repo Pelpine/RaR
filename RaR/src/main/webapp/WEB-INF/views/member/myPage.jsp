@@ -159,7 +159,8 @@ $(function(){
 		 onclick="location.href='${pageContext.request.contextPath}/board/myPostingList.do?user_num=${member.user_num}'">
 	</div>
 	<div>
-		<input type="button" value="내가 쓴 댓글" onclick="location.href=">
+		<input type="button" value="내가 쓴 댓글" 
+		onclick="location.href='${pageContext.request.contextPath}/board/myReplyList.do?user_num=${member.user_num}'">
 	</div>
 	<div>
 		<input type="button" value="내가 쓴 QnA" onclick="location.href=">

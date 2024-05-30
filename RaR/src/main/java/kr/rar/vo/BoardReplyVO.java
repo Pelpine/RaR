@@ -11,7 +11,14 @@ public class BoardReplyVO {
 	private Date modify_date;
 	private String user_ip;
 	private int re_user_num;
+	private BoardVO board;
 	
+	public BoardVO getBoard() {
+		return board;
+	}
+	public void setBoard(BoardVO board) {
+		this.board = board;
+	}
 	public int getRe_user_num() {
 		return re_user_num;
 	}

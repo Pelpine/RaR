@@ -631,6 +631,51 @@ public class BoardDAO {
 			}		
 			return list;
 		}
+		//내가 작성한 댓글 조회
+		public List<BoardReplyVO> getMyReply(int start, int end, int user_num) throws Exception {
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+		    List<BoardReplyVO> list = null;
+		    String sql = null;
+		    try {
+		        // 커넥션풀로부터 커넥션 할당
+		        conn = DBUtil.getConnection();
+		        
+		        // 댓글 조회 SQL문 작성
+		        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+		        		+ "(SELECT Board_num,b.title,r.reg_date, r.content "
+		        		+ "FROM board b JOIN board_reply r USING(board_num) "
+		        		+ "WHERE r.user_num=? ORDER BY board_num DESC)a) "
+		        		+ "WHERE rnum >= ? AND rnum <= ?";
+		        
+		        pstmt = conn.prepareStatement(sql);
+		        
+		        pstmt.setInt(1, user_num);
+		        pstmt.setInt(2, start);
+		        pstmt.setInt(3, end);
+		        
+		        rs = pstmt.executeQuery();
+		        list = new ArrayList<BoardReplyVO>();
+		        while(rs.next()) {
+		        	BoardReplyVO reply = new BoardReplyVO();
+		        	reply.setBoard_num(rs.getInt("board_num"));
+		        	reply.setContent(rs.getString("content"));
+		        	reply.setReg_date(rs.getDate("reg_date"));
+		        	
+		            BoardVO board = getBoard(rs.getInt("board_num"));
+		            reply.setBoard(board);
+		        
+		        	list.add(reply);
+		        }
+		       
+		    } catch (Exception e) {
+		        throw new Exception(e);
+		    } finally {
+		        DBUtil.executeClose(rs, pstmt, conn);
+		    }
+		    return list;
+		}
 		
 		//장르 댓글
 		public void insertGenre(GenreUserVO genreUser)throws Exception{
