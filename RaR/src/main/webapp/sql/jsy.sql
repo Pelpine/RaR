@@ -99,3 +99,4 @@ create SEQUENCE board_seq;
 create SEQUENCE board_genre_seq;
 create SEQUENCE trade_seq;
 create SEQUENCE reply_seq;
+create SEQUENCE greply_seq;

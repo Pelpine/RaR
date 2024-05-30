@@ -677,22 +677,89 @@ public class BoardDAO {
 		    return list;
 		}
 		
-		//장르 댓글
-		public void insertGenre(GenreUserVO genreUser)throws Exception{
+		
+		//장르등록
+		public void insertGenre(GenreVO genre)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn=DBUtil.getConnection();
+				sql="INSERT INTO board_genre(bg_num, bg_title, user_num) VALUES (board_genre_seq.nextval, ?, ?)";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, genre.getBg_title());
+				pstmt.setInt(2, genre.getUser_num());
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e); 
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
+		//장르목록
+		public List<GenreVO> getListGenre(int start, int end)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<GenreVO> list = null;
+			String sql = null;
+			try {
+				conn=DBUtil.getConnection();
+				
+				//SQL문 작성
+				sql="SELECT * FROM(SELECT a.*, rownum rnum FROM "
+						+ "(SELECT * FROM board_genre JOIN member USING(user_num) "
+						+ "WHERE bg_num=? ORDER BY bg_num DESC)a) "
+						+ "WHERE rnum >= ? AND rnum <= ?";
+				
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<GenreVO>();
+				while(rs.next()) {
+					GenreVO board_genre = new GenreVO();
+					board_genre.setBg_num(rs.getInt("bg_num"));
+					board_genre.setBg_title(StringUtil.useNoHTML(rs.getString("title")));
+					board_genre.setUser_num(rs.getInt("user_num"));
+					list.add(board_genre);
+				}			
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+
+
+		//장르게시판 댓글 삽입
+		public void insertGenreReply(GenreUserVO genreUser, GenreVO genre)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
 			try {
 				conn=DBUtil.getConnection();
-				sql="INSERT INTO board_genre_user (bgu_num=?,bgu_content=?,bgu_date=SYSDATE,"
-						+ "bgu_redate ";
+				sql="INSERT INTO board_genre_user (bgu_num, bgu_content, bg_num) VALUES (greply_seq.nextval, ?, ?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, genreUser.getBgu_content());
+				pstmt.setInt(2, genreUser.getBg_num());
 				
+				pstmt.executeUpdate();
 			}catch(Exception e) {
-				
+				throw new Exception(e);
 			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
 				
 			}
 		}
+		
 	}
 
 
