@@ -8,37 +8,38 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
 window.onload=function(){
-	const myForm = document.getElementById('write_form');
-	//이벤트 연결
-	myForm.onsubmit=function(){
-		const items = 
-			   document.querySelectorAll('.input-check');
-		for(let i=0;i<items.length;i++){
-			if(items[i].value.trim()==''){
-				const label = document.querySelector(
-						   'label[for="'+items[i].id+'"]');
-				alert(label.textContent + ' 항목은 필수 입력');
-				items[i].value = '';
-				items[i].focus();
-				return false;
-			}
-		}
-	const start = document.getElementById('start_date');
-	const end = document.getElementById('end_date');
-	if(start.value>end.value){
-		alert('이벤트 시작일과 종료일을 확인해주세요.');
-		return false;
-	}
-	const notice = document.getElementById('notice');
-    // 체크박스가 체크되지 않은 경우 0으로 설정
-    if(notice.checked){
-    	notice.value=1;
-    }else {
-    	notice.value=0;
-    }
-	};
-};
+    const myForm = document.getElementById('write_form');
+    //이벤트 연결
+    myForm.onsubmit=function(){
+        const items = document.querySelectorAll('.input-check');
+        for(let i=0;i<items.length;i++){
+            if(items[i].value.trim()==''){
+                const label = document.querySelector('label[for="'+items[i].id+'"]');
+                alert(label.textContent + ' 항목은 필수 입력');
+                items[i].value = '';
+                items[i].focus();
+                return false;
+            }
+        }
+
+        const start = document.getElementById('start_date');
+        const end = document.getElementById('end_date');
+        if(start.value > end.value){
+            alert('이벤트 시작일과 종료일을 확인해주세요.');
+            return false;
+        }
+
+        const notice = document.getElementById('notice');
+        // 체크박스가 체크되지 않은 경우 0으로 설정
+        if(notice.checked){
+            notice.value=1;
+        }else {
+            notice.value=0;
+        }
+    };
+}
 </script>
+
 </head>
 <body>
 <div class="page-main">
