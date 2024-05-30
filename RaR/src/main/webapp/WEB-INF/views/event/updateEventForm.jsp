@@ -42,14 +42,16 @@ myForm.onsubmit = function() {
 
  // 배너 이미지가 선택되었는지 확인
  const banner = document.getElementById('banner');
- if (banner.files.length > 0) {
-     const file = banner.files[0];
-     if (file.width !== 900 || file.height !== 300) {
-         alert('배너 이미지 크기는 900x300 이어야 합니다.');
-         return false;
-     } else {
-         // 이미지 크기가 유효한 경우 등록 버튼을 눌러서 폼을 제출하도록 유도
-         alert('배너 이미지의 크기가 유효합니다. 등록 버튼을 눌러주세요.');
+    if (banner.files.length > 0) {
+        const file = banner.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const image = new Image();
+            image.src = e.target.result;
+            image.onload = function() {
+                if (image.width !== 900 || image.height !== 300) {
+                    alert('배너 이미지 크기는 900x300 이어야 합니다.');
+                    return false;
      }
  }
  // 배너 이미지가 선택되지 않은 경우에도 폼 제출 가능
