@@ -71,7 +71,6 @@ window.onload=function(){
 			<tr>
 				<td>${board.board_num}</td>
 				<td><a href="detail.do?board_num=${board.board_num}">${board.title}</a></td>
-				<td>${board.user_email}</td>
 				<td>${board.reg_date}</td>
 				<td>${board.hit}</td>
 			</tr>
