@@ -34,8 +34,8 @@ public class InsertEventAction implements Action{
         event.setStart_date(Date.valueOf(startDateStr));
         event.setEnd_date(Date.valueOf(endDateStr));
 		event.setFilename(FileUtil.createFile(request, "filename"));
+		event.setBanner(FileUtil.createFile(request, "banner"));
 		event.setUser_num(user_num);
-		
 		String notice = request.getParameter("notice");
 		if(notice==null) {
 		event.setNotice(0);
