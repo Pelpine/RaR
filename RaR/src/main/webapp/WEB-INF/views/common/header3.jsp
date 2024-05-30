@@ -33,13 +33,13 @@
 						전용</span> <!-- sub 메뉴 -->
 					<ul class="inner-menu">
 						<c:if test="${!empty user_num}">
-							<li><a
+							<li class="inner-menu-item"><a
 								href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
 							</li>
 						</c:if>
-						<li><a href="${pageContext.request.contextPath}/book/list.do">책
-								검색</a></li>
-						<li><a
+						<li class="inner-menu-item"><a
+							href="${pageContext.request.contextPath}/book/list.do">책 검색</a></li>
+						<li class="inner-menu-item"><a
 							href="${pageContext.request.contextPath}/book/booklist.do">책
 								목록</a></li>
 					</ul></li>
@@ -56,45 +56,20 @@
 
 			</ul>
 		</div>
+		<div class="right">
+		<ul class="right-in">
+			<c:if test="${!empty user_num && empty user_photo}">
+				<li class="menu-profile"><a
+					href="${pageContext.request.contextPath}/member/myPage.do"> <img
+						src="${pageContext.request.contextPath}/images/face.png"
+						width="25" height="25" class="my-photo">
+				</a></li>
+			</c:if>
+		</ul>
+		</div>
 		<!-- 메뉴 끝 -->
 		<!-- 검색 시작 -->
-		<c:if test="${!empty user_num && !empty user_photo}">
-			<li class="menu-profile"><a
-				href="${pageContext.request.contextPath}/member/myPage.do"> <img
-					src="${pageContext.request.contextPath}/upload/${user_photo}"
-					width="25" height="25" class="my-photo">
-			</a></li>
-		</c:if>
-		<c:if test="${!empty user_num && empty user_photo}">
-			<li class="menu-profile"><a
-				href="${pageContext.request.contextPath}/member/myPage.do"> <img
-					src="${pageContext.request.contextPath}/images/face.png" width="25"
-					height="25" class="my-photo">
-			</a></li>
-		</c:if>
 		<!-- 검색 끝 -->
 	</nav>
 	<!-- 내비게이션 끝 -->
-	<div id="main_login">
-		<ul>
-			<c:if test="${!empty user_num}">
-				<li class="menu-logout"><a
-					href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-				</li>
-			</c:if>
-			<c:if test="${empty user_num}">
-				<li><a
-					href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
-				</li>
-				<li><a
-					href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
-				</li>
-			</c:if>
-		</ul>
-	</div>
-	<!-- 꼬리말 시작 -->
-	<footer id="main_footer">
-		<a href="#">HTML5 Programming</a>
-	</footer>
-	<!-- 꼬리말 끝 -->
 </div>
