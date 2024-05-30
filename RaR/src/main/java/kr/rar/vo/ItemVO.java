@@ -5,12 +5,13 @@ public class ItemVO {
 	private int item_price;		//판매가
 	private int item_grade;		//도서 상태
 	private String item_img;	//중고 도서 사진
-	private String item_info;	//책 소개
 	private int bk_num;			//도서번호
 	private int approval_id;	//등록요청코드
 	
 	//도서
 	private BookVO bookVO;
+	//도서 승인
+	private BookApprovalVO bookApprovalVO;
 
 	public int getItem_num() {
 		return item_num;
@@ -44,14 +45,6 @@ public class ItemVO {
 		this.item_img = item_img;
 	}
 
-	public String getItem_info() {
-		return item_info;
-	}
-
-	public void setItem_info(String item_info) {
-		this.item_info = item_info;
-	}
-
 	public int getBk_num() {
 		return bk_num;
 	}
@@ -74,5 +67,13 @@ public class ItemVO {
 
 	public void setBookVO(BookVO bookVO) {
 		this.bookVO = bookVO;
+	}
+
+	public BookApprovalVO getBookApprovalVO() {
+		return bookApprovalVO;
+	}
+
+	public void setBookApprovalVO(BookApprovalVO bookApprovalVO) {
+		this.bookApprovalVO = bookApprovalVO;
 	}
 }
