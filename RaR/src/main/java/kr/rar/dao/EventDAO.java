@@ -309,5 +309,31 @@ public class EventDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//
+	//현재 진행중인 이벤트 배너 가져오기
+	public List<EventVO> getBanner() throws Exception{
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    String sql = null;
+	    ResultSet rs = null;
+	    List<EventVO> list = null;
+	    try {
+	        conn = DBUtil.getConnection();        
+	        sql = "SELECT banner FROM event_list WHERE SYSDATE BETWEEN start_date AND end_date";
+
+	        pstmt = conn.prepareStatement(sql);
+	      	  
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<EventVO>();
+	        while(rs.next()) {
+	        	EventVO event = new EventVO();
+	        	event.setBanner(rs.getString("banner"));
+	        	list.add(event);
+	        }
+	    } catch(Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return list;
+	}
 }
