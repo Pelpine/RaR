@@ -6,6 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>요청 및 등록요청</title>
+<script>
+function toggleSubmit(select) {
+    var selectedValue = select.value;
+    var submitButton = document.getElementById('submit');
+    
+    // 선택한 값이 1이면서 book.status가 2가 아닌 경우에만 등록 버튼을 보이게 함
+    if (selectedValue == '2') {
+        submitButton.style.display = 'none';
+    } else {
+        submitButton.style.display = 'block';
+    }
+}
+</script>
 </head>
 <body>
 <div>
@@ -34,11 +47,11 @@
 			</li>
 			<li>
 				<label>승인상태 : ${book.status}</label>
-				<select name="status">
+				<select name="status" onchange="toggleSubmit(this)">
 					<c:if test="${user_auth == 9}">
-					<option value="1">미승인</option>
-					<option value="2">승인</option>
-					<option value="3">반출</option>
+						<option value="1" <c:if test="${book.status==1}">selected</c:if>>미승인</option>
+						<option value="2" <c:if test="${book.status==2}">selected</c:if>>승인</option>
+						<option value="3" <c:if test="${book.status==3}">selected</c:if>>반출</option>
 					</c:if>
 				</select>
 			
@@ -62,10 +75,21 @@
 			<li>
 				<label>마지막 승인 수정 날짜 : ${book.approved_at}</label>
 			</li>
+			<li>
+				<label>isbn : ${book.isbn}</label>
+			</li>
 		</ul>
 		<input type="button" value="수정" onclick="location.href='updatebook.do'">
 		<input type="button" value="목록" onclick="location.href='list.do'">
 		<c:if test="${user_auth == 9}">
+		<c:choose>
+				<c:when test="${book.status != 2}">
+					<input type="submit" value="등록">
+				</c:when>
+				<c:otherwise>
+					<input type="submit" value="등록" id="submit" style="display: none;">
+				</c:otherwise>
+			</c:choose>
 		<input type="hidden" value="${book.approval_id}" name="approval_id">
 		<input type="hidden" value="${user_auth}" name="user_auth">
 		<input type="hidden" value="${book.bk_name}" name="bk_name">
@@ -77,8 +101,7 @@
 		<input type="hidden" value="${book.photo}" name="photo">
 		<input type="hidden" value="${book.isbn}" name="isbn">
 		<input type="hidden" value="${book.description}" name="description">
-		<input type="hidden" value="${book.bk_num}" name="bk_num">
-		<input type="submit" value="등록">
+		<input type="hidden" value="${book.item_grade}" name="item_grade">
 		</c:if>
 		
 	</div>

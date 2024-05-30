@@ -52,6 +52,8 @@ public class BookSearchServlet implements Action {
 	                String isbn = itemElement.getElementsByTagName("isbn").item(0).getTextContent();
 	                String description = itemElement.getElementsByTagName("description").item(0).getTextContent();
 	                
+	                description = description.replaceAll("<img[^>]*>", "");
+	                
 	                BookApprovalVO vo = new BookApprovalVO();
 	                vo.setBk_name(bk_name);
 	                vo.setAuthor(author);

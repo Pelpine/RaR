@@ -22,60 +22,33 @@ public class BookApprovalDAO {
 		private BookApprovalDAO() {}
 		
 		//책 등록 요청 저장
-		public void insertBook(BookApprovalVO vo, BookApprovalVO io)throws Exception{
+		public void insertBook(BookApprovalVO vo)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
-			PreparedStatement pstmt2 = null;
-			PreparedStatement pstmt3 = null;
-			ResultSet rs = null;
 			String sql = null;
-			int order_num = 0;
 			try {
 				conn = DBUtil.getConnection();
-				
-				conn.getAutoCommit();
-				
-				sql = "select zorder_seq.nextval from dual";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					order_num = rs.getInt(1);
-				}
-				
+
 				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname,price,publisher,private_num,isbn,description,photo) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				
-				pstmt2 = conn.prepareStatement(sql);
-				pstmt2.setInt(1, vo.getItem_grade());
-				pstmt2.setString(2, vo.getBk_name());
-				pstmt2.setString(3, vo.getAd_comment());
-				pstmt2.setInt(4, vo.getUser_num());
-				pstmt2.setString(5, vo.getAuthor());
-				pstmt2.setString(6, vo.getCover());
-				pstmt2.setString(7, vo.getPubDate());
-				pstmt2.setString(8, vo.getCategoryName());
-				pstmt2.setInt(9, vo.getPrice());
-				pstmt2.setString(10, vo.getPublisher());
-				pstmt2.setInt(11, vo.getPrivate_num());
-				pstmt2.setString(12,vo.getIsbn());
-				pstmt2.setString(13, vo.getDescription());
-				pstmt2.setString(14, vo.getPhoto());
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, vo.getItem_grade());
+				pstmt.setString(2, vo.getBk_name());
+				pstmt.setString(3, vo.getAd_comment());
+				pstmt.setInt(4, vo.getUser_num());
+				pstmt.setString(5, vo.getAuthor());
+				pstmt.setString(6, vo.getCover());
+				pstmt.setString(7, vo.getPubDate());
+				pstmt.setString(8, vo.getCategoryName());
+				pstmt.setInt(9, vo.getPrice());
+				pstmt.setString(10, vo.getPublisher());
+				pstmt.setInt(11, vo.getPrivate_num());
+				pstmt.setString(12,vo.getIsbn());
+				pstmt.setString(13, vo.getDescription());
+				pstmt.setString(14, vo.getPhoto());
 				
 				pstmt.executeUpdate();
 				
-				sql = "update book_approval set status=?,cover=?,bk_name=?,author=?,pubdate=?,price=?,categoryname=?,publisher=?,item_grade=?,comment=?,approved_at=null where approval_id = ?";
-				pstmt3 = conn.prepareStatement(sql);
-				pstmt3.setInt(1, io.getStatus());
-				pstmt3.setString(2, io.getCover());
-				pstmt3.setString(3, io.getBk_name());
-				pstmt3.setString(4, io.getAuthor());
-				pstmt3.setString(5,io.getPubDate());
-				pstmt3.setInt(6, io.getPrice());
-				pstmt3.setString(7, vo.getCategoryName());
-				pstmt3.setString(8, vo.getPublisher());
-				pstmt3.setString(9, vo.getAd_comment());
-				pstmt3.setInt(10, vo.getApproval_id());
-						
-				pstmt3.executeUpdate();
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
@@ -166,23 +139,18 @@ public class BookApprovalDAO {
 		public BookApprovalVO selectbook(int num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
-			PreparedStatement pstmt2 = null;
-			PreparedStatement pstmt3 = null;
 			ResultSet rs = null;
 			BookApprovalVO vo = null;
 			String sql = null;
-			int order_num = 0;
 			try {
 				conn = DBUtil.getConnection();
 				
-				
-				
 				sql = "select * from book_approval join member using(user_num) where approval_id = ?";
 				
-				pstmt2 = conn.prepareStatement(sql);
-				pstmt2.setInt(1, num);
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, num);
 				
-				rs = pstmt2.executeQuery();
+				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					vo = new BookApprovalVO();
 					vo.setApproval_id(rs.getInt("approval_id"));//책코드
@@ -241,39 +209,32 @@ public class BookApprovalDAO {
 		}
 		
 		//승인 상태 변경 및 수정
-		public void update()throws Exception{
+		public void update(BookApprovalVO vo)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
 			try {
 				conn = DBUtil.getConnection();
 						
-				
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
-			}
-		}
-		public void updateitem(ItemVO vo)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			String sql = null;
-			try {
-				conn = DBUtil.getConnection();
-				
-				sql = "insert into item (item_num,item_price,item_grade,item_img,bk_num,approval_id) values(item_seq.nextval,trunc(?,-1),?,?,?,?)";
-				
+				sql = "update book_approval set status=?,cover=?,bk_name=?,author=?,pubdate=?,price=?,categoryname=?,publisher=?,item_grade=?,comment=?,approved_at=null where approval_id = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, vo.getItem_price());
-				pstmt.setInt(2, vo.getItem_grade());
-				pstmt.setString(3, vo.getItem_img());
-				pstmt.setInt(4, vo.getBk_num());
-				pstmt.setInt(5, vo.getApproval_id());
+				pstmt.setInt(1, vo.getStatus());
+				pstmt.setString(2, vo.getCover());
+				pstmt.setString(3, vo.getBk_name());
+				pstmt.setString(4, vo.getAuthor());
+				pstmt.setString(5,vo.getPubDate());
+				pstmt.setInt(6, vo.getPrice());
+				pstmt.setString(7, vo.getCategoryName());
+				pstmt.setString(8, vo.getPublisher());
+				pstmt.setString(9, vo.getAd_comment());
+				pstmt.setInt(10, vo.getApproval_id());
+						
+				pstmt.executeUpdate();
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
 }

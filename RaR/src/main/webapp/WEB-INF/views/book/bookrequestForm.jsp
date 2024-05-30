@@ -77,9 +77,13 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 				<input type="radio" name="private_num" value="1" id="private_num1">공개
 				<input type="radio" name="private_num" value="2" id="private_num2">비공개
 			</li>
+			<li>
+				<div>설명 : ${books.description}</div>
+				<input type="text" id="description" name="description" value="${books.description}" readonly>
+			</li>
 		</ul>
-		<input type="hidden" value="" name="isbn" id="isbn">
-		<input type="hidden" value="" name="description" id="description">
+		<input type="hidden" value="${books.isbn}" name="isbn" id="isbn">
+		<input type="hidden" value="${books.description}" name="description" id="description">
 		<input type="submit" value="등록요청">
 		<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</form>

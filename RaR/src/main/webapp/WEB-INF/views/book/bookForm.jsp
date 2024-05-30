@@ -51,6 +51,8 @@ $(document).ready(function(){
         <div>장르 : ${book.categoryName}</div>
         <div>정가 : ${book.price} 원</div>
         <div>출판사 : ${book.publisher}</div>
+        <div>isbn : ${book.isbn}</div>
+        <div>설명 : ${book.description}</div>
         <div><img src="${book.cover}" alt="Book Cover"></div>
         <form action="#" method="post" class="shForm">
             <input type="hidden" value="${book.bk_name}" name="bk_name">

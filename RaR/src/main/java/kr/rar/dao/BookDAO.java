@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.rar.vo.BookApprovalVO;
 import kr.rar.vo.BookVO;
+import kr.rar.vo.ItemVO;
 import kr.rar.vo.MemberVO;
 import kr.util.DBUtil;
 
@@ -20,29 +21,157 @@ public class BookDAO {
 	}
 	private BookDAO() {}
 	
-	//책 정보 저장
-	public void insertBookslist(BookVO vo)throws Exception{
+	//책 중복채크
+	public BookVO selectbks(String isbn)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs =null;
 		String sql = null;
+		BookVO vo = null;
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "insert into book (bk_num,bk_name,bk_writer,bk_publisher,bk_price,bk_img,bk_genre) values (book_seq.nextval,?,?,?,?,?,?)";
+			sql = "select bk_isbn from book where bk_isbn=?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getBk_name());
-			pstmt.setString(2, vo.getBk_writer());
-			pstmt.setString(3, vo.getBk_publisher());
-			pstmt.setInt(4, vo.getBk_price());
-			pstmt.setString(5, vo.getBk_img());
-			pstmt.setString(6, vo.getBk_genre());
+			pstmt.setString(1, isbn);
 			
-			pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo = new BookVO();
+				vo.setBk_isbn(rs.getString("bk_isbn"));
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return vo;
+	}
+	
+	public int selectbk(int approval_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		String sql = null;
+		int vo = 0;
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "select approval_id from item where approval_id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, approval_id);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return vo;
+	}
+	
+	//책 정보 저장
+	public void insertBookslist(BookVO vo, ItemVO io)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		ResultSet rs = null;
+		String sql = null;
+		int order_num = 0;
+		try {
+			conn = DBUtil.getConnection();
+			
+			conn.setAutoCommit(false);
+			
+			sql = "select book_seq.nextval from dual";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				order_num = rs.getInt(1);
+			}
+			
+			sql = "insert into book (bk_num,bk_name,bk_writer,bk_publisher,bk_price,bk_img,bk_genre,bk_isbn,bk_description) values (?,?,?,?,?,?,?,?,?)";
+			
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, order_num);
+			pstmt2.setString(2, vo.getBk_name());
+			pstmt2.setString(3, vo.getBk_writer());
+			pstmt2.setString(4, vo.getBk_publisher());
+			pstmt2.setInt(5, vo.getBk_price());
+			pstmt2.setString(6, vo.getBk_img());
+			pstmt2.setString(7, vo.getBk_genre());
+			pstmt2.setString(8, vo.getBk_isbn());
+			pstmt2.setString(9, vo.getBk_description());
+			
+			pstmt2.executeUpdate();
+			
+			sql = "insert into item (item_num,item_price,item_grade,item_img,bk_num,approval_id) values(item_seq.nextval,?,?,?,?,?)";
+			
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1, io.getItem_price());
+			pstmt3.setInt(2, io.getItem_grade());
+			pstmt3.setString(3, io.getItem_img());
+			pstmt3.setInt(4, order_num);
+			pstmt3.setInt(5, io.getApproval_id());
+			pstmt3.executeUpdate();
+			
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+	}
+	
+	//책 중복시 등록
+	public void intobook(BookVO vo, ItemVO io)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		String sql = null;
+		int bk_num = 0;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			sql = "select bk_num from book where bk_isbn = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getBk_isbn());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bk_num = rs.getInt(1);
+			}
+			
+			
+			sql = "insert into item (item_num,item_price,item_grade,item_img,bk_num,approval_id) values(item_seq.nextval,?,?,?,?,?)";
+			
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, io.getItem_price());
+			pstmt2.setInt(2, io.getItem_grade());
+			pstmt2.setString(3, io.getItem_img());
+			pstmt2.setInt(4, bk_num);
+			pstmt2.setInt(5, io.getApproval_id());
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
 	
