@@ -26,7 +26,7 @@ public class EventDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO EVENT_list(event_num,name,filename,content,start_date,end_date,user_num,notice) VALUES(EVENT_SEQ.nextval,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO EVENT_list(event_num,name,filename,content,start_date,end_date,user_num,notice,banner) VALUES(EVENT_SEQ.nextval,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, event.getName());
 			pstmt.setString(2, event.getFilename());
@@ -35,6 +35,7 @@ public class EventDAO {
 			pstmt.setDate(5, event.getEnd_date());
 			pstmt.setInt(6, event.getUser_num());
 			pstmt.setInt(7, event.getNotice());
+			pstmt.setString(8, event.getBanner());;
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -164,7 +165,7 @@ public class EventDAO {
 					!event.getFilename().isEmpty()) {
 				sub_sql += ",filename=?";
 			}
-			sql = "UPDATE EVENT_LIST SET name=?"+sub_sql+",content =? ,start_date=?, end_date=?, notice=? WHERE event_num=?";
+			sql = "UPDATE EVENT_LIST SET name=?"+sub_sql+",content =? ,start_date=?, end_date=?, notice=?,Banner=? WHERE event_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(++cnt, event.getName());
 			if(event.getFilename()!=null 
@@ -175,6 +176,7 @@ public class EventDAO {
 			pstmt.setDate(++cnt, event.getStart_date());
 			pstmt.setDate(++cnt, event.getEnd_date());
 			pstmt.setInt(++cnt, event.getNotice());
+			pstmt.setString(++cnt, event.getBanner());
 			pstmt.setInt(++cnt, event.getEvent_num());
 			pstmt.executeUpdate();
 		}catch(Exception e) {

@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>룰렛 돌리기</title>
-<link rel="stylesheet" href="/RaR/css/khc.css" type="text/css">
+<link rel="stylesheet" href="/RaR/css/roulette.css" type="text/css">
 <script type="text/javascript" src="/RaR/js/roulette.js" defer></script>
 </head>
 <body>

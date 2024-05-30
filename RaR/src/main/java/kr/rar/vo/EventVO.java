@@ -13,6 +13,7 @@ public class EventVO {
 	private int user_num;
 	private int hit;
 	private int notice;
+	private String Banner;
 	public int getEvent_num() {
 		return event_num;
 	}
@@ -73,6 +74,13 @@ public class EventVO {
 	public void setNotice(int notice) {
 		this.notice = notice;
 	}
+	public String getBanner() {
+		return Banner;
+	}
+	public void setBanner(String banner) {
+		Banner = banner;
+	}
+	
 	
 	
 	

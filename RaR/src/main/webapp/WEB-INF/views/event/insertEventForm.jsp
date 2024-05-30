@@ -67,10 +67,16 @@ window.onload=function(){
      		  	<input type="date" id="end_date" name="end_date">
      		</li>
 			<li>
-				<label for="filename">이벤트 사진 첨부</label>
+				<label for="filename">이벤트 메인 사진</label>
 				<input type="file" name="filename" id="filename"
 				  class="input-check" 
 				  accept="image/gif,image/png,image/jpeg">
+			</li>
+			<li>
+				<label for="banner">이벤트 배너</label>
+				<input type="file" name="banner" id="banner" 
+				  accept="image/gif,image/png,image/jpeg">
+				  (배너 사이즈 : 900x300)
 			</li>
 			<li>
 				<label for="notice">공지사항 등록</label>
