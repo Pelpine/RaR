@@ -10,54 +10,57 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
-const myForm = document.getElementById('write_form');
-const myForm = document.getElementById('write_form');
-//이벤트 연결
-myForm.onsubmit = function() {
- const items = document.querySelectorAll('.input-check');
- for (let i = 0; i < items.length; i++) {
-     if (items[i].value.trim() == '') {
-         const label = document.querySelector('label[for="' + items[i].id + '"]');
-         alert(label.textContent + ' 항목은 필수 입력');
-         items[i].value = '';
-         items[i].focus();
-         return false;
-     }
- }
+window.onload=function(){
+    const myForm = document.getElementById('write_form');
+    //이벤트 연결
+    myForm.onsubmit=function(){
+        const items = document.querySelectorAll('.input-check');
+        for(let i=0;i<items.length;i++){
+            if(items[i].value.trim()==''){
+                const label = document.querySelector('label[for="'+items[i].id+'"]');
+                alert(label.textContent + ' 항목은 필수 입력');
+                items[i].value = '';
+                items[i].focus();
+                return false;
+            }
+        }
 
- const start = document.getElementById('start_date');
- const end = document.getElementById('end_date');
- if (start.value > end.value) {
-     alert('이벤트 시작일과 종료일을 확인해주세요.');
-     return false;
- }
+        const start = document.getElementById('start_date');
+        const end = document.getElementById('end_date');
+        if(start.value > end.value){
+            alert('이벤트 시작일과 종료일을 확인해주세요.');
+            return false;
+        }
 
- const notice = document.getElementById('notice');
- // 체크박스가 체크되지 않은 경우 0으로 설정
- if (notice.checked) {
-     notice.value = 1;
- } else {
-     notice.value = 0;
- }
-
- // 배너 이미지가 선택되었는지 확인
- const banner = document.getElementById('banner');
-    if (banner.files.length > 0) {
-        const file = banner.files[0];
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const image = new Image();
-            image.src = e.target.result;
-            image.onload = function() {
-                if (image.width !== 900 || image.height !== 300) {
-                    alert('배너 이미지 크기는 900x300 이어야 합니다.');
-                    return false;
-     }
- }
- // 배너 이미지가 선택되지 않은 경우에도 폼 제출 가능
-};
-
-};
+        const notice = document.getElementById('notice');
+        // 체크박스가 체크되지 않은 경우 0으로 설정
+        if(notice.checked){
+            notice.value=1;
+        }else {
+            notice.value=0;
+        }
+    }
+        var file = document.getElementById('banner');
+           file.onchange=function(){             
+        	if(!file.files[0]){               
+        		alert('파일을 선택하세요!');               
+        		return;            
+        		}            
+        	var reader = new FileReader(); 
+            reader.readAsDataURL(file.files[0]); 
+            reader.onload = function(){              
+        		var image = new Image(); 
+                image.src = reader.result; 
+                image.onload=function(){
+                     //이미지 파일의 넓이와 높이            
+        		if (this.width <= 850 || this.width >= 1000 || this.height <= 250 || this.height >= 350){
+        			alert('배너의 크기는 넓이 850~ 1000, 높이 250~350 이어야 합니다.');
+        			file.value='';
+        		} 
+                }; 
+             };                         
+        };
+    };
 </script>
 </head>
 <body>
@@ -89,7 +92,7 @@ myForm.onsubmit = function() {
 						width="100" style="margin-left: 125px;"></li>
 					<li><label for="banner">이벤트 배너</label> <input type="file"
 						name="banner" id="banner" accept="image/gif,image/png,image/jpeg">
-						(배너 사이즈 : 900x300)</li>
+						(배너 사이즈 : 850~1000x250~350)</li>
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="등록"> <input type="button"
