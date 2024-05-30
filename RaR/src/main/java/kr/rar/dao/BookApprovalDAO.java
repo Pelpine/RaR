@@ -27,7 +27,7 @@ public class BookApprovalDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname,price,publisher) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?,?,?)";
+				sql = "insert into book_approval(approval_id,item_grade,bk_name,ad_comment,user_num,author,cover,pubdate,categoryname,price,publisher,private_num,isbn,description,photo) values(approval_id_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, vo.getItem_grade());
@@ -40,6 +40,10 @@ public class BookApprovalDAO {
 				pstmt.setString(8, vo.getCategoryName());
 				pstmt.setInt(9, vo.getPrice());
 				pstmt.setString(10, vo.getPublisher());
+				pstmt.setInt(11, vo.getPrivate_num());
+				pstmt.setString(12,vo.getIsbn());
+				pstmt.setString(13, vo.getDescription());
+				pstmt.setString(14, vo.getPhoto());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {
@@ -138,7 +142,7 @@ public class BookApprovalDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "select * from book_approval join member using(user_num) where approval_id = ? ";
+				sql = "select * from book_approval join member using(user_num) where approval_id = ?";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, num);
@@ -159,6 +163,10 @@ public class BookApprovalDAO {
 					vo.setCategoryName(rs.getString("categoryName"));
 					vo.setPublisher(rs.getString("publisher"));
 					vo.setPrice(rs.getInt("price"));
+					vo.setIsbn(rs.getString("isbn"));
+					vo.setDescription(rs.getString("description"));
+					vo.setPhoto(rs.getString("photo"));
+					vo.setPrivate_num(rs.getInt("private_num"));
 					
 					MemberVO member = new MemberVO();
 					member.setUser_email(rs.getString("user_email"));//유저 이메일

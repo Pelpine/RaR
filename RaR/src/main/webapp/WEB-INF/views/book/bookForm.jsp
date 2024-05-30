@@ -32,8 +32,10 @@ $(document).ready(function(){
         var categoryName = $(this).find('input[name="categoryname"]').val();
         var price = $(this).find('input[name="price"]').val();
         var publisher = $(this).find('input[name="publisher"]').val();
+        var isbn = $(this).find('input[name="isbn"]').val();
+        var description = $(this).find('input[name="description"]').val();
         
-        window.opener.updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher);
+        window.opener.updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher, isbn, description);
         window.close();
     });
 });
@@ -43,7 +45,7 @@ $(document).ready(function(){
 <jsp:include page="/WEB-INF/views/book/headera.jsp"/>
 <c:forEach var="book" items="${book}">
     <div class="book">
-        <div>제목 : ${book.bk_name}</div>
+       <div>제목 : ${book.bk_name}</div>
         <div>저자 : ${book.author}</div>
         <div>출간일 : ${book.pubDate}</div>
         <div>장르 : ${book.categoryName}</div>
@@ -58,6 +60,8 @@ $(document).ready(function(){
             <input type="hidden" value="${book.categoryName}" name="categoryname">
             <input type="hidden" value="${book.cover}" name="cover">
             <input type="hidden" value="${book.publisher}" name="publisher">
+            <input type="hidden" value="${book.isbn}" name="isbn">
+            <input type="hidden" value="${book.description}" name="description">
             <input type="submit" value="전달">
         </form>
     </div>

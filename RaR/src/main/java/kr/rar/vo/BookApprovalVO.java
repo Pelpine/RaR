@@ -17,23 +17,30 @@ public class BookApprovalVO {
 	private String categoryName; //장르
 	private String publisher;	//출판사
 	private int price; 			//가격
-	private int isbn;			//isbn코드
+	private String isbn;		//isbn코드
 	private String description;	//책 설명
 	private String photo;		//사진
+	private int private_num;	//공개 비공개 설정
 	
 	private MemberVO MemberVO;
 	
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public int getPrivate_num() {
+		return private_num;
+	}
+	public void setPrivate_num(int private_num) {
+		this.private_num = private_num;
+	}
 	public String getPhoto() {
 		return photo;
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
-	}
-	public int getIsbn() {
-		return isbn;
-	}
-	public void setIsbn(int isbn) {
-		this.isbn = isbn;
 	}
 	public String getDescription() {
 		return description;

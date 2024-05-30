@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.rar.dao.BookApprovalDAO;
 import kr.rar.vo.BookApprovalVO;
+import kr.util.FileUtil;
 
 public class Bookrequest implements Action{
 
@@ -31,6 +32,7 @@ public class Bookrequest implements Action{
         vo.setPrice(Integer.parseInt(request.getParameter("price")));
         vo.setItem_grade(Integer.parseInt(request.getParameter("item_grade")));
         vo.setPublisher(request.getParameter("publisher"));
+        vo.setPhoto(FileUtil.createFile(request, "photo"));
         
         dao.insertBook(vo);
         request.setAttribute("notice_msg", "글 등록 완료");

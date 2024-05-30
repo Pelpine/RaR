@@ -49,7 +49,7 @@ public class BookSearchServlet implements Action {
 	                String categoryname = itemElement.getElementsByTagName("categoryName").item(0).getTextContent();
 	                int price = Integer.parseInt(itemElement.getElementsByTagName("priceStandard").item(0).getTextContent());
 	                String publisher = itemElement.getElementsByTagName("publisher").item(0).getTextContent();
-	                int isbn = Integer.parseInt(itemElement.getElementsByTagName("isbn").item(0).getTextContent());
+	                String isbn = itemElement.getElementsByTagName("isbn").item(0).getTextContent();
 	                String description = itemElement.getElementsByTagName("description").item(0).getTextContent();
 	                
 	                BookApprovalVO vo = new BookApprovalVO();

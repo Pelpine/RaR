@@ -8,6 +8,14 @@
 <title>등록 요청 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
+$(function(){
+	$('#ck').onclick(function(){
+		if(${user_num} == $(this).addr(${book.user_num})){
+			alert('비공개된 글입니다.');
+			return false;
+		}
+	});
+})
 </script>
 </head>
 <body>
@@ -51,7 +59,7 @@
 					<th>승인요청아이디</th>
 				</tr>
 				<c:forEach var="book" items="${list}">
-				<tr>
+				<tr id="ck">
 					<td>${book.approval_id}</td>
 					<td><a href="bookdetail.do?approval_id=${book.approval_id}">${book.bk_name}</a></td>
 					<td>${book.status}</td>

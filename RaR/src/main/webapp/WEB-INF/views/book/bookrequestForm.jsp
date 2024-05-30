@@ -8,7 +8,7 @@
 <title>책 등록 요청</title>
 <script type="text/javascript">
 function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=400, height=300, left=100, top=50");}
-function updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher) {
+function updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher, isbn, description) {
     document.getElementById("bk_name").value = bk_name;
     document.getElementById("author").value = author;
     document.getElementById("pubdate").value = pubDate;
@@ -17,17 +17,18 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
     document.getElementById("categoryname").value = categoryName;
     document.getElementById("price").value = price;
     document.getElementById("publisher").value = publisher;
+    document.getElementById("isbn").value = isbn;
+    document.getElementById("description").value = description;
 }
 </script>
 </head>
 <body>
 <div>
 	<h4>책 등록 요청</h4>
-	<form action="book.do" method="post" name="test">
+	<form action="book.do" method="post" name="test" enctype="multipart/form-data">
 		<ul>
 			<li>
 				<img src="${books.cover}" id="cover">
-				
 				<input type="hidden" value="${books.cover}" name="cover" id="coverUrl">
 			</li>
 			<li>
@@ -64,10 +65,21 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 				</select>
 			</li>
 			<li>
+				<label for="photo">상품사진</label>
+				<input type="file" name="photo" class="input-check" id="photo" accept="image/gif,image/png,image/jpeg">
+			</li>
+			<li>
 				<label for="comment">코맨트</label>
 				<input type="text" id="comment" name="comment">
 			</li>
+			<li>
+				<label for="private_num">공개 비공개 설정</label>
+				<input type="radio" name="private_num" value="1" id="private_num1">공개
+				<input type="radio" name="private_num" value="2" id="private_num2">비공개
+			</li>
 		</ul>
+		<input type="hidden" value="" name="isbn" id="isbn">
+		<input type="hidden" value="" name="description" id="description">
 		<input type="submit" value="등록요청">
 		<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</form>

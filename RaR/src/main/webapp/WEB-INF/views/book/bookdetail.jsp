@@ -22,7 +22,9 @@
 				<label>저자 : ${book.author}</label>
 			</li>
 			<li>
-				<label>상품 상태 : ${book.item_grade}</label>
+				<c:if test="${book.item_grade == 1}"><label>상품 상태 : 좋음</label></c:if>
+				<c:if test="${book.item_grade == 2}"><label>상품 상태 : 보통</label></c:if>
+				<c:if test="${book.item_grade == 3}"><label>상품 상태 : 별로</label></c:if>
 			</li>
 			<li>
 				<label>유저 : ${book.memberVO.user_email}</label>
@@ -48,7 +50,8 @@
 				<label>출판사 : ${book.publisher}</label>
 			</li>
 			<li>
-				<label>출간일 : ${book.pubDate}</label>
+				<label>중고책 이미지</label>
+				<img alt="" src="${pageContext.request.contextPath}/upload/${book.photo}">
 			</li>
 			<li>
 				<label>코맨트 : ${book.ad_comment}</label>

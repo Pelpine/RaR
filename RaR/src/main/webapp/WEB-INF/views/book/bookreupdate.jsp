@@ -8,7 +8,7 @@
 <title>책 등록 요청</title>
 <script type="text/javascript">
 function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=400, height=300, left=100, top=50");}
-function updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher) {
+function updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher, isbn, description) {
     document.getElementById("bk_name").value = bk_name;
     document.getElementById("author").value = author;
     document.getElementById("pubdate").value = pubDate;
@@ -17,6 +17,8 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
     document.getElementById("categoryname").value = categoryName;
     document.getElementById("price").value = price;
     document.getElementById("publisher").value = publisher;
+    document.getElementById("isbn").value = isbn;
+    document.getElementById("description").value = description;
 }
 </script>
 </head>
@@ -67,7 +69,14 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 				<label for="comment">코맨트</label>
 				<input type="text" id="comment" name="comment">
 			</li>
+			<li>
+				<label for="private_num">공개 비공개 설정</label>
+				<input type="radio" name="private_num" value="1" id="private_num1">공개
+				<input type="radio" name="private_num" value="2" id="private_num2">비공개
+			</li>
 		</ul>
+		<input type="hidden" value="" name="isbn" id="isbn">
+		<input type="hidden" value="" name="description" id="description">
 		<input type="hidden" value="${user_num}" name="user">
 		<input type="submit" value="수정">
 		<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
