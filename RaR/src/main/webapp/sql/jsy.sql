@@ -80,7 +80,7 @@ user_num number not null,
 constraint board_pk primary key(board_num),
 constraint board_fk foreign key(user_num)references member(user_num)
 );
-
+s
 -----자유게시판 답글 테이블
 create table BOARD_REPLY(
 re_num number not null,
