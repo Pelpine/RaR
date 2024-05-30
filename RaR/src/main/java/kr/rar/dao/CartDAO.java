@@ -31,7 +31,7 @@ public class CartDAO {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "INSERT INTO cart (cart_num,user_num,item_num,bk_num) "
-					+ "VALUES (cart_seq.nexrval,?,?,?)";
+					+ "VALUES (cart_seq.nextval,?,?,?)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
