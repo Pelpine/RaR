@@ -9,6 +9,8 @@ import java.util.List;
 import kr.rar.vo.BoardFavVO;
 import kr.rar.vo.BoardReplyVO;
 import kr.rar.vo.BoardVO;
+import kr.rar.vo.GenreUserVO;
+import kr.rar.vo.GenreVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
@@ -629,7 +631,23 @@ public class BoardDAO {
 			}		
 			return list;
 		}
-
+		
+		//장르 댓글
+		public void insertGenre(GenreUserVO genreUser)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				conn=DBUtil.getConnection();
+				sql="INSERT INTO board_genre_user (bgu_num=?,bgu_content=?,bgu_date=SYSDATE,"
+						+ "bgu_redate ";
+				
+			}catch(Exception e) {
+				
+			}finally {
+				
+			}
+		}
 	}
 
 
