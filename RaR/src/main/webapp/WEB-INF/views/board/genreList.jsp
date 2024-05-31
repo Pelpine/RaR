@@ -64,10 +64,11 @@ window.onload=function(){
 			<tr>
 				<th>제목</th>
 			</tr>
-			<c:forEach var="genreList" items="${genreList}">
-			<tr>
-				<td>${genreList.bg_num}</td>
-			</tr>
+			<c:forEach var="genre" items="${List}">
+    		<tr>
+        		<td>${genre.bg_num}</td>
+       			 <td>${genre.bg_title}</td> 
+    		</tr>
 			</c:forEach>
 		</table>
 		<div class="align-center">${page}</div>
