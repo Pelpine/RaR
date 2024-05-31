@@ -50,12 +50,12 @@ body {
     margin-left: 8px;
     cursor: pointer;
 }
-
 .auth-buttons {
     flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    
 }
 
 .auth-buttons .header_button_group {
@@ -65,6 +65,7 @@ body {
 
 .auth-buttons .header_button {
     margin-left: 10px;
+    margin-right:0;
     padding: 8px 16px;
     background-color: #17a2b8;
     border: none;
@@ -72,18 +73,10 @@ body {
     color: white;
     cursor: pointer;
 }
-
-.auth-buttons .menu-profile {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-}
-
 .menu-profile img {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    margin-left: 10px;
 }
 
 .menu {
@@ -105,6 +98,9 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
+    font-size: 16px;
+    width: 160px; /* 변경되지 않는 크기를 지정 */
+    height: 48px; /* 변경되지 않는 크기를 지정 */
 }
 
 .dropdown-content {
@@ -152,7 +148,6 @@ body {
     display: flex;
     float: right;
     align-items: center;
-    gap: 10px;
     flex-direction: row; /* Added this line */
 }
 .header_button_group button {

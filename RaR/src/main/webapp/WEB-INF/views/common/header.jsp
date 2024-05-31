@@ -50,13 +50,7 @@
     </div>
     <div class="menu">
         <div class="dropdown">
-            <button class="dropbtn">관리자</button>
-            <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">shop</button>
+            <button class="dropbtn">SHOP</button>
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
                 <a href="${pageContext.request.contextPath}/book/list.do">책 검색</a>
