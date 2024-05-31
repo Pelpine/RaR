@@ -5,6 +5,23 @@ body {
     background-color: #f8f9fa;
 }
 
+.page-main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+    min-height: 650px;
+}
+
+.content-main {
+	width: 100%;
+    max-width: 1200px;
+    padding: 10px 20px;
+}
+
+
 .main_nav {
     width: 100%;
     max-width: 1200px;
@@ -12,6 +29,7 @@ body {
 }
 
 .header {
+	margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,22 +68,22 @@ body {
     margin-left: 8px;
     cursor: pointer;
 }
+
 .auth-buttons {
     flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
+    width: 200px
 }
 
-.auth-buttons .header_button_group {
+.header_button_group {
     display: flex;
     align-items: center;
 }
 
-.auth-buttons .header_button {
+.header_button {
     margin-left: 10px;
-    margin-right:0;
     padding: 8px 16px;
     background-color: #17a2b8;
     border: none;
@@ -73,6 +91,7 @@ body {
     color: white;
     cursor: pointer;
 }
+
 .menu-profile img {
     width: 25px;
     height: 25px;
@@ -99,8 +118,8 @@ body {
     border: none;
     cursor: pointer;
     font-size: 16px;
-    width: 160px; /* 변경되지 않는 크기를 지정 */
-    height: 48px; /* 변경되지 않는 크기를 지정 */
+    width: 160px;
+    height: 48px;
 }
 
 .dropdown-content {
@@ -131,37 +150,17 @@ body {
     background-color: #007bb5;
 }
 
-.page-main {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #FFFFFF;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
-    min-height: 650px;
-}
-
-.content-main {
-    padding: 10px 20px;
-}
 .header_button_group {
     display: flex;
     float: right;
     align-items: center;
-    flex-direction: row; /* Added this line */
-}
-.header_button_group button {
-    white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
+    flex-direction: row;
 }
 
-#main_nav li img.my-photo{
-	vertical-align:middle;
-}
-#main_nav li.menu-profile{
-	padding-top:5px;
-	width:25px;
+.header_button_group button {
+    white-space: nowrap;
 }
 li {
-	display:inline;
-	list-style-type: none
+    display: inline;
+    list-style-type: none;
 }
