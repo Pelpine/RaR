@@ -46,6 +46,7 @@ body {
 
 .logo img {
     width: 170px;
+    padding-left:30px;
 }
 
 .search-bar {
