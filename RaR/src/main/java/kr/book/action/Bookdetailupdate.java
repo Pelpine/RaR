@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.rar.dao.BookApprovalDAO;
 import kr.rar.dao.BookDAO;
-import kr.rar.dao.ItemDAO;
 import kr.rar.vo.BookApprovalVO;
 import kr.rar.vo.BookVO;
 import kr.rar.vo.ItemVO;
@@ -38,12 +37,13 @@ public class Bookdetailupdate implements Action{
 		dao.updatestatus(vo);
 
 		int price = Integer.parseInt(request.getParameter("price"));
+		int item_grade = Integer.parseInt(request.getParameter("item_grade"));
 		Float prs = (float) 0;
-		if(status == 1) {
+		if(item_grade == 1) {
 			prs = (float)(price * 0.80);
-		}else if(status == 2) {
+		}else if(item_grade == 2) {
 			prs = (float) (price * 0.70);
-		}else if(status == 3) {
+		}else if(item_grade == 3) {
 			prs = (float) (price * 0.70);
 		}
 		int truncatedPrs = (int) (prs / 10) * 10;
@@ -54,7 +54,7 @@ public class Bookdetailupdate implements Action{
 				BookVO bkvo = new BookVO();
 				ItemVO itemvo = new ItemVO();
 				itemvo.setItem_price(truncatedPrs);
-				itemvo.setItem_grade(Integer.parseInt(request.getParameter("item_grade")));
+				itemvo.setItem_grade(item_grade);
 				itemvo.setItem_img(request.getParameter("photo"));
 				itemvo.setApproval_id(approval_id);
 				bkvo.setBk_isbn(request.getParameter("isbn"));

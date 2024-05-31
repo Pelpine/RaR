@@ -5,11 +5,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
+import kr.rar.dao.BookDAO;
 import kr.rar.dao.MemberDAO;
+import kr.rar.vo.BookApprovalVO;
 import kr.rar.vo.MemberVO;
 
 public class CheckDuplicatedIdAction implements Action{
@@ -20,7 +23,7 @@ public class CheckDuplicatedIdAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
 		String user_email = request.getParameter("user_email");
-
+		
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.checkMember(user_email);
 

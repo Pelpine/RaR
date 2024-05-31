@@ -7,10 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.rar.vo.BookApprovalVO;
-import kr.rar.vo.ItemVO;
 import kr.rar.vo.MemberVO;
 import kr.util.DBUtil;
-import oracle.jdbc.proxy.annotation.Pre;
 
 public class BookApprovalDAO {
 	//싱글턴 패턴

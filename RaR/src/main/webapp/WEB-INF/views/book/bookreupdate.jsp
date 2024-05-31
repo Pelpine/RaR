@@ -25,11 +25,10 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 <body>
 <div>
 	<h4>책 등록 요청</h4>
-	<form action="book.do" method="post" name="test">
+	<form action="bookup.do" method="post" name="test" enctype="multipart/form-data">
 		<ul>
 			<li>
 				<img src="${books.cover}" id="cover">
-				
 				<input type="hidden" value="${books.cover}" name="cover" id="coverUrl">
 			</li>
 			<li>
@@ -66,6 +65,10 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 				</select>
 			</li>
 			<li>
+				<label for="photo">상품사진</label>
+				<input type="file" name="photo" class="input-check" id="photo" accept="image/gif,image/png,image/jpeg">
+			</li>
+			<li>
 				<label for="comment">코맨트</label>
 				<input type="text" id="comment" name="comment">
 			</li>
@@ -74,11 +77,14 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 				<input type="radio" name="private_num" value="1" id="private_num1">공개
 				<input type="radio" name="private_num" value="2" id="private_num2">비공개
 			</li>
+			<li>
+				<div>설명 : ${books.description}</div>
+				<input type="text" id="description" name="description" value="${books.description}" readonly>
+			</li>
 		</ul>
-		<input type="hidden" value="" name="isbn" id="isbn">
-		<input type="hidden" value="" name="description" id="description">
-		<input type="hidden" value="${user_num}" name="user">
-		<input type="submit" value="수정">
+		<input type="hidden" value="${books.isbn}" name="isbn" id="isbn">
+		<input type="hidden" value="${books.description}" name="description" id="description">
+		<input type="submit" value="등록요청">
 		<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</form>
 </div>

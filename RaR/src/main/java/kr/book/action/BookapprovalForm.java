@@ -8,9 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.rar.dao.BookApprovalDAO;
-import kr.rar.dao.MemberDAO;
 import kr.rar.vo.BookApprovalVO;
-import kr.rar.vo.MemberVO;
 import kr.util.PagingUtil;
 
 public class BookapprovalForm implements Action{

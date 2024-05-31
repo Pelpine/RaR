@@ -6,19 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>요청 및 등록요청</title>
-<script>
-function toggleSubmit(select) {
-    var selectedValue = select.value;
-    var submitButton = document.getElementById('submit');
-    
-    // 선택한 값이 1이면서 book.status가 2가 아닌 경우에만 등록 버튼을 보이게 함
-    if (selectedValue == '2') {
-        submitButton.style.display = 'none';
-    } else {
-        submitButton.style.display = 'block';
-    }
-}
-</script>
 </head>
 <body>
 <div>
@@ -47,7 +34,7 @@ function toggleSubmit(select) {
 			</li>
 			<li>
 				<label>승인상태 : ${book.status}</label>
-				<select name="status" onchange="toggleSubmit(this)">
+				<select name="status">
 					<c:if test="${user_auth == 9}">
 						<option value="1" <c:if test="${book.status==1}">selected</c:if>>미승인</option>
 						<option value="2" <c:if test="${book.status==2}">selected</c:if>>승인</option>
@@ -79,17 +66,15 @@ function toggleSubmit(select) {
 				<label>isbn : ${book.isbn}</label>
 			</li>
 		</ul>
-		<input type="button" value="수정" onclick="location.href='updatebook.do'">
 		<input type="button" value="목록" onclick="location.href='list.do'">
+		<c:if test="${book.status == 1}">
+			<input type="button" value="수정" onclick="location.href='updatebook.do'">
+			<input type="button" value="삭제" onclick="location.href='deletebook.do'">
+		</c:if>
 		<c:if test="${user_auth == 9}">
-		<c:choose>
-				<c:when test="${book.status != 2}">
+				<c:if test="${book.status == 1}">
 					<input type="submit" value="등록">
-				</c:when>
-				<c:otherwise>
-					<input type="submit" value="등록" id="submit" style="display: none;">
-				</c:otherwise>
-			</c:choose>
+				</c:if>
 		<input type="hidden" value="${book.approval_id}" name="approval_id">
 		<input type="hidden" value="${user_auth}" name="user_auth">
 		<input type="hidden" value="${book.bk_name}" name="bk_name">
@@ -102,6 +87,7 @@ function toggleSubmit(select) {
 		<input type="hidden" value="${book.isbn}" name="isbn">
 		<input type="hidden" value="${book.description}" name="description">
 		<input type="hidden" value="${book.item_grade}" name="item_grade">
+		<input type="hidden" value="${book.memberVO.user_email}" name="user_email">
 		</c:if>
 		
 	</div>

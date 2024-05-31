@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.rar.dao.BookApprovalDAO;
+import kr.rar.dao.BookDAO;
 import kr.rar.vo.BookApprovalVO;
 
 public class Bookupdate implements Action{
@@ -19,7 +20,9 @@ public class Bookupdate implements Action{
 		if(user_num==null) {
 			return "redirect:/book/loginForm.do";
 		}
-		if(user_num == user) {
+		BookDAO daoa = BookDAO.getInstance();
+		BookApprovalVO iod = daoa.ckmem(user_num);
+		if(iod.getUser_num() == user) {
 			return "redirect:/book/list.do";
 		}
 		BookApprovalDAO dao = BookApprovalDAO.getInstance();

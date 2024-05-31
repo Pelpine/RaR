@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.rar.dao.BookApprovalDAO;
 import kr.rar.vo.BookApprovalVO;
 
 public class BookrequestForm implements Action{

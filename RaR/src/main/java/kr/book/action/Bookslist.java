@@ -4,12 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.rar.dao.BookApprovalDAO;
 import kr.rar.dao.BookDAO;
-import kr.rar.vo.BookApprovalVO;
 import kr.rar.vo.BookVO;
 import kr.util.PagingUtil;
 

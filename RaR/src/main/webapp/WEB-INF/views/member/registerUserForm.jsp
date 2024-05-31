@@ -10,6 +10,31 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
+window.onload = function(){
+    const id = document.getElementById('butn');
+    id.onclick = function(){
+        const user_email = $('#user_email').val(); 
+        $.ajax({
+            url: 'checkDuplicatedId.do',
+            type: 'post',
+            data: {user_email: user_email},
+            dataType: 'json',
+            success: function(param){
+                if(param.result == 'idDuplicated'){
+                    $('#message_user_email').text('아이디 중복');
+                } else if(param.result == 'idNotFound'){
+                    $('#message_user_email').text('아이디 사용 가능');
+                } else {
+                    alert('오류');
+                }
+            },
+            error: function(){
+                alert('네트워크 오류발생');
+            }
+        });
+    }
+}
+
 $(function(){
 	//회원 정보 등록 유효성 체크
 	$('#register_form').submit(function(){
@@ -61,9 +86,13 @@ $(function(){
 			<h2>회원 가입</h2>
 			<form id="register_form" action="registerUser.do" method="post">
 				<ul>
-					<li><label for="user_email">이메일</label> <input type="email"
-						name="user_email" id="user_email" maxLength="50"
-						class="intput-check"><span id="message_user_email"></span></li>
+					 <li>
+            			<label for="user_email">이메일</label> 
+            			<input type="email" name="user_email" id="user_email" maxLength="50" class="input-check">
+            			<input type="button" id="butn" value="중복 확인">
+            			<span id="message_user_email"></span>
+        			</li>
+					
 					<li><label for="user_name">이름</label> <input type="text"
 						name="user_name" id="user_name" maxlength="10" class="input-check">
 					</li>
