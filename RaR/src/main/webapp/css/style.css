@@ -154,7 +154,6 @@ body {
     display: flex;
     float: right;
     align-items: center;
-    flex-direction: row;
 }
 
 .header_button_group button {

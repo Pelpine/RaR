@@ -29,6 +29,7 @@
                 </div>
             </c:if>
         </div>
+        <!--
 		<ul>
             <c:if test="${!empty user_num && empty user_photo}">
                 <li class="menu-profile">
@@ -47,6 +48,7 @@
                 </li>
             </c:if>
         </ul>
+        -->
     </div>
     <div class="menu">
         <div class="dropdown">
