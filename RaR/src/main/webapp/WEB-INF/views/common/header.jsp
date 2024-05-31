@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <div class="main_nav">
 	<div class="header">
         <div class="logo">
@@ -23,7 +24,7 @@
             <c:if test="${!empty user_num}">
                 <div class="header_button_group">
                     <button class="header_button"
-                            onclick="location.href='${pageContext.request.contextPath}/cart/cartList.do'">장바구니</button>
+                            onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'">출석체크</button>
                     <button class="header_button" 
                             onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">마이페이지</button>
                     <button class="header_button" 
@@ -31,7 +32,6 @@
                 </div>
             </c:if>
         </div>
-        <!--
 		<ul>
             <c:if test="${!empty user_num && empty user_photo}">
                 <li class="menu-profile">
@@ -54,27 +54,27 @@
                 </li>
             </c:if>
         </ul>
-        -->
     </div>
     <div class="menu">
         <div class="dropdown">
-            <button class="dropbtn">SHOP</button>
+            <button class="dropbtn">관리자</button>
             <div class="dropdown-content">
+                <a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">shop</button>
+            <div class="dropdown-content">
+                <a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
                 <a href="${pageContext.request.contextPath}/book/list.do">책 검색</a>
                 <a href="${pageContext.request.contextPath}/book/booklist.do">책 목록</a>
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropbtn">장르</button>
-            <div class="dropdown-content">
-                <a href="#">스릴러</a>
-                <a href="#">SF 소설</a>
-            </div>
-        </div>
-        <div class="dropdown">
             <button class="dropbtn">게시판</button>
             <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/board/list.do">자유게시판</a>
+                <a href="${pageContext.request.contextPath}/board/list.do">자유게시판</a> 
+                <a href="${pageContext.request.contextPath}/board/genreList.do">장르 게시판</a>
                 <a href="#">QnA 게시판</a>
             </div>
         </div>
