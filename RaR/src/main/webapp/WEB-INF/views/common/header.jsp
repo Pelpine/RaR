@@ -23,7 +23,7 @@
             <c:if test="${!empty user_num}">
                 <div class="header_button_group">
                     <button class="header_button"
-                            onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'">출석체크</button>
+                            onclick="location.href='${pageContext.request.contextPath}/cart/cartList.do'">장바구니</button>
                     <button class="header_button" 
                             onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">마이페이지</button>
                     <button class="header_button" 
@@ -60,7 +60,6 @@
         <div class="dropdown">
             <button class="dropbtn">SHOP</button>
             <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
                 <a href="${pageContext.request.contextPath}/book/list.do">책 검색</a>
                 <a href="${pageContext.request.contextPath}/book/booklist.do">책 목록</a>
             </div>
