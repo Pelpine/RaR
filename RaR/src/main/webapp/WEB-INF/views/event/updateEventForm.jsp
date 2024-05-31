@@ -41,11 +41,7 @@ window.onload=function(){
         }
     }
         var file = document.getElementById('banner');
-           file.onchange=function(){             
-        	if(!file.files[0]){               
-        		alert('파일을 선택하세요!');               
-        		return;            
-        		}            
+           file.onchange=function(){      	       
         	var reader = new FileReader(); 
             reader.readAsDataURL(file.files[0]); 
             reader.onload = function(){              

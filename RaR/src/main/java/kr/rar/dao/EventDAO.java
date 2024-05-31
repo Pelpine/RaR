@@ -154,38 +154,42 @@ public class EventDAO {
 		}
 	}
 	//이벤트 수정
-	public void updateEvent (EventVO event) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int cnt = 0;
-		String sql = null;
-		String sub_sql = "";
-		try {
-			conn = DBUtil.getConnection();
-			if(event.getFilename()!=null && 
-					!event.getFilename().isEmpty()) {
-				sub_sql += ",filename=?";
-			}
-			sql = "UPDATE EVENT_LIST SET name=?"+sub_sql+",content =? ,start_date=?, end_date=?, notice=?,Banner=? WHERE event_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(++cnt, event.getName());
-			if(event.getFilename()!=null 
-					&& !event.getFilename().isEmpty()) {
-				pstmt.setString(++cnt, event.getFilename());
-			}
-			pstmt.setString(++cnt, event.getContent());
-			pstmt.setDate(++cnt, event.getStart_date());
-			pstmt.setDate(++cnt, event.getEnd_date());
-			pstmt.setInt(++cnt, event.getNotice());
-			pstmt.setString(++cnt, event.getBanner());
-			pstmt.setInt(++cnt, event.getEvent_num());
-			pstmt.executeUpdate();
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
+	public void updateEvent(EventVO event) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    int cnt = 0;
+	    String sql = null;
+	    String sub_sql = "";
+	    try {
+	        conn = DBUtil.getConnection();
+	        if (event.getFilename() != null && !event.getFilename().isEmpty()) {
+	            sub_sql += ",filename=?";
+	        }
+	        if (event.getBanner() != null && !event.getBanner().isEmpty()) {
+	            sub_sql += ",banner=?";
+	        }
+	        sql = "UPDATE EVENT_LIST SET name=?" + sub_sql + ",content =?, start_date=?, end_date=?, notice=? WHERE event_num=?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(++cnt, event.getName());
+	        if (event.getFilename() != null && !event.getFilename().isEmpty()) {
+	            pstmt.setString(++cnt, event.getFilename());
+	        }
+	        if (event.getBanner() != null && !event.getBanner().isEmpty()) {
+	            pstmt.setString(++cnt, event.getBanner());
+	        }
+	        pstmt.setString(++cnt, event.getContent());
+	        pstmt.setDate(++cnt, event.getStart_date());
+	        pstmt.setDate(++cnt, event.getEnd_date());
+	        pstmt.setInt(++cnt, event.getNotice());
+	        pstmt.setInt(++cnt, event.getEvent_num());
+	        pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(null, pstmt, conn);
+	    }
 	}
+
 	
 	//이벤트 삭제
 	public void deleteEvent(int event_num) throws Exception{

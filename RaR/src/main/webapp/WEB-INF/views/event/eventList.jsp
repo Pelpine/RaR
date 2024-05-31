@@ -13,7 +13,7 @@
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
-			<h2>이벤트 목록</h2>		<input type="button" value="룰렛 돌리러 가기!" onclick = "location.href='eventRoulette.do'">
+			<h2>이벤트 목록</h2>		
 			<form id="search_form" action="eventList.do" method="get">
 				<ul class="search">
 					<li>
