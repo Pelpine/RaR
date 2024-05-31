@@ -20,7 +20,7 @@ public class EventDetailAction implements Action{
 		
 		event.setName(StringUtil.useNoHTML(event.getName()));
 		//HTML를 허용하지 않으면서 줄바꿈
-		event.setContent(StringUtil.useBrNoHTML(event.getContent()));
+		event.setContent(StringUtil.useBrHtml(event.getContent()));
 		request.setAttribute("event", event);
 		
 		return "/WEB-INF/views/event/eventDetail.jsp";

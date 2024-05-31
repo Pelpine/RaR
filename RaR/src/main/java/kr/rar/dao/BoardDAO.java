@@ -698,37 +698,43 @@ public class BoardDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
-		
-		//장르목록
-		public List<GenreVO> getListGenre(int start, int end)throws Exception{
+		//장르 목록
+		public List<GenreVO> getListGenre(int start, int end, String keyfield, String keyword)
+				throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			List<GenreVO> list = null;
 			String sql = null;
+			int cnt = 0;
+			String sub_sql="";
+
 			try {
 				conn=DBUtil.getConnection();
-				
+				if(keyword!=null && !"".equals(keyword)) {
+				//글 검색
+				if(keyfield.equals("1"))sub_sql += "WHERE bg_title LIKE '%' || ? || '%'";
+		
+				}
 				//SQL문 작성
-				sql="SELECT * FROM(SELECT a.*, rownum rnum FROM "
-						+ "(SELECT * FROM board_genre JOIN member USING(user_num) "
-						+ "WHERE bg_num=? ORDER BY bg_num DESC)a) "
-						+ "WHERE rnum >= ? AND rnum <= ?";
-				
+				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				           + "(SELECT * FROM board_genre " + sub_sql
+				           + " ORDER BY bg_title DESC)a) WHERE rnum >= ? AND rnum <= ?";				
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, start);
-				pstmt.setInt(2, end);
-				
+				if(keyword!=null && !"".equals(keyword)) {
+					pstmt.setString(++cnt, keyword);
+				}
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+
 				//SQL문 실행
 				rs = pstmt.executeQuery();
 				list = new ArrayList<GenreVO>();
 				while(rs.next()) {
-					GenreVO board_genre = new GenreVO();
-					board_genre.setBg_num(rs.getInt("bg_num"));
-					board_genre.setBg_title(StringUtil.useNoHTML(rs.getString("title")));
-					board_genre.setUser_num(rs.getInt("user_num"));
-					list.add(board_genre);
+					GenreVO genre = new GenreVO();
+					genre.setBg_title(rs.getString("bg_title"));
+					list.add(genre);
 				}			
 			}catch(Exception e) {
 				throw new Exception(e);
@@ -737,29 +743,40 @@ public class BoardDAO {
 			}
 			return list;
 		}
-
-
-		//장르게시판 댓글 삽입
-		public void insertGenreReply(GenreUserVO genreUser, GenreVO genre)throws Exception{
+		//장르 수
+		public int getGenreCount(String keyfield, String keyword)
+								throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
+			ResultSet rs = null;
 			String sql = null;
+			String sub_sql="";
+			int count = 0;
 			try {
-				conn=DBUtil.getConnection();
-				sql="INSERT INTO board_genre_user (bgu_num, bgu_content, bg_num) VALUES (greply_seq.nextval, ?, ?)";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, genreUser.getBgu_content());
-				pstmt.setInt(2, genreUser.getBg_num());
+				conn = DBUtil.getConnection();
 				
-				pstmt.executeUpdate();
+				if(keyword!=null && !"".equals(keyword)) {
+					//검색 처리 sub_sql 조건
+					if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
+					
+				}
+				sql = "SELECT COUNT(*) FROM board " +sub_sql;
+				pstmt = conn.prepareStatement(sql);
+				if(keyword!=null && !"".equals(keyword)) {
+					pstmt.setString(1, keyword);
+				}
+				//SQL 실행
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					count=rs.getInt(1);
+				}
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
-				
+				DBUtil.executeClose(rs, pstmt, conn);
 			}
+			return count;
 		}
-		
 	}
 
 

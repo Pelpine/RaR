@@ -29,27 +29,44 @@ window.onload=function(){
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-		<h2>장르 목록</h2>
+		<h2>게시판 목록</h2>
+		<form id="search-form" action="genreList.do" method="get">
+		<ul class="search">
+			<li>
+				<select name="keyfield">
+					<option value="1" <c:if test ="${param.keyfield==1}">selected</c:if>>a</option>
+					<option value="2" <c:if test ="${param.keyfield==2}">selected</c:if>>b</option>
+					<option value="3" <c:if test ="${param.keyfield==3}">selected</c:if>>c</option>
+				</select>
+			</li>
+			<li>
+				<input type="search" size="50" name="keyword"
+						id="keyword" value="${param.keyword}">
+			</li>
+			<li>
+				<input type="submit" value="검색">
+			</li>
+		</ul>
+		</form>
 		<div class="list-space align-right">
-		<input type="button" value="장르 등록" onclick="location.href='writeGenreForm.do'"
+		<input type="button" value="장르 쓰기" onclick="location.href='writeGenreForm.do'"
 				<c:if test="${user_auth !=9}">disabled="disabled"</c:if>>
-		<input type="button" value="장르 목록" onclick="location.href='genreList.do'">
 		<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
 		<c:if test="${count==0}">
 		<div class="result-display">
-		등록된 장르가 없습니다.
+		표시할 게시물이 없습니다.
 		</div>
 		</c:if>
 		
 		<c:if test="${count>0}">
 		<table>
 			<tr>
-				<th>장르</th>
+				<th>제목</th>
 			</tr>
-			<c:forEach var="genre" items="${genreList}">
+			<c:forEach var="genreList" items="${genreList}">
 			<tr>
-				<td>${genre.bgu_title}</td>
+				<td>${genreList.bg_num}</td>
 			</tr>
 			</c:forEach>
 		</table>

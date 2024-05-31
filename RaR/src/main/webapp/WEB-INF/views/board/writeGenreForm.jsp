@@ -32,7 +32,7 @@ window.onload = function() {
             <ul>
                 <li>
                     <label for="title">제목</label>
-                    <input type="text" name="title" id="title" maxlength="50">
+                    <input type="text" name="bg_title" id="title" maxlength="50">
                 </li>
             </ul>
             <div class="align-center">
