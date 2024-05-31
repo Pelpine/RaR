@@ -34,7 +34,9 @@
 		<ul>
             <c:if test="${!empty user_num && empty user_photo}">
                 <li class="menu-profile">
+                    <a href="${pageContext.request.contextPath}/member/myPage.do">
                     <img src="${pageContext.request.contextPath}/images/face.png" class="my-photo">
+                    </a>
                 </li>
                 <li>
                     [<span>${user_email}</span>]
@@ -42,7 +44,9 @@
             </c:if>
             <c:if test="${!empty user_num && !empty user_photo}">
                 <li class="menu-profile">
+                    <a href="${pageContext.request.contextPath}/member/myPage.do">
                     <img src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo">
+                    </a>
                 </li>
                 <li>
                     [<span>${user_email}</span>]
