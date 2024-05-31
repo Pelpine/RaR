@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.rar.dao.BoardDAO;
-import kr.rar.vo.BoardVO;
+import kr.rar.vo.GenreVO;
 import kr.controller.Action;
 import kr.util.PagingUtil;
 
@@ -20,15 +20,15 @@ public class GenreListAction implements Action {
 		String keyword = request.getParameter("keyword");
 		
 		BoardDAO dao = kr.rar.dao.BoardDAO.getInstance();
-		int count = dao.getBoardCount(keyfield, keyword);
+		int count = dao.getGenreCount(keyfield, keyword);
 		
 		//페이지 처리
 		PagingUtil page = new PagingUtil(keyfield, keyword,
 				Integer.parseInt(pageNum),count,10,10,"genreList.do");
 		
-		List<BoardVO> list = null;
+		List<GenreVO> list = null;
 		if(count > 0) {
-			list = dao.getListBoard(page.getStartRow(),page.getEndRow(), keyfield, keyword);
+			list = dao.getListGenre(page.getStartRow(),page.getEndRow(), keyfield, keyword);
 		}
 		
 		request.setAttribute("count", count);
