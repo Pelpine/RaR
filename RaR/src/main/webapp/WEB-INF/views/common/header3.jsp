@@ -12,7 +12,6 @@
 	</header>
 	<!-- 머리말 끝 -->
 	<!-- 내비게이션 시작 -->
-	<nav id="main_nav">
 		<!-- 메뉴 시작 -->
 		<div id=main_login>
 			<ul>
@@ -22,18 +21,16 @@
 					</li>
 				</c:if>
 				<c:if test="${empty user_num}">
-					<li><a
-						href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+					<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 					</li>
-					<li><a
-						href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
+					<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
 					</li>
 				</c:if>
 			</ul>
 		</div>
-		<div class="pull-left">
-			<!-- main 메뉴 -->
-			<ul>
+		<!-- main 메뉴 -->
+		<div class="pull-right">
+			<ul class="righter-in">
 			<c:if test="${!empty user_num && !empty user_photo}">
 				<li class="menu-profile">
 				<a href="${pageContext.request.contextPath}/member/myPage.do"> 
@@ -51,6 +48,8 @@
 				</li>
 			</c:if>
 			</ul>
+		</div>
+		<div class="pull-left">
 			<ul class="outer-menu">
 				<li class="outer-menu-item"><span class="menu-title">게시판</span>
 					<!-- sub 메뉴 -->
@@ -66,8 +65,8 @@
 						</li>
 					</ul>
 					</li>
-				<li class="outer-menu-item"><span class="menu-title">책
-						전용</span> <!-- sub 메뉴 -->
+				<li class="outer-menu-item"><span class="menu-title">책 전용</span> 
+				<!-- sub 메뉴 -->
 					<ul class="inner-menu">
 						<c:if test="${!empty user_num}">
 							<li class="inner-menu-item"><a
@@ -93,6 +92,5 @@
 
 			</ul>
 		</div>
-	</nav>
 	<!-- 내비게이션 끝 -->
 </div>
