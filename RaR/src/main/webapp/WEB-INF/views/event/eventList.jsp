@@ -11,10 +11,9 @@
 </head>
 <body>
 	<div class="page-main">
-		<input type="button" value="룰렛 돌리기" onclick = "location.href='eventRoulette.do'">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
-			<h2>이벤트 목록</h2>
+			<h2>이벤트 목록</h2>		<input type="button" value="룰렛 돌리러 가기!" onclick = "location.href='eventRoulette.do'">
 			<form id="search_form" action="eventList.do" method="get">
 				<ul class="search">
 					<li>
