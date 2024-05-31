@@ -68,7 +68,7 @@
 		</ul>
 		<input type="button" value="목록" onclick="location.href='list.do'">
 		<c:if test="${book.status == 1}">
-			<input type="button" value="수정" onclick="location.href='updatebook.do'">
+			<input type="button" value="수정" onclick="location.href='updatebook.do?approval_id=${book.approval_id}&user_email=${book.memberVO.user_email}'">
 			<input type="button" value="삭제" onclick="location.href='deletebook.do'">
 		</c:if>
 		<c:if test="${user_auth == 9}">

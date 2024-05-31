@@ -290,6 +290,8 @@ public class BookDAO {
 		
 		return book;
 	}
+	
+	//중복체크
 	public BookApprovalVO ckmem(int user_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -299,17 +301,13 @@ public class BookDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "select user_email form member where user_num = ?";
+			sql = "select user_email from member where user_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				vo = new BookApprovalVO();
-				
-				MemberVO mem = new MemberVO();
-				mem.setUser_email(rs.getString("user_email"));
-				
-				vo.setMemberVO(mem);
+				vo.setUser_email(rs.getString("user_email"));
 			}
 			
 		}catch(Exception e) {

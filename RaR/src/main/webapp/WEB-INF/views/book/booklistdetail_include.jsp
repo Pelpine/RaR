@@ -17,7 +17,7 @@
 					<th>판매가</th>
 					<th>장바구니 담기</th>
 				</tr>
-				<c:forEach var="item" items="${list}">
+				<c:forEach var="item[i]" items="${list}">
 				<tr>
 					<td>
 				    <img src="${item.bookVO.bk_img}" width="60">

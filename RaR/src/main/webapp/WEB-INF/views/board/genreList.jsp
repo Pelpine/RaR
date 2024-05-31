@@ -30,7 +30,7 @@ window.onload=function(){
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>게시판 목록</h2>
-		<form id="search-form" action="genreList.do" method="get">
+		<form id="search_form" action="genreList.do" method="get">
 		<ul class="search">
 			<li>
 				<select name="keyfield">
@@ -64,7 +64,7 @@ window.onload=function(){
 			<tr>
 				<th>제목</th>
 			</tr>
-			<c:forEach var="genre" items="${List}">
+			<c:forEach var="genre" items="${list}">
     		<tr>
         		<td>${genre.bg_num}</td>
        			 <td>${genre.bg_title}</td> 

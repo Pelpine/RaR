@@ -21,11 +21,53 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
     document.getElementById("description").value = description;
 }
 </script>
+<script type="text/javascript">
+window.onload = function() {
+    // 이미지 미리 보기
+    let photo_path = $('.my-photo').attr('src');
+
+    $('#photo').change(function() {
+        let my_photo = this.files[0];
+        if (!my_photo) {
+            // 선택을 취소하면 원래 화면으로 되돌림
+            $('.my-photo').attr('src', photo_path);
+            return;
+        }
+        if (my_photo.size > 1024 * 1024) {
+            alert(Math.round(my_photo.size / 1024) + 'kbytes(1024kbytes까지만 업로드 가능)');
+            $('.my-photo').attr('src', photo_path); // 원래 사진으로 변경
+            $(this).val(''); // 선택한 파일 정보 지우기
+            return;
+        }
+        // 화면에 이미지 미리 보기
+        const reader = new FileReader();
+        reader.readAsDataURL(my_photo);
+
+        reader.onload = function() {
+            $('.my-photo').attr('src', reader.result);
+        };
+    });
+
+    // 이미지 미리 보기 취소
+    $('#photo_reset').click(function() {
+        // 초기 이미지 표시
+        $('.my-photo').attr('src', photo_path);
+        $('#photo').val('');
+    });
+
+    // 폼 제출
+    $('#test').submit(function(event) {
+        event.preventDefault(); // 기본 제출 이벤트를 방지
+        const form_data = new FormData(this);
+        // 폼 데이터를 전송하거나 다른 작업 수행
+    });
+}
+</script>
 </head>
 <body>
 <div>
 	<h4>책 등록 요청</h4>
-	<form action="bookup.do" method="post" name="test" enctype="multipart/form-data">
+	<form action="bookupdates.do" method="post" name="test" enctype="multipart/form-data" id="test">
 		<ul>
 			<li>
 				<img src="${books.cover}" id="cover">
@@ -59,32 +101,39 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 			<li>
 				<label for="item_grade">상품상태</label>
 				<select name="item_grade">
-					<option value="1">좋음</option>
-					<option value="2">보통</option>
-					<option value="3">좋지않음</option>
+					<option value="1" <c:if test="${books.item_grade==1}">selected</c:if>>좋음</option>
+					<option value="2" <c:if test="${books.item_grade==2}">selected</c:if>>보통</option>
+					<option value="3" <c:if test="${books.item_grade==3}">selected</c:if>>좋지않음</option>
 				</select>
 			</li>
-			<li>
+				<li>
+				<c:if test="${empty books.photo}">
+				</c:if>
+				<c:if test="${!empty books.photo}">
+				<img src="${pageContext.request.contextPath}/upload/${books.photo}" width="200" height="200" class="my-photo">
+				</c:if>
 				<label for="photo">상품사진</label>
 				<input type="file" name="photo" class="input-check" id="photo" accept="image/gif,image/png,image/jpeg">
+				<input type="button" value="취소" id="photo_reset">
 			</li>
 			<li>
 				<label for="comment">코맨트</label>
-				<input type="text" id="comment" name="comment">
+				<textarea rows="5" cols="30" id="comment" name="comment">${books.ad_comment}</textarea>
 			</li>
 			<li>
 				<label for="private_num">공개 비공개 설정</label>
-				<input type="radio" name="private_num" value="1" id="private_num1">공개
-				<input type="radio" name="private_num" value="2" id="private_num2">비공개
+				<input type="radio" name="private_num" value="1" id="private_num1" <c:if test="${books.private_num==1}">checked</c:if>>공개
+				<input type="radio" name="private_num" value="2" id="private_num2" <c:if test="${books.private_num==2}">checked</c:if>>비공개
 			</li>
 			<li>
-				<div>설명 : ${books.description}</div>
+				<div>설명</div>
 				<input type="text" id="description" name="description" value="${books.description}" readonly>
 			</li>
 		</ul>
 		<input type="hidden" value="${books.isbn}" name="isbn" id="isbn">
-		<input type="hidden" value="${books.description}" name="description" id="description">
-		<input type="submit" value="등록요청">
+		<input type="hidden" value="${books.approval_id}" name="approval_id" id="approval_id">
+		<input type="hidden" value="1" name="status">
+		<input type="submit" value="수정">
 		<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</form>
 </div>

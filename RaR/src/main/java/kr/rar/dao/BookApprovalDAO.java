@@ -214,7 +214,7 @@ public class BookApprovalDAO {
 			try {
 				conn = DBUtil.getConnection();
 						
-				sql = "update book_approval set status=?,cover=?,bk_name=?,author=?,pubdate=?,price=?,categoryname=?,publisher=?,item_grade=?,comment=?,approved_at=null where approval_id = ?";
+				sql = "update book_approval set status=?,cover=?,bk_name=?,author=?,pubdate=?,price=?,categoryname=?,publisher=?,ad_comment=?,approved_at=null,item_grade=?,photo=?,private_num=?,description=?,isbn=? where approval_id = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, vo.getStatus());
 				pstmt.setString(2, vo.getCover());
@@ -225,7 +225,12 @@ public class BookApprovalDAO {
 				pstmt.setString(7, vo.getCategoryName());
 				pstmt.setString(8, vo.getPublisher());
 				pstmt.setString(9, vo.getAd_comment());
-				pstmt.setInt(10, vo.getApproval_id());
+				pstmt.setInt(10, vo.getItem_grade());
+				pstmt.setString(11, vo.getPhoto());
+				pstmt.setInt(12, vo.getPrivate_num());
+				pstmt.setString(13, vo.getDescription());
+				pstmt.setString(14, vo.getIsbn());
+				pstmt.setInt(15, vo.getApproval_id());
 						
 				pstmt.executeUpdate();
 			}catch(Exception e) {

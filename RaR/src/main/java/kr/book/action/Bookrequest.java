@@ -35,6 +35,7 @@ public class Bookrequest implements Action{
         vo.setPhoto(FileUtil.createFile(request, "photo"));
         vo.setIsbn(request.getParameter("isbn"));
         vo.setDescription(request.getParameter("description"));
+        vo.setPrivate_num(Integer.parseInt(request.getParameter("private_num")));
         
         dao.insertBook(vo);
         request.setAttribute("notice_msg", "글 등록 완료");

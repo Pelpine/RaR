@@ -760,7 +760,7 @@ public class BoardDAO {
 					if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
 					
 				}
-				sql = "SELECT COUNT(*) FROM board " +sub_sql;
+				sql = "SELECT COUNT(*) FROM board_genre " +sub_sql;
 				pstmt = conn.prepareStatement(sql);
 				if(keyword!=null && !"".equals(keyword)) {
 					pstmt.setString(1, keyword);

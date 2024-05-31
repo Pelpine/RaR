@@ -70,7 +70,7 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 			</li>
 			<li>
 				<label for="comment">코맨트</label>
-				<input type="text" id="comment" name="comment">
+				<textarea rows="5" cols="30" id="comment" name="comment"></textarea>
 			</li>
 			<li>
 				<label for="private_num">공개 비공개 설정</label>
