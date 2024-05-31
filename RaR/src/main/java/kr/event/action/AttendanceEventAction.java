@@ -13,6 +13,7 @@ public class AttendanceEventAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		
 		if(user_num == null) {
 			return "redirect:/member/loginForm.do";
 		}
@@ -22,7 +23,8 @@ public class AttendanceEventAction implements Action{
 		if(!checkat) {
 			dao.attendance(user_num);
 			int point = 50;
-			dao.updatePoint(user_num , point);			
+			int event_num = 100;
+			dao.updatePoint(user_num , point,event_num);			
 			request.setAttribute("notice_msg", "출석체크 완료! 50point 지급");
 			request.setAttribute("notice_url", request.getContextPath()+"/member/myPage.do");		
 		}else if(checkat) {

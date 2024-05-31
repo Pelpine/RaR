@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.rar.vo.EventRewardVO;
 import kr.rar.vo.EventVO;
 import kr.util.DBUtil;
 
@@ -293,22 +294,63 @@ public class EventDAO {
 		}
 	}
 	//리워드 지급
-	public void updatePoint(int user_num, int point) throws Exception{
+	public void updatePoint(int user_num, int point, int event_num) throws Exception{
 		Connection conn = null;
 		String sql = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		try {
+			// memberDetail 테이블에 포인트 지급
 			conn = DBUtil.getConnection();
-			sql = "UPDATE MEMBER_DETAIL SET user_point=? WHERE user_num=?";
+			conn.setAutoCommit(false);
+			sql = "UPDATE MEMBER_DETAIL SET user_point= user_point+? WHERE user_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, point);
 			pstmt.setInt(2, user_num);
 			pstmt.executeUpdate();
+			// event_rewards 테이블에 포인트 지급내역 기록
+			sql = "INSERT INTO event_rewards(reward_num,reward_point,event_num, user_num) VALUES(reward_seq.nextval,?,?,?)";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, point);
+			pstmt2.setInt(2, event_num);
+			pstmt2.setInt(3, user_num);
+			pstmt2.executeUpdate();
+			conn.commit();
 		}catch(Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
+	//리워드 지급 내역 가져오기 
+	public List<EventRewardVO> getRewardListByUserNum(int user_num)throws Exception{
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<EventRewardVO> list = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM event_rewards WHERE user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<EventRewardVO>();
+			while(rs.next()) {
+				EventRewardVO reward = new EventRewardVO();
+				reward.setEvent_num(rs.getInt("event_num"));
+				reward.setPoint(rs.getInt("point"));
+				reward.setReward_num(rs.getInt("reward_num"));
+				reward.setUser_num(rs.getInt("user_num"));
+				list.add(reward);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
 	}
 	//현재 진행중인 이벤트 배너 가져오기
 	public List<EventVO> getBanner() throws Exception{
@@ -338,4 +380,6 @@ public class EventDAO {
 	    }
 	    return list;
 	}
+	
+	//
 }
