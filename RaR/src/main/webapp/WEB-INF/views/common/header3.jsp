@@ -27,7 +27,7 @@
 							href="${pageContext.request.contextPath}/event/eventList.do">이벤트
 								게시판</a></li>
 						<li class="inner-menu-item"><a
-							href="${pageContext.request.contextPath}/">장르 게시판</a></li>
+							href="${pageContext.request.contextPath}/board/genreList.do">장르 게시판</a></li>
 					</ul></li>
 				<li class="outer-menu-item"><span class="menu-title">책
 						전용</span> <!-- sub 메뉴 -->

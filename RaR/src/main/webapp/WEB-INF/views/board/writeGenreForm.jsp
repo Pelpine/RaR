@@ -12,7 +12,7 @@ window.onload = function() {
     const myForm = document.getElementById('write_form');
     // 이벤트 연결
     myForm.onsubmit = function() {
-        const title = document.getElementById('bg_title');
+        const title = document.getElementById('title');
         if (title.value.trim() == '') {
             alert('제목을 입력하세요');
             title.value = '';
@@ -28,7 +28,7 @@ window.onload = function() {
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="content-main">
         <h2>글쓰기</h2>
-        <form id="write_form" action="writegenre.do" method="post" enctype="multipart/form-data">
+        <form id="write_form" action="writeGenre.do" method="post" enctype="multipart/form-data">
             <ul>
                 <li>
                     <label for="title">제목</label>
@@ -37,7 +37,7 @@ window.onload = function() {
             </ul>
             <div class="align-center">
                 <input type="submit" value="등록">
-                <input type="button" value="목록" onclick="location.href='list.do'">
+                <input type="button" value="목록" onclick="location.href='genreList.do'">
             </div>
         </form>
     </div>

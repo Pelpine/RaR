@@ -31,7 +31,7 @@ public class WriteGenreAction implements Action {
 		
 		request.setAttribute("notice_msg", "글쓰기 완료");
 		request.setAttribute("notice_url",
-				request.getContextPath()+"/board/list.do");
+				request.getContextPath()+"/board/genreList.do");
 		
 		return "/WEB-INF/views/common/alert_view.jsp";
 	}

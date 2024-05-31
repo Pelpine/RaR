@@ -5,6 +5,8 @@ public class GenreVO {
 	private int bg_num;
 	private String bg_title;
 	private int user_num;
+	
+	
 	public int getBg_num() {
 		return bg_num;
 	}
