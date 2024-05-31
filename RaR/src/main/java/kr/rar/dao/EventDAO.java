@@ -343,6 +343,7 @@ public class EventDAO {
 				reward.setPoint(rs.getInt("point"));
 				reward.setReward_num(rs.getInt("reward_num"));
 				reward.setUser_num(rs.getInt("user_num"));
+				reward.setProvide_date(rs.getDate("povide_date"));
 				list.add(reward);
 			}
 		}catch(Exception e) {
