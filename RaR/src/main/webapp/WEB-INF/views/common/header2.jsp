@@ -25,6 +25,8 @@
                     <button class="header_button"
                             onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'">출석체크</button>
                     <button class="header_button" 
+                            onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">마이페이지</button>
+                    <button class="header_button" 
                             onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">로그아웃</button>
                 </div>
             </c:if>

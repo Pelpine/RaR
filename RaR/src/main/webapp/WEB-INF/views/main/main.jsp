@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="page-main"> 
-    <jsp:include page="/WEB-INF/views/common/header2.jsp"/>
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="content-main">
         <h4>메인 페이지</h4>
     </div>
