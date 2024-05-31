@@ -14,8 +14,7 @@
 	<!-- 내비게이션 시작 -->
 	<nav id="main_nav">
 		<!-- 메뉴 시작 -->
-		<div class="pull-left">
-			<!-- main 메뉴 -->
+		<div id=main_login>
 			<ul>
 				<c:if test="${!empty user_num}">
 					<li class="menu-logout"><a
@@ -31,34 +30,42 @@
 					</li>
 				</c:if>
 			</ul>
+		</div>
+		<div class="pull-left">
+			<!-- main 메뉴 -->
+			<ul>
 			<c:if test="${!empty user_num && !empty user_photo}">
-				<li class="menu-profile"><a
-					href="${pageContext.request.contextPath}/member/myPage.do"> <img
-						src="${pageContext.request.contextPath}/upload/${user_photo}"
-						width="25" height="25" class="my-photo">
-				</a></li>
+				<li class="menu-profile">
+				<a href="${pageContext.request.contextPath}/member/myPage.do"> 
+				<img src="${pageContext.request.contextPath}/upload/${user_photo}"
+					 width="25" height="25" class="my-photo">
+				</a>
+				</li>
 			</c:if>
 			<c:if test="${!empty user_num && empty user_photo}">
-				<li class="menu-profile"><a
-					href="${pageContext.request.contextPath}/member/myPage.do"> <img
-						src="${pageContext.request.contextPath}/images/face.png"
-						width="25" height="25" class="my-photo">
-				</a></li>
+				<li class="menu-profile">
+				<a href="${pageContext.request.contextPath}/member/myPage.do"> 
+				<img src="${pageContext.request.contextPath}/images/face.png"
+					 width="25" height="25" class="my-photo">
+				</a>
+				</li>
 			</c:if>
+			</ul>
 			<ul class="outer-menu">
 				<li class="outer-menu-item"><span class="menu-title">게시판</span>
 					<!-- sub 메뉴 -->
 					<ul class="inner-menu">
-						<li class="inner-menu-item"><a
-							href="${pageContext.request.contextPath}/board/list.do">일반
-								게시판</a></li>
-						<li class="inner-menu-item"><a
-							href="${pageContext.request.contextPath}/event/eventList.do">이벤트
-								게시판</a></li>
-						<li class="inner-menu-item"><a
-							href="${pageContext.request.contextPath}/board/genreList.do">장르
-								게시판</a></li>
-					</ul></li>
+						<li class="inner-menu-item">
+						<a href="${pageContext.request.contextPath}/board/list.do">일반 게시판</a>
+						</li>
+						<li class="inner-menu-item">
+						<a href="${pageContext.request.contextPath}/event/eventList.do">이벤트 게시판</a>
+						</li>
+						<li class="inner-menu-item">
+						<a href="${pageContext.request.contextPath}/board/genreList.do">장르 게시판</a>
+						</li>
+					</ul>
+					</li>
 				<li class="outer-menu-item"><span class="menu-title">책
 						전용</span> <!-- sub 메뉴 -->
 					<ul class="inner-menu">
