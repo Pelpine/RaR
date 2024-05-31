@@ -293,15 +293,16 @@ public class EventDAO {
 		}
 	}
 	//리워드 지급
-	public void updatePoint(int user_num) throws Exception{
+	public void updatePoint(int user_num, int point) throws Exception{
 		Connection conn = null;
 		String sql = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "UPDATE MEMBER_DETAIL SET user_point=user_point+50 WHERE user_num=?";
+			sql = "UPDATE MEMBER_DETAIL SET user_point=? WHERE user_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, user_num);
+			pstmt.setInt(1, point);
+			pstmt.setInt(2, user_num);
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);

@@ -11,6 +11,7 @@
 </head>
 <body>
 	<div class="page-main">
+		<input type="button" value="룰렛 돌리기" onclick = "location.href='eventRoulette.do'">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
 			<h2>이벤트 목록</h2>
