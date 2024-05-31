@@ -23,7 +23,7 @@
             <c:if test="${!empty user_num}">
                 <div class="header_button_group">
                     <button class="header_button"
-                            onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'">출석체크</button>
+                            onclick="location.href='${pageContext.request.contextPath}/cart/cartList.do'">장바구니</button>
                     <button class="header_button" 
                             onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">마이페이지</button>
                     <button class="header_button" 
@@ -31,6 +31,7 @@
                 </div>
             </c:if>
         </div>
+        <!--
 		<ul>
             <c:if test="${!empty user_num && empty user_photo}">
                 <li class="menu-profile">
@@ -53,18 +54,12 @@
                 </li>
             </c:if>
         </ul>
+        -->
     </div>
     <div class="menu">
         <div class="dropdown">
-            <button class="dropbtn">관리자</button>
+            <button class="dropbtn">SHOP</button>
             <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">shop</button>
-            <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
                 <a href="${pageContext.request.contextPath}/book/list.do">책 검색</a>
                 <a href="${pageContext.request.contextPath}/book/booklist.do">책 목록</a>
             </div>
