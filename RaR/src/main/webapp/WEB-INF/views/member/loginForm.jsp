@@ -32,16 +32,17 @@ $(function(){
         <form id="login_form" action="login.do" method="post">
             <ul>
                 <li class="floating-label">
+                <label for="user_email">이메일</label>
                    <input type="email" class="form-input"
                     placeholder="이메일" name="user_email" id="user_email"
                     maxlength="50" autocomplete="off">
-                   <label for="user_email">이메일</label>
                 </li>
+                
                 <li class="floating-label">
+                   <label for="password">비밀번호</label>
                    <input type="password" class="form-input"
                     placeholder="비밀번호" name="password" id="password"
                     maxlength="12" autocomplete="off">
-                   <label for="password">비밀번호</label>
                 </li>
             </ul>
             <div class="align-center">
