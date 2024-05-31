@@ -21,7 +21,7 @@ $(function(){
 					let output = '<tr>';
 					output += '<td><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
 					output += '<td><img src="' + item.bookVO.bk_img + '" width="60">' + item.bookVO.bk_name + '</td>';
-					output += '<td>'
+					output += '<td class="item_list_price">'
 							+ '정가 : ' + item.bookVO.bk_price + '원<br>'
 							+ '판매가 : <span id="item_price_' + item.cart_num + '">' + item.itemVO.item_price + '</span>원<br>'
 							+ '포인트 : ' + item.itemVO.item_price * 0.01 + 'p'
@@ -99,12 +99,12 @@ $(function(){
 	    let ship = 0; // 배송비
 	    let totalPayment = 0;
 	    let totalPoints = 0;
-	
+		
 	    // 각 상품별 정보를 가져와서 계산
 	    $('.selectCheck:checked').each(function() {
 	        let cartNum = $(this).attr('data-cartnum');
 	        let item_price = parseInt($('#item_price_' + cartNum).text());
-			
+        
 			//상품 개수
 			totalCount++;
 			//상품 금액
@@ -113,9 +113,8 @@ $(function(){
 	    });
 		
 		//배송비	
-        if (totalPrice < 30000) {
-            ship = 4000;
-        }
+        if (totalPrice <= 0) ship = 0;
+        else if(totalPrice < 30000) ship = 4000;
 		//포인트
         totalPoints = Math.floor(totalPrice * 0.01); // 총 주문 금액의 1%를 적립
 		//총 상품 금액
@@ -136,6 +135,15 @@ $(function(){
 	    $('#totalPoints').val(totalPoints);
 	}
 	
+	//
+	$(document).on('submit','#cart_order',function(){
+		$('#selectedItems').empty();
+		
+		$('.selectCheck:checked').each(function() {
+			let selectedItem = '<input type="hidden" name="selectedCartNums" value="' + $(this).attr('data-cartnum') + '">';
+        	$('#selectedItems').append(selectedItem);
+		});
+	});
 	//초기 함수 호출
 	selectList();
 });

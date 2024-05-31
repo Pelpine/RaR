@@ -16,6 +16,8 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<form id="cart_order" action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
+			<!-- 선택상품 hidden -->
+			<div id="selectedItems"></div>
 			<!-- 장바구니 상품 목록, 동적으로 생성 -->
 			<table id="output"></table>
 			<p>

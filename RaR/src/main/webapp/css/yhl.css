@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
+
 #output tr td{
+	font-size:10pt;
+}
+.item_list_price{
 	text-align: right;
-	font-size:6pt;
+	font-size:8pt;
 }
