@@ -23,7 +23,6 @@
 	<h1 class="align-center">
 		<a href="${pageContext.request.contextPath}/main/main.do">회원제 게시판</a>
 	</h1>
-	
 </div>
 <div id="main_nav">
     <div class="pull-left"></div>

@@ -18,11 +18,11 @@ ul{
 /* 페이지 레이아웃
 ---------------------*/
 .page-main{
-	background:#FFFFFF;
+	background:skyblue;
 	margin:40px 0;
 	border-radius:5px;
-	box-shadow:0 2px 6px rgba(100,100,100,0.3);
-	min-height:650px;
+	box-shadow:0 2px 6px skyblue;
+	min-height:150px;
 }
 .content-main{
 	padding:10px 20px;
@@ -117,18 +117,6 @@ ul{
 .inner-menu-item > a:hover{
     background:black;
     color:white;
-}
-/*본문*/
-#content{
-    overflow:hidden;
-}
-#main_section{
-    float:left;
-    width:701px;
-}
-#main_aside{
-    float:right;
-    width:200px;
 }
 /*커서 처리*/
 .outer-menu-item, .input-search-submit{
