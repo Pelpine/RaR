@@ -20,7 +20,7 @@
 	<div class="align-center">
 	
 	<p>
-		<iframe width="500" height="500" src="roulette.do"></iframe>
+		<iframe width="400" height="500" src="roulette.do"></iframe>
 	</p>
 </div>		
 	<hr size="1" width="100%" noshade="noshade">
