@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>이벤트 상세 정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css">
 </head>
 <body>
 <div class="page-main">
