@@ -140,3 +140,6 @@
 li {
     list-style-type: none;
 }
+.my-photo{
+	border:3px solid #03a9f4;
+}
