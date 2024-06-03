@@ -13,7 +13,7 @@ public class DetailGenreAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//글번호 반환
-				int bg_num = Integer.parseInt(request.getParameter("board_num"));
+				int bg_num = Integer.parseInt(request.getParameter("bg_num"));
 				
 				BoardDAO dao = BoardDAO.getInstance();
 				

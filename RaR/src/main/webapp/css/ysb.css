@@ -55,7 +55,6 @@ a:hover{
 form{
 	width:600px;
 	margin:0 auto;
-	border:1px solid #000;
 	padding:10px 10px 10px 30px;
 }
 form ul li{
@@ -78,7 +77,7 @@ input[type="text"],input[type="password"],
 #register_form input[id="user_email"]{
 	width:223px;
 }
-input[id="zipcode"]{
+input[id="user_zipcode"]{
 	width:205px;
 }
 input[type="number"]{
@@ -118,20 +117,6 @@ input[type="number"]{
 }
 /* 공통 목록
 ---------------------*/
-form#search_form{
-	border:none;
-}
-ul.search{
-	width:340px;
-	list-style:none;
-	padding:0;
-	margin:0 auto;
-}
-ul.search li{
-	margin:0 0 9px 0;
-	padding:0;
-	display:inline;
-}
 .list-space{
 	margin-bottom:10px;
 }
@@ -144,4 +129,7 @@ table{
 table td, table th{
 	border:1px solid #000;
 	padding:5px;
+}
+.h{
+	text-align:center;
 }

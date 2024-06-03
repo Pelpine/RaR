@@ -1,18 +1,23 @@
 @charset "UTF-8";
-.main_nav {
+.main-nav {
+	display: flex;
+	flex-direction: column;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    background-color: #ffffff;
 }
-
+.top-nav {
+	justify-content: flex-end;
+	padding-top : 20px;
+	padding-right: 20px;
+}
 .header {
 	margin: 0 auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    gap: 20px; /* 요소 사이 간격 추가 */
 }
 
 .logo {
@@ -21,6 +26,7 @@
 
 .logo img {
     width: 170px;
+    height: 150px;
 }
 
 .search-bar {
@@ -31,10 +37,11 @@
 }
 
 .search-bar input {
-    width: 300px;
+    width: 400px;
     padding: 8px;
     border: 1px solid #ced4da;
     border-radius: 4px;
+    margin-right: 8px; /* 버튼과 입력 필드 사이의 간격 추가 */
 }
 
 .search-bar button {
@@ -42,7 +49,6 @@
     background-color: #ffcc00;
     border: none;
     border-radius: 4px;
-    margin-left: 8px;
     cursor: pointer;
 }
 
@@ -51,7 +57,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 200px
 }
 
 .header_button_group {
@@ -70,9 +75,15 @@
 }
 
 .menu-profile img {
-    width: 25px;
-    height: 25px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* profile을 오른쪽 끝으로 밀기 */
+    padding-right: 10px; /* 오른쪽 패딩 추가 */
 }
 
 .menu {
@@ -126,17 +137,6 @@
 .dropdown:hover .dropbtn {
     background-color: #007bb5;
 }
-
-.header_button_group {
-    display: flex;
-    float: right;
-    align-items: center;
-}
-
-.header_button_group button {
-    white-space: nowrap;
-}
 li {
-    display: inline;
     list-style-type: none;
 }

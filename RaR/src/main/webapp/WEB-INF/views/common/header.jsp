@@ -3,18 +3,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/attendance.js"></script>
-<div class="main_nav">
-	<div class="header">
-        <div class="logo">
-            <a href="${pageContext.request.contextPath}/main/main.do">
-            <img src="${pageContext.request.contextPath}/images/logo.png" alt="Read and Renew">
-            </a>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="검색어를 입력하십시오.">
-            <button type="submit">🔍</button>
-        </div>
-        <div class="auth-buttons">
+<div class="main-nav">
+	<div class="top-nav">
+		<div class="auth-buttons">
             <c:if test="${empty user_num}">
                 <div class="header_button_group">
                     <button class="header_button" 
@@ -25,7 +16,6 @@
             </c:if>
             <c:if test="${!empty user_num}">
                 <div class="header_button_group">
-                    <button class="header_button" data-eventnum="100" id="attendance_button">출석체크</button>
                     <button class="header_button" 
                             onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">마이페이지</button>
                     <button class="header_button" 
@@ -33,36 +23,37 @@
                 </div>
             </c:if>
         </div>
-		<ul>
-            <c:if test="${!empty user_num && empty user_photo}">
-                <li class="menu-profile">
-                    <a href="${pageContext.request.contextPath}/member/myPage.do">
-                    <img src="${pageContext.request.contextPath}/images/face.png" class="my-photo">
-                    </a>
-                </li>
-                <li>
-                    [<span>${user_email}</span>]
-                </li>
-            </c:if>
-            <c:if test="${!empty user_num && !empty user_photo}">
-                <li class="menu-profile">
-                    <a href="${pageContext.request.contextPath}/member/myPage.do">
-                    <img src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo">
-                    </a>
-                </li>
-                <li>
-                    [<span>${user_email}</span>]
-                </li>
-            </c:if>
-        </ul>
+	</div>
+	<div class="header">
+        <div class="logo">
+            <a href="${pageContext.request.contextPath}/main/main.do">
+            <img src="${pageContext.request.contextPath}/images/logo.png" alt="Read and Renew">
+            </a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="검색어를 입력하십시오.">
+            <button type="submit">🔍</button>
+        </div>
+        <div class="profile">
+			<ul>
+	            <c:if test="${!empty user_num && empty user_photo}">
+	                <li class="menu-profile">
+	                    <a href="${pageContext.request.contextPath}/member/myPage.do">
+	                    <img src="${pageContext.request.contextPath}/images/face.png" class="my-photo">
+	                    </a>
+	                </li>
+	            </c:if>
+	            <c:if test="${!empty user_num && !empty user_photo}">
+	                <li class="menu-profile">
+	                    <a href="${pageContext.request.contextPath}/member/myPage.do">
+	                    <img src="${pageContext.request.contextPath}/upload/${user_photo}" width="48" height="48" class="my-photo">
+	                    </a>
+	                </li>
+	            </c:if>
+	        </ul>
+        </div>
     </div>
     <div class="menu">
-        <div class="dropdown">
-            <button class="dropbtn">관리자</button>
-            <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
-            </div>
-        </div>
         <div class="dropdown">
             <button class="dropbtn">shop</button>
             <div class="dropdown-content">

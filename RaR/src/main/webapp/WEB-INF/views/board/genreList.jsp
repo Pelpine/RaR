@@ -67,7 +67,7 @@ window.onload=function(){
 			<c:forEach var="genre" items="${list}">
     		<tr>
         		<td>${genre.bg_num}</td>
-       			 <td><a href="detail.do?bg_num=${genre.bg_num}">${genre.bg_title}</a></td> 
+       			 <td><a href="detailGenre.do?bg_num=${genre.bg_num}">${genre.bg_title}</a></td> 
     		</tr>
 			</c:forEach>
 		</table>
