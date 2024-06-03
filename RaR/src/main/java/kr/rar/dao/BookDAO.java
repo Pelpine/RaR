@@ -183,6 +183,7 @@ public class BookDAO {
 				String sql = null;
 				String sub_sql = "";
 				int count = 0;
+				int cnt = 0;
 				try {
 					conn = DBUtil.getConnection();
 					
@@ -191,13 +192,19 @@ public class BookDAO {
 						if(keyfield.equals("1")) sub_sql += " where bk_name like '%' || ? || '%' "; 
 						else if(keyfield.equals("2")) sub_sql += " where bk_writer like '%' || ? || '%' ";
 						else if(keyfield.equals("3")) sub_sql += " where bk_publisher like '%' || ? || '%' ";
+						else if(keyfield.equals("4")) sub_sql += "where bk_name like '%' || ? || '%' or bk_writer like '%' || ? || '%' or bk_publisher like '%' || ? || '%'";
 					}
 					
 					sql = "select count(*) from book " + sub_sql;
 					
 					pstmt = conn.prepareStatement(sql);
-					if(keyword!=null && !"".equals(keyword)) {
-						pstmt.setString(1,keyword);
+					if(keyfield.equals("1") || keyfield.equals("2") || keyfield.equals("3")) {
+						pstmt.setString(++cnt, keyword);
+					}
+					if(keyfield.equals("4")) {
+						pstmt.setString(++cnt, keyword);
+						pstmt.setString(++cnt, keyword);
+						pstmt.setString(++cnt, keyword);
 					}
 					rs = pstmt.executeQuery();
 					if(rs.next()) {
@@ -221,16 +228,24 @@ public class BookDAO {
 				int cnt = 0;
 				try {
 					conn = DBUtil.getConnection();
-					if(keyword!=null) {
+					if(keyword!=null && !"".equals(keyword)) {
 						//검색 처리
 						if(keyfield.equals("1")) sub_sql += " where bk_name like '%' || ? || '%' "; 
 						else if(keyfield.equals("2")) sub_sql += " where bk_writer like '%' || ? || '%' ";
 						else if(keyfield.equals("3")) sub_sql += " where bk_publisher like '%' || ? || '%' ";
+						else if(keyfield.equals("4")) sub_sql += "where bk_name like '%' || ? || '%' or bk_writer like '%' || ? || '%' or bk_publisher like '%' || ? || '%'";
 					}
 					sql = "select * from(select a.*,rownum rnum from(select * from book "+sub_sql+" order by bk_num desc)a) where rnum >= ? and rnum <= ?";
 					pstmt = conn.prepareStatement(sql);
 					if(keyword!=null && !"".equals(keyword)) {
-						pstmt.setString(++cnt,keyword);
+						if(keyfield.equals("1") || keyfield.equals("2") || keyfield.equals("3")) {
+							pstmt.setString(++cnt, keyword);
+						}
+						if(keyfield.equals("4")) {
+							pstmt.setString(++cnt, keyword);
+							pstmt.setString(++cnt, keyword);
+							pstmt.setString(++cnt, keyword);
+						}
 					}
 					pstmt.setInt(++cnt, start);
 					pstmt.setInt(++cnt, end);

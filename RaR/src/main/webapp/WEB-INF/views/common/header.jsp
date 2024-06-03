@@ -31,10 +31,13 @@
             <img src="${pageContext.request.contextPath}/images/logo.png" alt="Read and Renew">
             </a>
         </div>
-        <div class="search-bar">
-            <input type="text" placeholder="검색어를 입력하십시오.">
-            <button type="submit">🔍</button>
-        </div>
+        <form action="${pageContext.request.contextPath}/book/booklist.do" id="search_form" method="post">
+	        <div class="search-bar">
+	        	<input type="hidden" name="keyfield" id="keyfield" value="4">
+	            <input type="search" size="16" name="keyword" id="keyword" placeholder="검색어를 입력하십시오.">
+	            <button type="submit">🔍</button>
+	        </div>
+        </form>
         <div class="profile">
 			<ul>
 	            <c:if test="${!empty user_num && empty user_photo}">
