@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import kr.rar.dao.CartDAO;
 import kr.rar.dao.ItemDAO;
+import kr.rar.dao.MemberDAO;
 import kr.rar.vo.CartVO;
 import kr.rar.vo.ItemVO;
+import kr.rar.vo.MemberVO;
 import kr.controller.Action;
 
 public class OrderFormAction implements Action{
@@ -52,7 +54,7 @@ public class OrderFormAction implements Action{
 	    if(pay_total < 30000) pay_ship = 4000;
 	    
 	    //적립포인트
-	    int pay_points = (int)Math.floor(pay_total * 0.01);
+	    int order_points = (int)Math.floor(pay_total * 0.01);
 	    
 		//장바구니에 담겨있는 상품 정보 호출
 		List<CartVO> selectedCartList = dao.getSelectedCartList(user_num);
@@ -73,10 +75,16 @@ public class OrderFormAction implements Action{
 //			}
 //		}
 		
+		//사용자 보유 포인트
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		MemberVO member = memberDAO.getMember(user_num);
+		int user_points = member.getUser_point();
+		
 		request.setAttribute("list", selectedCartList);
 		request.setAttribute("pay_total", pay_total);
 		request.setAttribute("pay_ship", pay_ship);
-		request.setAttribute("pay_points", pay_points);
+		request.setAttribute("order_points", order_points);
+		request.setAttribute("user_points", user_points);
 		
 		return "/WEB-INF/views/order/orderForm.jsp";
 	}

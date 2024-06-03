@@ -1,5 +1,4 @@
 $(function(){
-	
 	//목록 호출
 	function selectList(){
 		$.ajax({
@@ -7,7 +6,7 @@ $(function(){
 			type:'post',
 			dataType:'json',
 			success:function(param){
-				$('#output').empty();
+				$('#output').empty();	
 					let head_output = '<tr>';
 					head_output += '<th><input type="checkbox" id="selectAll" checked></th>';
 					head_output += '<th>상품정보</th>';
@@ -44,7 +43,6 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-		
 	}
 	
 	//장바구니 삭제 함수

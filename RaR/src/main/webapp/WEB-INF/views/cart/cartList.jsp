@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cart.js"></script>
@@ -14,6 +13,10 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<c:if test="${count == 0}">
+	<div class="result-display">장바구니에 담은 상품이 없습니다.</div>
+	</c:if>
+	<c:if test="${count > 0}">
 	<div class="content-main">
 		<form id="cart_order" action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
 			<!-- 선택상품 hidden -->
@@ -51,6 +54,7 @@
 			<input type="submit" value="주문하기">
 		</form>
 	</div>
+	</c:if>
 </div>
 </body>
 </html>
