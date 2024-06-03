@@ -46,22 +46,22 @@ public class OrderFormAction implements Action{
 	    }
 		//장바구니에 담겨있는 상품 정보 호출
 		List<CartVO> selectedCartList = dao.getSelectedCartList(user_num);
-		ItemDAO itemDAO = ItemDAO.getInstance();
-		for(CartVO cart : selectedCartList) {
-			ItemVO item = itemDAO.getItem(cart.getItem_num());
-			if(item.getItem_status() == 1) {
-				//상품 판매 완료
-				request.setAttribute("notice_msg", "[" + item.getBookVO().getBk_name() + "]상품 판매 완료");
-				request.setAttribute("notice_url", request.getContextPath() + "/cart/list.do");
-				return "/WEB-INF/views/common/alert_view.jsp";
-			}
-			if(item.getItem_status() == 2) {
-				//상품 판매 중지
-				request.setAttribute("notice_msg", "[" + item.getBookVO().getBk_name() + "]상품 판매 중지");
-				request.setAttribute("notice_url", request.getContextPath() + "/cart/list.do");
-				return "/WEB-INF/views/common/alert_view.jsp";
-			}
-		}
+//		ItemDAO itemDAO = ItemDAO.getInstance();
+//		for(CartVO cart : selectedCartList) {
+//			ItemVO item = itemDAO.getItem(cart.getItem_num());
+//			if(item.getItem_status() == 1) {
+//				//상품 판매 완료
+//				request.setAttribute("notice_msg", "[" + item.getBookVO().getBk_name() + "]상품 판매 완료");
+//				request.setAttribute("notice_url", request.getContextPath() + "/cart/list.do");
+//				return "/WEB-INF/views/common/alert_view.jsp";
+//			}
+//			if(item.getItem_status() == 2) {
+//				//상품 판매 중지
+//				request.setAttribute("notice_msg", "[" + item.getBookVO().getBk_name() + "]상품 판매 중지");
+//				request.setAttribute("notice_url", request.getContextPath() + "/cart/list.do");
+//				return "/WEB-INF/views/common/alert_view.jsp";
+//			}
+//		}
 		
 		request.setAttribute("list", selectedCartList);
 		request.setAttribute("pay_total", pay_total);

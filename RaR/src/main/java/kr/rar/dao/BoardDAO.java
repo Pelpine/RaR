@@ -777,6 +777,37 @@ public class BoardDAO {
 			}
 			return count;
 		}
+		//장르 상세
+		public GenreVO getGenre(int bg_num) throws Exception {
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+		    GenreVO genre = null;
+		    String sql = null;
+		    try {
+		        conn = DBUtil.getConnection();
+		        sql = "SELECT * FROM board_genre "
+		                + "JOIN member USING (user_num) "
+		                + "LEFT OUTER JOIN board_genre_user USING (bg_num) "
+		                + "WHERE board_genre.bg_num = ?";
+		        
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setInt(1, bg_num);
+		        rs = pstmt.executeQuery();
+		        if (rs.next()) {
+		            genre = new GenreVO();
+		            genre.setBg_num(rs.getInt("bg_num"));
+		            genre.setBg_title(rs.getString("bg_title"));
+		            genre.setUser_num(rs.getInt("user_num"));
+		        }
+		    } catch (Exception e) {
+		        throw new Exception(e);
+		    } finally {
+		        DBUtil.executeClose(rs, pstmt, conn);
+		    }
+		    
+		    return genre;
+		}
 	}
 
 
