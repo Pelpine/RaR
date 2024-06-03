@@ -8,6 +8,8 @@ private String bgu_content;
 private Date bgu_date;
 private Date bgu_redate;
 private int bg_num;
+private int user_num;
+
 public int getBgu_num() {
 	return bgu_num;
 }
@@ -38,5 +40,20 @@ public int getBg_num() {
 public void setBg_num(int bg_num) {
 	this.bg_num = bg_num;
 }
+public void setUser_num(int user_num) {
+    this.user_num = user_num;
+}
 
+public int getUser_num() {
+    return user_num;
+}
+private String user_email;	
+
+
+public String getUser_email() {
+	return user_email;
+}
+public void setUser_email(String user_email) {
+	this.user_email = user_email;
+}
 }

@@ -857,7 +857,72 @@ public class BoardDAO {
 					}
 					return count;
 				}
+				//장르게시판 댓글 목록
+				public List<GenreUserVO> getListReplyGenre(
+						int start, int end, int bg_num)throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					List<GenreUserVO> list = null;
+					String sql = null;
+					try {
+						conn=DBUtil.getConnection();
+				
+						sql="SELECT * FROM(SELECT a.*, rownum rnum FROM "
+								+ "(SELECT * FROM board_genre_user JOIN member USING(user_num) "
+								+ "WHERE bg_num=? ORDER BY re_num DESC)a) "
+								+ "WHERE rnum >= ? AND rnum <= ?";
+						
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, bg_num);
+						pstmt.setInt(2, start);
+						pstmt.setInt(3, end);
+						
+						rs=pstmt.executeQuery();
+						list= new ArrayList<GenreUserVO>();
+						while(rs.next()) {
+						    GenreUserVO replyg = new GenreUserVO();
+						    replyg.setBgu_num(rs.getInt("bgu_num"));
+						    // 날짜->1분전, 1시간전, 1일전 형식의 문자열로 변환
+						    replyg.setBgu_date(rs.getDate("bgu_date"));
+						    if(rs.getDate("bgu_redate") != null) {
+						        replyg.setBgu_redate(rs.getDate("bgu_redate"));
+						    }
+						    replyg.setBgu_content(StringUtil.useBrNoHTML(rs.getString("bgu_content")));
+						    replyg.setBg_num(rs.getInt("bg_num"));
+						    // 추가된 부분
+						    replyg.setUser_num(rs.getInt("user_num"));
+						    replyg.setUser_email(rs.getString("user_email"));
 
+						    list.add(replyg);
+						}
+						}catch(Exception e) {
+							throw new Exception(e);
+						}finally {
+							DBUtil.executeClose(rs, pstmt, conn);
+						}
+					return list;
+				}
+				//장르게시판 댓글 수정
+				public void updateReplyGenre(GenreUserVO replyg) throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					try {
+						conn=DBUtil.getConnection();
+						sql="UPDATE board_genre_user SET bgu_content=?,modify_date=SYSDATE,"
+							+ "user_email=? WHERE bgu_num=?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, replyg.getBgu_content());
+						pstmt.setString(2, replyg.getUser_email());
+						pstmt.setInt(3, replyg.getBgu_num());
+						pstmt.executeUpdate();
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(null, pstmt, conn);
+					}
+				}
 	}
 
 
