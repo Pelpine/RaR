@@ -810,6 +810,100 @@ public class BoardDAO {
 		    
 		    return genre;
 		}
+		//장르 글 등록 (댓글)
+				public void insertReplyGenre(GenreUserVO genreUser)throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					try {
+						conn=DBUtil.getConnection();
+						sql="INSERT INTO board_genre_user (re_num,content,user_ip,user_num,board_num)"
+								+ "	VALUES(reply_seq.nextval,?,?,?,?)";
+						pstmt = conn.prepareStatement(sql);
+						//데이터 바인딩
+						pstmt.setString(1, boardReply.getContent());
+						pstmt.setString(2, boardReply.getUser_ip());
+						pstmt.setInt(3, boardReply.getUser_num());
+						pstmt.setInt(4, boardReply.getBoard_num());
+						pstmt.executeUpdate();
+						
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(null, pstmt, conn);
+					}
+				}
+			//댓글 수 
+				public int getReplyBoardCount(int board_num)throws Exception{
+					int count = 0;
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					ResultSet rs = null;
+					
+					try {
+					conn=DBUtil.getConnection();
+					sql="SELECT COUNT(*)FROM board_reply WHERE board_num=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, board_num);
+					rs= pstmt.executeQuery();
+					if(rs.next()) {
+						count=rs.getInt(1);
+						
+					}
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(rs, pstmt, conn);
+					}
+					return count;
+				}
+			//댓글 목록
+				public List<BoardReplyVO> getListReplyBoard(
+						int start, int end, int board_num)throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					List<BoardReplyVO> list = null;
+					String sql = null;
+					try {
+						conn=DBUtil.getConnection();
+						sql="SELECT * FROM(SELECT a.*, rownum rnum FROM "
+							+ "(SELECT * FROM board_reply JOIN member USING(user_num) "
+							+ "WHERE board_num=? ORDER BY re_num DESC)a) "
+							+ "WHERE rnum >= ? AND rnum <= ?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, board_num);
+						pstmt.setInt(2, start);
+						pstmt.setInt(3, end);
+						
+						rs=pstmt.executeQuery();
+						list= new ArrayList<BoardReplyVO>();
+						while(rs.next()) {
+							BoardReplyVO reply = new BoardReplyVO();
+							reply.setRe_num(rs.getInt("re_num"));
+							//날짜->1분전, 1시간전, 1일전 형식의 문자열로 변환
+							
+							reply.setReg_date(rs.getDate("reg_date"));
+							if(rs.getString("modify_date")!=null) {
+								reply.setModify_date(rs.getDate("modify_date"));
+							}	
+							reply.setContent(StringUtil.useBrNoHTML(
+													rs.getString("content")));
+							
+							reply.setBoard_num(rs.getInt("board_num"));
+							reply.setUser_num(rs.getInt("user_num"));
+							reply.setUser_email(rs.getString("user_email"));
+							
+							list.add(reply);
+						}
+						}catch(Exception e) {
+							throw new Exception(e);
+						}finally {
+							DBUtil.executeClose(rs, pstmt, conn);
+						}
+					return list;
+				}
 	}
 
 
