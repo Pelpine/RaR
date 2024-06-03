@@ -782,17 +782,17 @@ public class BoardDAO {
 		    Connection conn = null;
 		    PreparedStatement pstmt = null;
 		    ResultSet rs = null;
-		    GenreVO genre = null;
 		    String sql = null;
+		    GenreVO genre = null;
 		    try {
 		        conn = DBUtil.getConnection();
 		        sql = "SELECT * FROM board_genre "
 		                + "JOIN member USING (user_num) "
-		                + "LEFT OUTER JOIN board_genre_user USING (bg_num) "
-		                + "WHERE board_genre.bg_num = ?";
+		                + "LEFT OUTER JOIN member_detail USING (user_num) "
+		                + "WHERE bg_num = ?";
 		        
 		        pstmt = conn.prepareStatement(sql);
-		        pstmt.setInt(1, bg_num);
+				pstmt.setInt(1, bg_num );
 		        rs = pstmt.executeQuery();
 		        if (rs.next()) {
 		            genre = new GenreVO();
