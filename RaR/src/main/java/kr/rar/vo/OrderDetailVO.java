@@ -7,7 +7,7 @@ public class OrderDetailVO {
 	private String bk_img;		//책사진
 	private int bk_price;		//정가
 	private int item_price;		//판매가
-	private int item_grade;	//상품상태
+	private int item_grade;		//상품상태
 	private int order_num;		//주문번호
 	
 	public int getDetail_num() {

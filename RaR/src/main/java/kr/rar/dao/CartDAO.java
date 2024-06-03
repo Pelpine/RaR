@@ -93,7 +93,8 @@ public class CartDAO {
 				+ "JOIN member_detail USING(user_num) "
 				+ "JOIN book USING (bk_num) "
 				+ "JOIN item USING (item_num) "
-				+ "WHERE user_num=?";
+				+ "WHERE user_num=? "
+				+ "ORDER BY reg_date DESC";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -246,7 +247,8 @@ public class CartDAO {
 				+ "JOIN member_detail USING(user_num) "
 				+ "JOIN book USING (bk_num) "
 				+ "JOIN item USING (item_num) "
-				+ "WHERE user_num=? AND selected=1";
+				+ "WHERE user_num=? AND selected=1 "
+				+ "ORDER BY reg_date DESC";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩

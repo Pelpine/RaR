@@ -9,8 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.rar.dao.CartDAO;
+import kr.rar.dao.OrderDAO;
 import kr.rar.vo.CartVO;
 import kr.rar.vo.OrderDetailVO;
+import kr.rar.vo.OrderVO;
 
 public class OrderAction implements Action{
 
@@ -54,8 +56,34 @@ public class OrderAction implements Action{
 	  		orderDetail.setItem_price(cart.getItemVO().getItem_price());
 	  		orderDetail.setItem_grade(cart.getItemVO().getItem_grade());
 	  		
+	  		orderDetailList.add(orderDetail);
 	  	}
-		return null;
+	  	
+	  	//구매 정보 담기
+	  	OrderVO order = new OrderVO();
+	  	order.setPay_total(Integer.parseInt(request.getParameter("pay_total")));
+	  	order.setPay_ship(Integer.parseInt(request.getParameter("pay_ship")));
+	  	order.setPay_points(Integer.parseInt(request.getParameter("pay_points")));
+	  	order.setOrder_points(Integer.parseInt(request.getParameter("order_points")));
+	  	order.setReceive_name(request.getParameter("receive_name"));
+	  	order.setReceive_post(request.getParameter("receive_post"));
+	  	order.setReceive_address1(request.getParameter("receive_address1"));
+	  	order.setReceive_address2(request.getParameter("receive_address2"));
+	  	order.setReceive_phone(request.getParameter("receive_phone"));
+	  	order.setPay_payment(Integer.parseInt(request.getParameter("pay_payment")));
+	  	order.setNotice(request.getParameter("notice"));
+	  	order.setUser_num(user_num);
+	  	
+	  	OrderDAO orderDAO = OrderDAO.getInstance();
+	  	orderDAO.insertOrder(order, orderDetailList);
+	  	
+	  	//Refresh 정보를 응답 헤더에 추가
+  		String url = request.getContextPath()+"/main/main.do";
+  		response.addHeader("Refresh", "2;url="+url);
+  		request.setAttribute("result_title", "상품 주문 완료");
+  		request.setAttribute("result_msg", "주문이 완료되었습니다.");
+  		request.setAttribute("result_url", url);
+  		
+  		return "/WEB-INF/views/common/result_view.jsp";
 	}
-
 }

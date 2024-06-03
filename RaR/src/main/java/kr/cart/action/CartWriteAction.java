@@ -22,6 +22,7 @@ public class CartWriteAction implements Action{
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
+		int item_status = Integer.parseInt(request.getParameter("item_status"));
 		
 		if(user_num==null) {//로그인이 되지 않은 경우
 			mapAjax.put("result", "logout");
@@ -30,19 +31,25 @@ public class CartWriteAction implements Action{
 			request.setCharacterEncoding("utf-8");
 			
 			CartDAO dao = CartDAO.getInstance();
-			//상품 중복체크
-			boolean isItemExists = dao.isItemExists(user_num, item_num);
-			if (isItemExists) {
-                mapAjax.put("result", "duplicated"); // 중복된 아이템이 있을 경우
-            }else {
-				CartVO cart = new CartVO();
-				cart.setUser_num(user_num);
-				cart.setItem_num(item_num);
-				cart.setBk_num(Integer.parseInt(request.getParameter("bk_num")));
-				
-				dao.insertCart(cart);
-				mapAjax.put("result", "success");
-            }
+			
+			//상품 상태가 판매상태가 아닐 경우 - 현재 작동안됨..
+			if(item_status > 1) {
+				mapAjax.put("result", "noSale");
+			}else {
+				//상품 중복체크
+				boolean isItemExists = dao.isItemExists(user_num, item_num);
+				if (isItemExists) {
+					mapAjax.put("result", "duplicated"); // 중복된 아이템이 있을 경우
+				}else {
+					CartVO cart = new CartVO();
+					cart.setUser_num(user_num);
+					cart.setItem_num(item_num);
+					cart.setBk_num(Integer.parseInt(request.getParameter("bk_num")));
+					
+					dao.insertCart(cart);
+					mapAjax.put("result", "success");
+				}				
+			}
 		}
 		//JSON 데이터 생성
 		ObjectMapper mapper = new ObjectMapper();

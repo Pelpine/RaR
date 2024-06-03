@@ -5,7 +5,7 @@
 <div class="page-main">
 	<div class="content-main">
 		<c:if test="${count == 0}">
-			<div class="result-display">해당 책에 대한 상품이 없습니다.</div>
+			<div class="result-display">해당 책의 판매 가능한 상품이 없습니다.</div>
 		</c:if>
 		<!-- 상품 목록 -->
 		<c:if test="${count > 0}">
@@ -17,6 +17,7 @@
 					<th>장바구니 담기</th>
 				</tr>
 				<c:forEach var="item" items="${list}">
+					<c:if test="${item.item_status == 1}">
 					<tr>
 						<td>
 							<img src="${item.bookVO.bk_img}" width="60">
@@ -48,10 +49,12 @@
 								style="width: 0; margin: 10px 0; border: 0; padding: 0;">
 								<input type="hidden" name="item_num" value="${item.item_num}">
 								<input type="hidden" name="bk_num" value="${item.bk_num}">
+								<input type="hidden" name="item_status" value="${item.item_status}">
 								<input type="submit" value="장바구니 담기">
 							</form>
 						</td>
 					</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 			<!-- 페이지 -->

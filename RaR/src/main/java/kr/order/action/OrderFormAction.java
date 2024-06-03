@@ -47,6 +47,13 @@ public class OrderFormAction implements Action{
 	    	return "/WEB-INF/views/common/alert_view.jsp";
 	    }
 	    
+	    //배송비
+	    int pay_ship = 0;
+	    if(pay_total < 30000) pay_ship = 4000;
+	    
+	    //적립포인트
+	    int pay_points = (int)Math.floor(pay_total * 0.01);
+	    
 		//장바구니에 담겨있는 상품 정보 호출
 		List<CartVO> selectedCartList = dao.getSelectedCartList(user_num);
 //		ItemDAO itemDAO = ItemDAO.getInstance();
@@ -68,6 +75,8 @@ public class OrderFormAction implements Action{
 		
 		request.setAttribute("list", selectedCartList);
 		request.setAttribute("pay_total", pay_total);
+		request.setAttribute("pay_ship", pay_ship);
+		request.setAttribute("pay_points", pay_points);
 		
 		return "/WEB-INF/views/order/orderForm.jsp";
 	}
