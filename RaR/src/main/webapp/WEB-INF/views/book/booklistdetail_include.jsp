@@ -23,7 +23,7 @@
 							<img src="${item.bookVO.bk_img}" width="60">
 							<%-- 상품이미지가 없을 경우, 기본 이미지 처리 --%>
 							<c:if test="${item.item_img == null}">
-								<img src="../images/face.png" width="60">
+								<img src="../images/book_default.png" width="60">
 							</c:if> <%-- 상품이미지가 있을 경우 --%> 
 							<c:if test="${item.item_img != null}">
 								<a href="javascript:void(0);" onclick="showPopup('${pageContext.request.contextPath}/upload/${item.item_img}')">
