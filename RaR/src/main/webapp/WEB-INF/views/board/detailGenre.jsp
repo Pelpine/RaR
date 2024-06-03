@@ -84,7 +84,7 @@
 			id="board_num">
 			<textarea rows="3" cols="50" name="content"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if> id="re_content"
-			class="content"><c:if test="${empty user_num}">로그인해야 작성할수 있습니다.</c:if></textarea>
+			class="content"><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num}">
 			<div id="re_first">
 				<span class="letter-count">300/300</span>

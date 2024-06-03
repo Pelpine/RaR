@@ -29,7 +29,8 @@ $(function(){
 			dataType:'json',
 			success:function(param){
 				if(param.result =='logout'){
-					alert('로그인후 좋아요를 줄러주세요');
+					alert('로그인 후 좋아요를 불러주세요');
+					window.location.href = '../member/loginForm.do';
 				}else if(param.result == 'success'){
 					displayFav(param);
 				}else{
