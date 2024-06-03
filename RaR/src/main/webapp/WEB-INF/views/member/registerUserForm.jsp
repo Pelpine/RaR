@@ -21,9 +21,9 @@ window.onload = function(){
             dataType: 'json',
             success: function(param){
                 if(param.result == 'idDuplicated'){
-                    $('#message_user_email').text('아이디 중복');
+                    $('#message_user_email').text('중복된 이메일');
                 } else if(param.result == 'idNotFound'){
-                    $('#message_user_email').text('아이디 사용 가능');
+                    $('#message_user_email').text('사용 가능');
                 } else {
                     alert('오류');
                 }
