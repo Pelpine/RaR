@@ -68,7 +68,7 @@ window.onload=function(){
 				<input type="hidden" name="event_num" value="${event.event_num}">
 				<ul>
 					<li><label for="notice">공지사항 등록</label> <input type="checkbox"
-						name="notice" id="notice" value="0"></li>
+						name="notice" id="notice" <c:if test="${event.notice == 1}">checked</c:if>></li>
 					<li><label for="name">이벤트명</label> <input type="text"
 						name="name" id="name" size="10" maxlength="50" class="input-check"
 						value="${event.name}"></li>

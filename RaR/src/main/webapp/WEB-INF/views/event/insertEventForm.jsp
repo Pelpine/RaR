@@ -86,7 +86,7 @@ window.onload=function(){
 						name="banner" id="banner" accept="image/gif,image/png,image/jpeg">
 						(배너 사이즈 : 850~1000x250~350)</li>
 					<li><label for="notice">공지사항 등록</label> <input type="checkbox"
-						name="notice" id="notice" value="0"></li>
+						name="notice" id="notice"></li>
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="등록"> <input type="button"
