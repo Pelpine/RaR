@@ -19,14 +19,20 @@ $(function(){
 				
 				$(param.list).each(function(index,item){
 					let output = '<tr>';
+					//체크박스
 					output += '<td><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
+					//상품정보 : 책 이미지, 이름
 					output += '<td><img src="' + item.bookVO.bk_img + '" width="60">' + item.bookVO.bk_name + '</td>';
+					//상품 가격 : 정가, 판매가, 예상 적립포인트
 					output += '<td class="item_list_price">'
-							+ '정가 : ' + item.bookVO.bk_price + '원<br>'
-							+ '판매가 : <span id="item_price_' + item.cart_num + '">' + item.itemVO.item_price + '</span>원<br>'
-							+ '포인트 : ' + item.itemVO.item_price * 0.01 + 'p'
+							+ '<span class="item_bk_price">정가 : ' + item.bookVO.bk_price.toLocaleString() + '원</span><br>'
+							+ '판매가 : <span id="item_price_' + item.cart_num + '" class="item_item_price">' + item.itemVO.item_price.toLocaleString() + '</span>원<br>'
+							+ '예상 적립포인트 : ' + Math.floor(item.itemVO.item_price * 0.01).toLocaleString() + 'p'
 							+ '</td>';
-					output += '<td>' + item.itemVO.item_grade + '</td>';
+					//책 등급 1:상, 2:중, 3:하
+					if(item.itemVO.item_grade==1) output += '<td><span class="item_grade1">상</span></td>';
+					else if(item.itemVO.item_grade==2) output += '<td><span class="item_grade2">중</span></td>';
+					else if(item.itemVO.item_grade==3) output += '<td><span class="item_grade3">하</span></td>';
 					output += '<td><input type="button" data-cartnum="' + item.cart_num + '" value="삭제" class="delete-btn"></td>';
 					output += '</tr>';
 					
@@ -103,7 +109,7 @@ $(function(){
 	    // 각 상품별 정보를 가져와서 계산
 	    $('.selectCheck:checked').each(function() {
 	        let cartNum = $(this).attr('data-cartnum');
-	        let item_price = parseInt($('#item_price_' + cartNum).text());
+	        let item_price = parseInt($('#item_price_' + cartNum).text().replace(/,/g,''));
         
 			//상품 개수
 			totalCount++;

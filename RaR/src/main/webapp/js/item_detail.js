@@ -1,7 +1,7 @@
 $(function(){
 	//장바구니에 담기
 	
-	$('#insertCart').submit(function(){
+	$(document).on('submit','.insertCart',function(){
 			
 		let form_data = $(this).serialize();
 	

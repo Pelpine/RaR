@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>상품 주문</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 window.onload=function(){
@@ -54,28 +55,33 @@ window.onload=function(){
 			</tr>
 			<c:forEach var="cart" items="${list}">
 			<tr>
+				<%-- 상품정보:책 이미지, 책 이름 --%>
 				<td>
 					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}">
 						<img src="${cart.bookVO.bk_img}" width="60">
 						${cart.bookVO.bk_name}
 					</a>
 				</td>
+				<%-- 상품 가격 --%>
 				<td class="align-center">
-					정가 : <fmt:formatNumber value="${cart.bookVO.bk_price}"/>원   
-					판매가 : <fmt:formatNumber value="${cart.itemVO.item_price}"/>원
+					<span class="item_bk_price">정가 : <fmt:formatNumber value="${cart.bookVO.bk_price}"/>원</span><br> 
+					판매가 : <span class="item_item_price"><fmt:formatNumber value="${cart.itemVO.item_price}"/></span>원
 				</td>
+				<%-- 상품 상태 --%>
 				<td class="align-center">
-					${cart.itemVO.item_grade}
+					<c:if test="${cart.itemVO.item_grade == 1}">상</c:if>
+					<c:if test="${cart.itemVO.item_grade == 2}">중</c:if>
+					<c:if test="${cart.itemVO.item_grade == 3}">하</c:if>
 				</td>
 			</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="2" class="align-right"><b>총구매금액</b></td>
-				<td class="align-center"><fmt:formatNumber value="${pay_total}"/>원</td>
+				<td class="align-center totalPayment"><fmt:formatNumber value="${pay_total}"/>원</td>
 			</tr>
 			<tr>
 				<td colspan="2" class="align-right"><b>적립포인트</b></td>
-				<td class="align-center"><fmt:formatNumber value="${Math.floor(pay_total * 0.01)}" type="number"/>원</td>
+				<td class="align-center"><fmt:formatNumber value="${Math.floor(pay_total * 0.01)}" type="number"/>p</td>
 			</tr>
 		</table>
 		<form action="order.do" method="post" id="order_form">

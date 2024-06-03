@@ -21,17 +21,31 @@
 				<tr>
 					<td>
 				    <img src="${item.bookVO.bk_img}" width="60">
+				    <%-- 상품이미지가 없을 경우, 기본 이미지 처리 --%>
 				    <c:if test="${item.item_img == null}">
 				    <img src="../images/face.png" width="60">
 				    </c:if>
+				    <%-- 상품이미지가 있을 경우 --%>
 				    <c:if test="${item.item_img != null}">
 				    <img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
 				    </c:if>
+				    ${item.bookVO.bk_name}
 				    </td>
-					<td>${item.item_grade}</td>
+				    <%-- 책 등급 --%>
+					<td>
+					<c:if test="${item.item_grade == 1}">
+					<span class="item_grade1">상</span>
+					</c:if>
+					<c:if test="${item.item_grade == 2}">
+					<span class="item_grade2">중</span>
+					</c:if>
+					<c:if test="${item.item_grade == 3}">
+					<span class="item_grade3">하</span>
+					</c:if>
+					</td>
 					<td>${item.item_price}</td>
 					<td>
-					<form id="insertCart" style="width:0;margin:10px 0;border:0;padding:0;">
+					<form class="insertCart" method="post" style="width:0;margin:10px 0;border:0;padding:0;">
 						<input type="hidden" name="item_num" value="${item.item_num}">
 						<input type="hidden" name="bk_num" value="${item.bk_num}">
 						<input type="submit" value="장바구니 담기">
