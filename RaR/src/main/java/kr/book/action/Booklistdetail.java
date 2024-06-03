@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.controller.Action;
+import kr.rar.dao.BookDAO;
 import kr.rar.dao.ItemDAO;
+import kr.rar.vo.BookVO;
 import kr.rar.vo.ItemVO;
 import kr.util.PagingUtil;
 
@@ -30,6 +32,11 @@ public class Booklistdetail implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		request.setAttribute("page", page.getPage());
+		
+		BookDAO bookdao = BookDAO.getInstance();
+		BookVO vo = bookdao.vo(bk_num);
+		
+		request.setAttribute("book", vo);
 		
 		return "/WEB-INF/views/book/booklistdetail.jsp";
 	}

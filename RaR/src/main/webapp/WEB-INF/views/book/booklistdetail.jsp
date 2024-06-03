@@ -13,7 +13,14 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<h1>?</h1>
+<div>
+	<ul>
+		<li>
+			<label></label>
+		</li>
+	</ul>
+
+</div>
 
 
 

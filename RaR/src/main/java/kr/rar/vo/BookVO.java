@@ -11,7 +11,14 @@ public class BookVO {
 	private String bk_isbn;
 	private String bk_description;
 	
+	private ItemVO itemVO;
 	
+	public ItemVO getItemVO() {
+		return itemVO;
+	}
+	public void setItemVO(ItemVO itemVO) {
+		this.itemVO = itemVO;
+	}
 	public String getBk_isbn() {
 		return bk_isbn;
 	}
