@@ -31,15 +31,12 @@ $(function(){
         <h2 class="h2">로그인</h2>
         <form id="login_form" action="login.do" method="post">
             <ul>
-               
-                <li>
-                   <label for="user_email">이메일</label>
+                <li><label for="user_email">이메일</label>
                    <input type="email" class="form-input"
                     name="user_email" id="user_email"
                     maxlength="50" autocomplete="off">
                 </li> 
-                <li class="floating-label">
-                   <label for="password">비밀번호</label>
+                <li><label for="password">비밀번호</label>
                    <input type="password" class="form-input"
                     name="password" id="password"
                     maxlength="12" autocomplete="off">
