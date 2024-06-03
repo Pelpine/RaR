@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/attendance.js"></script>
 <div class="main_nav">
 	<div class="header">
         <div class="logo">
@@ -22,8 +25,7 @@
             </c:if>
             <c:if test="${!empty user_num}">
                 <div class="header_button_group">
-                    <button class="header_button"
-                            onclick="location.href='${pageContext.request.contextPath}/event/attendanceEventAction.do'">출석체크</button>
+                    <button class="header_button" data-eventnum="100" id="attendance_button">출석체크</button>
                     <button class="header_button" 
                             onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">마이페이지</button>
                     <button class="header_button" 
@@ -70,16 +72,10 @@
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropbtn">장르</button>
-            <div class="dropdown-content">
-                <a href="#">스릴러</a>
-                <a href="#">SF 소설</a>
-            </div>
-        </div>
-        <div class="dropdown">
             <button class="dropbtn">게시판</button>
             <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/board/list.do">자유게시판</a>
+                <a href="${pageContext.request.contextPath}/board/list.do">자유게시판</a> 
+                <a href="${pageContext.request.contextPath}/board/genreList.do">장르 게시판</a>
                 <a href="#">QnA 게시판</a>
             </div>
         </div>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>이벤트 등록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css">
 <script type="text/javascript">
 window.onload=function(){
     const myForm = document.getElementById('write_form');
@@ -68,7 +68,7 @@ window.onload=function(){
 				<input type="hidden" name="event_num" value="${event.event_num}">
 				<ul>
 					<li><label for="notice">공지사항 등록</label> <input type="checkbox"
-						name="notice" id="notice" value="0"></li>
+						name="notice" id="notice" <c:if test="${event.notice == 1}">checked</c:if>></li>
 					<li><label for="name">이벤트명</label> <input type="text"
 						name="name" id="name" size="10" maxlength="50" class="input-check"
 						value="${event.name}"></li>

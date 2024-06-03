@@ -240,4 +240,25 @@ public class BookApprovalDAO {
 			}
 		}
 		
+		//등록 요청 삭제
+		public void deletebookApproval(int num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "delete from book_approval where approval_id=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally{
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
 }
