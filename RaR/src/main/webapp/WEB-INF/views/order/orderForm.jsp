@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>상품 주문</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 window.onload=function(){
@@ -54,31 +55,53 @@ window.onload=function(){
 			</tr>
 			<c:forEach var="cart" items="${list}">
 			<tr>
+				<%-- 상품정보:책 이미지, 책 이름 --%>
 				<td>
 					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}">
 						<img src="${cart.bookVO.bk_img}" width="60">
 						${cart.bookVO.bk_name}
 					</a>
 				</td>
+				<%-- 상품 가격 --%>
 				<td class="align-center">
-					정가 : <fmt:formatNumber value="${cart.bookVO.bk_price}"/>원   
-					판매가 : <fmt:formatNumber value="${cart.itemVO.item_price}"/>원
+					<span class="item_bk_price">정가 : <fmt:formatNumber value="${cart.bookVO.bk_price}"/>원</span><br> 
+					판매가 : <span class="item_item_price"><fmt:formatNumber value="${cart.itemVO.item_price}"/></span>원
 				</td>
+				<%-- 상품 상태 --%>
 				<td class="align-center">
-					${cart.itemVO.item_grade}
+					<c:if test="${cart.itemVO.item_grade == 1}">상</c:if>
+					<c:if test="${cart.itemVO.item_grade == 2}">중</c:if>
+					<c:if test="${cart.itemVO.item_grade == 3}">하</c:if>
 				</td>
 			</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="2" class="align-right"><b>총구매금액</b></td>
-				<td class="align-center"><fmt:formatNumber value="${pay_total}"/>원</td>
+				<td colspan="2" class="align-right">총 구매금액</td>
+				<td class="align-center"><fmt:formatNumber value="${pay_total}" type="number"/></td>
 			</tr>
 			<tr>
-				<td colspan="2" class="align-right"><b>적립포인트</b></td>
-				<td class="align-center"><fmt:formatNumber value="${Math.floor(pay_total * 0.01)}" type="number"/>원</td>
+				<td colspan="2" class="align-right">배송비</td>
+				<td class="align-center"><fmt:formatNumber value="${pay_ship}" type="number"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="align-right">사용포인트</td>
+				<td class="align-center"><fmt:formatNumber value="0" type="number"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="align-right"><b>총 결제금액</b></td>
+				<td class="align-center totalPayment"><fmt:formatNumber value="${pay_total + pay_ship}"/>원</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="align-right">예상 적립포인트</td>
+				<td class="align-center"><fmt:formatNumber value="${pay_points}" type="number"/>p</td>
 			</tr>
 		</table>
 		<form action="order.do" method="post" id="order_form">
+			<input type="hidden" name="pay_total" value="${pay_total}">
+			<input type="hidden" name="pay_ship" value="${pay_ship}">
+			<input type="hidden" name="pay_points" value="0">
+			<input type="hidden" name="order_points" value="${pay_points}">
+		
 			<ul>
 				<li>
 					<label for="receive_name">받는 사람</label>
@@ -102,9 +125,9 @@ window.onload=function(){
 					<input type="text" name="receive_phone" id="receive_phone" maxlength="15">
 				</li>
 				<li>
-					<label for="payment">결제수단</label>
-					<input type="radio" name="payment" id="payment1"	value="1">계좌입금
-					<input type="radio" name="payment" id="payment2"	value="2">카드결제
+					<label for="pay_payment">결제수단</label>
+					<input type="radio" name="pay_payment" id="pay_payment1"	value="1">계좌입금
+					<input type="radio" name="pay_payment" id="pay_payment2"	value="2">카드결제
 				</li>
 				<li>
 					<label for="notice">남기실 말씀</label>

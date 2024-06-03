@@ -116,7 +116,7 @@ public class ItemDAO {
 		return item;
 	}
 	
-	//상품 총 개수
+	//판매 가능한 상품 총 개수
 		public int getItemCount(int bk_num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -127,7 +127,7 @@ public class ItemDAO {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "SELECT COUNT(*) FROM item WHERE bk_num=?";
+				sql = "SELECT COUNT(*) FROM item WHERE bk_num=? AND item_status=1";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, bk_num);

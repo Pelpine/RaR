@@ -6,67 +6,95 @@
 <head>
 <meta charset="UTF-8">
 <title>이벤트 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eventList.css" type="text/css">
 </head>
 <body>
-	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<div class="content-main">
-			<h2>이벤트 목록</h2>		
-			<form id="search_form" action="eventList.do" method="get">
-				<ul class="search">
-					<li>
-						<select name="keyfield">
-							<option value="1" <c:if test="${param.keyfield== 1}">selected</c:if> >제목</option>
-							<option value="2" <c:if test="${param.keyfield== 2}">selected</c:if> >내용</option>
-						</select>
-					</li>
-					<li>
-						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
-					</li>
-					<li>
-						<input type="submit" value="검색">
-					</li>
-					<li>
-						<label for="underway_btn">현재 진행중인 이벤트만 보기</label>
-						<input type="checkbox" name="underway" id="underway_btn">				
-					</li>
-				</ul>
-			</form>
-			<div class="list-space align-right">
-				<input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
-				<c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>
-				
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-			<c:if test="${count == 0 }">
-				<div class="result-display">
-					표시할 게시글이 없습니다.
-				</div>
-			</c:if>
-			<c:if test="${count > 0 }">
-				<table>
-					<tr>
-						<th>이벤트 번호</th>
-						<th>제목</th>
-						<th>시작일</th>
-						<th>종료일</th>
-					</tr>
-					<c:forEach var="event" items="${list}">
-						<tr>
-							<c:if test="${event.notice == 1}"><td><span style="color:blue;">공지사항</span></td></c:if>
-							<c:if test="${event.notice == 0}"><td>${event.event_num}</td></c:if>
-							<td><a href="eventDetail.do?event_num=${event.event_num}">${event.name}</a></td>
-							<td>${event.start_date}</td>
-							<td>${event.end_date}</td>
-						</tr>
-					</c:forEach>
-				</table>
-				<div class="align-center">
-					${page}
-				</div>
-			</c:if>
-		</div>
-	</div>
+<div class="page-main">
+    <div class="content-main">
+        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+        <div id="mainWrapper">
+            <ul>
+            
+                <!-- 게시판 제목 -->
+                <li>이벤트 목록</li>
+            
+                <!-- 이벤트 등록 및 홈 버튼 -->
+                <li>
+                    <div class="list-space align-left">
+                        <input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
+                        <c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>            
+                        <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+                    </div>
+                </li>
+
+                <!-- 검색 폼 영역 -->
+                <li id='liSearchOption'>
+                    <form id="search_form" action="eventList.do" method="get">
+                        <ul class="search">
+                            <li>
+                                <select name="keyfield">
+                                    <option value="1" <c:if test="${param.keyfield== 1}">selected</c:if> >제목</option>
+                                    <option value="2" <c:if test="${param.keyfield== 2}">selected</c:if> >내용</option>
+                                </select>
+                            </li>
+                            <li>
+                                <input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+                            </li>
+                            <li>
+                                <input type="submit" value="검색">
+                            </li>
+                            <li class="block">
+                                <label for="underway_btn">현재 진행중인 이벤트만 보기</label>
+                                <input type="checkbox" name="underway" id="underway_btn">                
+                            </li>
+                        </ul>
+                    </form>
+                </li>
+
+                <!-- 게시판 목록  -->
+                <c:if test="${count == 0 }">
+                    <div class="result-display">
+                        표시할 게시글이 없습니다.
+                    </div>
+                </c:if>
+                <c:if test="${count > 0 }">
+                <li>
+                    <ul id ="ulTable">
+                        <li>
+                            <ul>
+                                <li>No</li>
+                                <li>제목</li>
+                                <li>시작일</li>
+                                <li>종료일</li>
+                                <li>조회수</li>
+                            </ul>
+                        </li>
+                        <!-- 게시물이 출력될 영역 -->
+                        <c:forEach var="event" items="${list}">
+                        <li>
+                            <ul>
+                                <c:if test="${event.notice == 1}"><li class="left">공지사항</li></c:if>
+                                <c:if test="${event.notice == 0}"><li class="left">${event.event_num}</li></c:if>
+                                <li><a href="eventDetail.do?event_num=${event.event_num}">${event.name}</a></li>
+                                <li>${event.start_date}</li>
+                                <li>${event.end_date}</li>
+                                <li>${event.hit}</li>
+                            </ul>
+                        </li>
+                        </c:forEach>
+
+                    </ul>
+                </li>
+                <!-- 게시판 페이징 영역 -->
+                <li>
+                    <div id="divPaging">
+                        ${page}
+                    </div>
+                </li>
+                </c:if>
+            </ul>
+        </div>
+    </div>
+</div>    
 </body>
 </html>

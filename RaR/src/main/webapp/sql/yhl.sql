@@ -24,7 +24,7 @@ CREATE sequence RAR_ORDER_SEQ;
 CREATE TABLE RAR_ORDER_DETAIL (
 	detail_num	NUMBER		NOT NULL,
 	item_num	NUMBER		NOT NULL,
-	item_name	VARCHAR2(100)	NOT NULL,
+	item_name	VARCHAR2(1000)	NOT NULL,
 	bk_img		VARCHAR2(500)	NOT NULL,
 	bk_price	NUMBER		NOT NULL,--정가
 	item_price	NUMBER		NOT NULL,--판매가

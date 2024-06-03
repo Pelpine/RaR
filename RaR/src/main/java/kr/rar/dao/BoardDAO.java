@@ -810,6 +810,136 @@ public class BoardDAO {
 		    
 		    return genre;
 		}
+		//장르 글 등록 (댓글)
+				public void insertReplyGenre(GenreUserVO genreUser)throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					try {
+						conn=DBUtil.getConnection();
+						sql="INSERT INTO board_genre_user (bgu_num,bgu_content,bg_num)"
+								+ "	VALUES(reply_seq.nextval,?,?)";
+						pstmt = conn.prepareStatement(sql);
+						//데이터 바인딩
+						pstmt.setInt(1, genreUser.getBgu_num());
+						pstmt.setString(2, genreUser.getBgu_content());
+						pstmt.setInt(3, genreUser.getBg_num());
+						pstmt.executeUpdate();
+						
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(null, pstmt, conn);
+					}
+				}
+			//장르 게시판 댓글 수 
+				public int getReplyGenreCount(int bg_num)throws Exception{
+					int count = 0;
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					ResultSet rs = null;
+					
+					try {
+					conn=DBUtil.getConnection();
+					sql="SELECT COUNT(*)FROM board_genre_user WHERE bg_num=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, bg_num);
+					rs= pstmt.executeQuery();
+					if(rs.next()) {
+						count=rs.getInt(1);
+						
+					}
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(rs, pstmt, conn);
+					}
+					return count;
+				}
+				//장르게시판 댓글 목록
+				public List<GenreUserVO> getListReplyGenre(
+						int start, int end, int bg_num)throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					List<GenreUserVO> list = null;
+					String sql = null;
+					try {
+						conn=DBUtil.getConnection();
+				
+						sql="SELECT * FROM(SELECT a.*, rownum rnum FROM "
+								+ "(SELECT * FROM board_genre_user JOIN member USING(user_num) "
+								+ "WHERE bg_num=? ORDER BY re_num DESC)a) "
+								+ "WHERE rnum >= ? AND rnum <= ?";
+						
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, bg_num);
+						pstmt.setInt(2, start);
+						pstmt.setInt(3, end);
+						
+						rs=pstmt.executeQuery();
+						list= new ArrayList<GenreUserVO>();
+						while(rs.next()) {
+						    GenreUserVO replyg = new GenreUserVO();
+						    replyg.setBgu_num(rs.getInt("bgu_num"));
+						    // 날짜->1분전, 1시간전, 1일전 형식의 문자열로 변환
+						    replyg.setBgu_date(rs.getDate("bgu_date"));
+						    if(rs.getDate("bgu_redate") != null) {
+						        replyg.setBgu_redate(rs.getDate("bgu_redate"));
+						    }
+						    replyg.setBgu_content(StringUtil.useBrNoHTML(rs.getString("bgu_content")));
+						    replyg.setBg_num(rs.getInt("bg_num"));
+						    // 추가된 부분
+						    replyg.setUser_num(rs.getInt("user_num"));
+						    replyg.setUser_email(rs.getString("user_email"));
+
+						    list.add(replyg);
+						}
+						}catch(Exception e) {
+							throw new Exception(e);
+						}finally {
+							DBUtil.executeClose(rs, pstmt, conn);
+						}
+					return list;
+				}
+				//장르게시판 댓글 수정
+				public void updateReplyGenre(GenreUserVO replyg) throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					try {
+						conn=DBUtil.getConnection();
+						sql="UPDATE board_genre_user SET bgu_content=?,modify_date=SYSDATE,"
+							+ "user_email=? WHERE bgu_num=?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, replyg.getBgu_content());
+						pstmt.setString(2, replyg.getUser_email());
+						pstmt.setInt(3, replyg.getBgu_num());
+						pstmt.executeUpdate();
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(null, pstmt, conn);
+					}
+				}
+				//댓글 삭제
+				public void deleteReplyGenre(int bgu_num)throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					try {
+						conn = DBUtil.getConnection();
+						sql="DELETE FROM board_reply WHERE bgu_num=?";
+						pstmt=conn.prepareStatement(sql);
+						pstmt.setInt(1, bgu_num);
+						pstmt.executeUpdate();
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(null, pstmt, conn);
+					}
+				}
 	}
 
 

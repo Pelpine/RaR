@@ -42,7 +42,7 @@
 					<!-- 배송비 -->
 					<td><input type="hidden" name="ship" id="ship" value="0">0</td>
 					<!-- 총 결제금액 -->
-					<td><input type="hidden" name="totalPayment" id="totalPayment" value="0">0</td>
+					<td class="totalPayment"><input type="hidden" name="totalPayment" id="totalPayment" value="0">0</td>
 					<!-- 예상 적립 포인트 -->
 					<td><input type="hidden" name="totalPoints" id="totalPoints" value="0">0</td>	
 				</tr>

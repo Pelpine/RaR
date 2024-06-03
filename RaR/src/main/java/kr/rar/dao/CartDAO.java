@@ -93,7 +93,8 @@ public class CartDAO {
 				+ "JOIN member_detail USING(user_num) "
 				+ "JOIN book USING (bk_num) "
 				+ "JOIN item USING (item_num) "
-				+ "WHERE user_num=?";
+				+ "WHERE user_num=? "
+				+ "ORDER BY reg_date DESC";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -157,6 +158,37 @@ public class CartDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//장바구니 상품 총개수
+		public int getCartItemCount(int user_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int count = 0;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT COUNT(*) FROM cart WHERE  user_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, user_num);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		
+		
 	//선택한 장바구니 선택 초기화
 	public void resetCartSelected()throws Exception{
 		Connection conn = null;
@@ -215,7 +247,8 @@ public class CartDAO {
 				+ "JOIN member_detail USING(user_num) "
 				+ "JOIN book USING (bk_num) "
 				+ "JOIN item USING (item_num) "
-				+ "WHERE user_num=? AND selected=1";
+				+ "WHERE user_num=? AND selected=1 "
+				+ "ORDER BY reg_date DESC";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -257,8 +290,10 @@ public class CartDAO {
 		return list;
 	}
 		
+	
+	
 	//선택한 장바구니 상품개수
-	public int getCartItemCount(int user_num)throws Exception{
+	public int getSelectedCartItemCount(int user_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -286,9 +321,8 @@ public class CartDAO {
 		return count;
 	}
 	
-	
 	//선택한 장바구니 총 구매액
-	public int getCartTotal(int user_num)throws Exception{
+	public int getSelectedCartTotal(int user_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

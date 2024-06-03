@@ -151,23 +151,19 @@ $(function(){
 
 	</div>
 	<div>
-		<input type="button" value="최근 구매 내역" 
+		<input type="button" value="나의 댓글" class="my-input"
+		onclick="location.href='${pageContext.request.contextPath}/board/myReplyList.do?user_num=${member.user_num}'">
+		<input type="button" value="나의 게시물" class="my-input"
+		onclick="location.href='${pageContext.request.contextPath}/board/myPostingList.do?user_num=${member.user_num}'">
+	</div>
+	<div>
+		<input type="button" value="My QnA" class="my-input" onclick="location.href=">
+		<input type="button" value="최근 구매 내역" class="my-input"
 		onclick="">
 	</div>
 	<div>
-		<input type="button" value="내가 쓴 게시물"
-		 onclick="location.href='${pageContext.request.contextPath}/board/myPostingList.do?user_num=${member.user_num}'">
-	</div>
-	<div>
-		<input type="button" value="내가 쓴 댓글" 
-		onclick="location.href='${pageContext.request.contextPath}/board/myReplyList.do?user_num=${member.user_num}'">
-	</div>
-	<div>
-		<input type="button" value="내가 좋아요 누른 글" 
+		<input type="button" value="좋아요한 글" class="my-input"
 		onclick="location.href='${pageContext.request.contextPath}/board/myFavList.do?user_num=${member.user_num}'">
-	</div>
-	<div>
-		<input type="button" value="내가 쓴 QnA" onclick="location.href=">
 	</div>
 	</div>
 </div>

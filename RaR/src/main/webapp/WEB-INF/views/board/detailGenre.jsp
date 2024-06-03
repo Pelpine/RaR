@@ -11,6 +11,8 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/board.fav.js"></script>
+<script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/board.reply.js"></script>
 </head>
 <body>
@@ -41,7 +43,7 @@
 		</div>
 		</c:if>
 		<p>
-			${board.content}
+			의견을 자유롭게 표현해주세요
 		</p>
 		<hr size="1" noshade="noshade" width="100%">
 		
@@ -80,11 +82,11 @@
 		<div id="reply_div">
 			<span class="re-title">댓글 달기</span>
 			<form id="re_form">
-			<input type="hidden" name="board_num" value="${board.board_num}"
+			<input type="hidden" name="board_num" value="${genre.bg_num}"
 			id="board_num">
 			<textarea rows="3" cols="50" name="content"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if> id="re_content"
-			class="content"><c:if test="${empty user_num}">로그인해야 작성할수 있습니다.</c:if></textarea>
+			class="content"><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num}">
 			<div id="re_first">
 				<span class="letter-count">300/300</span>

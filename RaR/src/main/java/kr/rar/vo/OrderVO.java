@@ -4,16 +4,18 @@ import java.sql.Date;
 
 public class OrderVO {
 	private int order_num;				//주문번호
-	private int order_total;			//총주문금액
-	private int order_payment;			//결제수단
-	private int order_points;			//사용포인트
 	private Date order_date;			//주문일
 	private int order_status;			//배송상태
+	private int order_points;			//적립 포인트
+	private int pay_total;				//총상품금액
+	private int pay_points;				//사용포인트
+	private int pay_ship;				//배송비
+	private int pay_payment;			//결제수단
 	private String receive_name;		//수령인
 	private String receive_post;		//우편번호
 	private String receive_address1;	//주소
 	private String receive_address2;	//상세주소
-	private String receive_phone;		//전화번호
+	private String receive_phone;		//전화번호	
 	private String notice;				//남기실말씀
 	private int user_num;				//회원번호
 	
@@ -26,24 +28,6 @@ public class OrderVO {
 	public void setOrder_num(int order_num) {
 		this.order_num = order_num;
 	}
-	public int getOrder_total() {
-		return order_total;
-	}
-	public void setOrder_total(int order_total) {
-		this.order_total = order_total;
-	}
-	public int getOrder_payment() {
-		return order_payment;
-	}
-	public void setOrder_payment(int order_payment) {
-		this.order_payment = order_payment;
-	}
-	public int getOrder_points() {
-		return order_points;
-	}
-	public void setOrder_points(int order_points) {
-		this.order_points = order_points;
-	}
 	public Date getOrder_date() {
 		return order_date;
 	}
@@ -55,6 +39,36 @@ public class OrderVO {
 	}
 	public void setOrder_status(int order_status) {
 		this.order_status = order_status;
+	}
+	public int getOrder_points() {
+		return order_points;
+	}
+	public void setOrder_points(int order_points) {
+		this.order_points = order_points;
+	}
+	public int getPay_total() {
+		return pay_total;
+	}
+	public void setPay_total(int pay_total) {
+		this.pay_total = pay_total;
+	}
+	public int getPay_points() {
+		return pay_points;
+	}
+	public void setPay_points(int pay_points) {
+		this.pay_points = pay_points;
+	}
+	public int getPay_ship() {
+		return pay_ship;
+	}
+	public void setPay_ship(int pay_ship) {
+		this.pay_ship = pay_ship;
+	}
+	public int getPay_payment() {
+		return pay_payment;
+	}
+	public void setPay_payment(int pay_payment) {
+		this.pay_payment = pay_payment;
 	}
 	public String getReceive_name() {
 		return receive_name;

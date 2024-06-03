@@ -4,7 +4,23 @@
 #output tr td{
 	font-size:10pt;
 }
+/*
+------------------장바구니------------------
+*/
+.item_bk_price{
+	font-size:0.8em;
+	text-decoration: line-through; 
+}
+.item_item_price{
+	color:#a60f0f;
+	font-weight:bold;
+}
 .item_list_price{
 	text-align: right;
 	font-size:8pt;
+}
+.totalPayment{
+	color:#a60f0f;
+	font-weight:bold;
+	font-size:1.3em;
 }

@@ -117,10 +117,11 @@ public class BookApprovalDAO {
 					vo.setRequest_at(rs.getDate("request_at"));
 					vo.setApproved_at(rs.getDate("approved_at"));
 					vo.setBk_name(rs.getString("bk_name"));
+					vo.setPrivate_num(rs.getInt("private_num"));
 					
 					MemberVO member = new MemberVO();
 					member.setUser_email(rs.getString("user_email"));
-					
+					member.setUser_num(rs.getInt("user_num"));
 					vo.setMemberVO(member);
 					list.add(vo);
 				}

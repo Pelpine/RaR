@@ -12,9 +12,29 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
-<h1>?</h1>
-
+<div class="page-main">
+	<div>
+		<img alt="" src="${book.bk_img}">
+	</div>
+	<div>
+		제목 : ${book.bk_name}
+	</div>
+	<div>
+		저자 : ${book.bk_writer}
+	</div>
+	<div>
+		출판사 : ${book.bk_publisher}
+	</div>
+	<div>
+		정가 : ${book.bk_price}
+	</div>
+	<div>
+		설명 : ${book.bk_description}
+	</div>
+	<div>
+		최저가 : ${book.itemVO.item_price}
+	</div>
+</div>
 
 
 <jsp:include page="/WEB-INF/views/book/booklistdetail_include.jsp"/>

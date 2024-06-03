@@ -69,6 +69,8 @@ window.onload=function(){
 			<form id="write_form" action="insertEvent.do" method="post"
 				enctype="multipart/form-data">
 				<ul>
+					<li><label for="notice">공지사항 등록</label> <input type="checkbox"
+						name="notice" id="notice"></li>
 					<li><label for="name">이벤트명</label> <input type="text"
 						name="name" id="name" size="10" maxlength="50" class="input-check">
 					</li>
@@ -85,8 +87,6 @@ window.onload=function(){
 					<li><label for="banner">이벤트 배너</label> <input type="file"
 						name="banner" id="banner" accept="image/gif,image/png,image/jpeg">
 						(배너 사이즈 : 850~1000x250~350)</li>
-					<li><label for="notice">공지사항 등록</label> <input type="checkbox"
-						name="notice" id="notice"></li>
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="등록"> <input type="button"

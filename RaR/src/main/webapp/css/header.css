@@ -72,6 +72,7 @@
     border-radius: 4px;
     color: white;
     cursor: pointer;
+    border:1.5px solid black;
 }
 
 .menu-profile img {
@@ -128,6 +129,7 @@
 
 .dropdown-content a:hover {
     background-color: #ddd;
+    border:1.5px solid black;
 }
 
 .dropdown:hover .dropdown-content {
@@ -136,7 +138,11 @@
 
 .dropdown:hover .dropbtn {
     background-color: #007bb5;
+    border:1.5px solid black;
 }
 li {
     list-style-type: none;
+}
+.my-photo{
+	border:1.5px solid black;
 }

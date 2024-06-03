@@ -69,7 +69,7 @@
 		<input type="button" value="목록" onclick="location.href='list.do'">
 		<c:if test="${book.status == 1}">
 			<input type="button" value="수정" onclick="location.href='updatebook.do?approval_id=${book.approval_id}&user_email=${book.memberVO.user_email}'">
-			<input type="button" value="삭제" onclick="location.href='deletebook.do'">
+			<input type="button" value="삭제" onclick="location.href='deletebook.do?approval_id=${book.approval_id}&user_email=${book.memberVO.user_email}'">
 		</c:if>
 		<c:if test="${user_auth == 9}">
 				<c:if test="${book.status == 1}">
@@ -89,7 +89,6 @@
 		<input type="hidden" value="${book.item_grade}" name="item_grade">
 		<input type="hidden" value="${book.memberVO.user_email}" name="user_email">
 		</c:if>
-		
 	</div>
 	</form>
 </div>

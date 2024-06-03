@@ -334,4 +334,46 @@ public class BookDAO {
 		}
 		return vo;
 	}
+	//책 상세보기 및 가격정보 뛰우기
+	public BookVO vo(int num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		BookVO vo = null;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			sql = "SELECT b.*, MIN(i.item_price) OVER() as item_price FROM book b JOIN item i ON b.bk_num = i.bk_num WHERE b.bk_num = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo = new BookVO();
+				vo.setBk_num(rs.getInt("bk_num"));
+				vo.setBk_name(rs.getString("bk_name"));
+				vo.setBk_writer(rs.getString("bk_writer"));
+				vo.setBk_publisher(rs.getString("bk_publisher"));
+				vo.setBk_price(rs.getInt("bk_price"));
+				vo.setBk_img(rs.getString("bk_img"));
+				vo.setBk_genre(rs.getString("bk_genre"));
+				vo.setBk_isbn(rs.getString("bk_isbn"));
+				vo.setBk_description(rs.getString("bk_description"));
+				
+				ItemVO item = new ItemVO();
+				item.setItem_price(rs.getInt("item_price"));
+				
+				vo.setItemVO(item);
+			
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return vo;
+	}
 }

@@ -51,10 +51,12 @@ create table BOARD_GENRE_USER(
 bgu_num number not null,
 bgu_content varchar2(900) not null,
 bgu_date varchar2(50) not null,
+	user_num number not null,
 bgu_redate varchar2(50) not null,
 bg_num number not null,
 constraint board_genre_user_pk primary key(bgu_num),
 constraint board_genre_user_fk foreign key(bg_num)references board_genre(bg_num)
+constraint board_genre_user_fk2 foreign key(user_num)references member(user_num)
 );
 
 

@@ -1,10 +1,9 @@
 $(function(){
 	//장바구니에 담기
 	
-	$('#insertCart').submit(function(){
-			
+	$(document).on('submit','.insertCart',function(){
 		let form_data = $(this).serialize();
-	
+		
 	    $.ajax({
 	        url:'../cart/cartWrite.do',
 	        type:'post',
@@ -13,6 +12,8 @@ $(function(){
 	        success: function(param) {
 	           if(param.result == 'logout'){
 					alert('로그인 후 사용하세요');
+				}else if(param.result == 'noSale'){
+					alert('해당 상품이 현재 판매중이 아닙니다.');
 				}else if(param.result == 'duplicated'){
 					alert('상품이 이미 장바구니에 담겨져있습니다.');
 				}else if(param.result == 'success'){
