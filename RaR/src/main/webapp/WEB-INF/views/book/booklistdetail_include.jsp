@@ -68,17 +68,4 @@ function showPopup(imgSrc) {
     popupWindow.document.write("<img src='" + imgSrc + "' width='100%' height='100%'><br>");
     popupWindow.document.write("</body></html>");
 }
-
-function updateParent(item_img) {
-    var parentImage = document.getElementById('parentImage');
-    if (parentImage) {
-        parentImage.src = item_img;
-    }
-}
-
-window.onload = function() {
-    // 초기화 코드
-};
 </script>
-
-<img id="parentImage" src="#" alt="Parent Image Placeholder" width="400">
