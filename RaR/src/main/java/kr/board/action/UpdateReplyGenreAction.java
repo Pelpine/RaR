@@ -27,7 +27,7 @@ public class UpdateReplyGenreAction implements Action {
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		//수정 전 데이터
-		GenreUserVO db_genre = dao.updateReplyGenre(db_genre, bgu_num);
+		BoardVO db_genre = dao.getBoard(bgu_num);
 		System.out.println(db_genre);
 		
 		HttpSession session = request.getSession();
