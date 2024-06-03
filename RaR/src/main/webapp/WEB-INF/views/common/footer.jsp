@@ -15,7 +15,7 @@
     </div>
     <div class="footer-section">
         <h4>Contact</h4>
-        <p>Email:support@yourcompany.com</p>
+        <p>Email:test@test.com</p>
         <p>Phone: 010-1234-5678</p>
         <p>GIT: <a href="https://github.com/Pelpine/RaR">https://github.com/Pelpine/RaR</a></p>
     </div>
