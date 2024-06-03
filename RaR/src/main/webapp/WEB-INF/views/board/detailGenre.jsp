@@ -31,7 +31,7 @@
 			</li>
 			<li>
 			${board.user_email}<br>
-			조회:${board.hit}
+			조회:${genre.bg_title}
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">

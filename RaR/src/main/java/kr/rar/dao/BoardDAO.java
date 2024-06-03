@@ -733,7 +733,9 @@ public class BoardDAO {
 				list = new ArrayList<GenreVO>();
 				while(rs.next()) {
 					GenreVO genre = new GenreVO();
+					genre.setBg_num(rs.getInt("bg_num"));
 					genre.setBg_title(rs.getString("bg_title"));
+					genre.setUser_num(rs.getInt("user_num"));
 					list.add(genre);
 				}			
 			}catch(Exception e) {
