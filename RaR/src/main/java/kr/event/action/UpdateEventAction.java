@@ -10,6 +10,7 @@ import kr.controller.Action;
 import kr.rar.dao.EventDAO;
 import kr.rar.vo.EventVO;
 import kr.util.FileUtil;
+import kr.util.StringUtil;
 
 public class UpdateEventAction implements Action{
 
@@ -33,7 +34,7 @@ public class UpdateEventAction implements Action{
 		EventVO event =  new EventVO();
 		event.setEvent_num(event_num);
 		event.setName(request.getParameter("name"));
-		event.setContent(request.getParameter("content"));
+		event.setContent(StringUtil.useBrHtml(request.getParameter("content")));
 		String startDateStr = request.getParameter("start_date");
         String endDateStr = request.getParameter("end_date");
         event.setStart_date(Date.valueOf(startDateStr));

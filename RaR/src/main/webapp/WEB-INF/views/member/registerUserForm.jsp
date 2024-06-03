@@ -21,9 +21,9 @@ window.onload = function(){
             dataType: 'json',
             success: function(param){
                 if(param.result == 'idDuplicated'){
-                    $('#message_user_email').text('중복된 이메일');
+                    $('#message_user_email').text('아이디 중복');
                 } else if(param.result == 'idNotFound'){
-                    $('#message_user_email').text('사용 가능');
+                    $('#message_user_email').text('아이디 사용 가능');
                 } else {
                     alert('오류');
                 }
@@ -83,7 +83,7 @@ $(function(){
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2 class="h2">회원 가입</h2>
+			<h2>회원 가입</h2>
 			<form id="register_form" action="registerUser.do" method="post">
 				<ul>
 					 <li>
