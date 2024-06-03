@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="page-main">
 	<div class="content-main">
@@ -43,7 +44,10 @@
 								<span class="item_grade3">하</span>
 							</c:if>
 						</td>
-						<td>${item.item_price}</td>
+						<td>
+						<span class="item_bk_price">정가 : <fmt:formatNumber value="${item.bookVO.bk_price}"></fmt:formatNumber>원</span><br>
+						판매가 : <span class="item_item_price"><fmt:formatNumber value="${item.item_price}"></fmt:formatNumber></span>원
+						</td>
 						<td>
 							<form class="insertCart" method="post"
 								style="width: 0; margin: 10px 0; border: 0; padding: 0;">

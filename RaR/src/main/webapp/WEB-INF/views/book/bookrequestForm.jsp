@@ -20,6 +20,9 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
     document.getElementById("isbn").value = isbn;
     document.getElementById("description").value = description;
 }
+window.onload=function(){
+	
+}
 </script>
 </head>
 <body>
@@ -29,36 +32,36 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
 		<ul>
 			<li>
 				<img src="${books.cover}" id="cover">
-				<input type="hidden" value="${books.cover}" name="cover" id="coverUrl">
+				<input type="hidden" value="${books.cover}" name="cover" id="coverUrl" >
 			</li>
 			<li>
 				<label for="bk_name">책 이름</label>
 				<input type="button" value="책목록" onclick="showPopup();" />
-				<input type="text" id="bk_name" name="bk_name" value="${books.bk_name}" readonly>
+				<input type="text" id="bk_name" name="bk_name" value="${books.bk_name}" readonly class="asdf">
 			</li>
 			<li>
 				<label for="author">저자</label>
-				<input type="text" id="author" name="author" value="${books.author}" readonly>
+				<input type="text" id="author" name="author" value="${books.author}" readonly >
 			</li>
 			<li>
 				<label for="pubdate">출간일</label>
-				<input type="text" id="pubdate" name="pubdate" value="${books.pubDate}" readonly>
+				<input type="text" id="pubdate" name="pubdate" value="${books.pubDate}" readonly >
 			</li>
 			<li>
 				<label for="price">정가</label>
-				<input type="number" id="price" name="price" value="${books.price}" readonly>
+				<input type="number" id="price" name="price" value="${books.price}" readonly >
 			</li>
 			<li>
 				<label for="categoryname">장르</label>
-				<input type="text" id="categoryname" name="categoryname" value="${books.categoryName}" readonly>
+				<input type="text" id="categoryname" name="categoryname" value="${books.categoryName}" readonly >
 			</li>
 			<li>
 				<label for="publisher">출판사</label>
-				<input type="text" id="publisher" name="publisher" value="${books.publisher}" readonly>
+				<input type="text" id="publisher" name="publisher" value="${books.publisher}" readonly >
 			</li>
 			<li>
 				<label for="item_grade">상품상태</label>
-				<select name="item_grade">
+				<select name="item_grade" class="asdf">
 					<option value="1">좋음</option>
 					<option value="2">보통</option>
 					<option value="3">좋지않음</option>

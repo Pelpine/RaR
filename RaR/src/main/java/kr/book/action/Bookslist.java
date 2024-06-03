@@ -21,6 +21,8 @@ public class Bookslist implements Action{
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
+		System.out.println("keyfield : " + keyfield);
+		
 		BookDAO dao = BookDAO.getInstance();
 		int count = dao.getBooksCount(keyfield, keyword);
 		

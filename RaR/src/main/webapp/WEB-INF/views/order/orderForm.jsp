@@ -39,6 +39,18 @@ window.onload=function(){
 			return false;
 		}
 	};
+	
+	const pay_points = document.getElementById('pay_points');
+	const pay_points_value = document.getElementById('pay_points_value');
+	const totalPayment = document.getElementById('totalPayment');
+	
+	pay_points.addEventListener('keyup',function(){
+		pay_points_value.textContent = pay_points.value;
+	});
+	pay_points.addEventListener('mouseup',function(){
+		pay_points_value.textContent = pay_points.value;
+	});
+
 };
 </script>
 </head>
@@ -75,33 +87,36 @@ window.onload=function(){
 				</td>
 			</tr>
 			</c:forEach>
+		</table>
+		<p>
+		<table>	
 			<tr>
-				<td colspan="2" class="align-right">총 구매금액</td>
-				<td class="align-center"><fmt:formatNumber value="${pay_total}" type="number"/></td>
+				<td class="align-center"><b>결제내역</b><br>(총 구매금액 + 배송비 - 사용포인트)</td>
+				<td class="align-center"><b>총 결제금액</b></td>
+				<td class="align-center">적립포인트</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="align-right">배송비</td>
-				<td class="align-center"><fmt:formatNumber value="${pay_ship}" type="number"/></td>
-			</tr>
-			<tr>
-				<td colspan="2" class="align-right">사용포인트</td>
-				<td class="align-center"><fmt:formatNumber value="0" type="number"/></td>
-			</tr>
-			<tr>
-				<td colspan="2" class="align-right"><b>총 결제금액</b></td>
-				<td class="align-center totalPayment"><fmt:formatNumber value="${pay_total + pay_ship}"/>원</td>
-			</tr>
-			<tr>
-				<td colspan="2" class="align-right">예상 적립포인트</td>
-				<td class="align-center"><fmt:formatNumber value="${pay_points}" type="number"/>p</td>
+				<td class="align-center">
+				<fmt:formatNumber value="${pay_total}" type="number"/>  +  
+				<fmt:formatNumber value="${pay_ship}" type="number"/>  -  
+				<span id="pay_points_value"><fmt:formatNumber value="0" type="number"/></span>
+				</td>
+				<!-- 총 결제금액 -->
+				<td class="align-center totalPayment"><span id="totalPayment"><fmt:formatNumber value="${pay_total + pay_ship}"/></span>원</td>
+				<!-- 적립포인트 -->
+				<td class="align-center"><fmt:formatNumber value="${order_points}" type="number"/>p</td>
 			</tr>
 		</table>
+		<p>
+			<!-- 사용 포인트 -->
+			<div class="align-center">
+				포인트 사용 : <input type="number" name="pay_points" id="pay_points" min="0" max="${user_points}">
+			</div>
+		<p>
 		<form action="order.do" method="post" id="order_form">
 			<input type="hidden" name="pay_total" value="${pay_total}">
 			<input type="hidden" name="pay_ship" value="${pay_ship}">
-			<input type="hidden" name="pay_points" value="0">
 			<input type="hidden" name="order_points" value="${pay_points}">
-		
 			<ul>
 				<li>
 					<label for="receive_name">받는 사람</label>
