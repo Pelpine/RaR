@@ -58,8 +58,8 @@
             <button class="dropbtn">shop</button>
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
-                <a href="${pageContext.request.contextPath}/book/list.do">책 검색</a>
-                <a href="${pageContext.request.contextPath}/book/booklist.do">책 목록</a>
+                <a href="${pageContext.request.contextPath}/book/list.do">판매 등록목록</a>
+                <a href="${pageContext.request.contextPath}/book/booklist.do">도서목록</a>
             </div>
         </div>
         <div class="dropdown">
