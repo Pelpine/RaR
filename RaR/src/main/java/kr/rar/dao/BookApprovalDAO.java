@@ -122,6 +122,7 @@ public class BookApprovalDAO {
 					MemberVO member = new MemberVO();
 					member.setUser_email(rs.getString("user_email"));
 					member.setUser_num(rs.getInt("user_num"));
+					member.setUser_auth(rs.getInt("user_auth"));
 					vo.setMemberVO(member);
 					list.add(vo);
 				}
