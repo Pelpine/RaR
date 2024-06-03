@@ -198,13 +198,15 @@ public class BookDAO {
 					sql = "select count(*) from book " + sub_sql;
 					
 					pstmt = conn.prepareStatement(sql);
-					if(keyfield.equals("1") || keyfield.equals("2") || keyfield.equals("3")) {
-						pstmt.setString(++cnt, keyword);
-					}
-					if(keyfield.equals("4")) {
-						pstmt.setString(++cnt, keyword);
-						pstmt.setString(++cnt, keyword);
-						pstmt.setString(++cnt, keyword);
+					if(keyword!=null && !"".equals(keyword)) {
+						if(keyfield.equals("1") || keyfield.equals("2") || keyfield.equals("3")) {
+							pstmt.setString(++cnt, keyword);
+						}
+						if(keyfield.equals("4")) {
+							pstmt.setString(++cnt, keyword);
+							pstmt.setString(++cnt, keyword);
+							pstmt.setString(++cnt, keyword);
+						}
 					}
 					rs = pstmt.executeQuery();
 					if(rs.next()) {

@@ -75,11 +75,9 @@
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropbtn">이벤트</button>
-            <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/event/eventList.do">1 이벤트</a>
-                <a href="#">2 이벤트</a>
-            </div>
+            <button class="dropbtn" onclick="location.href='${pageContext.request.contextPath}/event/eventList.do'">
+            이벤트
+            </button>
         </div>
         <c:if test="${!empty user_num && user_auth == 9}">
             <div class="dropdown">
