@@ -17,11 +17,16 @@
 					<th>판매가</th>
 					<th>장바구니 담기</th>
 				</tr>
-				<c:forEach var="item[i]" items="${list}">
+				<c:forEach var="item" items="${list}">
 				<tr>
 					<td>
 				    <img src="${item.bookVO.bk_img}" width="60">
+				    <c:if test="${item.item_img == null}">
+				    <img src="../images/face.png" width="60">
+				    </c:if>
+				    <c:if test="${item.item_img != null}">
 				    <img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
+				    </c:if>
 				    </td>
 					<td>${item.item_grade}</td>
 					<td>${item.item_price}</td>
