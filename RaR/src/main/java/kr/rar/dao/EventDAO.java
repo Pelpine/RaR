@@ -93,6 +93,7 @@ public class EventDAO {
 	        	event.setStart_date(rs.getDate("start_date"));
 	        	event.setEnd_date(rs.getDate("end_date"));
 	        	event.setNotice(rs.getInt("notice"));
+	        	event.setHit(rs.getInt("hit"));
 	        	list.add(event);
 	        }
 	    } catch(Exception e) {
