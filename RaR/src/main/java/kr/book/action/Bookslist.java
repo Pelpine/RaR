@@ -18,11 +18,8 @@ public class Bookslist implements Action{
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum="1";
-		int count1 = 0;
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
-		
-		System.out.println("keyfield : " + keyfield);
 		
 		BookDAO dao = BookDAO.getInstance();
 		int count = dao.getBooksCount(keyfield, keyword);
