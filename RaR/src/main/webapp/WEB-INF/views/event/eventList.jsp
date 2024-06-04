@@ -15,19 +15,8 @@
         <jsp:include page="/WEB-INF/views/common/header.jsp"/>
         <div id="mainWrapper">
             <ul>
-            
-                <!-- 게시판 제목 -->
-                <li>이벤트 목록</li>
-            
                 <!-- 이벤트 등록 및 홈 버튼 -->
-                <li>
-                    <div class="list-space align-left">
-                        <input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
-                        <c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>            
-                        <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-                    </div>
-                </li>
-
+                
                 <!-- 검색 폼 영역 -->
                 <li id='liSearchOption'>
                     <form id="search_form" action="eventList.do" method="get">
@@ -93,6 +82,14 @@
                     </div>
                 </li>
                 </c:if>
+                <li>
+                    <div class="list-space align-left">
+                        <input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
+                        <c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>            
+                        <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+                    </div>
+                </li>
+                
             </ul>
         </div>
     </div>
