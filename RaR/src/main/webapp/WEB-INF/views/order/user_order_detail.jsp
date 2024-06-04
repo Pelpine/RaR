@@ -33,7 +33,7 @@
 						<a href="javascript:void(0);" onclick="showPopup('${pageContext.request.contextPath}/upload/${detail.item_img}')">
 						<img src="${pageContext.request.contextPath}/upload/${detail.item_img}" width="60"></a>
 					</c:if>
-					${detail.item_name}
+					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${detail.bk_num}">${detail.item_name}</a>
 				</td>
 				<%-- 가격 --%>
 				<td class="align-center">

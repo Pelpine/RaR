@@ -59,7 +59,7 @@ window.onload=function(){
 			<tr>
 				<th>주문번호</th>
 				<th>상품명</th>
-				<th>총결제금액<br>(배송비포함)</th>
+				<th>총결제금액</th>
 				<th>주문일</th>
 				<th>주문상태</th>
 			</tr>
@@ -67,7 +67,7 @@ window.onload=function(){
 			<tr>
 				<td>${order.order_num}</td>
 				<td><a href="userOrderListDetail.do?order_num=${order.order_num}">${order.item_name}</a></td>
-				<td><fmt:formatNumber value="${order.pay_total + order.pay_ship}"/>원</td>
+				<td><fmt:formatNumber value="${order.pay_total + order.pay_ship - order.pay_points}"/>원</td>
 				<td>${order.order_date}</td>
 				<td>
 					<c:if test="${order.order_status == 1}">배송대기</c:if>

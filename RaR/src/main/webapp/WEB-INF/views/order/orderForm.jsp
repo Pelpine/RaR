@@ -49,14 +49,14 @@ window.onload=function(){
 	pay_points.addEventListener('keyup',function(){
 		if(pay_points.value < 0) pay_points.value = 0; //음수 입력 방지
 		if(pay_points.value > ${user_points}) pay_points.value = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
-		pay_points_value.textContent = parseInt(pay_points.value).toLocaleString();
+		pay_points_value.textContent = pay_points.value;
 		if(isNaN(pay_points_value.textContent)) pay_points_value.textContent = 0; //미입력시 0 출력
 		totalPayment.textContent = (${pay_total + pay_ship} - pay_points.value).toLocaleString();
 	});
 	pay_points.addEventListener('mouseup',function(){
 		if(pay_points.value < 0) pay_points.value = 0; //음수 입력 방지
 		if(pay_points.value > ${user_points}) pay_points.value = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
-		pay_points_value.textContent = parseInt(pay_points.value).toLocaleString();
+		pay_points_value.textContent = pay_points.value;
 		if(isNaN(pay_points_value.textContent)) pay_points_value.textContent = 0; //미입력시 0 출력
 		totalPayment.textContent = (${pay_total + pay_ship} - pay_points.value).toLocaleString();
 	});

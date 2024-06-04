@@ -69,8 +69,8 @@ public class OrderDAO {
 			pstmt2.executeUpdate();
 			
 			//주문상세정보 처리
-			sql="INSERT INTO rar_order_detail (detail_num,item_num,item_name,bk_img,bk_price,item_price,item_grade,order_num,item_img) "
-					+ "VALUES (rar_order_detail_seq.nextval,?,?,?,?,?,?,?)";
+			sql="INSERT INTO rar_order_detail (detail_num,item_num,item_name,bk_img,bk_price,item_price,item_grade,order_num,item_img,bk_num) "
+					+ "VALUES (rar_order_detail_seq.nextval,?,?,?,?,?,?,?,?,?)";
 			pstmt3 = conn.prepareStatement(sql);
 			
 			for(int i=0;i<orderDetailList.size();i++) {
@@ -83,6 +83,7 @@ public class OrderDAO {
 				pstmt3.setInt(6, orderDetail.getItem_grade());
 				pstmt3.setInt(7, order_num);
 				pstmt3.setString(8, orderDetail.getItem_img());
+				pstmt3.setInt(9, orderDetail.getBk_num());
 				pstmt3.addBatch();//쿼리를 메모리에 올림
 				
 				//계속 추가하면 outOfMemory 발생, 1000개 단위로 executeBatch()
@@ -225,6 +226,7 @@ public class OrderDAO {
 				order.setOrder_num(rs.getInt("order_num"));
 				order.setPay_total(rs.getInt("pay_total"));
 				order.setPay_ship(rs.getInt("pay_ship"));
+				order.setPay_points(rs.getInt("pay_points"));
 				order.setItem_name(rs.getString("item_name"));
 				order.setOrder_status(rs.getInt("order_status"));
 				order.setOrder_date(rs.getDate("order_date"));
@@ -313,6 +315,7 @@ public class OrderDAO {
 				detail.setItem_grade(rs.getInt("item_grade"));
 				detail.setOrder_num(rs.getInt("order_num"));
 				detail.setItem_img(rs.getString("item_img"));
+				detail.setBk_num(rs.getInt("bk_num"));
 				
 				list.add(detail);
 			}
