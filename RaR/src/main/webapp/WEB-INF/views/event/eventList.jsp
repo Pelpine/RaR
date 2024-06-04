@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>이벤트 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eventList.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 </head>
 <body>
 <div class="page-main">
