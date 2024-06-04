@@ -64,9 +64,9 @@ window.onload=function(){
 </head>
 <body>
 	<div class="page-main">
-		<h2>이벤트 등록</h2>
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
+				<h2>이벤트 등록</h2>
 			<form id="write_form" action="insertEvent.do" method="post"
 				enctype="multipart/form-data">
 				<ul>

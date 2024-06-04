@@ -61,9 +61,10 @@ window.onload=function(){
 </head>
 <body>
 	<div class="page-main">
-		<h2>이벤트 수정</h2>
+	
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
+			<h2>이벤트 수정</h2>
 			<form id="write_form" action="updateEvent.do" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="event_num" value="${event.event_num}">
