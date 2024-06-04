@@ -6,9 +6,14 @@ public class GenreVO {
 	private String bg_title;
 	private int user_num;
 	
-	public GenreVO() {}
+	public GenreUserVO genreuserVO;
 	
-	
+	public GenreUserVO getGenreuserVO() {
+		return genreuserVO;
+	}
+	public void setGenreuserVO(GenreUserVO genreuserVO) {
+		this.genreuserVO = genreuserVO;
+	}
 	public int getBg_num() {
 		return bg_num;
 	}

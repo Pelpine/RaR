@@ -43,7 +43,7 @@
 		</div>
 		</c:if>
 		<p>
-			의견을 자유롭게 표현해주세요
+			의견을 자유롭게 표현해주세요<br>
 		</p>
 		<hr size="1" noshade="noshade" width="100%">
 		
@@ -82,6 +82,7 @@
 		<div id="reply_div">
 			<span class="re-title">댓글 달기</span>
 			<form id="re_form">
+			<input type="hidden" name="user_email" value="${genre.genreuserVO.user_email}">
 			<input type="hidden" name="bg_num" value="${genre.bg_num}"
 			id="board_num">
 			<textarea rows="3" cols="50" name="content"

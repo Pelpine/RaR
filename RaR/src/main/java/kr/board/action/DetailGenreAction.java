@@ -19,6 +19,7 @@ public class DetailGenreAction implements Action {
 				
 				
 				GenreVO genre = dao.getGenre(bg_num);
+				
 				//HTML을 사용하지 않음
 				
 				

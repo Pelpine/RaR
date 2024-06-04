@@ -31,10 +31,9 @@ public class WriteReplyGenreAction implements Action {
 			//자바빈(VO)을 생성해서 전송된 데이터 저장
 			GenreUserVO replyg = new GenreUserVO();
 			replyg.setUser_num(user_num);//댓글 작성자 회원번호
-			replyg.setBgu_content(request.getParameter("bgu_content"));
+			replyg.setBgu_content(request.getParameter("content"));
 			replyg.setUser_email(request.getParameter("user_email"));
-			replyg.setBg_num(Integer.parseInt(
-					request.getParameter("bg_num")));//댓글의 부모 글 번호
+			replyg.setBg_num(Integer.parseInt(request.getParameter("bg_num")));//댓글의 부모 글 번호
 		
 			BoardDAO dao = BoardDAO.getInstance();
 			dao.insertReplyGenre(replyg);

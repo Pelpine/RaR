@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>책 등록 요청</title>
 <script type="text/javascript">
-function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=400, height=300, left=100, top=50");}
+function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=600, height=800, left=200, top=100");}
 function updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher, isbn, description) {
     document.getElementById("bk_name").value = bk_name;
     document.getElementById("author").value = author;
@@ -20,15 +20,23 @@ function updateParent(bk_name, author, pubDate, cover, categoryName, price, publ
     document.getElementById("isbn").value = isbn;
     document.getElementById("description").value = description;
 }
-window.onload=function(){
-	
+
+window.onload = function() {
+    document.getElementById('test').onsubmit = function() {
+    	if (document.getElementById('bk_name').value.trim() == '') {
+            alert('책 선택은 필수 입니다.');
+            document.getElementById('bk_name').value = '';
+            document.getElementById('bk_name').focus();
+            return false;
+        }
+    }
 }
 </script>
 </head>
 <body>
 <div>
 	<h4>책 등록 요청</h4>
-	<form action="book.do" method="post" name="test" enctype="multipart/form-data">
+	<form action="book.do" method="post" name="test" enctype="multipart/form-data" id="test">
 		<ul>
 			<li>
 				<img src="${books.cover}" id="cover">
@@ -60,11 +68,15 @@ window.onload=function(){
 				<input type="text" id="publisher" name="publisher" value="${books.publisher}" readonly >
 			</li>
 			<li>
+				<div>설명 : </div>
+				<textarea rows="5" cols="30" name="description" readonly>${books.description}</textarea>
+			</li>
+			<li>
 				<label for="item_grade">상품상태</label>
-				<select name="item_grade" class="asdf">
-					<option value="1">좋음</option>
-					<option value="2">보통</option>
-					<option value="3">좋지않음</option>
+				<select name="item_grade" id="item_grade">
+					<option value="1">상</option>
+					<option value="2">중</option>
+					<option value="3">하</option>
 				</select>
 			</li>
 			<li>
@@ -72,19 +84,16 @@ window.onload=function(){
 				<input type="file" name="photo" class="input-check" id="photo" accept="image/gif,image/png,image/jpeg">
 			</li>
 			<li>
-				<label for="comment">코맨트</label>
+				<div>코맨트 : </div>
 				<textarea rows="5" cols="30" id="comment" name="comment"></textarea>
 			</li>
 			<li>
-				<label for="private_num">공개 비공개 설정(미선택시 : 공개설정)</label>
-				<input type="radio" name="private_num" value="1" id="private_num1">공개
+				<label for="private_num">공개 비공개 설정(기본 : 공개설정)</label>
+				<input type="radio" name="private_num" value="1" id="private_num1" checked>공개
 				<input type="radio" name="private_num" value="2" id="private_num2">비공개
 			</li>
-			<li>
-				<div>설명 : ${books.description}</div>
-				<input type="text" id="description" name="description" value="${books.description}" readonly>
-			</li>
 		</ul>
+		<input type="hidden" id="description" name="description" value="${books.description}">
 		<input type="hidden" value="${books.isbn}" name="isbn" id="isbn">
 		<input type="hidden" value="${books.description}" name="description" id="description">
 		<input type="submit" value="등록요청">

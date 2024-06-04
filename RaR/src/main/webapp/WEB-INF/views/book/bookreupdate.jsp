@@ -9,7 +9,7 @@
 <!-- jQuery 라이브러리 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=400, height=300, left=100, top=50"); }
+function showPopup() { window.open("/RaR/book/bookForm.do", "a", "width=600, height=800, left=200, top=100"); }
 function updateParent(bk_name, author, pubDate, cover, categoryName, price, publisher, isbn, description) {
     document.getElementById("bk_name").value = bk_name;
     document.getElementById("author").value = author;
