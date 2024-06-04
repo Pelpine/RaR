@@ -9,6 +9,7 @@ public class OrderDetailVO {
 	private int item_price;		//판매가
 	private int item_grade;		//상품상태
 	private int order_num;		//주문번호
+	private String item_img;	//책사진(판매자 업로드)
 	
 	public int getDetail_num() {
 		return detail_num;
@@ -58,6 +59,10 @@ public class OrderDetailVO {
 	public void setOrder_num(int order_num) {
 		this.order_num = order_num;
 	}
-	
-	
+	public String getItem_img() {
+		return item_img;
+	}
+	public void setItem_img(String item_img) {
+		this.item_img = item_img;
+	}
 }

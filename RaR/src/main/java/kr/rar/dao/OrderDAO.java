@@ -3,6 +3,7 @@ package kr.rar.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.rar.vo.MemberVO;
@@ -68,7 +69,7 @@ public class OrderDAO {
 			pstmt2.executeUpdate();
 			
 			//주문상세정보 처리
-			sql="INSERT INTO rar_order_detail (detail_num,item_num,item_name,bk_img,bk_price,item_price,item_grade,order_num) "
+			sql="INSERT INTO rar_order_detail (detail_num,item_num,item_name,bk_img,bk_price,item_price,item_grade,order_num,item_img) "
 					+ "VALUES (rar_order_detail_seq.nextval,?,?,?,?,?,?,?)";
 			pstmt3 = conn.prepareStatement(sql);
 			
@@ -81,6 +82,7 @@ public class OrderDAO {
 				pstmt3.setInt(5, orderDetail.getItem_price());
 				pstmt3.setInt(6, orderDetail.getItem_grade());
 				pstmt3.setInt(7, order_num);
+				pstmt3.setString(8, orderDetail.getItem_img());
 				pstmt3.addBatch();//쿼리를 메모리에 올림
 				
 				//계속 추가하면 outOfMemory 발생, 1000개 단위로 executeBatch()
@@ -147,9 +149,179 @@ public class OrderDAO {
 		String sub_sql = "";
 		int count = 0;
 		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword != null && !"".equals(keyword)) {
+				//검색 글 개수
+				if(keyfield.equals("1")) sub_sql += "AND item_name LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += "AND order_num=?";
+			}
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM rar_order "
+				+ "JOIN (SELECT order_num, LISTAGG(item_name,',') WITHIN GROUP (ORDER BY item_name) item_name "
+				+ "FROM rar_order_detail GROUP BY order_num) USING (order_num) "
+				+ "WHERE user_num=? " + sub_sql;
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, user_num);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(2, keyword);
+			}
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
 		return count;
 	}
 	//주문목록
+	public List<OrderVO> getOrderList(int start,int end,String keyfield,String keyword,int user_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<OrderVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword != null && !"".equals(keyword)) {
+				//검색 글 개수
+				if(keyfield.equals("1")) sub_sql += "AND item_name LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += "AND order_num=?";
+			}
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM ("
+				+ "SELECT * FROM rar_order JOIN (SELECT order_num, LISTAGG(item_name,',') WITHIN GROUP (ORDER BY item_name) item_name "
+				+ "FROM rar_order_detail GROUP BY order_num) USING (order_num) "
+				+ "WHERE user_num=? " + sub_sql
+				+ " ORDER BY order_num DESC)a) WHERE rnum>=? AND rnum<=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(++cnt, user_num);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, keyword);
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<OrderVO>();
+			while(rs.next()) {
+				OrderVO order = new OrderVO();
+				order.setOrder_num(rs.getInt("order_num"));
+				order.setPay_total(rs.getInt("pay_total"));
+				order.setPay_ship(rs.getInt("pay_ship"));
+				order.setItem_name(rs.getString("item_name"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setOrder_date(rs.getDate("order_date"));
+				
+				list.add(order);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
 	//주문목록 상세
+	public OrderVO getOrder(int order_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		OrderVO order = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM rar_order WHERE order_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, order_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				order = new OrderVO();
+				order.setOrder_num(rs.getInt("order_num"));
+				order.setOrder_date(rs.getDate("order_date"));
+				order.setOrder_status(rs.getInt("order_status"));
+				order.setOrder_points(rs.getInt("order_points"));
+				order.setPay_total(rs.getInt("pay_total"));
+				order.setPay_points(rs.getInt("pay_points"));
+				order.setPay_ship(rs.getInt("pay_ship"));
+				order.setPay_payment(rs.getInt("pay_payment"));
+				order.setReceive_name(rs.getString("receive_name"));
+				order.setReceive_post(rs.getString("receive_post"));
+				order.setReceive_address1(rs.getString("receive_address1"));
+				order.setReceive_address2(rs.getString("receive_address2"));
+				order.setReceive_phone(rs.getString("receive_phone"));
+				order.setNotice(rs.getString("notice"));
+				order.setUser_num(rs.getInt("user_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return order;
+	}
+	
+	//개별상품 상세
+	public List<OrderDetailVO> getOrderListDetail(int order_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<OrderDetailVO> list = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM rar_order_detail WHERE order_num=? ORDER BY item_num DESC";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, order_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<OrderDetailVO>();
+			while(rs.next()) {
+				OrderDetailVO detail = new OrderDetailVO();
+				detail.setItem_num(rs.getInt("item_num"));
+				detail.setItem_name(rs.getString("item_name"));
+				detail.setBk_img(rs.getString("bk_img"));
+				detail.setBk_price(rs.getInt("bk_price"));
+				detail.setItem_price(rs.getInt("item_price"));
+				detail.setItem_grade(rs.getInt("item_grade"));
+				detail.setOrder_num(rs.getInt("order_num"));
+				detail.setItem_img(rs.getString("item_img"));
+				
+				list.add(detail);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	//주문 취소
 }

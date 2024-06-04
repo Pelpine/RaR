@@ -55,6 +55,7 @@ public class OrderAction implements Action{
 	  		orderDetail.setBk_price(cart.getBookVO().getBk_price());
 	  		orderDetail.setItem_price(cart.getItemVO().getItem_price());
 	  		orderDetail.setItem_grade(cart.getItemVO().getItem_grade());
+	  		orderDetail.setItem_img(cart.getItemVO().getItem_img());
 	  		
 	  		orderDetailList.add(orderDetail);
 	  	}

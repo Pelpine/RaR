@@ -44,10 +44,12 @@
 								<span class="item_grade3">하</span>
 							</c:if>
 						</td>
+						<%-- 가격 --%>
 						<td>
-						<span class="item_bk_price">정가 : <fmt:formatNumber value="${item.bookVO.bk_price}"></fmt:formatNumber>원</span><br>
-						판매가 : <span class="item_item_price"><fmt:formatNumber value="${item.item_price}"></fmt:formatNumber></span>원
+						<span class="item_bk_price">정가 : <fmt:formatNumber value="${item.bookVO.bk_price}"/>원</span><br>
+						판매가 : <span class="item_item_price"><fmt:formatNumber value="${item.item_price}"/></span>원
 						</td>
+						<%-- 장바구니 담기 --%>
 						<td>
 							<form class="insertCart" method="post"
 								style="width: 0; margin: 10px 0; border: 0; padding: 0;">

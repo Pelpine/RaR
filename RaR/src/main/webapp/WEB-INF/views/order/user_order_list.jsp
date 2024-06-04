@@ -29,7 +29,7 @@ window.onload=function(){
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="content-main">
 		<h2>주문 목록</h2>
-		<form id="search_form" action="UserOrderList.do" method="get">
+		<form id="search_form" action="userOrderList.do" method="get">
 			<ul class="search">
 				<li>
 					<select name="keyfield">
@@ -46,7 +46,7 @@ window.onload=function(){
 			</ul>
 		</form>
 		<div class="list-space align-right">
-			<input type="button" value="목록" onclick="location.href='UserOrderList.do'">
+			<input type="button" value="목록" onclick="location.href='userOrderList.do'">
 			<input type="button" value="MY페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 		</div>
 		<c:if test="${count == 0}">
@@ -59,22 +59,22 @@ window.onload=function(){
 			<tr>
 				<th>주문번호</th>
 				<th>상품명</th>
-				<th>총결제금액(배송비포함)</th>
-				<th>주문날짜</th>
-				<th>상태</th>
+				<th>총결제금액<br>(배송비포함)</th>
+				<th>주문일</th>
+				<th>주문상태</th>
 			</tr>
 			<c:forEach var="order" items="${list}">
 			<tr>
 				<td>${order.order_num}</td>
-				<td><a href="orderDetail.do?order_num=${order.order_num}">${order.item_name}</a></td>
+				<td><a href="userOrderListDetail.do?order_num=${order.order_num}">${order.item_name}</a></td>
 				<td><fmt:formatNumber value="${order.pay_total + order.pay_ship}"/>원</td>
-				<td>${order.reg_date}</td>
+				<td>${order.order_date}</td>
 				<td>
-					<c:if test="${order.status == 1}">배송대기</c:if>
-					<c:if test="${order.status == 2}">배송준비중</c:if>
-					<c:if test="${order.status == 3}">배송중</c:if>
-					<c:if test="${order.status == 4}">배송완료</c:if>
-					<c:if test="${order.status == 5}">주문취소</c:if>
+					<c:if test="${order.order_status == 1}">배송대기</c:if>
+					<c:if test="${order.order_status == 2}">배송준비중</c:if>
+					<c:if test="${order.order_status == 3}">배송중</c:if>
+					<c:if test="${order.order_status == 4}">배송완료</c:if>
+					<c:if test="${order.order_status == 5}">주문취소</c:if>
 				</td>
 			</tr>
 			</c:forEach>
