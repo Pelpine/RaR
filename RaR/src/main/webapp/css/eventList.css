@@ -24,7 +24,6 @@ a:hover {
     margin: 40px 0;
     border-radius: 5px;
     box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
-    min-height: 650px;
 }
 
 .content-main {
@@ -69,19 +68,17 @@ ul, li {
     clear: both;
     padding: 0px auto;
     position: relative;
-    min-width: 40px;
+    min-width: 100px;
 }
 
 #ulTable > li > ul > li {
     float: left;
-    font-size: 10pt;
+    font-size: 13pt;
     border-bottom: 1px solid silver;
     vertical-align: baseline;
-}
-
-ul#ulTable > li > ul > li {
     text-align: center; /* 모든 열을 가운데 정렬 */
 }
+
 
 #ulTable > li > ul > li:first-child {
     width: 10%;
