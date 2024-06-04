@@ -6,13 +6,13 @@ $(function(){
 	 * 댓글 목록
 	 * ==================================== */
 	//댓글 목록
-	/*function selectList(pageNum){
+	function selectList(pageNum){
 		currentPage = pageNum;
 		//로딩 이미지 노출
 		$('#loading').show();
 		//서버와 통신
 		$.ajax({
-			url:'listReply.do',
+			url:'listReplyGenre.do',
 			type:'post',
 			data:{pageNum:pageNum,rowCount:rowCount,bg_num:$('#bg_num').val()},
 			dataType:'json',
@@ -66,7 +66,7 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-	}*/
+	}
 	//페이지 처리 이벤트 연결(다음 댓글 보기 버튼 클릭시 데이터 추가)
 	/*$('.paging-button input').click(function(){
 		selectList(currentPage + 1);
