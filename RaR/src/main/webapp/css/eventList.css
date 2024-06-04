@@ -73,7 +73,7 @@ ul, li {
 
 #ulTable > li > ul > li {
     float: left;
-    font-size: 13pt;
+    font-size: 14pt;
     border-bottom: 1px solid silver;
     vertical-align: baseline;
     text-align: center; /* 모든 열을 가운데 정렬 */
