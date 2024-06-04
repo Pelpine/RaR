@@ -14,7 +14,7 @@ $(function(){
 		$.ajax({
 			url:'listReplyGenre.do',
 			type:'post',
-			data:{pageNum:pageNum,rowCount:rowCount,bg_num:$('#bg_num').val()},
+			data:{pageNum:pageNum,rowCount:rowCount,board_num:$('#board_num').val()},
 			dataType:'json',
 			success:function(param){
 				//로딩 이미지 감추기

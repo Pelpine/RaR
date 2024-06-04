@@ -89,7 +89,6 @@ $(function(){
 		//서버와 통신
 		$.ajax({
 			url:'writeReply.do',
-			url:'writeReplyGenre.do',
 			type:'post',
 			data:form_data,
 			dataType:'json',
