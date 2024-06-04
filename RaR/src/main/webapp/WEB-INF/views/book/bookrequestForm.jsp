@@ -76,7 +76,7 @@ window.onload=function(){
 				<textarea rows="5" cols="30" id="comment" name="comment"></textarea>
 			</li>
 			<li>
-				<label for="private_num">공개 비공개 설정</label>
+				<label for="private_num">공개 비공개 설정(미선택시 : 공개설정)</label>
 				<input type="radio" name="private_num" value="1" id="private_num1">공개
 				<input type="radio" name="private_num" value="2" id="private_num2">비공개
 			</li>
