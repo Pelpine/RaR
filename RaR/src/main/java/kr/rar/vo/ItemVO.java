@@ -1,5 +1,7 @@
 package kr.rar.vo;
 
+import java.sql.Date;
+
 public class ItemVO {
 	private int item_num;		//상품번호
 	private int item_price;		//판매가
@@ -8,7 +10,14 @@ public class ItemVO {
 	private int bk_num;			//도서번호
 	private int approval_id;	//등록요청코드
 	private int item_status;	//판매 상태 (1:판매중,2:판매완료,3:판매정지)
+	private Date reg_date;		//등록 날짜
 	
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
 	//도서
 	private BookVO bookVO;
 	//도서 승인

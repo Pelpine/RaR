@@ -113,7 +113,7 @@ public class BookDAO {
 			
 			pstmt2.executeUpdate();
 			
-			sql = "insert into item (item_num,item_price,item_grade,item_img,bk_num,approval_id) values(item_seq.nextval,?,?,?,?,?)";
+			sql = "insert into item (item_num,item_price,item_grade,item_img,bk_num,approval_id,reg_date) values(item_seq.nextval,?,?,?,?,?,SYSDATE)";
 			
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, io.getItem_price());
@@ -121,6 +121,7 @@ public class BookDAO {
 			pstmt3.setString(3, io.getItem_img());
 			pstmt3.setInt(4, order_num);
 			pstmt3.setInt(5, io.getApproval_id());
+			pstmt3.setDate(6, io.getReg_date());
 			pstmt3.executeUpdate();
 			
 			conn.commit();

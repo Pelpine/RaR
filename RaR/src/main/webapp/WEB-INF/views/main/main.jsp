@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,34 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="content-main">
         <h4>메인 페이지</h4>
+        	    <h4>최근 입고된 중고 서적</h4>
+    	<div class="image-space">
+			<c:forEach var="item" items="${itemList}">
+			<div class="horizontal-area">
+				<img src="${item.bookVO.bk_img}" width="60">
+				<%-- 상품이미지가 없을 경우, 기본 이미지 처리 --%>
+				<c:if test="${item.item_img == null}">
+						<img src="../images/book_default.png" width="60">
+				</c:if> <%-- 상품이미지가 있을 경우 --%> 
+				<c:if test="${item.item_img != null}">
+				<img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60"></a>
+				</c:if>
+					${item.bookVO.bk_name}
+					<c:if test="${item.item_grade == 1}">
+								<span class="item_grade1">상</span>
+					</c:if>
+					<c:if test="${item.item_grade == 2}">
+								<span class="item_grade1">중</span>
+					</c:if>
+					<c:if test="${item.item_grade == 3}">
+								<span class="item_grade1">하</span>
+					</c:if>
+					<br>
+					<span>정가 : <fmt:formatNumber value="${item.bookVO.bk_price}"></fmt:formatNumber>원</span><br>
+				</a>
+			</div>
+			</c:forEach>
+		</div>
     	<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
 	    	<div class="carousel-indicators">
 	        	<c:forEach var="event" items="${list}" varStatus="loop">
@@ -43,7 +72,6 @@
 		        <span class="visually-hidden">Next</span>                             
 		    </button>
 	    </div>
-	    <h3>방금 입고된 책</h3>
 	</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
