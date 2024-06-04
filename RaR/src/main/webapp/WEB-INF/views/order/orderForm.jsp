@@ -44,21 +44,21 @@ window.onload=function(){
 	const pay_points_value = document.getElementById('pay_points_value');//사용포인트 출력값
 	const totalPayment = document.getElementById('totalPayment');//총결제금액값
 
+	
 	//keyup,mouseup 이벤트 발생시 총결제금액 = 총상품금액 + 배송비 - 사용포인트 실시간 계산
-	 
-	pay_points.addEventListener('keyup',function(){
+	function updatePoints(){
 		if(pay_points.value < 0) pay_points.value = 0; //음수 입력 방지
 		if(pay_points.value > ${user_points}) pay_points.value = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
 		pay_points_value.textContent = pay_points.value;
 		if(isNaN(pay_points_value.textContent)) pay_points_value.textContent = 0; //미입력시 0 출력
 		totalPayment.textContent = (${pay_total + pay_ship} - pay_points.value).toLocaleString();
+	}
+	
+	pay_points.addEventListener('keyup',function(){
+		updatePoints();
 	});
 	pay_points.addEventListener('mouseup',function(){
-		if(pay_points.value < 0) pay_points.value = 0; //음수 입력 방지
-		if(pay_points.value > ${user_points}) pay_points.value = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
-		pay_points_value.textContent = pay_points.value;
-		if(isNaN(pay_points_value.textContent)) pay_points_value.textContent = 0; //미입력시 0 출력
-		totalPayment.textContent = (${pay_total + pay_ship} - pay_points.value).toLocaleString();
+		updatePoints();
 	});
 
 };
