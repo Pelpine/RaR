@@ -43,20 +43,21 @@ window.onload=function(){
 	const pay_points = document.getElementById('pay_points');//사용포인트 입력값
 	const pay_points_value = document.getElementById('pay_points_value');//사용포인트 출력값
 	const totalPayment = document.getElementById('totalPayment');//총결제금액값
-	
-	//처음 focus시 0으로 출력되게끔 설정
-	pay_points.addEventListener('focus',function(){
-		pay_points.value = 0; 
-	});
+
 	//keyup,mouseup 이벤트 발생시 총결제금액 = 총상품금액 + 배송비 - 사용포인트 실시간 계산
+	 
 	pay_points.addEventListener('keyup',function(){
+		if(pay_points.value < 0) pay_points.value = 0; //음수 입력 방지
 		if(pay_points.value > ${user_points}) pay_points.value = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
-		pay_points_value.textContent = pay_points.value;
+		pay_points_value.textContent = parseInt(pay_points.value).toLocaleString();
+		if(isNaN(pay_points_value.textContent)) pay_points_value.textContent = 0; //미입력시 0 출력
 		totalPayment.textContent = (${pay_total + pay_ship} - pay_points.value).toLocaleString();
 	});
 	pay_points.addEventListener('mouseup',function(){
+		if(pay_points.value < 0) pay_points.value = 0; //음수 입력 방지
 		if(pay_points.value > ${user_points}) pay_points.value = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
-		pay_points_value.textContent = pay_points.value;
+		pay_points_value.textContent = parseInt(pay_points.value).toLocaleString();
+		if(isNaN(pay_points_value.textContent)) pay_points_value.textContent = 0; //미입력시 0 출력
 		totalPayment.textContent = (${pay_total + pay_ship} - pay_points.value).toLocaleString();
 	});
 
@@ -124,7 +125,7 @@ window.onload=function(){
 		<form action="order.do" method="post" id="order_form">
 			<!-- 사용 포인트 입력 -->
 			<div class="align-center">
-				포인트 사용 : <input type="number" name="pay_points" id="pay_points" min="0" max="${user_points}">
+				포인트 사용 : <input type="number" name="pay_points" id="pay_points" min="0" max="${user_points}"> (보유 포인트 : ${user_points})
 			</div>
 			<input type="hidden" name="pay_total" value="${pay_total}">
 			<input type="hidden" name="pay_ship" value="${pay_ship}">

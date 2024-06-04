@@ -159,7 +159,7 @@ $(function(){
 	<div>
 		<input type="button" value="My QnA" class="my-input" onclick="location.href=">
 		<input type="button" value="최근 구매 내역" class="my-input"
-		onclick="">
+		onclick="location.href='${pageContext.request.contextPath}/order/UserOrderList.do'">
 	</div>
 	<div>
 		<input type="button" value="좋아요한 글" class="my-input"

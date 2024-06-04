@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
+import kr.rar.vo.MemberVO;
 import kr.rar.vo.OrderDetailVO;
 import kr.rar.vo.OrderVO;
 import kr.util.DBUtil;
@@ -28,6 +29,7 @@ public class OrderDAO {
 		PreparedStatement pstmt4 = null;
 		PreparedStatement pstmt5 = null;
 		PreparedStatement pstmt6 = null;
+		PreparedStatement pstmt7 = null;
 		ResultSet rs = null;
 		String sql = null;
 		int order_num = 0;
@@ -112,7 +114,14 @@ public class OrderDAO {
 			sql = "UPDATE member_detail SET user_point=? WHERE user_num=?";
 			pstmt6 = conn.prepareStatement(sql);
 			
-			pstmt6.setInt(1, order.getPay_points());
+			//포인트 계산 (보유 포인트 - 사용 포인트 + 적립 포인트)
+			MemberDAO memberDAO = MemberDAO.getInstance();
+			MemberVO member = memberDAO.getMember(order.getUser_num());
+			
+			int points_result = member.getUser_point() - order.getPay_points() + order.getOrder_points();
+			pstmt6.setInt(1, points_result);
+			pstmt6.setInt(2, order.getUser_num());
+			pstmt6.executeUpdate();
 			
 			//모든 SQL문이 정상 수행
 			conn.commit();
@@ -121,6 +130,7 @@ public class OrderDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt6, null);
 			DBUtil.executeClose(null, pstmt5, null);
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt4, null);
@@ -128,6 +138,18 @@ public class OrderDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
+	//주문개수
+	public int getOrderCount(String keyfield, String keyword, int user_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		
+		return count;
+	}
 	//주문목록
 	//주문목록 상세
+	//주문 취소
 }

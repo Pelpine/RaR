@@ -74,8 +74,8 @@ public class OrderAction implements Action{
 	  	order.setNotice(request.getParameter("notice"));
 	  	order.setUser_num(user_num);
 	  	
-	  	System.out.println(order);
 	  	OrderDAO orderDAO = OrderDAO.getInstance();
+	  	
 	  	orderDAO.insertOrder(order, orderDetailList);
 	  	
 	  	//Refresh 정보를 응답 헤더에 추가
