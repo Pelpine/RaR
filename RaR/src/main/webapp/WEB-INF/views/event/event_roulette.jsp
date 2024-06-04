@@ -21,6 +21,7 @@
 	<p>
 		<iframe width="400" height="500" src="roulette.do"></iframe>
 	</p>
+		<span>내가 보유한 티켓 : ${ticket}</span>
 </div>		
 	<hr size="1" width="100%" noshade="noshade">
 		<input type="button" value="목록"

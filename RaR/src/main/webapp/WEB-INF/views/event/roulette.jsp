@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 <div style="border:1px solid black;">
 <div>
   <canvas width="380" height="380"></canvas>  
-  <button onclick="rotate()">룰렛 돌리기</button>
+  <button onclick="rotate()" <c:if test="${ticket <= 0}">disabled</c:if>>룰렛 돌리기</button>
 </div>
 </div>
 </body>
