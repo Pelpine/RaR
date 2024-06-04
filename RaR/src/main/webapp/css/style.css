@@ -29,6 +29,8 @@ a:hover{
 	min-height:1200px;
 }
 .content-main{
+	display:flex;
+	flex-direction: column;
 	padding:10px 20px;
 }
 /* 공통 메시지
@@ -353,19 +355,4 @@ input[type="number"].quantity-width{
 }
 .sold-out{
 	color:red;
-}
-
-/***메인***/
-.image-space .horizontal-area{
-	margin:2px;
-	padding:3px 3px 3px 3px;
-	width:220px;
-	height:240px;
-	float:left;
-	overflow:hidden;
-	text-align:center;
-}
-.image-space .horizontal-area img{
-	width:215px;
-	height:195px;
 }
