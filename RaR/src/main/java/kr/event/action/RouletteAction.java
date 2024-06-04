@@ -21,6 +21,8 @@ public class RouletteAction implements Action{
 		int ticket = dao.getTicket(user_num);
 		
 		request.setAttribute("ticket", ticket);
+		
+		
 		return "/WEB-INF/views/event/roulette.jsp";
 	}
 

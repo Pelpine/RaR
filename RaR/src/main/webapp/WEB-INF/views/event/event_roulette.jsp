@@ -21,11 +21,13 @@
 	<p>
 		<iframe width="400" height="500" src="roulette.do"></iframe>
 	</p>
-		<span>내가 보유한 티켓 : ${ticket}</span>
+	책을 한 권 구매할 때마다 주어지는 룰렛 티켓으로 포인트를 획득하세요!
 </div>		
 	<hr size="1" width="100%" noshade="noshade">
+	<div class="align-right">
 		<input type="button" value="목록"
 		       onclick="location.href='eventList.do'">
+	</div>
 </div>
 </body>
 </html>

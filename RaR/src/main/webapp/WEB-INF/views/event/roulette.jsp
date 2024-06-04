@@ -15,6 +15,7 @@
 <div>
   <canvas width="380" height="380"></canvas>  
   <button onclick="rotate()" <c:if test="${ticket <= 0}">disabled</c:if>>룰렛 돌리기</button>
+  <span style="font-size:20px;">내가 보유한 티켓 : <span id="ticketCount">${ticket}</span></span>
 </div>
 </div>
 </body>
