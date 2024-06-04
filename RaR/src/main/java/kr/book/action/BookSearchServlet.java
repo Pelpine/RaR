@@ -23,13 +23,15 @@ public class BookSearchServlet implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String sheck = request.getParameter("sheck");//검색어
+		String sk = request.getParameter("ck");//검색종류 - Keyword: 제목,저자 , Title:제목 , Author:저자 , Publisher:출판사, isbn13
 		int start = 1; //검색결과 시작페이지
 		start = Integer.parseInt(request.getParameter("start"));
 		 ArrayList<BookApprovalVO> list = new ArrayList<>();
 	    	String key = "ttbtkdrl45620853001";
-	    	String sk = "Title";//검색종류 - Keyword: 제목,저자 , Title:제목 , Author:저자 , Publisher:출판사
+	    	
 	    	int maxresults = 20; //검색결과 한페이지당 최데 출력 개수
-	        String urlStr = "https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey="+key+"&Query="+sheck+"&QueryType="+sk+"&MaxResults="+maxresults+"&start="+start+"&SearchTarget=Book&output=xml&Cover=MidBig&pricesales";
+	        String urlStr = null;
+	        urlStr = "https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey="+key+"&Query="+sheck+"&QueryType="+sk+"&MaxResults="+maxresults+"&start="+start+"&SearchTarget=Book&output=xml&Cover=MidBig&pricesales";
 	        URL url = new URL(urlStr);
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	        conn.setRequestMethod("GET");

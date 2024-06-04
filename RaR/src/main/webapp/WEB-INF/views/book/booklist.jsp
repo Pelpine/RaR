@@ -1,3 +1,4 @@
+<%@page import="kr.rar.dao.ItemDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,19 +29,18 @@
 			<table>
 				<tr>
 					<th></th>
-					<th>책번호</th>
 					<th>책이름</th>
 					<th>작가</th>
 					<th>출판사</th>
+					<th>현제 판매 매수</th>
 				</tr>
 				<c:forEach var="book" items="${list}">
 				<tr>
 					<td><img src="${book.bk_img}"></td>
-					<td>${book.bk_num}</td>
 					<td><a href="booksdetail.do?bk_num=${book.bk_num}">${book.bk_name}</a></td>
 					<td>${book.bk_writer}</td>
 					<td>${book.bk_publisher}</td>
-					
+					<td>${count1}</td>
 				</tr>
 				</c:forEach>
 			</table>

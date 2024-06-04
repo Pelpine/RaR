@@ -10,7 +10,14 @@ public class BookVO {
 	private String bk_genre;//장르
 	private String bk_isbn;
 	private String bk_description;
+	private int bk_count;
 	
+	public int getBk_count() {
+		return bk_count;
+	}
+	public void setBk_count(int bk_count) {
+		this.bk_count = bk_count;
+	}
 	private ItemVO itemVO;
 	
 	public ItemVO getItemVO() {
