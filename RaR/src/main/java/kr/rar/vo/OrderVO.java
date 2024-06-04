@@ -124,4 +124,14 @@ public class OrderVO {
 	public void setItem_name(String item_name) {
 		this.item_name = item_name;
 	}
+	@Override
+	public String toString() {
+		return "OrderVO [order_num=" + order_num + ", order_date=" + order_date + ", order_status=" + order_status
+				+ ", order_points=" + order_points + ", pay_total=" + pay_total + ", pay_points=" + pay_points
+				+ ", pay_ship=" + pay_ship + ", pay_payment=" + pay_payment + ", receive_name=" + receive_name
+				+ ", receive_post=" + receive_post + ", receive_address1=" + receive_address1 + ", receive_address2="
+				+ receive_address2 + ", receive_phone=" + receive_phone + ", notice=" + notice + ", user_num="
+				+ user_num + ", id=" + id + ", item_name=" + item_name + "]";
+	}
+	
 }

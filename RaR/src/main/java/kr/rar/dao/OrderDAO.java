@@ -27,6 +27,7 @@ public class OrderDAO {
 		PreparedStatement pstmt3 = null;
 		PreparedStatement pstmt4 = null;
 		PreparedStatement pstmt5 = null;
+		PreparedStatement pstmt6 = null;
 		ResultSet rs = null;
 		String sql = null;
 		int order_num = 0;
@@ -106,6 +107,12 @@ public class OrderDAO {
 			pstmt5 = conn.prepareStatement(sql);
 			pstmt5.setInt(1, order.getUser_num());
 			pstmt5.executeUpdate();
+			
+			//사용자 사용포인트 업데이트
+			sql = "UPDATE member_detail SET user_point=? WHERE user_num=?";
+			pstmt6 = conn.prepareStatement(sql);
+			
+			pstmt6.setInt(1, order.getPay_points());
 			
 			//모든 SQL문이 정상 수행
 			conn.commit();

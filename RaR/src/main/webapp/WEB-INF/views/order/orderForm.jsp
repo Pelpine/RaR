@@ -40,15 +40,24 @@ window.onload=function(){
 		}
 	};
 	
-	const pay_points = document.getElementById('pay_points');
-	const pay_points_value = document.getElementById('pay_points_value');
-	const totalPayment = document.getElementById('totalPayment');
+	const pay_points = document.getElementById('pay_points');//사용포인트 입력값
+	const pay_points_value = document.getElementById('pay_points_value');//사용포인트 출력값
+	const totalPayment = document.getElementById('totalPayment');//총결제금액값
 	
+	//처음 focus시 0으로 출력되게끔 설정
+	pay_points.addEventListener('focus',function(){
+		pay_points.value = 0; 
+	});
+	//keyup,mouseup 이벤트 발생시 총결제금액 = 총상품금액 + 배송비 - 사용포인트 실시간 계산
 	pay_points.addEventListener('keyup',function(){
+		if(pay_points.value > ${user_points}) pay_points.value = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
 		pay_points_value.textContent = pay_points.value;
+		totalPayment.textContent = (${pay_total + pay_ship} - pay_points.value).toLocaleString();
 	});
 	pay_points.addEventListener('mouseup',function(){
+		if(pay_points.value > ${user_points}) pay_points.value = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
 		pay_points_value.textContent = pay_points.value;
+		totalPayment.textContent = (${pay_total + pay_ship} - pay_points.value).toLocaleString();
 	});
 
 };
@@ -96,27 +105,30 @@ window.onload=function(){
 				<td class="align-center">적립포인트</td>
 			</tr>
 			<tr>
+				<!-- 결제내역 -->
 				<td class="align-center">
 				<fmt:formatNumber value="${pay_total}" type="number"/>  +  
 				<fmt:formatNumber value="${pay_ship}" type="number"/>  -  
-				<span id="pay_points_value"><fmt:formatNumber value="0" type="number"/></span>
+				<span id="pay_points_value">0</span>
 				</td>
 				<!-- 총 결제금액 -->
-				<td class="align-center totalPayment"><span id="totalPayment"><fmt:formatNumber value="${pay_total + pay_ship}"/></span>원</td>
+				<td class="align-center totalPayment">
+				<span id="totalPayment"><fmt:formatNumber value="${pay_total + pay_ship}" type="number"/></span>원
+				</td>
 				<!-- 적립포인트 -->
 				<td class="align-center"><fmt:formatNumber value="${order_points}" type="number"/>p</td>
 			</tr>
 		</table>
 		<p>
-			<!-- 사용 포인트 -->
+		<p>
+		<form action="order.do" method="post" id="order_form">
+			<!-- 사용 포인트 입력 -->
 			<div class="align-center">
 				포인트 사용 : <input type="number" name="pay_points" id="pay_points" min="0" max="${user_points}">
 			</div>
-		<p>
-		<form action="order.do" method="post" id="order_form">
 			<input type="hidden" name="pay_total" value="${pay_total}">
 			<input type="hidden" name="pay_ship" value="${pay_ship}">
-			<input type="hidden" name="order_points" value="${pay_points}">
+			<input type="hidden" name="order_points" value="${order_points}">
 			<ul>
 				<li>
 					<label for="receive_name">받는 사람</label>
