@@ -52,7 +52,7 @@ ul, li {
 }
 
 #ulTable {
-    margin-top: 10px;
+    margin-top: 50px;
 }
 
 #ulTable > li:first-child > ul > li {
@@ -119,6 +119,13 @@ ul#ulTable > li > ul > li {
 
 #liSearchOption {
     clear: both;
+    margin-top: 20px; /* 이벤트 목록과의 간격 조정 */
+    text-align: center; /* 가운데 정렬 */
+    width: 100%; /* 폼 너비 100%로 설정 */
+}
+
+#liSearchOption .search li:last-child {
+    white-space: nowrap; /* 한 줄에 표시되도록 설정 */
 }
 .align-left{
 	text-align:left;
@@ -137,23 +144,44 @@ ul#ulTable > li > ul > li {
 .left {
     text-align: left;
 }
-
 .search {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: flex-start; /* 수직 위쪽 정렬로 변경 */
     list-style: none;
     padding: 0;
     margin: 0;
     flex-wrap: wrap; /* 추가된 부분 */
 }
+
 .search li {
+    height: 30px; /* 모든 요소의 높이를 동일하게 유지 */
     margin-left: 10px;
+    display: flex; /* 내부 요소를 flex로 설정하여 수직 정렬을 유지 */
+    align-items: center; /* 수직 가운데 정렬 */
 }
+
+.search li select,
+.search li input[type="search"],
+.search li input[type="submit"] {
+    height: 100%; /* 내부 요소의 높이를 부모 요소에 맞춤 */
+}
+
 .search .block {
     width: 100%;
-    display: flex;
     align-items: center;
-    margin-top: 10px;
-    justify-content: flex-end;
+    justify-content: center;
+}
+#liSearchOption .search li:last-child {
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+#liSearchOption .search li:last-child label {
+    margin-right: 130px; /* 현재 진행중인 이벤트만 보기 텍스트와 체크박스 사이의 간격을 조정 */
+}
+
+#liSearchOption .search li:last-child input[type="checkbox"] {
+    margin-top: 2px; /* 체크박스를 텍스트 아래로 이동 */
+    margin-left: 5px; /* 체크박스와 텍스트 사이의 간격 조정 */
 }

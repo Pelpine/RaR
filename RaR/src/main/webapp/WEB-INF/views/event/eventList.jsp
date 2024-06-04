@@ -15,37 +15,38 @@
         <jsp:include page="/WEB-INF/views/common/header.jsp"/>
         <div id="mainWrapper">
             <ul>
-                <!-- 이벤트 등록 및 홈 버튼 -->
-                
                 <!-- 검색 폼 영역 -->
-                <li id='liSearchOption'>
-                    <form id="search_form" action="eventList.do" method="get">
-                        <ul class="search">
-                            <li>
-                                <select name="keyfield">
-                                    <option value="1" <c:if test="${param.keyfield== 1}">selected</c:if> >제목</option>
-                                    <option value="2" <c:if test="${param.keyfield== 2}">selected</c:if> >내용</option>
-                                </select>
-                            </li>
-                            <li>
-                                <input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
-                            </li>
-                            <li>
-                                <input type="submit" value="검색">
-                            </li>
-                            <li class="block">
-                                <label for="underway_btn">현재 진행중인 이벤트만 보기</label>
-                                <input type="checkbox" name="underway" id="underway_btn">                
-                            </li>
-                        </ul>
-                    </form>
-                </li>
+               <li id="liSearchOption">
+   					 <form id="search_form" action="eventList.do" method="get">
+        				<ul class="search">
+          					 <li>
+             				   <select name="keyfield">
+                    				<option value="1" <c:if test="${param.keyfield== 1}">selected</c:if>>제목</option>
+                   					 <option value="2" <c:if test="${param.keyfield== 2}">selected</c:if>>내용</option>
+               				   </select>
+           					 </li>
+            				 <li>
+               					 <input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+            				</li>
+           					<li>
+                				<input type="submit" value="검색">
+            				</li>
+				            <li class="block">
+				                <label for="underway_btn">현재 진행중인 이벤트만 보기</label>
+				                <input type="checkbox" name="underway" id="underway_btn">            
+				            </li>
+			</ul>
+    </form>
+</li>
 
+				
                 <!-- 게시판 목록  -->
                 <c:if test="${count == 0 }">
+                	<li>
                     <div class="result-display">
                         표시할 게시글이 없습니다.
                     </div>
+                    </li>
                 </c:if>
                 <c:if test="${count > 0 }">
                 <li>
@@ -75,6 +76,13 @@
 
                     </ul>
                 </li>
+                <li>
+                    <div class="list-space align-right">
+                        <input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
+                        <c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>            
+                        <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+                    </div>
+                </li>
                 <!-- 게시판 페이징 영역 -->
                 <li>
                     <div id="divPaging">
@@ -82,13 +90,7 @@
                     </div>
                 </li>
                 </c:if>
-                <li>
-                    <div class="list-space align-left">
-                        <input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
-                        <c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>            
-                        <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-                    </div>
-                </li>
+                
                 
             </ul>
         </div>
