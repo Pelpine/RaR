@@ -95,6 +95,9 @@ window.onload=function(){
 			</form>
 		</div>
 	</div>
+	<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
 </body>
 </html>
 

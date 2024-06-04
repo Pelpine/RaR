@@ -49,6 +49,9 @@
 		       onclick="location.href='eventList.do'">
 	</div>
 </div>
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
 </body>
 </html>
 
