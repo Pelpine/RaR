@@ -1,32 +1,7 @@
 @charset "UTF-8";
 
-/* 페이지 전체 스타일 */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-.page-main {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}ㅌ
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 /* 폼 스타일 */
-form {
-    width: 100%;
-}
-
 ul {
     list-style-type: none;
     padding: 0;
