@@ -58,8 +58,6 @@ const rotate = () => {
 
     const point = product[ran]; // point 변수에 선택된 제품 할당
 
-    setTimeout(() => alert(`${product[ran]} 당첨!`), 2000);
-
     $.ajax({
       url: '../event/rouletteEvent.do',
       data: {"point": point}, // point 변수를 AJAX 호출에 사용
@@ -73,7 +71,7 @@ const rotate = () => {
         } else if (param.result == 'success') {
           alert(`${point} 당첨!`); // 백틱 사용하여 템플릿 리터럴 생성
         } else {
-          alert('출석체크 오류 발생');
+          alert('룰렛 오류 발생');
         }
       },
       error: function () {
