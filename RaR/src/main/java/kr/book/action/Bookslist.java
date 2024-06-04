@@ -38,7 +38,6 @@ public class Bookslist implements Action{
             }
 		}
 		
-		request.setAttribute("count1", count1);
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());

@@ -40,7 +40,7 @@
 					<td><a href="booksdetail.do?bk_num=${book.bk_num}">${book.bk_name}</a></td>
 					<td>${book.bk_writer}</td>
 					<td>${book.bk_publisher}</td>
-					<td>${count1}</td>
+					<td>${book.bk_count}</td>
 				</tr>
 				</c:forEach>
 			</table>
