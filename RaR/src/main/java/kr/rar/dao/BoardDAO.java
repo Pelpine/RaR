@@ -817,13 +817,14 @@ public class BoardDAO {
 					String sql = null;
 					try {
 						conn=DBUtil.getConnection();
-						sql="INSERT INTO board_genre_user (bgu_num,bgu_content,bg_num)"
-								+ "	VALUES(reply_seq.nextval,?,?)";
+						sql="INSERT INTO board_genre_user (bgu_num,bgu_content,user_email,bg_num)"
+								+ "	VALUES(reply_seq.nextval,?,?,?)";
 						pstmt = conn.prepareStatement(sql);
 						//데이터 바인딩
 						pstmt.setInt(1, genreUser.getBgu_num());
 						pstmt.setString(2, genreUser.getBgu_content());
-						pstmt.setInt(3, genreUser.getBg_num());
+						pstmt.setString(3, genreUser.getUser_email());
+						pstmt.setInt(4, genreUser.getBg_num());
 						pstmt.executeUpdate();
 						
 					}catch(Exception e) {

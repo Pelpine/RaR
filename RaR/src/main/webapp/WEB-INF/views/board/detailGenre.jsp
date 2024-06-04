@@ -82,9 +82,9 @@
 		<div id="reply_div">
 			<span class="re-title">댓글 달기</span>
 			<form id="re_form">
-			<input type="hidden" name="board_num" value="${genre.bg_num}"
+			<input type="hidden" name="bg_num" value="${genre.bg_num}"
 			id="board_num">
-			<textarea rows="3" cols="50" name="content"
+			<textarea rows="3" cols="50" name="bgu_content"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if> id="re_content"
 			class="content"><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num}">
