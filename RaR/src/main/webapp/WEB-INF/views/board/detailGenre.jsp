@@ -13,7 +13,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/board.fav.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/board.reply.js"></script>
+	src="${pageContext.request.contextPath}/js/board.reply2.js"></script>
 </head>
 <body>
 <div class="page-main">
@@ -33,7 +33,7 @@
 			</li>
 			<li>
 			${board.user_email}<br>
-			조회:${genre.bg_title}
+			장르:${genre.bg_title}
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">
@@ -84,7 +84,7 @@
 			<form id="re_form">
 			<input type="hidden" name="bg_num" value="${genre.bg_num}"
 			id="board_num">
-			<textarea rows="3" cols="50" name="bgu_content"
+			<textarea rows="3" cols="50" name="content"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if> id="re_content"
 			class="content"><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num}">

@@ -36,7 +36,7 @@ window.onload=function(){
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>글 수정</h2>
-		<form id="update_form" action="update.do" method="post"
+		<form id="update_form" action="updateGenre.do" method="post"
 							enctype="multipart/form-data">
 		<input type="hidden" name="board_num"
 		value="${board.board_num}">
