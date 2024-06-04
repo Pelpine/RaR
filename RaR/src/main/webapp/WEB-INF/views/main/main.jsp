@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,27 +44,30 @@
 		    </button>
 	    </div>
 	    <div class="image-space">
-	    	<h4>최근 입고된 중고 서적</h4>
+	    	<h4 class="Topic">최근 입고된 중고 서적</h4>
 			<c:forEach var="item" items="${itemList}">
 			<div class="horizontal-area">
-				<img src="${item.bookVO.bk_img}" width="60">
-				<%-- 상품이미지가 없을 경우, 기본 이미지 처리 --%>
-<%-- 				<c:if test="${item.item_img == null}">
+				 <img src="${item.bookVO.bk_img}" width="60"
+				 onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
+				<%-- <!-- 상품이미지가 없을 경우, 기본 이미지 처리  -->
+				<c:if test="${item.item_img == null}">
 					<img src="../images/book_default.png" width="60">
-				</c:if> 상품이미지가 있을 경우 
+				</c:if> <!-- 상품이미지가 있을 경우  -->
 				<c:if test="${item.item_img != null}">
-					<img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60"></a>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
 				</c:if> --%>
-					${item.bookVO.bk_name}
+					<h6>${item.bookVO.bk_name}</h6>
 					<c:if test="${item.item_grade == 1}">
-								<span class="item_grade1">상</span>
+						등급 : <span class="item_grade1">상</span><br>
 					</c:if>
 					<c:if test="${item.item_grade == 2}">
-								<span class="item_grade1">중</span>
+						등급 : <span class="item_grade1">중</span><br>
 					</c:if>
 					<c:if test="${item.item_grade == 3}">
-								<span class="item_grade1">하</span>
+						등급 : <span class="item_grade1">하</span><br>
 					</c:if>
+						원가 : <fmt:formatNumber value="${item.bookVO.bk_price}"/>원<br>
+						판매가 : <fmt:formatNumber value="${item.item_price}"/>원
 			</div>
 			</c:forEach>
 		</div>
