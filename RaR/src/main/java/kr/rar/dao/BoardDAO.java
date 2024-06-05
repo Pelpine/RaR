@@ -12,6 +12,7 @@ import kr.rar.vo.BoardVO;
 import kr.rar.vo.GenreUserVO;
 import kr.rar.vo.GenreVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 
@@ -854,7 +855,6 @@ public class BoardDAO {
 					rs= pstmt.executeQuery();
 					if(rs.next()) {
 						count=rs.getInt(1);
-						
 					}
 					}catch(Exception e) {
 						throw new Exception(e);
@@ -876,7 +876,7 @@ public class BoardDAO {
 				
 						sql="SELECT * FROM(SELECT a.*, rownum rnum FROM "
 								+ "(SELECT * FROM board_genre_user JOIN member USING(user_num) "
-								+ "WHERE bg_num=? ORDER BY re_num DESC)a) "
+								+ "WHERE bg_num=? ORDER BY bgu_num DESC)a) "
 								+ "WHERE rnum >= ? AND rnum <= ?";
 						
 						pstmt = conn.prepareStatement(sql);
@@ -890,9 +890,9 @@ public class BoardDAO {
 						    GenreUserVO replyg = new GenreUserVO();
 						    replyg.setBgu_num(rs.getInt("bgu_num"));
 						    // 날짜->1분전, 1시간전, 1일전 형식의 문자열로 변환
-						    replyg.setBgu_date(rs.getDate("bgu_date"));
+						    replyg.setBgu_date(DurationFromNow.getTimeDiffLabel(rs.getString("bgu_date")));
 						    if(rs.getDate("bgu_redate") != null) {
-						        replyg.setBgu_redate(rs.getDate("bgu_redate"));
+						        replyg.setBgu_redate(DurationFromNow.getTimeDiffLabel(rs.getDate("bgu_redate")));
 						    }
 						    replyg.setBgu_content(StringUtil.useBrNoHTML(rs.getString("bgu_content")));
 						    replyg.setBg_num(rs.getInt("bg_num"));

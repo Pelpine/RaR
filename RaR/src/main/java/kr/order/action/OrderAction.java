@@ -13,7 +13,7 @@ import kr.rar.dao.OrderDAO;
 import kr.rar.vo.CartVO;
 import kr.rar.vo.OrderDetailVO;
 import kr.rar.vo.OrderVO;
-
+import kr.rar.dao.EventDAO;
 public class OrderAction implements Action{
 
 	@Override
@@ -45,6 +45,8 @@ public class OrderAction implements Action{
 	    //장바구니에 담겨있는 상품 정보 호출
 	  	List<CartVO> selectedCartList = dao.getSelectedCartList(user_num);
 	  	
+	  	//구매 상품 개수 세기
+	  	int itemcount = 0;
 	  	//개별상품 정보 담기
 	  	List<OrderDetailVO> orderDetailList = new ArrayList<OrderDetailVO>();
 	  	for(CartVO cart : selectedCartList) {
@@ -57,7 +59,7 @@ public class OrderAction implements Action{
 	  		orderDetail.setItem_grade(cart.getItemVO().getItem_grade());
 	  		orderDetail.setItem_img(cart.getItemVO().getItem_img());
 	  		orderDetail.setBk_num(cart.getBk_num());
-	  		
+	  		itemcount = itemcount+1;
 	  		orderDetailList.add(orderDetail);
 	  	}
 	  	
@@ -79,6 +81,9 @@ public class OrderAction implements Action{
 	  	OrderDAO orderDAO = OrderDAO.getInstance();
 	  	
 	  	orderDAO.insertOrder(order, orderDetailList);
+	  	
+	  	EventDAO eventDAO = EventDAO.getInstance();
+	  	eventDAO.insertTicket(user_num, itemcount);
 	  	
 	  	//Refresh 정보를 응답 헤더에 추가
   		String url = request.getContextPath()+"/main/main.do";

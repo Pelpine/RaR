@@ -27,7 +27,7 @@ public class MainAction implements Action{
 		
 		itemList = 
 				itemDAO.getListItem(
-				              1,5,null,null,1);//표시 상품만 반환
+				              1,5,null,null,1);//현재 진행중인 이벤트만 반환
 		
 		request.setAttribute("itemList", itemList);
 		//JSP 경로 반환

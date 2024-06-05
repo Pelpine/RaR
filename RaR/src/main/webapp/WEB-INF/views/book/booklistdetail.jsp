@@ -23,6 +23,9 @@
 		저자 : ${book.bk_writer}
 	</div>
 	<div>
+		장르 : ${book.bk_genre}
+	</div>
+	<div>
 		출판사 : ${book.bk_publisher}
 	</div>
 	<div>

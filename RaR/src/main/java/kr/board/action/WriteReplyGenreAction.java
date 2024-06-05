@@ -11,6 +11,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.rar.dao.BoardDAO;
 import kr.rar.vo.GenreUserVO;
+import kr.util.DurationFromNow;
 import kr.controller.Action;
 
 public class WriteReplyGenreAction implements Action {
@@ -22,6 +23,7 @@ public class WriteReplyGenreAction implements Action {
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		String user_email = (String) session.getAttribute("user_email");
 		
 		if(user_num == null) {//로그인이 안된 경우
 			mapAjax.put("result", "logout");
@@ -32,7 +34,7 @@ public class WriteReplyGenreAction implements Action {
 			GenreUserVO replyg = new GenreUserVO();
 			replyg.setUser_num(user_num);//댓글 작성자 회원번호
 			replyg.setBgu_content(request.getParameter("content"));
-			replyg.setUser_email(request.getParameter("user_email"));
+			replyg.setUser_email(user_email);
 			replyg.setBg_num(Integer.parseInt(request.getParameter("bg_num")));//댓글의 부모 글 번호
 		
 			BoardDAO dao = BoardDAO.getInstance();

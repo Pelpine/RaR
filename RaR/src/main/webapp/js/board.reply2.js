@@ -14,7 +14,7 @@ $(function(){
 		$.ajax({
 			url:'listReplyGenre.do',
 			type:'post',
-			data:{pageNum:pageNum,rowCount:rowCount,bg_num:$('#bg_num').val()},
+			data:{pageNum:pageNum,rowCount:rowCount,bg_num:$('#board_num').val()},
 			dataType:'json',
 			success:function(param){
 				//로딩 이미지 감추기
@@ -30,18 +30,18 @@ $(function(){
 					let output = '<div class="item">';
 					output +='<h4>' + item.user_email + '<h4>';
 					output +='<div class="sub-item">';
-					output +='<p>' + item.content + '</p>';
+					output +='<p>' + item.bgu_content + '</p>';
 					
-					if(item.modify_date){
-						output += '<span class="modify-date">최근 수정일 : ' + item.modify_date + '</span>';
+					if(item.bgu_redate){
+						output += '<span class="modify-date">최근 수정일 : ' + item.bgu_redate + '</span>';
 					}else{
-						output += '<span class="modify-date">최근 등록일 : ' + item.reg_date + '</span>';
+						output += '<span class="modify-date">최근 등록일 : ' + item.bgu_date + '</span>';
 					}
 					
 					//로그인한 회원번호와 작성자의 회원번호가 일치하는 지 여부 체크
 					if(param.user_num==item.user_num){
-						output += ' <input type="button" data-renum="'+ item.re_num +'" value="수정" class="modify-btn">';
-						output += ' <input type="button" data-renum="'+ item.re_num +'" value="삭제" class="delete-btn">';
+						output += ' <input type="button" data-renum="'+ item.bgu_num +'" value="수정" class="modify-btn">';
+						output += ' <input type="button" data-renum="'+ item.bgu_num +'" value="삭제" class="delete-btn">';
 					}
 					output += '<hr size="1" noshade width="100%">';
 					output += '</div>';
@@ -126,15 +126,15 @@ $(function(){
 	 * ==================================== */
 	$(document).on('click','.modify-btn',function(){
 		//댓글 번호
-		let re_num = $(this).attr('data-renum');
+		let bgu_num = $(this).attr('data-renum');
 		//댓글 내용
-		let content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
+		let bgu_content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
 														//g :지정문자열 모두, i: 대소문자 무시
 														
 		//댓글 수정폼 ui
 		let modifyUI='<form id="mre_form">';
-		modifyUI +='<input type="hidden" name="bg_num" id="mre_num" value="'+ re_num +'">';
-		modifyUI +='<textarea rows="3" cols="50" name="content" id="mre_content" class= "rep-content">'+content+'</textarea>'	
+		modifyUI +='<input type="hidden" name="bg_num" id="mre_num" value="'+ bgu_num +'">';
+		modifyUI +='<textarea rows="3" cols="50" name="bgu_content" id="mre_content" class= "rep-content">'+bgu_content+'</textarea>'	
 		modifyUI +='<div id="mre_first"><span class="letter-count">300/300</span></div>';
 		modifyUI +='<div id="mre_second" class="align-right">';
 		modifyUI +=' <input type="submit" value="수정">';

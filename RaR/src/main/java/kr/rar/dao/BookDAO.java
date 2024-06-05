@@ -194,13 +194,14 @@ public class BookDAO {
 						else if(keyfield.equals("2")) sub_sql += " where bk_writer like '%' || ? || '%' ";
 						else if(keyfield.equals("3")) sub_sql += " where bk_publisher like '%' || ? || '%' ";
 						else if(keyfield.equals("4")) sub_sql += "where bk_name like '%' || ? || '%' or bk_writer like '%' || ? || '%' or bk_publisher like '%' || ? || '%'";
+						else if(keyfield.equals("5")) sub_sql += " where bk_genre like '%' || ? || '%' ";
 					}
 					
 					sql = "select count(*) from book " + sub_sql;
 					
 					pstmt = conn.prepareStatement(sql);
 					if(keyword!=null && !"".equals(keyword)) {
-						if(keyfield.equals("1") || keyfield.equals("2") || keyfield.equals("3")) {
+						if(keyfield.equals("1") || keyfield.equals("2") || keyfield.equals("3") || keyfield.equals("5")) {
 							pstmt.setString(++cnt, keyword);
 						}
 						if(keyfield.equals("4")) {
@@ -236,12 +237,13 @@ public class BookDAO {
 						if(keyfield.equals("1")) sub_sql += " where bk_name like '%' || ? || '%' "; 
 						else if(keyfield.equals("2")) sub_sql += " where bk_writer like '%' || ? || '%' ";
 						else if(keyfield.equals("3")) sub_sql += " where bk_publisher like '%' || ? || '%' ";
-						else if(keyfield.equals("4")) sub_sql += "where bk_name like '%' || ? || '%' or bk_writer like '%' || ? || '%' or bk_publisher like '%' || ? || '%'";
+						else if(keyfield.equals("4")) sub_sql += " where bk_name like '%' || ? || '%' or bk_writer like '%' || ? || '%' or bk_publisher like '%' || ? || '%'";
+						else if(keyfield.equals("5")) sub_sql += " where bk_genre like '%' || ? || '%' ";
 					}
 					sql = "select * from(select a.*,rownum rnum from(select * from book "+sub_sql+" order by bk_num desc)a) where rnum >= ? and rnum <= ?";
 					pstmt = conn.prepareStatement(sql);
 					if(keyword!=null && !"".equals(keyword)) {
-						if(keyfield.equals("1") || keyfield.equals("2") || keyfield.equals("3")) {
+						if(keyfield.equals("1") || keyfield.equals("2") || keyfield.equals("3") || keyfield.equals("5")) {
 							pstmt.setString(++cnt, keyword);
 						}
 						if(keyfield.equals("4")) {
@@ -262,6 +264,7 @@ public class BookDAO {
 						vo.setBk_writer(rs.getString("bk_writer"));
 						vo.setBk_publisher(rs.getString("bk_publisher"));
 						vo.setBk_img(rs.getString("bk_img"));
+						vo.setBk_genre(rs.getString("bk_genre"));
 						
 						list.add(vo);
 					}

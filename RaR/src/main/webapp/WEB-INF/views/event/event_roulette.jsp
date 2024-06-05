@@ -20,7 +20,7 @@
 	<div class="align-center">
 	
 	<p>
-		<iframe width="400" height="500" src="roulette.do"></iframe>
+		<iframe width="420" height="500" src="roulette.do"></iframe>
 	</p>
 	책을 한 권 구매할 때마다 주어지는 룰렛 티켓으로 포인트를 획득하세요!
 </div>		
