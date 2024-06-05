@@ -6,14 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 주문</title>
+<title>배송지정보 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 window.onload=function(){
 	//회원 정보 등록 유효성 체크
-	const myForm = document.getElementById('order_form');
+	const myForm = document.getElementById('order_modify');
 	myForm.onsubmit = function(){
 		const items = document.querySelectorAll('input[type="text"]');
 		for(let i=0;i<items.length;i++){
@@ -31,46 +30,7 @@ window.onload=function(){
 				return false;
 			}
 		}//end of for
-		
-		//결제수단 유효성 체크
-		const radio = document.querySelectorAll('input[type="radio"]:checked');
-		if(radio.length<1){
-			alert('결제수단을 선택하세요!');
-			return false;
-		}
-		
-		//포인트 미입력시 기본값 0으로 설정
-		if(pay_points.value == "") pay_points.value = 0;
 	};
-	
-	const pay_points = document.getElementById('pay_points');//사용포인트 입력값
-	const pay_points_value = document.getElementById('pay_points_value');//사용포인트 출력값
-	const totalPayment = document.getElementById('totalPayment');//총결제금액값
-
-	
-	//keyup,mouseup 이벤트 발생시 총결제금액 = 총상품금액 + 배송비 - 사용포인트 실시간 계산
-	function updatePoints(){
-		let points = parseInt(pay_points.value);
-		if(pay_points.value == "") points = 0;
-		if(points > ${user_points}) {
-			points = ${user_points}; //사용자가 가진 최대 포인트를 넘기지 못하게 설정
-			pay_points.value = ${user_points};
-		}
-		if(points < 0) {
-			points = 0; //음수 입력 방지
-			pay_points.value = 0;
-		}
-		pay_points_value.textContent = points.toLocaleString();
-		totalPayment.textContent = (${pay_total + pay_ship} - points).toLocaleString();
-	}
-	
-	pay_points.addEventListener('keyup',function(){
-		updatePoints();
-	});
-	pay_points.addEventListener('mouseup',function(){
-		updatePoints();
-	});
-
 };
 </script>
 </head>
@@ -78,104 +38,46 @@ window.onload=function(){
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-		<h2>상품 주문</h2>
-		<table>
-			<tr>
-				<th>상품정보</th>
-				<th>가격</th>
-				<th>상태</th>
-			</tr>
-			<c:forEach var="cart" items="${list}">
-			<tr>
-				<%-- 상품정보:책 이미지, 책 이름 --%>
-				<td>
-					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}">
-						<img src="${cart.bookVO.bk_img}" width="60">
-						${cart.bookVO.bk_name}
-					</a>
-				</td>
-				<%-- 상품 가격 --%>
-				<td class="align-center">
-					<span class="item_bk_price">정가 : <fmt:formatNumber value="${cart.bookVO.bk_price}"/>원</span><br> 
-					판매가 : <span class="item_item_price"><fmt:formatNumber value="${cart.itemVO.item_price}"/></span>원
-				</td>
-				<%-- 상품 상태 --%>
-				<td class="align-center">
-					<c:if test="${cart.itemVO.item_grade == 1}">상</c:if>
-					<c:if test="${cart.itemVO.item_grade == 2}">중</c:if>
-					<c:if test="${cart.itemVO.item_grade == 3}">하</c:if>
-				</td>
-			</tr>
-			</c:forEach>
-		</table>
-		<p>
-		<table>	
-			<tr>
-				<td class="align-center"><b>결제내역</b><br>(총 구매금액 + 배송비 - 사용포인트)</td>
-				<td class="align-center"><b>총 결제금액</b></td>
-				<td class="align-center">적립포인트</td>
-			</tr>
-			<tr>
-				<!-- 결제내역 -->
-				<td class="align-center">
-				<fmt:formatNumber value="${pay_total}" type="number"/>  +  
-				<fmt:formatNumber value="${pay_ship}" type="number"/>  -  
-				<span id="pay_points_value">0</span>
-				</td>
-				<!-- 총 결제금액 -->
-				<td class="align-center totalPayment">
-				<span id="totalPayment"><fmt:formatNumber value="${pay_total + pay_ship}" type="number"/></span>원
-				</td>
-				<!-- 적립포인트 -->
-				<td class="align-center"><fmt:formatNumber value="${order_points}" type="number"/>p</td>
-			</tr>
-		</table>
-		<p>
-		<p>
-		<form action="order.do" method="post" id="order_form">
-			<!-- 사용 포인트 입력 -->
-			<div class="align-center">
-				포인트 사용 : <input type="number" name="pay_points" id="pay_points" min="0" max="${user_points}"> (보유 포인트 : ${user_points})
-			</div>
-			<input type="hidden" name="pay_total" value="${pay_total}">
-			<input type="hidden" name="pay_ship" value="${pay_ship}">
-			<input type="hidden" name="order_points" value="${order_points}">
+		<h2>배송지정보 수정</h2>
+		<c:if test="${order.order_status != 1}">
+		<div class="result-display">
+			배송대기일 때만 배송지정보를 수정할 수 있습니다.
+		</div>
+		</c:if>
+		<c:if test="${order.order_status == 1}">
+		<form action="orderModify.do" method="post" id="order_modify">
+			<input type="hidden" name="order_num" value="${order.order_num}">
 			<ul>
 				<li>
 					<label for="receive_name">받는 사람</label>
-					<input type="text" name="receive_name" id="receive_name" maxlength="10">
+					<input type="text" name="receive_name" value="${order.receive_name}" id="receive_name" maxlength="10">
 				</li>
 				<li>
 					<label for="zipcode">우편번호</label>
-					<input type="text" name="receive_post" id="zipcode" maxlength="5">
+					<input type="text" name="receive_post" value="${order.receive_post}" id="zipcode" maxlength="5">
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
 				</li>
 				<li>
 					<label for="address1">주소</label>
-					<input type="text" name="receive_address1" id="address1" maxlength="30">
+					<input type="text" name="receive_address1" value="${order.receive_address1}" id="address1" maxlength="30">
 				</li>
 				<li>
 					<label for="address2">상세주소</label>
-					<input type="text" name="receive_address2" id="address2" maxlength="30">
+					<input type="text" name="receive_address2" value="${order.receive_address2}" id="address2" maxlength="30">
 				</li>
 				<li>
 					<label for="receive_phone">전화번호</label>
-					<input type="text" name="receive_phone" id="receive_phone" maxlength="15">
-				</li>
-				<li>
-					<label for="pay_payment">결제수단</label>
-					<input type="radio" name="pay_payment" id="pay_payment1"	value="1">계좌입금
-					<input type="radio" name="pay_payment" id="pay_payment2"	value="2">카드결제
+					<input type="text" name="receive_phone" value="${order.receive_phone}" id="receive_phone" maxlength="15">
 				</li>
 				<li>
 					<label for="notice">남기실 말씀</label>
-					<textarea rows="5" cols="30" name="notice" id="notice" maxlength="1300"></textarea>
+					<textarea rows="5" cols="30" name="notice" id="notice" maxlength="1300">${order.notice}</textarea>
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" value="주문">
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				<input type="submit" value="수정">
+				<input type="button" value="주문목록" onclick="location.href='userOrderList.do'">
+				<input type="button" value="MY페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 			</div>
 		</form>
 		<!-- 다음 우편번호 API 시작 -->
@@ -276,6 +178,7 @@ window.onload=function(){
     }
 </script>
 		<!-- 다음 우편번호 API 끝 -->
+		</c:if>
 	</div>
 </div>
 </body>

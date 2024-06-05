@@ -30,7 +30,6 @@ public class OrderDAO {
 		PreparedStatement pstmt4 = null;
 		PreparedStatement pstmt5 = null;
 		PreparedStatement pstmt6 = null;
-		PreparedStatement pstmt7 = null;
 		ResultSet rs = null;
 		String sql = null;
 		int order_num = 0;
@@ -204,7 +203,7 @@ public class OrderDAO {
 			}
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM ("
-				+ "SELECT * FROM rar_order JOIN (SELECT order_num, LISTAGG(item_name,',') WITHIN GROUP (ORDER BY item_name) item_name "
+				+ "SELECT * FROM rar_order JOIN (SELECT order_num, LISTAGG('- '||item_name,'<br>') WITHIN GROUP (ORDER BY item_name) item_name "
 				+ "FROM rar_order_detail GROUP BY order_num) USING (order_num) "
 				+ "WHERE user_num=? " + sub_sql
 				+ " ORDER BY order_num DESC)a) WHERE rnum>=? AND rnum<=?";
@@ -326,5 +325,86 @@ public class OrderDAO {
 		}
 		return list;
 	}
+	//배송지 정보 수정
+	public void updateOrder(OrderVO order)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE rar_order SET receive_name=?,receive_post=?,receive_address1=?,receive_address2=?,"
+								  + "receive_phone=?,notice=?,modify_date=SYSDATE WHERE order_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, order.getReceive_name());
+			pstmt.setString(2, order.getReceive_post());
+			pstmt.setString(3, order.getReceive_address1());
+			pstmt.setString(4, order.getReceive_address2());
+			pstmt.setString(5, order.getReceive_phone());
+			pstmt.setString(6, order.getNotice());
+			pstmt.setInt(7, order.getOrder_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//주문 취소
+	public void updateOrderCancel(int order_num,int user_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			//배송상태 변경 -> 5:주문취소
+			sql = "UPDATE rar_order SET order_status=5,modify_date=SYSDATE WHERE order_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, order_num);
+			pstmt.executeUpdate();
+			
+			//사용포인트, 적립포인트 반환
+			sql = "UPDATE member_detail SET user_point=? WHERE user_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			//포인트 계산
+			OrderVO order = getOrder(order_num);
+			MemberVO member = MemberDAO.getInstance().getMember(user_num);
+			int point_result = member.getUser_point() + order.getPay_points() - order.getOrder_points();
+	
+			pstmt2.setInt(1, point_result);
+			pstmt2.setInt(2, user_num);
+			pstmt2.executeUpdate();
+			
+			//상품상태 변경 -> 1:판매중
+			sql = "UPDATE item SET item_status=1 WHERE item_num=?";
+			pstmt3 = conn.prepareStatement(sql);
+			List<OrderDetailVO> list = getOrderListDetail(order_num);
+			for(int i=0;i<list.size();i++) {
+				pstmt3.setInt(1, list.get(i).getItem_num());
+				pstmt3.addBatch();
+				
+				if(i%1000==0) {
+					pstmt3.executeBatch();
+				}
+			}		
+			pstmt3.executeBatch();
+			
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
