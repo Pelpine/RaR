@@ -11,8 +11,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/board.fav.js"></script>
-<script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/board.reply2.js"></script>
 </head>
 <body>
@@ -69,6 +67,7 @@
 			<form id="re_form">
 			<input type="hidden" name="bg_num" value="${genre.bg_num}"
 			id="board_num">
+			
 			<textarea rows="3" cols="50" name="content"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if> id="re_content"
 			class="content"><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>

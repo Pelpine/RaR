@@ -5,11 +5,23 @@ import java.sql.Date;
 public class GenreUserVO {
 private int bgu_num;
 private String bgu_content;
-private Date bgu_date;
-private Date bgu_redate;
+private String bgu_date;
+private String bgu_redate;
 private int bg_num;
 private int user_num;
 
+public String getBgu_date() {
+	return bgu_date;
+}
+public void setBgu_date(String bgu_date) {
+	this.bgu_date = bgu_date;
+}
+public String getBgu_redate() {
+	return bgu_redate;
+}
+public void setBgu_redate(String bgu_redate) {
+	this.bgu_redate = bgu_redate;
+}
 public int getBgu_num() {
 	return bgu_num;
 }
@@ -21,18 +33,6 @@ public String getBgu_content() {
 }
 public void setBgu_content(String bgu_content) {
 	this.bgu_content = bgu_content;
-}
-public Date getBgu_date() {
-	return bgu_date;
-}
-public void setBgu_date(Date bgu_date) {
-	this.bgu_date = bgu_date;
-}
-public Date getBgu_redate() {
-	return bgu_redate;
-}
-public void setBgu_redate(Date bgu_redate) {
-	this.bgu_redate = bgu_redate;
 }
 public int getBg_num() {
 	return bg_num;
