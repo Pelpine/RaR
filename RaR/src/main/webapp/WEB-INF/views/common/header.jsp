@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/attendance.js"></script>
@@ -71,7 +70,7 @@
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/board/list.do">자유게시판</a> 
                 <a href="${pageContext.request.contextPath}/board/genreList.do">장르 게시판</a>
-                <a href="#">QnA 게시판</a>
+                <a href="${pageContext.request.contextPath}/question/questionList.do">QnA 게시판</a>
             </div>
         </div>
         <div class="dropdown">
