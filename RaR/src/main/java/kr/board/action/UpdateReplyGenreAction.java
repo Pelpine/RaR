@@ -11,7 +11,6 @@ import org.apache.catalina.filters.SetCharacterEncodingFilter;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.rar.dao.BoardDAO;
-import kr.rar.vo.BoardVO;
 import kr.rar.vo.GenreUserVO;
 import kr.controller.Action;
 
@@ -27,11 +26,12 @@ public class UpdateReplyGenreAction implements Action {
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		//수정 전 데이터
-		BoardVO db_genre = dao.getBoard(bgu_num);
+		GenreUserVO db_genre = dao.getReplyGenre(bgu_num);
 		System.out.println(db_genre);
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		String user_email = (String) session.getAttribute("user_email");
 		
 		Map<String,String> mapAjax=
 					new HashMap<String,String>();
@@ -43,7 +43,6 @@ public class UpdateReplyGenreAction implements Action {
 			GenreUserVO replyg = new GenreUserVO();
 			replyg.setBgu_num(bgu_num);
 			replyg.setBgu_content(request.getParameter("bgu_content"));
-			replyg.setUser_email(request.getRemoteAddr());
 			
 			dao.updateReplyGenre(replyg);
 			

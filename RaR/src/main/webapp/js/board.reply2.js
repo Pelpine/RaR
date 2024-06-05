@@ -133,8 +133,8 @@ $(function(){
 														
 		//댓글 수정폼 ui
 		let modifyUI='<form id="mre_form">';
-		modifyUI +='<input type="hidden" name="bg_num" id="mre_num" value="'+ bgu_num +'">';
-		modifyUI +='<textarea rows="3" cols="50" name="bgu_content" id="mre_content" class= "rep-content">'+bgu_content+'</textarea>'	
+		modifyUI +='<input type="hidden" name="bgu_num" id="bgu_num" value="'+ bgu_num +'">';
+		modifyUI +='<textarea rows="3" cols="50" name="bgu_content" id="bgu_content" class= "rep-content">'+bgu_content+'</textarea>'	
 		modifyUI +='<div id="mre_first"><span class="letter-count">300/300</span></div>';
 		modifyUI +='<div id="mre_second" class="align-right">';
 		modifyUI +=' <input type="submit" value="수정">';
@@ -155,7 +155,7 @@ $(function(){
 		$(this).parents('.item').append(modifyUI);
 		
 		//입력한 글자수 세팅
-		let inputLength = $('#mre_content').val().length;
+		let inputLength = $('#bgu_content').val().length;
 		let remain = 300 - inputLength;
 		remain +='/300';
 		
@@ -173,9 +173,9 @@ $(function(){
 	});
 	//댓글 수정
 	$(document).on('submit','#mre_form',function(event){
-		if($('#mre_content').val().trim()==''){
+		if($('#bgu_content').val().trim()==''){
 			alert('내용을 입력하세요');
-			$('#mre_content').val('').focus();
+			$('#bgu_content').val('').focus();
 			return false;
 		}
 		
@@ -184,7 +184,7 @@ $(function(){
 		
 		//서버와 통신
 		$.ajax({
-			url:'updateReply.do',
+			url:'updateReplyGenre.do',
 			type:'post',
 			data:form_data,
 			dataType:'json',
@@ -192,7 +192,7 @@ $(function(){
 				if(param.result =='logout'){
 					alert('로그인 해야 수정할 수 있습니다');
 				}else if(param.result == 'success'){
-					$('#mre_form').parent().find('p').html($('#mre_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
+					$('#mre_form').parent().find('p').html($('#bgu_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
 					$('#mre_form').parent().find('.modify-date').text('최근 수정일 : 5초미만');
 					
 					//수정폼 삭제 및 초기화
@@ -231,7 +231,7 @@ $(function(){
 		}else{//300자 이하
 			let remain = 300 - inputLength;
 			remain += '/300';
-			if($(this).attr('id')=='re_content'){
+			if($(this).attr('id')=='bgu_content'){
 				//등록 폼 글자 수
 				$('#re_first .letter-count').text(remain);
 			}else{
@@ -249,7 +249,7 @@ $(function(){
 		let re_num = $(this).attr('data-renum');
 		//서버와 통신
 		$.ajax({
-			url:'deleteReply.do',
+			url:'deleteReplyGenre.do',
 			type:'post',
 			data:{re_num:re_num},
 			dataType:'json',
@@ -278,7 +278,7 @@ $(function(){
 	 * 초기 데이터(목록) 호출
 	 * ==================================== */
 	selectList(1);
-});AbortController
+});
 
 
 

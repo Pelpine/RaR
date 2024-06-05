@@ -839,6 +839,34 @@ public class BoardDAO {
 						DBUtil.executeClose(null, pstmt, conn);
 					}
 				}
+				
+				public GenreUserVO getReplyGenre(int bgu_num) throws Exception {
+				    Connection conn = null;
+				    PreparedStatement pstmt = null;
+				    ResultSet rs = null;
+				    GenreUserVO reply = null;
+				    try {
+				        conn = DBUtil.getConnection();
+				        String sql = "SELECT * FROM board_genre_user WHERE bgu_num = ?";
+				        pstmt = conn.prepareStatement(sql);
+				        pstmt.setInt(1, bgu_num);
+				        rs = pstmt.executeQuery();
+				        if (rs.next()) {
+				            reply = new GenreUserVO();
+				            reply.setBgu_num(rs.getInt("bgu_num"));
+				            reply.setBgu_content(rs.getString("bgu_content"));
+				            reply.setUser_num(rs.getInt("user_num"));
+				            reply.setBgu_redate(rs.getString("bgu_redate"));
+				            reply.setUser_email(rs.getString("user_email"));
+				            // 필요한 다른 필드들도 설정해줍니다.
+				        }
+				    } catch (Exception e) {
+				        throw new Exception(e);
+				    } finally {
+				        DBUtil.executeClose(rs, pstmt, conn);
+				    }
+				    return reply;
+				}
 			//장르 게시판 댓글 수 
 				public int getReplyGenreCount(int bg_num)throws Exception{
 					int count = 0;
@@ -892,7 +920,7 @@ public class BoardDAO {
 						    // 날짜->1분전, 1시간전, 1일전 형식의 문자열로 변환
 						    replyg.setBgu_date(DurationFromNow.getTimeDiffLabel(rs.getString("bgu_date")));
 						    if(rs.getDate("bgu_redate") != null) {
-						        replyg.setBgu_redate(DurationFromNow.getTimeDiffLabel(rs.getDate("bgu_redate")));
+						        replyg.setBgu_redate(DurationFromNow.getTimeDiffLabel(rs.getString("bgu_redate")));
 						    }
 						    replyg.setBgu_content(StringUtil.useBrNoHTML(rs.getString("bgu_content")));
 						    replyg.setBg_num(rs.getInt("bg_num"));
@@ -916,12 +944,11 @@ public class BoardDAO {
 					String sql = null;
 					try {
 						conn=DBUtil.getConnection();
-						sql="UPDATE board_genre_user SET bgu_content=?,modify_date=SYSDATE,"
-							+ "user_email=? WHERE bgu_num=?";
+						sql="UPDATE board_genre_user SET bgu_content=?,bgu_redate=SYSDATE"
+							+ " WHERE bgu_num=?";
 						pstmt = conn.prepareStatement(sql);
 						pstmt.setString(1, replyg.getBgu_content());
-						pstmt.setString(2, replyg.getUser_email());
-						pstmt.setInt(3, replyg.getBgu_num());
+						pstmt.setInt(2, replyg.getBgu_num());
 						pstmt.executeUpdate();
 					}catch(Exception e) {
 						throw new Exception(e);
