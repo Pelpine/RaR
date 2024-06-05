@@ -19,7 +19,7 @@ public class MemberDAO {
 	public MemberDAO() {}
 	
 	//회원가입
-	public void insertMember(MemberVO member)
+	public int insertMember(MemberVO member)
 	                         throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -80,6 +80,7 @@ public class MemberDAO {
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
+		return num;
 	}//회원가입 end
 	
 	//ID 중복 체크 및 로그인 처리
