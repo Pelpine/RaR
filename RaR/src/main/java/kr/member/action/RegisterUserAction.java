@@ -26,11 +26,14 @@ public class RegisterUserAction implements Action{
 		member.setUser_ip(request.getRemoteAddr());
 		
 		MemberDAO dao = MemberDAO.getInstance();
+		// insertMember가 가입된 유저의 user_num을 반환하도록 변경함.
 		int user_num = dao.insertMember(member);
+		
+		//바로 로그인 처리
 		 HttpSession session = request.getSession();
 	        session.setAttribute("user_num", user_num);
 	        session.setAttribute("user_email", member.getUser_email());
-	        session.setAttribute("user_auth", member.getUser_auth()); // 기본 권한을 설정 (필요에 따라 변경 가능)
+	        session.setAttribute("user_auth", member.getUser_auth()); 
 		
 		request.setAttribute("result_title", "회원 가입 완료");
 		request.setAttribute("result_msg", "회원 가입이 완료되었습니다.");
