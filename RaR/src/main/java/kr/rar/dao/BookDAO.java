@@ -11,6 +11,7 @@ import kr.rar.vo.BookVO;
 import kr.rar.vo.ItemVO;
 import kr.rar.vo.MemberVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 
 public class BookDAO {
 	//싱글턴 패턴
@@ -98,7 +99,7 @@ public class BookDAO {
 				order_num = rs.getInt(1);
 			}
 			
-			sql = "insert into book (bk_num,bk_name,bk_writer,bk_publisher,bk_price,bk_img,bk_genre,bk_isbn,bk_description) values (?,?,?,?,?,?,?,?,?)";
+			sql = "insert into book (bk_num,bk_name,bk_writer,bk_publisher,bk_price,bk_img,bk_genre,bk_isbn,bk_description,bk_pubdate) values (?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, order_num);
@@ -110,10 +111,11 @@ public class BookDAO {
 			pstmt2.setString(7, vo.getBk_genre());
 			pstmt2.setString(8, vo.getBk_isbn());
 			pstmt2.setString(9, vo.getBk_description());
+			pstmt2.setString(10, vo.getBk_pubdate());
 			
 			pstmt2.executeUpdate();
 			
-			sql = "insert into item (item_num,item_price,item_grade,item_img,bk_num,approval_id,reg_date) values(item_seq.nextval,?,?,?,?,?,SYSDATE)";
+			sql = "insert into item (item_num,item_price,item_grade,item_img,bk_num,approval_id) values(item_seq.nextval,?,?,?,?,?)";
 			
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, io.getItem_price());
@@ -121,7 +123,6 @@ public class BookDAO {
 			pstmt3.setString(3, io.getItem_img());
 			pstmt3.setInt(4, order_num);
 			pstmt3.setInt(5, io.getApproval_id());
-			pstmt3.setDate(6, io.getReg_date());
 			pstmt3.executeUpdate();
 			
 			conn.commit();
@@ -302,6 +303,7 @@ public class BookDAO {
 				book.setBk_price(rs.getInt("bk_price"));
 				book.setBk_img(rs.getString("bk_img"));
 				book.setBk_genre(rs.getString("bk_genre"));
+				book.setBk_pubdate(rs.getString("bk_pubdate"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -364,6 +366,7 @@ public class BookDAO {
 				vo.setBk_img(rs.getString("bk_img"));
 				vo.setBk_genre(rs.getString("bk_genre"));
 				vo.setBk_isbn(rs.getString("bk_isbn"));
+				vo.setBk_pubdate(rs.getString("bk_pubdate"));
 				vo.setBk_description(rs.getString("bk_description"));
 				
 				ItemVO item = new ItemVO();

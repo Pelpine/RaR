@@ -22,6 +22,21 @@
 				<div class="result-display">
 				표시할 게시물이 없습니다.
 				</div>
+				<ul class="search">
+					<li>
+						<select name="keyfield">
+							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>책이름</option>
+							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작가</option>
+							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>출판사</option>
+						</select>
+					</li>
+					<li>
+						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+					</li>
+					<li>
+						<input type="submit" value="검색">
+					</li>
+				</ul>
 				<jsp:include page="/WEB-INF/views/book/genre.jsp"/>
 			</c:if>
 			<c:if test="${count > 0 }">
@@ -60,7 +75,9 @@
 					</li>
 				</ul>
 			</form>
+			<div>
 			<jsp:include page="/WEB-INF/views/book/genre.jsp"/>
+			</div>
 			<div class="align-center">${page}</div>
 			</c:if>
 		</div>

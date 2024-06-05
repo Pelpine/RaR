@@ -11,15 +11,22 @@ public class BookVO {
 	private String bk_isbn;
 	private String bk_description;
 	private int bk_count;
+	private String bk_pubdate;
 	
+	private ItemVO itemVO;
+	
+	public String getBk_pubdate() {
+		return bk_pubdate;
+	}
+	public void setBk_pubdate(String bk_pubdate) {
+		this.bk_pubdate = bk_pubdate;
+	}
 	public int getBk_count() {
 		return bk_count;
 	}
 	public void setBk_count(int bk_count) {
 		this.bk_count = bk_count;
 	}
-	private ItemVO itemVO;
-	
 	public ItemVO getItemVO() {
 		return itemVO;
 	}
