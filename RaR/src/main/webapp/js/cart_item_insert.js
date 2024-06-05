@@ -11,7 +11,7 @@ $(function(){
 	        dataType:'json',
 	        success: function(param) {
 				console.log(param.result)
-	           if(param.result == 'logout'){
+	           	if(param.result == 'logout'){
 					alert('로그인 후 사용하세요');
 				}else if(param.result == 'noSale'){
 					alert('해당 상품이 현재 판매중이 아닙니다.');
