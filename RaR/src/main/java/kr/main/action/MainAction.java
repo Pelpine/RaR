@@ -24,12 +24,15 @@ public class MainAction implements Action{
 		
 		ItemDAO itemDAO = ItemDAO.getInstance();
 		List<ItemVO> itemList = null;
+		List<ItemVO> topList = null;
 		
-		itemList = 
-				itemDAO.getListItem(
-				              1,5,null,null,1);//현재 진행중인 이벤트만 반환
+		itemList = itemDAO.getListItem(1,5,null,null,1);//현재 진행중인 이벤트만 반환
+		
+		topList = itemDAO.getTopItem(1, 5);
 		
 		request.setAttribute("itemList", itemList);
+		request.setAttribute("topList", topList);
+		
 		//JSP 경로 반환
 		return "/WEB-INF/views/main/main.jsp";
 	}

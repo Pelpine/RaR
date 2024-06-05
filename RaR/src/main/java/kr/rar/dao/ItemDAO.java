@@ -9,6 +9,7 @@ import java.util.List;
 import kr.rar.vo.BookVO;
 import kr.rar.vo.CartVO;
 import kr.rar.vo.ItemVO;
+import kr.rar.vo.OrderDetailVO;
 import kr.util.DBUtil;
 
 public class ItemDAO {
@@ -209,4 +210,58 @@ public class ItemDAO {
 		}		
 		return list;
 	}
+		//아이템 목록
+		public List<ItemVO> getTopItem(
+				int start, int end)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ItemVO> list = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+
+
+				//SQL문 작성
+				sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM "
+						+ "(SELECT i.bk_num, b.bk_img, r.item_name, r.bk_price, COUNT(i.bk_num) "
+						+ "FROM item i JOIN rar_order_detail r USING(item_num) "
+						+ "            JOIN book b ON i.bk_num = b.bk_num "
+						+ "GROUP BY i.bk_num, b.bk_img, r.item_name, r.bk_price "
+						+ "ORDER BY COUNT(i.bk_num) DESC)a) "
+						+ "WHERE rnum >= ? AND rnum <=?";
+
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ItemVO>();
+				while(rs.next()) {
+					ItemVO item = new ItemVO();
+					item.setBk_num(rs.getInt("bk_num"));
+					
+					BookVO book = new BookVO();
+					book.setBk_img(rs.getString("bk_img"));
+					
+					OrderDetailVO order = new OrderDetailVO();
+					order.setItem_name(rs.getString("item_name"));
+					order.setBk_price(rs.getInt("bk_price"));
+
+					
+					item.setBookVO(book);
+					item.setOrderDetailVO(order);
+
+					list.add(item);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return list;
+		}
 }

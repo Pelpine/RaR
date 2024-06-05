@@ -22,7 +22,15 @@ public class ItemVO {
 	private BookVO bookVO;
 	//도서 승인
 	private BookApprovalVO bookApprovalVO;
+	//주문정보
+	private OrderDetailVO orderDetailVO;
 	
+	public OrderDetailVO getOrderDetailVO() {
+		return orderDetailVO;
+	}
+	public void setOrderDetailVO(OrderDetailVO orderDetailVO) {
+		this.orderDetailVO = orderDetailVO;
+	}
 	public int getItem_num() {
 		return item_num;
 	}
