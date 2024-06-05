@@ -17,6 +17,8 @@
             </c:if>
             <c:if test="${!empty user_num}">
                 <div class="header_button_group">
+                	<button class="header_button"
+                			onclick="location.href='${pageContext.request.contextPath}/cart/cartList.do'">장바구니</button>
                     <button class="header_button" 
                             onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">마이페이지</button>
                     <button class="header_button" 
@@ -61,8 +63,7 @@
         <div class="dropdown">
             <button class="dropbtn">shop</button>
             <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a>
-                <a href="${pageContext.request.contextPath}/book/list.do">판매 등록목록</a>
+                <a href="${pageContext.request.contextPath}/book/list.do">중고서적 판매</a>
                 <a href="${pageContext.request.contextPath}/book/booklist.do">도서목록</a>
             </div>
         </div>
