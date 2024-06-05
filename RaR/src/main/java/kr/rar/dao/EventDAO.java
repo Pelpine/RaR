@@ -386,7 +386,24 @@ public class EventDAO {
 	    }
 	    return list;
 	}
-	//룰렛 티켓은 책을 한 권 구매할 때마다 한 개 추가.
+	//구매한 책 한 권당 룰렛 티켓 지급
+	public void insertTicket(int user_num, int itemcount) throws Exception {
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO roulette_ticket(user_num, ticket) VALUES (?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			pstmt.setInt(2, itemcount);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//현재 보유중인 룰렛 티켓 가져오기
 	public int getTicket(int user_num) throws Exception{
 		Connection conn = null;
