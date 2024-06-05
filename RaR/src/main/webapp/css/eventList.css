@@ -1,8 +1,20 @@
-body {
-    width: 960px;
-    margin: 0 auto;
-    background: #E6E6E6;
+---------------------*/
+body{
+	margin:0 auto;
+	background:#FFFFFF;
 }
+/* 페이지 레이아웃
+---------------------*/
+.page-main{
+	width:1200px;
+	background:#FFFFFF;
+	margin:40px 0;
+	border-radius:5px;
+	box-shadow:0 2px 6px rgba(100,100,100,0.3);
+	min-height:650px;
+}
+
+
 
 a:link {
     text-decoration: none;
@@ -17,13 +29,6 @@ a:visited {
 a:hover {
     text-decoration: none;
     color: #6C6C6C;
-}
-
-.page-main {
-    background: #FFFFFF;
-    margin: 40px 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
 }
 
 .content-main {
