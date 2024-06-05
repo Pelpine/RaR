@@ -24,11 +24,11 @@
 	<div class="align-center">
 		<img src="${pageContext.request.contextPath}/upload/${event.filename}"
 		                    style="max-width: 500px">
-	</div>
+	
 	<p>
 		${event.content}
 	</p>
-		
+	</div>
 	<hr size="1" width="100%" noshade="noshade">
 	
 	<div class="align-right">
