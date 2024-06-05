@@ -66,9 +66,20 @@ public class Bookdetailupdate implements Action{
 					bkvo.setBk_img(request.getParameter("cover"));
 					bkvo.setBk_genre(request.getParameter("categoryName"));
 					bkvo.setBk_description(request.getParameter("description"));
+					bkvo.setBk_pubdate(request.getParameter("bk_pubdate"));
 					book.insertBookslist(bkvo, itemvo);
+					
+					request.setAttribute("notice_msg", "책 등록 완료");
+					request.setAttribute("notice_url", request.getContextPath()+"/book/list.do");
+
+					return "/WEB-INF/views/common/alert_view.jsp";
 				}else {
 					book.intobook(bkvo, itemvo);
+					
+					request.setAttribute("notice_msg", "책 등록 완료");
+					request.setAttribute("notice_url", request.getContextPath()+"/book/list.do");
+
+					return "/WEB-INF/views/common/alert_view.jsp";
 				}
 			}else {
 				return "redirect:/book/list.do";
@@ -77,8 +88,8 @@ public class Bookdetailupdate implements Action{
 		}
 
 
-		request.setAttribute("notice_msg", "책 등록 완료");
-		request.setAttribute("notice_url", request.getContextPath()+"/book/list.do");
+		request.setAttribute("notice_msg", "승인상태을 변경해주세요");
+		request.setAttribute("notice_url", request.getContextPath()+"/book/bookdetail.do?approval_id="+approval_id);
 
 		return "/WEB-INF/views/common/alert_view.jsp";
 	}

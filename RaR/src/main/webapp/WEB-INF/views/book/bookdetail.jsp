@@ -33,15 +33,17 @@
 				<label>정가 : ${book.price}</label>
 			</li>
 			<li>
-				<label>승인상태 : ${book.status}</label>
-				<select name="status">
-					<c:if test="${user_auth == 9}">
-						<option value="1" <c:if test="${book.status==1}">selected</c:if>>미승인</option>
-						<option value="2" <c:if test="${book.status==2}">selected</c:if>>승인</option>
-						<option value="3" <c:if test="${book.status==3}">selected</c:if>>반출</option>
-					</c:if>
-				</select>
-			
+				<label>승인상태 : <c:if test="${book.status == 1}">미승인</c:if>
+								<c:if test="${book.status == 2}">승인</c:if> 
+								<c:if test="${book.status == 3}">반려</c:if> 
+				 </label>
+				 <c:if test="${book.status == 1 and user_auth == 9}">
+				 <select name="status">
+					<option value="1" <c:if test="${book.status==1}">selected</c:if>>미승인</option>
+					<option value="2" <c:if test="${book.status==2}">selected</c:if>>승인</option>
+					<option value="3" <c:if test="${book.status==3}">selected</c:if>>반출</option>
+				 </select>
+				</c:if>
 			</li>
 			<li>
 				<label>장르 : ${book.categoryName}</label>
@@ -88,6 +90,7 @@
 		<input type="hidden" value="${book.description}" name="description">
 		<input type="hidden" value="${book.item_grade}" name="item_grade">
 		<input type="hidden" value="${book.memberVO.user_email}" name="user_email">
+		<input type="hidden" value="${book.pubDate}" name="bk_pubdate">
 		</c:if>
 	</div>
 	</form>
