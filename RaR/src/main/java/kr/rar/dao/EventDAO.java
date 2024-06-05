@@ -386,7 +386,7 @@ public class EventDAO {
 	    }
 	    return list;
 	}
-	//이미 룰렛 티켓이 있다면 update문, 가진적이 없다면 insert문 사용
+	
 	public void insertTicket(int user_num, int itemcount) throws Exception {
 		Connection conn = null;
 		String sql = null;
