@@ -8,8 +8,6 @@
 <meta charset="UTF-8">
 <title>책 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<script type="text/javascript">
-</script>
 </head>
 <body>
 <div class="page-main">
@@ -24,6 +22,7 @@
 				<div class="result-display">
 				표시할 게시물이 없습니다.
 				</div>
+				<jsp:include page="/WEB-INF/views/book/genre.jsp"/>
 			</c:if>
 			<c:if test="${count > 0 }">
 			<table>
@@ -61,6 +60,7 @@
 					</li>
 				</ul>
 			</form>
+			<jsp:include page="/WEB-INF/views/book/genre.jsp"/>
 			<div class="align-center">${page}</div>
 			</c:if>
 		</div>

@@ -21,6 +21,10 @@ public class Bookslist implements Action{
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
+		if (keyword == null || keyword.isEmpty()) {
+		    keyword = request.getParameter("key");
+		}
+		
 		BookDAO dao = BookDAO.getInstance();
 		int count = dao.getBooksCount(keyfield, keyword);
 		
@@ -34,6 +38,7 @@ public class Bookslist implements Action{
                 book.setBk_count(bk_count); // bk_count 값을 BookVO 객체에 설정
             }
 		}
+		
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
