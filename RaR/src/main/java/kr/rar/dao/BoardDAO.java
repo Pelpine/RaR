@@ -854,7 +854,6 @@ public class BoardDAO {
 					rs= pstmt.executeQuery();
 					if(rs.next()) {
 						count=rs.getInt(1);
-						
 					}
 					}catch(Exception e) {
 						throw new Exception(e);
