@@ -14,7 +14,8 @@
 window.onload=function(){
 	//회원 정보 등록 유효성 체크
 	const myForm = document.getElementById('order_form');
-	myForm.onsubmit = function(){
+	myForm.onsubmit = function(){		
+		//미입력 유효성 체크
 		const items = document.querySelectorAll('input[type="text"]');
 		for(let i=0;i<items.length;i++){
 			if(items[i].value.trim()==''){
@@ -30,7 +31,16 @@ window.onload=function(){
 				items[i].focus();
 				return false;
 			}
-		}//end of for
+		}//end of for	
+		
+		//전화번호 유효성 체크
+		const phone = document.getElementById('receive_phone');
+		if(!/^[0-9-]{1,15}$/.test(phone.value)){
+			alert('전화번호는 숫자와 하이픈(-)만 입력 가능합니다.(최대 15자)');
+			phone.value='';
+			phone.focus();
+			return false;
+		}
 		
 		//결제수단 유효성 체크
 		const radio = document.querySelectorAll('input[type="radio"]:checked');

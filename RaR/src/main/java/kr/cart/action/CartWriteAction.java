@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.rar.dao.CartDAO;
+import kr.rar.dao.ItemDAO;
 import kr.rar.vo.CartVO;
+import kr.rar.vo.ItemVO;
 import kr.controller.Action;
 
 public class CartWriteAction implements Action{
@@ -22,20 +24,21 @@ public class CartWriteAction implements Action{
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
-		int item_status = Integer.parseInt(request.getParameter("item_status"));
-		
+
 		if(user_num==null) {//로그인이 되지 않은 경우
 			mapAjax.put("result", "logout");
 		}else {//로그인 된 경우
 			//전송된 데이터 인코딩 타입 지정
 			request.setCharacterEncoding("utf-8");
-			
-			CartDAO dao = CartDAO.getInstance();
-			
-			//상품 상태가 판매상태가 아닐 경우 - 현재 작동안됨..
-			if(item_status > 1) {
+						
+			ItemDAO itemDAO = ItemDAO.getInstance();
+			ItemVO itemVO = itemDAO.getItem(item_num);
+
+			//상품 상태가 판매상태가 아닐 경우
+			if(itemVO.getItem_status() > 1) {
 				mapAjax.put("result", "noSale");
 			}else {
+				CartDAO dao = CartDAO.getInstance();
 				//상품 중복체크
 				boolean isItemExists = dao.isItemExists(user_num, item_num);
 				if (isItemExists) {
