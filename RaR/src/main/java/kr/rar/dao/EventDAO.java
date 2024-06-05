@@ -68,9 +68,9 @@ public class EventDAO {
 	        // 날짜 조건 처리
 	        if(underway.equals("on")) {
 	            if(sub_sql.isEmpty()) {
-	                date_sql = "WHERE SYSDATE BETWEEN start_date AND end_date";
+	                date_sql = "WHERE status=1";
 	            } else {
-	            	date_sql = "AND SYSDATE BETWEEN start_date AND end_date";
+	            	date_sql = "AND status=1";
 	            }
 	        }
 	        
@@ -229,11 +229,11 @@ public class EventDAO {
 	        }
 	        
 	        // 날짜 조건 처리
-	        if(underway.equals("1")) {
+	        if(underway.equals("on")) {
 	            if(sub_sql.isEmpty()) {
-	                date_sql = "WHERE SYSDATE BETWEEN start_date AND end_date";
+	                date_sql = "WHERE status=1";
 	            } else {
-	                date_sql = " AND SYSDATE BETWEEN start_date AND end_date";
+	            	date_sql = "AND status=1";
 	            }
 	        }
 
@@ -367,7 +367,7 @@ public class EventDAO {
 	    List<EventVO> list = null;
 	    try {
 	        conn = DBUtil.getConnection();        
-	        sql = "SELECT banner,event_num FROM event_list WHERE SYSDATE BETWEEN start_date AND end_date";
+	        sql = "SELECT banner,event_num FROM event_list WHERE status=1";
 
 	        pstmt = conn.prepareStatement(sql);
 	      	  
