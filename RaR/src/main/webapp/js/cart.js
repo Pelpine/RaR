@@ -21,7 +21,10 @@ $(function(){
 					//체크박스
 					output += '<td><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
 					//상품정보 : 책 이미지, 이름
-					output += '<td><img src="' + item.bookVO.bk_img + '" width="60">' + item.bookVO.bk_name + '</td>';
+					output += '<td>'
+							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '">'
+							+ '<img src="' + item.bookVO.bk_img + '" width="60">' + item.bookVO.bk_name + '</a>'
+							+ '</td>';
 					//상품 가격 : 정가, 판매가, 예상 적립포인트
 					output += '<td class="item_list_price">'
 							+ '<span class="item_bk_price">정가 : ' + item.bookVO.bk_price.toLocaleString() + '원</span><br>'

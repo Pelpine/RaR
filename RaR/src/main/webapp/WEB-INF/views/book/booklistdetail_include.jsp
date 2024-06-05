@@ -55,7 +55,6 @@
 								style="width: 0; margin: 10px 0; border: 0; padding: 0;">
 								<input type="hidden" name="item_num" value="${item.item_num}">
 								<input type="hidden" name="bk_num" value="${item.bk_num}">
-								<input type="hidden" name="item_status" value="${item.item_status}">
 								<input type="submit" value="장바구니 담기">
 							</form>
 						</td>

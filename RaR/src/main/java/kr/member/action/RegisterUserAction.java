@@ -2,6 +2,7 @@ package kr.member.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.rar.dao.MemberDAO;
@@ -25,7 +26,14 @@ public class RegisterUserAction implements Action{
 		member.setUser_ip(request.getRemoteAddr());
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		dao.insertMember(member);
+		// insertMember가 가입된 유저의 user_num을 반환하도록 변경함.
+		int user_num = dao.insertMember(member);
+		
+		//바로 로그인 처리
+		 HttpSession session = request.getSession();
+	        session.setAttribute("user_num", user_num);
+	        session.setAttribute("user_email", member.getUser_email());
+	        session.setAttribute("user_auth", member.getUser_auth()); 
 		
 		request.setAttribute("result_title", "회원 가입 완료");
 		request.setAttribute("result_msg", "회원 가입이 완료되었습니다.");

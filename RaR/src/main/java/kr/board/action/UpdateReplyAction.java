@@ -21,8 +21,8 @@ public class UpdateReplyAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		
 		//댓글 번호 반환
-		int re_num=Integer.parseInt(
-					request.getParameter("re_num"));
+		int re_num = Integer.parseInt(
+				         request.getParameter("re_num"));
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		BoardReplyVO db_reply = dao.getReplyBoard(re_num);

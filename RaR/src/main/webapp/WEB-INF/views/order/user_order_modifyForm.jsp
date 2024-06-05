@@ -30,6 +30,16 @@ window.onload=function(){
 				return false;
 			}
 		}//end of for
+		
+		//전화번호 유효성 체크
+		const phone = document.getElementById('receive_phone');
+		if(!/^[0-9-]{1,15}$/.test(phone.value)){
+			alert('전화번호는 숫자와 하이픈(-)만 입력 가능합니다.(최대 15자)');
+			phone.value='';
+			phone.focus();
+			return false;
+		}
+		
 	};
 };
 </script>
