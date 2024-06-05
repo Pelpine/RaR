@@ -38,6 +38,6 @@ public class QuestionListAction implements Action{
 		request.setAttribute("page", page.getPage());
 		
 		//JSP 경로 반환
-		return "/WEB-INF/views/board/list.jsp";
+		return "/WEB-INF/views/question/question_list.jsp";
 	}
 }
