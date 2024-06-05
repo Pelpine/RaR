@@ -956,23 +956,56 @@ public class BoardDAO {
 						DBUtil.executeClose(null, pstmt, conn);
 					}
 				}
-				//댓글 삭제
-				public void deleteReplyGenre(int bgu_num)throws Exception{
-					Connection conn = null;
-					PreparedStatement pstmt = null;
-					String sql = null;
-					try {
-						conn = DBUtil.getConnection();
-						sql="DELETE FROM board_reply WHERE bgu_num=?";
-						pstmt=conn.prepareStatement(sql);
-						pstmt.setInt(1, bgu_num);
-						pstmt.executeUpdate();
-					}catch(Exception e) {
-						throw new Exception(e);
-					}finally {
-						DBUtil.executeClose(null, pstmt, conn);
-					}
-				}
+			
+				// 댓글 삭제 메서드
+			    public int deleteReplyGenre(int bgu_num) throws Exception {
+			        Connection conn = null;
+			        PreparedStatement pstmt = null;
+			        String sql = null;
+			        int result = 0;
+			        try {
+			            conn = DBUtil.getConnection();
+			            sql = "DELETE FROM board_genre_user WHERE bgu_num=?";
+			            pstmt = conn.prepareStatement(sql);
+			            pstmt.setInt(1, bgu_num);
+			            result = pstmt.executeUpdate();
+			        } catch (Exception e) {
+			            throw new Exception(e);
+			        } finally {
+			            DBUtil.executeClose(null, pstmt, conn);
+			        }
+			        return result;
+			    }
+
+			    // 댓글 작성자 정보를 가져오는 메서드
+			    public GenreUserVO getGenreUser(int bgu_num) throws Exception {
+			        Connection conn = null;
+			        PreparedStatement pstmt = null;
+			        ResultSet rs = null;
+			        GenreUserVO genreUser = null;
+			        String sql = null;
+			        
+			        try {
+			            conn = DBUtil.getConnection();
+			            sql = "SELECT * FROM board_genre_user WHERE bgu_num=?";
+			            pstmt = conn.prepareStatement(sql);
+			            pstmt.setInt(1, bgu_num);
+			            rs = pstmt.executeQuery();
+			            
+			            if (rs.next()) {
+			                genreUser = new GenreUserVO();
+			                genreUser.setBgu_num(rs.getInt("bgu_num"));
+			                genreUser.setUser_num(rs.getInt("user_num"));
+			                // 기타 필요한 필드 설정
+			            }
+			        } catch (Exception e) {
+			            throw new Exception(e);
+			        } finally {
+			            DBUtil.executeClose(rs, pstmt, conn);
+			        }
+			        
+			        return genreUser;
+			    }
 	}
 
 

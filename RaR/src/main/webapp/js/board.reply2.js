@@ -246,12 +246,12 @@ $(function(){
 	 * ==================================== */
 	$(document).on('click','.delete-btn',function(){
 		//댓글번호
-		let re_num = $(this).attr('data-renum');
+		let bgu_num = $(this).attr('data-renum');
 		//서버와 통신
 		$.ajax({
 			url:'deleteReplyGenre.do',
 			type:'post',
-			data:{re_num:re_num},
+			data:{bgu_num:bgu_num},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'logout'){

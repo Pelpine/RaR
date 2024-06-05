@@ -31,7 +31,7 @@ public class UpdateReplyGenreAction implements Action {
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		String user_email = (String) session.getAttribute("user_email");
+		
 		
 		Map<String,String> mapAjax=
 					new HashMap<String,String>();
