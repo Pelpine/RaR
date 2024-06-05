@@ -10,9 +10,8 @@
 <title>로그인 정보</title>
 <link rel="stylesheet"href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
 </head>
-<body>
+<body>  
     <div class="page-main">
-        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
         <div class="content-main">
             <h2>회원 정보</h2>
             <div class="=result-display">
