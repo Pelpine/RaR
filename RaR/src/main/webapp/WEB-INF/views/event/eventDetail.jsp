@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 </head>
+<style>
+	span{
+		
+		font-size : 20pt;
+	}
+</style>
 <body>
 <div class="page-main">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -16,18 +22,20 @@
 	<p>
 		이벤트 번호 : ${event.event_num}<br>
 		등록일 : ${event.reg_date}
+		<c:if test="${event.start_date != '2000-01-01'}">
 		시작일 : ${event.start_date}
 		종료일 : ${event.end_date}
+		</c:if>
 		조회수 : ${event.hit}
 	</p>
 	<hr size="1" width="100%" noshade="noshade">
 	<div class="align-center">
 		<img src="${pageContext.request.contextPath}/upload/${event.filename}"
 		                    style="max-width: 500px">
-	
 	<p>
+	<span>
 		${event.content}
-	</p>
+	</span>
 	</div>
 	<hr size="1" width="100%" noshade="noshade">
 	

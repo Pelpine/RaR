@@ -386,24 +386,43 @@ public class EventDAO {
 	    }
 	    return list;
 	}
-	//구매한 책 한 권당 룰렛 티켓 지급
+	//이미 룰렛 티켓이 있다면 update문, 가진적이 없다면 insert문 사용
 	public void insertTicket(int user_num, int itemcount) throws Exception {
 		Connection conn = null;
 		String sql = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO roulette_ticket(user_num, ticket) VALUES (?,?)";
+			conn.setAutoCommit(false);
+			sql = "SELECT * FROM roulette_ticket WHERE user_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
-			pstmt.setInt(2, itemcount);
-			pstmt.executeUpdate();
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				sql = "UPDATE roulette_ticket SET ticket= ticket+? WHERE user_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, itemcount);
+				pstmt2.setInt(2, user_num);
+			}else {
+				sql = "INSERT INTO roulette_ticket(user_num, ticket) VALUES (?,?)";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, user_num);
+				pstmt2.setInt(2, itemcount);
+			}
+			pstmt2.executeUpdate();
+			conn.commit();
 		}catch(Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
+	
 	//현재 보유중인 룰렛 티켓 가져오기
 	public int getTicket(int user_num) throws Exception{
 		Connection conn = null;
