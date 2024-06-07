@@ -387,38 +387,22 @@ public class EventDAO {
 	    return list;
 	}
 	
-	public void insertTicket(int user_num, int itemcount) throws Exception {
+	//티켓 지급
+	public void insertTicket(int user_num, int item_num) throws Exception {
 		Connection conn = null;
 		String sql = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		try {
 			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
-			sql = "SELECT * FROM roulette_ticket WHERE user_num=?";
+			sql = "INSERT INTO roulette_ticket(ticket_num, user_num, item_num) VALUES (ticket_seq.nextval,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
-			rs= pstmt.executeQuery();
-			
-			if(rs.next()) {
-				sql = "UPDATE roulette_ticket SET ticket= ticket+? WHERE user_num=?";
-				pstmt2 = conn.prepareStatement(sql);
-				pstmt2.setInt(1, itemcount);
-				pstmt2.setInt(2, user_num);
-			}else {
-				sql = "INSERT INTO roulette_ticket(user_num, ticket) VALUES (?,?)";
-				pstmt2 = conn.prepareStatement(sql);
-				pstmt2.setInt(1, user_num);
-				pstmt2.setInt(2, itemcount);
-			}
-			pstmt2.executeUpdate();
-			conn.commit();
+			pstmt.setInt(2, item_num);			
+			pstmt.executeUpdate();
 		}catch(Exception e) {
-			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
@@ -432,12 +416,12 @@ public class EventDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT ticket FROM roulette_ticket WHERE user_num=?";
+			sql = "SELECT count(*) FROM roulette_ticket WHERE user_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				ticket = rs.getInt("ticket");
+				ticket = rs.getInt(1);
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
