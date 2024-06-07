@@ -416,7 +416,7 @@ public class EventDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT count(*) FROM roulette_ticket WHERE user_num=?";
+			sql = "SELECT count(*) FROM roulette_ticket WHERE user_num=? AND status=1";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
 			rs = pstmt.executeQuery();
@@ -430,21 +430,26 @@ public class EventDAO {
 		}
 		return ticket;
 	}
-	//현재 보유중인 룰렛 티켓 소모하여 룰렛 돌림
-	public void useTicket(int user_num) throws Exception{
-		Connection conn = null;
-		String sql = null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = DBUtil.getConnection();
-			sql = "UPDATE roulette_ticket SET ticket= ticket-1 WHERE user_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, user_num);
-			pstmt.executeUpdate();
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
+	//현재 보유중인 룰렛 티켓중 가장 오래된 소모하여 룰렛 돌림
+	public void useTicket(int user_num, int point) throws Exception{
+	    Connection conn = null;
+	    String sql = null;
+	    PreparedStatement pstmt = null;
+	    try {
+	        conn = DBUtil.getConnection();
+	        sql = "UPDATE roulette_ticket SET status = 0, reward =?"
+	        		+ "WHERE ticket_num = (SELECT ticket_num "
+	        		+ "FROM (SELECT ticket_num FROM roulette_ticket "
+	        		+ "WHERE user_num = ? ORDER BY get_date) WHERE ROWNUM = 1)";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, point);
+	        pstmt.setInt(2, user_num);
+	        pstmt.executeUpdate();
+	    } catch(Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(null, pstmt, conn);
+	    }
 	}
+
 }

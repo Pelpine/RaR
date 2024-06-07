@@ -32,7 +32,7 @@ public class RouletteEventAction implements Action{
 		if(ticket <= 0) {
 			mapAjax.put("result", "noTicket");
 		}else if(ticket > 0) {
-			dao.useTicket(user_num);
+			dao.useTicket(user_num, point);
 			dao.updatePoint(user_num, point, event_num);
 			mapAjax.put("result", "success");
 		}
