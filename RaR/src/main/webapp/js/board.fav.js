@@ -49,9 +49,9 @@ $(function(){
 	function displayFav(param){
 		let output;
 		if(param.status == 'yesFav'){//좋아요 선택
-			output = '../images/fav02.gif';
+			output = '../images/favon.png';
 		}else{//좋아요 선택x
-			output = '../images/fav01.gif';
+			output = '../images/favoff.png';
 		}
 		//문서 객체에 설정
 		$('#output_fav').attr('src',output);
