@@ -176,6 +176,22 @@ ul, li {
     height: 100%; /* 내부 요소의 높이를 부모 요소에 맞춤 */
 }
 
+.search li input[type="submit"] {
+	background-color: #77dd77; /* 파스텔 그린 */
+    border: none;
+    border-radius: 25px; /* 둥근 모서리 */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .search .block {
     width: 100%;
     align-items: center;
@@ -187,7 +203,7 @@ ul, li {
 }
 
 #liSearchOption .search li:last-child label {
-    margin-right: 160px; /* 현재 진행중인 이벤트만 보기 텍스트와 체크박스 사이의 간격을 조정 */
+    margin-right: 40px; /* 현재 진행중인 이벤트만 보기 텍스트와 체크박스 사이의 간격을 조정 */
 }
 
 #liSearchOption .search li:last-child input[type="checkbox"] {
@@ -197,5 +213,25 @@ ul, li {
 
 
 .align-right input[type="button"]{
- 	font-size:16pt;	
+	 background-color: #77dd77; /* 파스텔 그린 */
+	 border: none;
+	 border-radius: 25px; /* 둥근 모서리 */
+	 color: white;
+	 padding: 10px 20px;
+	 font-size: 16px;
+	 font-weight: bold;
+	 text-align: center;
+	 text-decoration: none;
+	 display: inline-block;
+	 margin: 10px 2px;
+	 cursor: pointer;
+	 transition: background-color 0.3s, box-shadow 0.3s;
+	 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
 }
+
+.align-center input[type="submit"],
+.align-center input[type="button"] {
+/
+}
+
+

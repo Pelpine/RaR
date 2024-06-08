@@ -19,9 +19,9 @@
 				누군가의 추천으로 Read & Renew를 찾아오셨나요?
 				<p>
 				<input type="button" value="추천인 없음"
-				   onclick="location.href='${result_url}'">
+				   onclick="location.href='${result_url1}'">
 				<input type="button" value="추천인 있음"
-				   onclick="location.href='${result_url}'">
+				   onclick="location.href='${result_url2}'">
 			</div>
 		</div>
 	</div>

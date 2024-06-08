@@ -37,8 +37,10 @@ public class RegisterUserAction implements Action{
 		
 		request.setAttribute("result_title", "회원 가입 완료");
 		request.setAttribute("result_msg", "회원 가입이 완료되었습니다.");
-		request.setAttribute("result_url", request.getContextPath()+"/main/main.do");
-		
+		//url1= 추천인 이벤트 미참여
+		request.setAttribute("result_url1", request.getContextPath()+"/main/main.do");
+		//url2= 추천인 이벤트 참여
+		request.setAttribute("result_url2", request.getContextPath()+"/event/referenceEmailEventForm.do");
 		return "/WEB-INF/views/common/result_view.jsp";
 	}
 
