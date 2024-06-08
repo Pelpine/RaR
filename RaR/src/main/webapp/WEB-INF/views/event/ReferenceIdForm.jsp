@@ -59,7 +59,7 @@ window.onload = function(){
 		<h2>추천인 이벤트</h2>
 		<div class="result-display">
 			<div class="align-center">
-				<form action="reference.do" method="post" id="reference_form">
+				<form action="referenceEmailEvent.do" method="post" id="reference_form">
 					<label for="email">추천인 EMAIL</label>
                    <input type="email" class="form-input"
                     name="email" id="email"

@@ -41,7 +41,7 @@ public class RegisterUserAction implements Action{
 		request.setAttribute("result_url1", request.getContextPath()+"/main/main.do");
 		//url2= 추천인 이벤트 참여
 		request.setAttribute("result_url2", request.getContextPath()+"/event/referenceEmailEventForm.do");
-		return "/WEB-INF/views/common/result_view.jsp";
+		return "/WEB-INF/views/event/registerUserResult.jsp";
 	}
 
 }

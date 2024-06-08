@@ -15,22 +15,17 @@
 		<h2>${result_title}</h2>
 		<div class="result-display">
 			<div class="align-center">
-				${result_msg}
+				${result_msg}<br>
+				누군가의 추천으로 Read & Renew를 찾아오셨나요?
 				<p>
-				<input type="button" value="확인"
-				   onclick="location.href='${result_url}'">
+				<input type="button" value="추천인 없음"
+				   onclick="location.href='${result_url1}'">
+				<input type="button" value="추천인 있음"
+				   onclick="location.href='${result_url2}'">
 			</div>
 		</div>
 	</div>
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
 

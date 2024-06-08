@@ -451,5 +451,72 @@ public class EventDAO {
 	        DBUtil.executeClose(null, pstmt, conn);
 	    }
 	}
-
+	//추천인 이벤트 중복 참여 방지
+	public boolean checkParticipationReferenceEvent(int user_num) throws Exception{
+	boolean check = false;
+	Connection conn = null;
+	String sql = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	try {
+		conn = DBUtil.getConnection();
+		sql = "SELECT * FROM reference_id WHERE user_num=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, user_num);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			//이미 참여한 유저
+			check = true;
+		}
+	}catch(Exception e) {
+		throw new Exception(e);
+	}finally {
+		DBUtil.executeClose(rs, pstmt, conn);
+	}
+	return check;
 }
+
+	//reference_id 테이블 기록 
+	public void particepateReferenceEvent(int user_num, String reference_id) throws Exception{
+	Connection conn = null;	
+	PreparedStatement pstmt = null;
+	String sql = null;
+	try {
+		conn = DBUtil.getConnection();
+		sql = "INSERT INTO reference_id(user_num, reference_id) VALUES(?,?)";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, user_num);
+		pstmt.setString(2, reference_id);
+		pstmt.executeUpdate();
+	}catch(Exception e) {
+		throw new Exception(e);
+	}finally {
+		DBUtil.executeClose(null, pstmt, conn);
+	}
+	}
+	
+	//email 입력해서 user_num 반환
+	public int getUser_numByEmail(String email) throws Exception{
+		int user_num = 0;
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT user_num FROM member WHERE user_email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user_num = rs.getInt("user_num");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return user_num;
+	}
+}
+
