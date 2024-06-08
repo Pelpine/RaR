@@ -7,6 +7,12 @@
 <title>${result_title}</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
+ <script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+</script>
 </head>
 <body>
 <div class="page-main">
