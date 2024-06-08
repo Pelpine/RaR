@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>${result_title}</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
 </head>
 <body>
 <div class="page-main">
@@ -14,9 +15,12 @@
 		<h2>${result_title}</h2>
 		<div class="result-display">
 			<div class="align-center">
-				${result_msg}
+				${result_msg}<br>
+				누군가의 추천으로 Read & Renew를 찾아오셨나요?
 				<p>
-				<input type="button" value="확인"
+				<input type="button" value="추천인 없음"
+				   onclick="location.href='${result_url}'">
+				<input type="button" value="추천인 있음"
 				   onclick="location.href='${result_url}'">
 			</div>
 		</div>
