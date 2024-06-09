@@ -21,16 +21,16 @@ body {
 /* 인기 급상승 도서
 ---------------------*/
 .horizontal-area {
-	display: flex;
-	align-items: center;
 	margin-bottom: 10px;
-	border: 2px solid #e3f2fd; /* 테두리 추가 */
-	border-radius: 5px; /* 모서리를 둥글게 만들기 */
-	background-color: #03a9f4;
-	color: white;
 }
 .horizontal-area img {
-	margin-right: 10px;
-	border: 2px solid #e3f2fd; /* 이미지에 테두리 추가 */
+	margin-right: 5px;
+	border: 2px solid grey; /* 이미지에 테두리 추가 */
 	border-radius: 5px; /* 모서리를 둥글게 만들기 */
+	cursor: pointer;
+}
+.cont{
+	border: 2px solid grey; /* 이미지에 테두리 추가 */
+	border-radius: 5px; /* 모서리를 둥글게 만들기 */
+	background-color: #03a9f4;
 }
