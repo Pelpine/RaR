@@ -5,14 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jsy3.css" type="text/css">
 <script type="text/javascript">
 window.onload = function() {
-    const myForm = document.getElementById('write_form');
+    const myForm = document.getElementById('write_form_genre');
     // 이벤트 연결
     myForm.onsubmit = function() {
-        const title = document.getElementById('title');
+        const title = document.getElementById('title_genre');
         if (title.value.trim() == '') {
             alert('제목을 입력하세요');
             title.value = '';
@@ -28,11 +27,11 @@ window.onload = function() {
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="content-main">
         <h2>글쓰기</h2>
-        <form id="write_form" action="writeGenre.do" method="post" enctype="multipart/form-data">
+        <form id="write_form_genre" action="writeGenre.do" method="post" enctype="multipart/form-data">
             <ul>
                 <li>
-                    <label for="title">제목</label>
-                    <input type="text" name="bg_title" id="title" maxlength="50">
+                    <label for="title_genre">제목</label>
+                    <input type="text" name="bg_title" id="title_genre" maxlength="50">
                 </li>
             </ul>
             <div class="align-center">
@@ -44,3 +43,4 @@ window.onload = function() {
 </div>
 </body>
 </html>
+

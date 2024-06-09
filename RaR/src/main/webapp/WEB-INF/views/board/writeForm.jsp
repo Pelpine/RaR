@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+	href="${pageContext.request.contextPath}/css/jsy3.css" type="text/css">
 <script type="text/javascript">
 window.onload = function() {
     const myForm = document.getElementById('write_form');
@@ -31,31 +31,30 @@ window.onload = function() {
 </script>
 </head>
 <body>
-<div class="page-main">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-    <div class="content-main">
-        <h2>글쓰기</h2>
-        <form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
-            <ul>
-                <li>
-                    <label for="title">제목</label>
-                    <input type="text" name="title" id="title" maxlength="50">
-                </li>
-                <li>
-                    <label for="content">내용</label>
-                    <textarea rows="5" cols="40" name="content" id="content"></textarea>
-                </li>
-                <li>
-                    <label for="filename">이미지</label>
-                    <input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg">
-                </li>
-            </ul>
-            <div class="align-center">
-                <input type="submit" value="등록">
-                <input type="button" value="목록" onclick="location.href='list.do'">
-            </div>
-        </form>
-    </div>
-</div>
+	<div class="page-main">
+		<jsp:include page="/WEB-INF/views/common/header.jsp" />
+		<div class="content-main">
+			<h2>글쓰기</h2>
+			<form id="write_form" action="write.do" method="post"
+				enctype="multipart/form-data">
+				<ul>
+					<li><label for="title">제목</label> <input type="text"
+						name="title" id="title" maxlength="50"></li>
+					<li><label for="content">내용</label> <textarea rows="5"
+							cols="40" name="content" id="content"></textarea></li>
+					<li><label for="filename">이미지</label>
+						<div class="input-group">
+							<input type="file" name="filename" id="filename"
+								accept="image/gif,image/png,image/jpeg"> <label
+								for="filename" class="file-upload-label">이미지 등록</label>
+						</div></li>
+				</ul>
+				<div class="align-center">
+					<input type="submit" value="등록"> <input type="button"
+						value="목록" onclick="location.href='list.do'">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
