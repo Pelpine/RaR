@@ -19,7 +19,7 @@
 				<th>상품정보</th>
 				<th>가격</th>
 				<th>등급</th>
-				<c:if test="${order.order_status == 4}"><th>환불</th></c:if>
+				<c:if test="${order.order_status == 4 && currentDate < deadline}"><th>환불</th></c:if>
 			</tr>
 			<c:forEach var="detail" items="${detailList}">
 			<tr>
@@ -52,7 +52,8 @@
 						<span class="item_grade3">하</span>
 					</c:if>
 				</td>
-				<c:if test="${order.order_status == 4}"><td><input type="button" value="환불 신청" onclick="location.href='${pageContext.request.contextPath}/refund/refundForm.do?item_num=${detail.item_num}'"></td></c:if>
+				<c:if test="${order.order_status == 4 && currentDate < deadline}"><td><input type="button" value="환불 신청" 
+				onclick="location.href='${pageContext.request.contextPath}/refund/refundForm.do?item_num=${detail.item_num}&order_num=${order.order_num}'"></td></c:if>
 			</tr>
 			</c:forEach>
 		</table>
@@ -78,8 +79,10 @@
 				<td class="align-center"><fmt:formatNumber value="${order.order_points}" type="number"/>p</td>
 			</tr>
 		</table>
-		
 		<ul id="delivery_info">
+			<li>
+				<span>주문 날짜 : </span> ${order.order_date} <span>/ 환불 기한 : </span>${deadline}		
+			</li>
 			<li>
 				<span>받는 사람 : </span> ${order.receive_name}
 			</li>
