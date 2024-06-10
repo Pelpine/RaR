@@ -1,23 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>My Page</title>
-<<<<<<< HEAD
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-=======
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
->>>>>>> branch 'main' of https://github.com/Pelpine/RaR.git
 <script type="text/javascript">
 $(function(){
 	$('#photo_btn').click(function(){
@@ -106,19 +98,9 @@ $(function(){
 </script>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
-<<<<<<< HEAD
     <div class="container">
-      <aside class="sidebar">
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/order/userOrderList.do">주문 조회</a></li>
-                <li><a href="${pageContext.request.contextPath}/board/myPostingList.do">작성 게시글 목록</a></li>
-                <li><a href="${pageContext.request.contextPath}/board/myReplyList.do">작성 댓글 목록</a></li>
-                <li><a href="${pageContext.request.contextPath}/board/myFavList.do">좋아요 한 글</a>
-                <li><a href="${pageContext.request.contextPath}/member/modifyUserForm.do">정보 수정</a></li>
-                <li><a href="${pageContext.request.contextPath}/member/deleteUserForm.do">회원탈퇴</a></li>
-            </ul>
-        </aside>
         <main class="content">
             <div class="user-info">
 	            <ul>
@@ -133,93 +115,58 @@ $(function(){
 						</c:if>
 					</li>
 					<li>
-						<div>
+						<div class="align-center">
 							<input type="button" value="프로필 수정"
 							                     id="photo_btn">
-=======
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		
-			<h2>회원정보</h2>
-			<div class="mypage-div">
-				<div>
-					<input type="button" value="회원정보 수정"
-						onclick="location.href='modifyUserForm.do'"> <input
-						type="button" value="비밀번호 수정"
-						onclick="location.href='modifyPasswordForm.do'"> <input
-						type="button" value="회원탈퇴"
-						onclick="location.href='deleteUserForm.do'">
-					<div class="container">
-						<div class="user-info">
-							<ul>
-								<li><c:if test="${empty member.user_photo}">
-										<img src="${pageContext.request.contextPath}/images/face.png"
-											width="200" height="200" class="my-photo">
-									</c:if> <c:if test="${!empty member.user_photo}">
-										<img
-											src="${pageContext.request.contextPath}/upload/${member.user_photo}"
-											width="200" height="200" class="my-photo">
-									</c:if></li>
-								<li>
-									<div class="align-center">
-										<input type="button" value="프로필 수정" id="photo_btn">
-									</div>
-									<div id="photo_choice" style="display: none;">
-										<input type="file" id="photo"
-											accept="image/gif,image/png,image/jpeg"> <input
-											type="button" value="전송" id="photo_submit"> <input
-											type="button" value="취소" id="photo_reset">
-									</div>
-								</li>
-							</ul>
-							<ul>
-								<li><h2>${member.user_name}님,안녕하세요.</h2></li>
-								<li>이름 : ${member.user_name}</li>
-								<li>이메일 : ${member.user_email}</li>
-								<c:choose>
-									<c:when test="${empty member.user_point}">
-										<li>포인트 : 0</li>
-									</c:when>
-									<c:when test="${!empty member.user_point}">
-										<li>포인트 : ${member.user_point}</li>
-									</c:when>
-								</c:choose>
-							</ul>
->>>>>>> branch 'main' of https://github.com/Pelpine/RaR.git
 						</div>
-
-					</div>
-					<div>
-						<input type="button" value="나의 댓글" class="my-input"
-							onclick="location.href='${pageContext.request.contextPath}/board/myReplyList.do?user_num=${member.user_num}'">
-						<input type="button" value="나의 게시물" class="my-input"
-							onclick="location.href='${pageContext.request.contextPath}/board/myPostingList.do?user_num=${member.user_num}'">
-					</div>
-					<div>
-						 <input type="button"
-							value="최근 구매 내역" class="my-input"
-							onclick="location.href='${pageContext.request.contextPath}/order/userOrderList.do'">
-					</div>
-					<div>
-						<input type="button" value="좋아요한 글" class="my-input"
-							onclick="location.href='${pageContext.request.contextPath}/board/myFavList.do?user_num=${member.user_num}'">
-					</div>
-				</div>
+						<div id="photo_choice" style="display:none;">
+							<input type="file" id="photo"
+							          accept="image/gif,image/png,image/jpeg">
+							<input type="button" value="전송" id="photo_submit">
+							<input type="button" value="취소" id="photo_reset">          
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li><h2>${member.user_name}님, 안녕하세요.</h2></li>
+					<li>이름 : ${member.user_name}</li>
+					<li>이메일 : ${member.user_email}</li>
+					<c:choose>
+					<c:when test="${empty member.user_point}">
+							<li>포인트 : 0</li>
+					</c:when>
+					<c:when test="${!empty member.user_point}">
+							<li>포인트 : ${member.user_point}</li>
+					</c:when>
+					</c:choose>
+				</ul>
 			</div>
-		</div>
-	
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/order/userOrderList.do'">
+				<h3>주문 조회</h3>
+				<hr>
+			</div>
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/board/myPostingList.do'">
+				<h3>작성 게시글 목록</h3>
+				<hr>
+			</div>
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/board/myReplyList.do'">
+				<h3>작성 댓글 목록</h3>
+				<hr>
+			</div>
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/board/myFavList.do'">
+				<h3>좋아요 한 글</h3>
+				<hr>
+			</div>
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/member/modifyUserForm.do'">
+				<h3>회원 정보 수정</h3>
+				<hr>
+			</div>
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/member/deleteUserForm.do'">
+				<h3>회원 탈퇴</h3>
+				<hr>
+			</div>
+        </main>
+    </div>
+</div>
 </body>
-<<<<<<< HEAD
-<footer>
-    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-</footer>
 </html>
-
-
-
-
-
-
-
-=======
-</html>
->>>>>>> branch 'main' of https://github.com/Pelpine/RaR.git

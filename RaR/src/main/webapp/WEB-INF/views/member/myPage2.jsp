@@ -101,6 +101,16 @@ $(function(){
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
     <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/order/userOrderList.do">주문 조회</a></li>
+                <li><a href="${pageContext.request.contextPath}/board/myPostingList.do">작성 게시글 목록</a></li>
+                <li><a href="${pageContext.request.contextPath}/board/myReplyList.do">작성 댓글 목록</a></li>
+                <li><a href="${pageContext.request.contextPath}/board/myFavList.do">좋아요 한 글</a>
+                <li><a href="${pageContext.request.contextPath}/member/modifyUserForm.do">정보 수정</a></li>
+                <li><a href="${pageContext.request.contextPath}/member/deleteUserForm.do">회원탈퇴</a></li>
+            </ul>
+        </aside>
         <main class="content">
             <div class="user-info">
 	            <ul>

@@ -1,159 +1,107 @@
-/* General styling */
-body {
-    font-family: Arial, sans-serif;
-}
+@charset "UTF-8";
 
-.header {
-    margin-bottom: 20px;
+/*
+------------------공통 정렬------------------
+*/
+.align-center{
+	text-align:center;
 }
-
-.page-main {
-    max-width: 1400px;
-    margin: 0 auto;
+.align-right{
+	text-align:right;
 }
-
-.content-main {
-    background-color: #ffffff;
-    padding: 20px;
+/*
+------------------공통 결과 메세지------------------
+*/
+.result-display{
+	width:400px;
+	height:200px;
+	margin:50px auto;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;/*세로 정렬*/
+	justify-content:center;/*가로 정렬*/
 }
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.search-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.search-left {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    margin-left: 80px; /* 왼쪽 마진 80px */
-}
-
-.search-left li {
-    margin-right: 10px;
-}
-
-.search-left select, 
-.search-left input[type="submit"] {
-    height: 35px; /* 높이를 맞춰줍니다 */
-    font-size: 16px;
-}
-
-.search-left input[type="submit"] {
+/*
+------------------공통 버튼------------------
+*/
+/*제출 버튼*/
+input[type="submit"] {
     background-color: #007bff;
     color: white;
-    border: none;
-    padding: 0 15px;
+	padding:10px 10px 10px 10px;
+    border-radius:10px;
+    border-style:none;
     cursor: pointer;
 }
-
-.search-left input[type="submit"]:hover {
+input[type="submit"]:hover {
     background-color: #0056b3;
 }
-
-.buttons-right {
-    text-align: right;
-    margin-right: 80px; /* 오른쪽 마진 80px */
-}
-
-.buttons-right input[type="button"] {
+/*일반 버튼*/
+input[type="button"] {
     background-color: #007bff;
     color: white;
-    border: none;
-    padding: 10px 20px;
+	padding:10px 10px 10px 10px;
+	border-radius:10px;
+	border-style:none;
     cursor: pointer;
-    margin-left: 5px;
 }
-
-.buttons-right input[type="button"]:hover {
+input[type="button"]:hover {
     background-color: #0056b3;
 }
-
-.book-table {
-    width: 1200px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    table-layout: auto; /* 테이블 레이아웃을 자동으로 설정 */
+/*
+------------------공통 디자인------------------
+*/
+/*테이블 디자인*/
+table{
+	width:1200px;
+	margin : 0 auto;
+	border:1px solid #e0e0e0;
+	border-collapse:collapse;
+	margin-top:30px;
+}
+table td{
+	border:1px solid #e0e0e0;
+	padding:5px;
+}
+table th{
+	border:1px solid #e0e0e0;
+	padding:5px;
+	background-color: #e3f2fd;
+}
+/*
+------------------장바구니------------------
+*/
+/*가격*/
+.item_bk_price{
+	font-size:0.8em;
+	text-decoration: line-through; 
+}
+.item_item_price{
+	color:#a60f0f;
+	font-weight:bold;
+}
+.item_list_price{
+	text-align: right;
+	font-size:8pt;
+}
+.totalPayment{
+	color:#a60f0f;
+	font-weight:bold;
+	font-size:1.3em;
 }
 
-.book-table th {
-    background-color: #e8f4fd;
-    padding: 10px;
-    text-align: center; /* 열 제목 중앙 정렬 */
-}
+/*동적으로 생성되는 목록*/
+#output tr td{
+	font-size:10pt;
 
-.book-table th, 
-.book-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center; /* 기본적으로 중앙 정렬 */
-    vertical-align: middle;
 }
-
-.book-table td:nth-child(2) {
-    text-align: left; /* 책이름 열은 왼쪽 정렬 */
+/*배송비 안내 문구*/
+#ship_message{
+	font-size:7.5pt;
 }
-
-.book-table td {
-    white-space: pre-line; /* 줄바꿈을 허용합니다 */
-    word-wrap: break-word; /* 길이가 길면 줄바꿈을 적용합니다 */
-    overflow: hidden; /* 길이가 넘으면 숨깁니다 */
-}
-
-/* 각 열의 너비 조정 */
-.book-table th:nth-child(1), .book-table td:nth-child(1) { 
-    width: 80px; /* 요청 번호 */
-}
-
-.book-table th:nth-child(2), .book-table td:nth-child(2) { 
-    width: 580px; /* 책이름 */
-}
-
-.book-table th:nth-child(3), .book-table td:nth-child(3) { 
-    width: 80px; /* 승인상태 */
-}
-
-.book-table th:nth-child(4), .book-table td:nth-child(4) { 
-    width: 130px; /* 승인요청날짜 */
-}
-
-.book-table th:nth-child(5), .book-table td:nth-child(5) { 
-    width: 130px; /* 승인날짜 */
-}
-
-.book-table th:nth-child(6), .book-table td:nth-child(6) { 
-    width: 200px; /* 승인요청아이디 */
-}
-
-.book-name {
-    color: black;
-    text-decoration: none;
-}
-
-.book-name:visited {
-    color: gray;
-}
-
-.book-name:hover {
-    text-decoration: underline;
-}
-
-.align-center {
-    text-align: center;
-    margin-top: 20px; /* 페이지네이션과 테이블 간격 조정 */
+/*
+--------------------주문--------------------
+*/
+#pay_points_value{
+	color:#2b39b5;
 }
