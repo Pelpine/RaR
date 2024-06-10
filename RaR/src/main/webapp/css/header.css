@@ -6,10 +6,18 @@
     min-height: 100%;
     max-width: 1200px; /* 페이지 최대 너비 지정 */
 }
+
+.menu {
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #03a9f4;
+}
+
 .page-main2 {
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    max-width: 1200px; /* 페이지 최대 너비 지정 */
+    max-width: 100%; /* 페이지 최대 너비 지정 */
     display: flex;
     flex-direction: column;
     align-items: center; /* 중앙 정렬 추가 */
@@ -47,7 +55,7 @@
 }
 
 .search-bar {
-	margin-right:130px;
+	margin-right:140px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +63,7 @@
 }
 
 .search-bar input {
-    width: 430px;
+    width: 400px;
     padding: 8px;
     border: 1px solid #ced4da;
     border-radius: 4px;
@@ -105,14 +113,6 @@
     padding-right: 10px; /* 오른쪽 패딩 추가 */
 }
 
-.menu {
-    display: flex;
-    justify-content: center;
-    background-color: #e3f2fd;
-    padding: 10px 0;
-    width: 100%;
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -127,7 +127,7 @@
     cursor: pointer;
     font-size: 16px;
     width: 160px;
-    height: 48px;
+    height: 60px;
 }
 
 .dropdown-content {
@@ -156,8 +156,8 @@
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #007bb5;
-    border: 1.5px solid black;
+	color: black;
+    background-color: #b2ebf2;
 }
 
 li {
