@@ -72,7 +72,7 @@ public class RefundDAO {
 		return orderdetail;
 	}
 	//상품 번호로 룰렛 티켓 사용 여부 구하기
-	public int getTicketStatus(int item_num) throws Exception{
+	public int getTicketStatusByItem_num(int item_num) throws Exception{
 		int status = 5;
 		Connection conn = null;
 		String sql = null;
@@ -95,7 +95,7 @@ public class RefundDAO {
 		return status;
 	}
 	//상품번호로 룰렛 사용 리워드 구하기
-	public int getTicketReward(int item_num) throws Exception{
+	public int getTicketRewardByItem_num(int item_num) throws Exception{
 		int reward = 0;
 		Connection conn = null;
 		String sql = null;
@@ -180,7 +180,5 @@ public class RefundDAO {
 		}
 	}
 	//환불 취소 (환불 신청 단계에서만 가능) 
-	
-	//메서드 오버로딩으로 티켓 status가 1일 때 환불 + 티켓 삭제 메서드
-	// 티켓 status가 0일 때 환불 메서드
+
 }
