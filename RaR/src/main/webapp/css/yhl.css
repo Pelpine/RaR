@@ -78,11 +78,13 @@ table{
 table td{
 	border:1px solid #e0e0e0;
 	padding:5px;
+	text-align:center;
 }
 table th{
 	border:1px solid #e0e0e0;
 	padding:5px;
 	background-color: #e3f2fd;
+	text-align:center;
 }
 h2 {
     text-align: center;
@@ -137,11 +139,12 @@ h2 {
 
 /*상품 이름*/
 .item_name{
-	
+	text-align:left;
 }
 
 /*가격*/
 .item_list_price{
+	text-align:left;
 	font-size:9pt;
 	line-height: 1.5;
 }
@@ -156,15 +159,12 @@ h2 {
 
 /*상품 등급*/
 tr .item_grade_1{/*상*/
-	text-align:center;
 	color:#ab0977;
 }
 tr .item_grade_2{/*중*/
-	text-align:center;
 	color:#08a813;
 }
 tr .item_grade_3{/*하*/
-	text-align:center;
 	color:#000000;
 }
 
