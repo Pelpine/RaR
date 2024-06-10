@@ -113,6 +113,7 @@ public class CartDAO {
 				ItemVO item = new ItemVO();
 				item.setItem_grade(rs.getInt("item_grade"));
 				item.setItem_price(rs.getInt("item_price"));
+				item.setItem_status(rs.getInt("item_status"));
 				
 				MemberVO member = new MemberVO();
 				member.setUser_point(rs.getInt("user_point"));

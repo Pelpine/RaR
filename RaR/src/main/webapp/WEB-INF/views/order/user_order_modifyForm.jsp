@@ -45,8 +45,8 @@ window.onload=function(){
 </script>
 </head>
 <body>   
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>배송지정보 수정</h2>
 		<c:if test="${order.order_status != 1}">
@@ -57,7 +57,7 @@ window.onload=function(){
 		<c:if test="${order.order_status == 1}">
 		<form action="orderModify.do" method="post" id="order_modify">
 			<input type="hidden" name="order_num" value="${order.order_num}">
-			<ul>
+			<ul  class="delivery_form">
 				<li>
 					<label for="receive_name">받는 사람</label>
 					<input type="text" name="receive_name" value="${order.receive_name}" id="receive_name" maxlength="10">
@@ -65,7 +65,7 @@ window.onload=function(){
 				<li>
 					<label for="zipcode">우편번호</label>
 					<input type="text" name="receive_post" value="${order.receive_post}" id="zipcode" maxlength="5">
-					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
+					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="post_btn">
 				</li>
 				<li>
 					<label for="address1">주소</label>
@@ -191,5 +191,6 @@ window.onload=function(){
 		</c:if>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

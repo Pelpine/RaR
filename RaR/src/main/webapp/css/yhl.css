@@ -4,6 +4,9 @@
 	margin:0;
 	padding:0;
 }
+.page-main{
+	padding-bottom:100px;
+}
 a:link{
 	text-decoration:none;
 	color:#000000;
@@ -25,6 +28,9 @@ a:hover{
 .align-right{
 	text-align:right;
 }
+.align-left{
+	text-align:left;
+}
 /*
 ------------------공통 결과 메세지------------------
 */
@@ -44,7 +50,7 @@ a:hover{
 input[type="submit"] {
     background-color: #007bff;
     color: white;
-	padding:10px 10px 10px 10px;
+	padding:10px 20px 10px 20px;
     border-radius:10px;
     border-style:none;
     cursor: pointer;
@@ -56,7 +62,7 @@ input[type="submit"]:hover {
 input[type="button"] {
     background-color: #007bff;
     color: white;
-	padding:10px 10px 10px 10px;
+	padding:10px 20px 10px 20px;
 	border-radius:10px;
 	border-style:none;
     cursor: pointer;
@@ -88,10 +94,10 @@ table th{
 }
 h2 {
     text-align: center;
-    margin: 20px;
+    margin: 40px;
 }
 /*
-------------------장바구니------------------
+------------------장바구니(다른 페이지에도 클래스 공유)------------------
 */
 /*상품테이블*/
 .no_borderLR{
@@ -133,7 +139,7 @@ h2 {
 }
 
 /*상품 이미지*/
-.item_img a img{
+.item_img img{
 	width:60px;
 }
 
@@ -158,6 +164,10 @@ h2 {
 }
 
 /*상품 등급*/
+.item_status_2, .item_status_3{/*판매완료 또는 판매정지시*/
+	color:#690000;
+	font-weight: bold;
+}
 .item_grade_1{/*상*/
 	color:#d40000;
 	font-weight: bold;
@@ -276,7 +286,7 @@ h2 {
 .delivery_form input[type="text"],input[type="password"],input[type="email"]{
 	width:310px;
 }
-.delivery_form input[type="button"]{
+.delivery_form .post_btn{
 	background-color: #e0e0e0;
     color: black;
 	padding:2px;
@@ -292,3 +302,66 @@ h2 {
 .delivery_form .form-notice{
 	margin-left:130px;
 }
+
+/*
+--------------------주문 목록--------------------
+*/
+/*검색창*/
+ul.search{
+	text-align:center;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+ul.search li{
+	margin:0 0 9px 0;
+	padding:0;
+	display:inline;
+}
+ul.search li input[type="search"]{
+	width:200px;
+	height:30px;
+}
+ul.search li select{
+	width:70px;
+	height:30px;
+}
+/*상품명*/
+.order_list_names{
+	height:40px;
+	text-align:left;
+}
+.order_list_names span{
+	display: inline-block;
+	height:40px; /* 원하는 너비 설정 */
+	overflow:hidden;
+	vertical-align: middle;
+}
+/*
+--------------------주문 상세--------------------
+*/
+/*테이블 간격 조정*/
+#order_detail td:nth-child(1){
+	width:60px;
+}
+#order_detail td:nth-child(2){
+	width:60px;
+}
+#order_detail td:nth-child(3){
+	width:700px;
+}
+#order_detail td:nth-child(4){
+	width:200px;
+	padding-left:50px;
+}
+#order_detail td:nth-child(5){
+	width:100px;
+}
+#order_detail td:nth-child(6){
+	width:100px;
+}
+.pageNum{
+	margin-top:20px;
+	text-align: center;
+}
+

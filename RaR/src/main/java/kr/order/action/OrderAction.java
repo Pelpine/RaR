@@ -84,12 +84,10 @@ public class OrderAction implements Action{
 	  	orderDAO.insertOrder(order, orderDetailList);
 	  	
 	 
-	  	//Refresh 정보를 응답 헤더에 추가
-  		String url = request.getContextPath()+"/main/main.do";
-  		response.addHeader("Refresh", "2;url="+url);
+	  	//결과창 띄우기
   		request.setAttribute("result_title", "상품 주문 완료");
   		request.setAttribute("result_msg", "주문이 완료되었습니다.");
-  		request.setAttribute("result_url", url);
+  		request.setAttribute("result_url", request.getContextPath()+"/main/main.do");
   		
   		return "/WEB-INF/views/common/result_view.jsp";
 	}

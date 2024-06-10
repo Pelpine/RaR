@@ -84,8 +84,8 @@ window.onload=function(){
 </script>
 </head>
 <body>   
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>상품 주문</h2>
 		<table id="order_table" class="no_borderLR">
@@ -168,7 +168,7 @@ window.onload=function(){
 					<li>
 						<label for="zipcode">우편번호</label>
 						<input type="text" name="receive_post" id="zipcode" maxlength="5">
-						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
+						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="post_btn">
 					</li>
 					<li>
 						<label for="address1">주소</label>
@@ -298,5 +298,6 @@ window.onload=function(){
 		<!-- 다음 우편번호 API 끝 -->
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

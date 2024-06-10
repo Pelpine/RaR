@@ -25,8 +25,8 @@ window.onload=function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="content-main">
 		<h2>주문 목록</h2>
 		<form id="search_form" action="userOrderList.do" method="get">
@@ -45,7 +45,7 @@ window.onload=function(){
 				</li>
 			</ul>
 		</form>
-		<div class="list-space align-right">
+		<div class="align-right">
 			<input type="button" value="목록" onclick="location.href='userOrderList.do'">
 			<input type="button" value="MY페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 		</div>
@@ -55,7 +55,7 @@ window.onload=function(){
 		</div>
 		</c:if>
 		<c:if test="${count > 0}">
-		<table>
+		<table id="order_list">
 			<tr>
 				<th>주문번호</th>
 				<th>상품명</th>
@@ -66,7 +66,7 @@ window.onload=function(){
 			<c:forEach var="order" items="${list}">
 			<tr>
 				<td>${order.order_num}</td>
-				<td><a href="userOrderListDetail.do?order_num=${order.order_num}">${order.item_name}</a></td>
+				<td class="order_list_names"><a href="userOrderListDetail.do?order_num=${order.order_num}"><span>${order.item_name}</span></a></td>
 				<td><fmt:formatNumber value="${order.pay_total + order.pay_ship - order.pay_points}"/>원</td>
 				<td>${order.order_date}</td>
 				<td>
@@ -79,9 +79,10 @@ window.onload=function(){
 			</tr>
 			</c:forEach>
 		</table>	
-		<div class="align-center">${page}</div>
+		<div class="pageNum">${page}</div>
 		</c:if>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

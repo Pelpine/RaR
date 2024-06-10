@@ -10,21 +10,24 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 </head>
 <body>   
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>주문 상세</h2>
-		<table>
+		<table id="order_detail" class="no_borderLR">
 			<tr>
-				<th>상품정보</th>
+				<th colspan="3">상품정보</th>
 				<th>가격</th>
 				<th>등급</th>
 				<c:if test="${order.order_status == 4 && currentDate < deadline}"><th>환불</th></c:if>
 			</tr>
 			<c:forEach var="detail" items="${detailList}">
 			<tr>
-				<td>
-					<img src="${detail.bk_img}" width="60">
+				<%-- 상품정보 --%>
+				<td class="item_img">
+					<img src="${detail.bk_img}">	
+				</td>
+				<td class="item_img">
 					<%-- 상품이미지가 없을 경우, 기본 이미지 처리 --%>
 					<c:if test="${detail.item_img == null}">
 						<img src="../images/book_default.png" width="60">
@@ -33,27 +36,30 @@
 						<a href="javascript:void(0);" onclick="showPopup('${pageContext.request.contextPath}/upload/${detail.item_img}')">
 						<img src="${pageContext.request.contextPath}/upload/${detail.item_img}" width="60"></a>
 					</c:if>
+				</td>
+				<td class="item_name">
 					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${detail.bk_num}">${detail.item_name}</a>
 				</td>
 				<%-- 가격 --%>
-				<td class="align-center">
+				<td class="item_list_price">
 				<span class="item_bk_price">정가 : <fmt:formatNumber value="${detail.bk_price}"/>원</span><br>
 				판매가 : <span class="item_item_price"><fmt:formatNumber value="${detail.item_price}"/></span>원
 				</td>
 				<%-- 책 등급 --%>
-				<td class="align-center">
+				<td>
 					<c:if test="${detail.item_grade == 1}">
-						<span class="item_grade1">상</span>
+						<span class="item_grade_1">상</span>
 					</c:if>
 					<c:if test="${detail.item_grade == 2}">
-						<span class="item_grade2">중</span>
+						<span class="item_grade_2">중</span>
 					</c:if> 
 					<c:if test="${detail.item_grade == 3}">
-						<span class="item_grade3">하</span>
+						<span class="item_grade_3">하</span>
 					</c:if>
 				</td>
-				<c:if test="${order.order_status == 4 && currentDate < deadline}"><td><input type="button" value="환불 신청" 
-				onclick="location.href='${pageContext.request.contextPath}/refund/refundForm.do?item_num=${detail.item_num}&order_num=${order.order_num}'"></td></c:if>
+				<c:if test="${order.order_status == 4 && currentDate < deadline}">
+					<td><input type="button" value="환불 신청" onclick="location.href='${pageContext.request.contextPath}/refund/refundForm.do?item_num=${detail.item_num}&order_num=${order.order_num}'"></td>
+				</c:if>
 			</tr>
 			</c:forEach>
 		</table>
@@ -64,7 +70,7 @@
 				<th class="align-center"><b>총 결제금액</b></th>
 				<th class="align-center">적립포인트</th>
 			</tr>
-			<tr>
+			<tr class="pay_content">
 				<!-- 결제내역 -->
 				<td class="align-center">
 				<fmt:formatNumber value="${order.pay_total}" type="number"/>  +  
@@ -131,5 +137,6 @@
 		</ul>
 	</div>
 </div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

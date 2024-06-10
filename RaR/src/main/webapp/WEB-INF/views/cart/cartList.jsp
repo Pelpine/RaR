@@ -11,8 +11,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cart.js"></script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<c:if test="${count == 0}">
 	<div class="result-display">장바구니에 담은 상품이 없습니다.</div>
 	</c:if>
@@ -36,7 +36,7 @@
 					<th>예상 적립 포인트</th>
 				</tr>
 				<!-- 장바구니 총 구매비용 계산, 주문정보에 전송할 데이터 포함 -->
-				<tr>
+				<tr class="pay_content">
 					<!-- 주문상품 수량 -->
 					<td><input type="hidden" name="totalCount" id="totalCount" value="0">0</td>
 					<!-- 총 주문상품 금액 -->
@@ -57,5 +57,6 @@
 	</div>
 	</c:if>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
