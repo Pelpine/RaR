@@ -11,6 +11,9 @@
 	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 window.onload = function(){
+	let idChecked = 0;//0:중복,아이디 중복 체크 미실시,1:미중복
+	
+	//아이디 중복 체크
     const id = document.getElementById('butn');
     id.onclick = function(){
         const user_email = $('#user_email').val(); 
@@ -22,20 +25,26 @@ window.onload = function(){
             success: function(param){
                 if(param.result == 'idDuplicated'){
                     $('#message_user_email').text('아이디 중복');
+                    idChecked = 0;
+                    console.log (idChecked);
                 } else if(param.result == 'idNotFound'){
                     $('#message_user_email').text('아이디 사용 가능');
+                    idChecked = 1;
                 } else {
                     alert('오류');
+                    idChecked = 0;
                 }
             },
             error: function(){
                 alert('네트워크 오류발생'); 
+                idChecked = 0;
             }
         });
     }
-}
-
-$(function(){
+    $('#register_form #user_email').keydown(function(){
+		idChecked = 0;
+		$('#message_user_email').text('');
+	});//end of keydown
 	//회원 정보 등록 유효성 체크
 	$('#register_form').submit(function(){
 		const items = document.querySelectorAll('.input-check');
@@ -60,6 +69,10 @@ $(function(){
 				$('#user_zipcode').val('').focus();
 				return false;
 			}
+			if(items[i].id == 'user_email' && idChecked == 0){
+				alert('아이디 중복체크 미실시 or 아이디 중복');
+				return false;
+			}
 		}
 		//아이디,비밀번호 유효성 체크
 		if($('#password').val()!=$('#cpassword').val()){
@@ -68,7 +81,7 @@ $(function(){
 			$('#cpassword').val('');
 			return false;
 		}
-
+		
 	    //비밀번호와 비밀번호 확인 일치 여부 체크
 		if($('#password').val()==$('#cpassword').val()){
 			$('#message_cpassword').text('비밀번호 일치');
@@ -76,7 +89,7 @@ $(function(){
 			$('#message_cpassword').text('');
 		}
 	});
-});
+}
 </script>
 </head>
 <body>
