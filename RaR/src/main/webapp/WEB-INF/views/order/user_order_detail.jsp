@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 상세</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 </head>
 <body>   
@@ -20,6 +19,7 @@
 				<th>상품정보</th>
 				<th>가격</th>
 				<th>등급</th>
+				<c:if test="${order.order_status == 4}"><th>환불</th></c:if>
 			</tr>
 			<c:forEach var="detail" items="${detailList}">
 			<tr>
@@ -52,15 +52,16 @@
 						<span class="item_grade3">하</span>
 					</c:if>
 				</td>
+				<c:if test="${order.order_status == 4}"><td><input type="button" value="환불 신청" onclick="location.href='${pageContext.request.contextPath}/refund/refundForm.do?item_num=${detail.item_num}'"></td></c:if>
 			</tr>
 			</c:forEach>
 		</table>
 		<p>
 		<table>	
 			<tr>
-				<td class="align-center"><b>결제내역</b><br>(총 구매금액 + 배송비 - 사용포인트)</td>
-				<td class="align-center"><b>총 결제금액</b></td>
-				<td class="align-center">적립포인트</td>
+				<th class="align-center"><b>결제내역</b><br>(총 구매금액 + 배송비 - 사용포인트)</th>
+				<th class="align-center"><b>총 결제금액</b></th>
+				<th class="align-center">적립포인트</th>
 			</tr>
 			<tr>
 				<!-- 결제내역 -->
