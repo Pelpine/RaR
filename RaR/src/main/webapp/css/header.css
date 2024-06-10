@@ -1,4 +1,23 @@
 @charset "UTF-8";
+/* 전체 레이아웃
+---------------------*/
+body {
+	margin: 0 auto;
+	background: #FFFFFF;
+	width: 80%;
+	font-family: Arial, sans-serif; /* 폰트 지정 */
+}
+/* 페이지 레이아웃
+---------------------*/
+.page-main {
+	width: 1200px;
+	background: #FFFFFF;
+	margin: 40px 0;
+	border-radius: 5px;
+	min-height: 650px;
+	max-width: 1200px; /* 페이지 최대 너비 지정 */
+}
+
 .main-nav {
 	display: flex;
 	flex-direction: column;
