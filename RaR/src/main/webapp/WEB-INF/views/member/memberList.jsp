@@ -24,8 +24,8 @@ window.onload=function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>회원목록(관리자 전용)</h2>
 		<form id="search_form" action="adminList.do"

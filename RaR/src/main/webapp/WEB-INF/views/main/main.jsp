@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main"> 
     <div class="content-main">
           <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -58,23 +58,7 @@
             <c:if test="${item.item_img != null}">
                <img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
             </c:if> --%>
-               <label class="cont">${item.bookVO.bk_name}<br>
-               <c:if test="${item.item_grade == 1}">등급 : <span class="item_grade1">상
-               <br>
-               원가 : <span><fmt:formatNumber value="${item.bookVO.bk_price}"/>원</span><br>
-               판매가 : <span><fmt:formatNumber value="${item.item_price}"/>원</span></span>
-               </c:if>
-               <c:if test="${item.item_grade == 2}">등급 : <span class="item_grade1">중
-               <br>
-               원가 : <span><fmt:formatNumber value="${item.bookVO.bk_price}"/>원</span><br>
-               판매가 : <span><fmt:formatNumber value="${item.item_price}"/>원</span></span>
-               </c:if>
-               <c:if test="${item.item_grade == 3}">등급 : <span class="item_grade1">하
-               <br>
-               원가 : <span><fmt:formatNumber value="${item.bookVO.bk_price}"/>원</span><br>
-               판매가 : <span><fmt:formatNumber value="${item.item_price}"/>원</span></span>
-               </c:if>
-               </label>
+               <h6>${item.bookVO.bk_name}</h6>
          </div>
          </c:forEach>
       </div>
@@ -91,8 +75,7 @@
             <c:if test="${item.item_img != null}">
                <img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
             </c:if> --%>
-               <label class="cont">${item.orderDetailVO.item_name}<br>원가 : <span><fmt:formatNumber value="${item.orderDetailVO.bk_price}"/>원</span></label>
-               <br>
+               <h6>${item.orderDetailVO.item_name}</h6>
          </div>
          </c:forEach>
       </div>

@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page-main">	
 	<div class="content-main">
 		<h2>${member.user_email}의 회원정보(관리자 전용)</h2>
 		<form action="adminUser.do" method="post"

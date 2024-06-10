@@ -14,7 +14,6 @@ body {
 
 .content-main {
     background-color: #ffffff;
-    padding: 20px;
 }
 
 h2 {
@@ -41,7 +40,6 @@ h2 {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    margin-left: 80px; /* 왼쪽 마진 80px */
 }
 
 .search-left li {
@@ -68,7 +66,6 @@ h2 {
 
 .buttons-right {
     text-align: right;
-    margin-right: 80px; /* 오른쪽 마진 80px */
 }
 
 .buttons-right input[type="button"] {

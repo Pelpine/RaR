@@ -11,9 +11,7 @@
 	href="${pageContext.request.contextPath}/css/psk.css" type="text/css">
 </head>
 <body>
-	<div>
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	</div>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="container">
 		<div class="sidebar">
 			<div class="genre-buttons">
@@ -22,13 +20,6 @@
 		</div>
 		<div class="main-content">
 			<div class="content-main">
-				<div class="list-space buttons-right">
-					<input type="button" value="등록요청목록"
-						onclick="location.href='${pageContext.request.contextPath}/book/list.do'"> <input type="button"
-						value="목록" onclick="location.href='${pageContext.request.contextPath}/book/bookslist.do'"> <input
-						type="button" value="홈으로"
-						onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-				</div>
 				<c:if test="${count == 0}">
 					<div class="result-display">표시할 게시물이 없습니다.</div>
 					<ul class="search">
@@ -66,6 +57,13 @@
 								</div>
 							</div>
 						</c:forEach>
+					</div>
+					<div class="list-space buttons-right">
+					<input type="button" value="등록요청목록"
+						onclick="location.href='${pageContext.request.contextPath}/book/list.do'"> <input type="button"
+						value="목록" onclick="location.href='${pageContext.request.contextPath}/book/bookslist.do'"> <input
+						type="button" value="홈으로"
+						onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 					</div>
 					<form action="booklist.do" id="search_form" method="post">
 						<ul class="search">

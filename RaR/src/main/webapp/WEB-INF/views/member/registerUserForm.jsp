@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>회원 가입</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
+	href="${pageContext.request.contextPath}/css/ysb2.css" type="text/css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
@@ -93,8 +93,8 @@ window.onload = function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 			<h2>회원 가입</h2>
 			<form id="register_form" action="registerUser.do" method="post">

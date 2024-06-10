@@ -40,15 +40,12 @@
 .container {
     width: 1400px; /* 고정 너비 설정 */
     display: flex;
-    margin: 20px auto; /* 상단과 하단에 20px 마진 추가 */
-    margin-left: calc((100vw - 1400px) / 2 - 70px); /* 왼쪽 마진을 추가하여 오른쪽으로 이동 */
     justify-content: flex-start; /* 메인 콘텐츠를 왼쪽 정렬 */
 }
 
 .sidebar {
     width: 150px; /* 사이드바 너비 줄임 */
     background-color: #f8f8f8;
-    padding: 10px;
     box-sizing: border-box;
     height: auto; /* 사이드바 높이를 자동으로 조정 */
     margin-right: 20px; /* 사이드바와 메인 콘텐츠 사이의 간격 추가 */
@@ -84,13 +81,13 @@
 
 .main-content {
     flex-grow: 1;
-    width: calc(100% - 170px); /* 사이드바 너비를 뺀 값 */
+    width: 1400 - 170px; /* 사이드바 너비를 뺀 값 */
     max-width: 1300px; /* 최대 가로 폭을 더 넓게 설정 */
-    padding: 20px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center; /* 메인 콘텐츠 중앙 정렬 */
+    margin-right:20px;
 }
 
 .content-main {
@@ -222,32 +219,5 @@
 .align-center {
     text-align: center;
     margin-top: 20px; /* 페이지 표시 중앙 정렬 */
-}
-
-/* 반응형 디자인 적용 */
-@media (max-width: 1400px) {
-    .container {
-        width: 1400px; /* 고정 너비 설정 유지 */
-    }
-
-    .main-content {
-        width: calc(100% - 170px); /* 사이드바 너비를 뺀 값 유지 */
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        position: relative;
-        height: auto;
-    }
-
-    .main-content {
-        width: 100%;
-    }
 }
 
