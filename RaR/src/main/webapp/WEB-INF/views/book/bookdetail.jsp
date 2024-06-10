@@ -85,7 +85,6 @@
                 <input type="hidden" value="${book.pubDate}" name="bk_pubdate">
             </c:if>
         </div>
-        </div>
     </form>
 </div>
 </body>
