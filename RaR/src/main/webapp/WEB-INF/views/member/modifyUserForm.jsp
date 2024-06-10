@@ -33,8 +33,8 @@ $(function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="page-main">
-        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
         <div class="content-main">
             <h2>정보 수정</h2>
             <form id="modify_form" action="modifyUser.do" method="post">

@@ -10,8 +10,8 @@
 <link rel="stylesheet"href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="content-main">
         <h2>회원탈퇴 완료</h2>
         <div class="result-display">

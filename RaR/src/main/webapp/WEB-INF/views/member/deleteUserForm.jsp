@@ -49,8 +49,8 @@ $(function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="page-main">
-        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
         <div class="content-main">
             <h2>회원탈퇴</h2>
             <form id="delete_form" action="deleteUser.do" method="post">
