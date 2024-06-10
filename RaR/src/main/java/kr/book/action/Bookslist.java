@@ -9,6 +9,7 @@ import kr.controller.Action;
 import kr.rar.dao.BookDAO;
 import kr.rar.dao.ItemDAO;
 import kr.rar.vo.BookVO;
+import kr.rar.vo.ItemVO;
 import kr.util.PagingUtil;
 
 public class Bookslist implements Action{
@@ -36,8 +37,11 @@ public class Bookslist implements Action{
 			for (BookVO book : list) {
                 int bk_count = idao.getItemCount(book.getBk_num()); // bk_count 값을 계산
                 book.setBk_count(bk_count); // bk_count 값을 BookVO 객체에 설정
+                int bk_price = dao.price(book.getBk_num());
+                book.setBk_minprice(bk_price);
             }
 		}
+		
 		
 		
 		request.setAttribute("count", count);

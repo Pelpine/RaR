@@ -9,9 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bookdetail.css" type="text/css">
 </head>
 <body>
-<div>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
-</div>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div class="page-main-top">
 <h4>등록 요청</h4>
     <form action="bookup.do" id="upform" method="post">
@@ -33,9 +31,9 @@
             <label><h4 class="inline-block">제목</h4> : ${book.bk_name}</label>
             <label><h4 class="inline-block">저자</h4> : ${book.author}</label>
             <label><h4 class="inline-block">상품 상태</h4> : 
-                <c:if test="${book.item_grade == 1}">좋음</c:if>
-                <c:if test="${book.item_grade == 2}">보통</c:if>
-                <c:if test="${book.item_grade == 3}">별로</c:if>
+                <c:if test="${book.item_grade == 1}">상</c:if>
+                <c:if test="${book.item_grade == 2}">중</c:if>
+                <c:if test="${book.item_grade == 3}">하</c:if>
             </label>
             <label><h4 class="inline-block">유저</h4> : ${book.memberVO.user_email}</label>
             <label><h4 class="inline-block">정가</h4> : ${book.price}</label>

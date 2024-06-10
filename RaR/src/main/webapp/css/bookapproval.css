@@ -1,17 +1,7 @@
-/* General styling */
-body {
-    font-family: Arial, sans-serif;
-}
-
-.header {
-    margin-bottom: 20px;
-}
-
 .page-main {
     max-width: 1400px;
     margin: 0 auto;
 }
-
 .content-main {
     background-color: #ffffff;
 }

@@ -12,9 +12,16 @@ public class BookVO {
 	private String bk_description;
 	private int bk_count;
 	private String bk_pubdate;
+	private int bk_minprice;
 	
 	private ItemVO itemVO;
 	
+	public int getBk_minprice() {
+		return bk_minprice;
+	}
+	public void setBk_minprice(int bk_minprice) {
+		this.bk_minprice = bk_minprice;
+	}
 	public String getBk_pubdate() {
 		return bk_pubdate;
 	}

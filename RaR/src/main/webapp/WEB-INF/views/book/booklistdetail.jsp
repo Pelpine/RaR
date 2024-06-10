@@ -12,9 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cart_item_insert.js"></script>
 </head>
 <body>
-<div class="header">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-</div>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main-top">
     <div class="book-img">
         <img alt="${book.bk_name}" src="${book.bk_img}">

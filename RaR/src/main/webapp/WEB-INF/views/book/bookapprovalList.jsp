@@ -28,9 +28,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<div>
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	</div>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 		<div class="content-main">
 			<h2>등록 요청 목록</h2>

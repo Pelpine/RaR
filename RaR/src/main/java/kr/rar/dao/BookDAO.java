@@ -266,6 +266,7 @@ public class BookDAO {
 						vo.setBk_publisher(rs.getString("bk_publisher"));
 						vo.setBk_img(rs.getString("bk_img"));
 						vo.setBk_genre(rs.getString("bk_genre"));
+						vo.setBk_price(rs.getInt("bk_price"));
 						
 						list.add(vo);
 					}
@@ -382,5 +383,31 @@ public class BookDAO {
 		}
 		
 		return vo;
+	}
+	public int price(int bk_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		int price = 0;
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "select min(item_price) from item where bk_num=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bk_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				price = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		return price;
 	}
 }
