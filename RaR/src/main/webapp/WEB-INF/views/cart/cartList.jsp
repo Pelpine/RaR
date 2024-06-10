@@ -50,7 +50,7 @@
 					<td><input type="hidden" name="totalPoints" id="totalPoints" value="0">0</td>	
 				</tr>
 			</table>
-			<span>총 주문상품 금액이 30000원 미만인 경우 배송비 4000원이 추가됩니다.<br> </span>
+			<span id="ship_message">총 주문상품 금액이 30000원 미만인 경우 배송비 4000원이 추가됩니다.<br> </span>
 			<input type="submit" value="주문하기">
 		</form>
 	</div>
