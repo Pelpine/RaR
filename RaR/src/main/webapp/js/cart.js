@@ -9,7 +9,7 @@ $(function(){
 				$('#output').empty();	
 					let head_output = '<tr>';
 					head_output += '<th><input type="checkbox" id="selectAll" checked></th>';
-					head_output += '<th>상품정보</th>';
+					head_output += '<th colspan="2">상품정보</th>';
 					head_output += '<th>가격</th>';
 					head_output += '<th>상태</th>';
 					head_output += '<th>삭제</th>';
@@ -19,11 +19,15 @@ $(function(){
 				$(param.list).each(function(index,item){
 					let output = '<tr>';
 					//체크박스
-					output += '<td><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
-					//상품정보 : 책 이미지, 이름
-					output += '<td>'
+					output += '<td class="checkbox"><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
+					//상품정보 : 책 이미지
+					output += '<td class="item_img">'
 							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '">'
-							+ '<img src="' + item.bookVO.bk_img + '" width="60">' + item.bookVO.bk_name + '</a>'
+							+ '<img src="' + item.bookVO.bk_img + '"></a>'
+							+ '</td>';
+					//상품정보 : 책 이름
+					output += '<td class="item_name">'
+							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '">' + item.bookVO.bk_name + '</a>'
 							+ '</td>';
 					//상품 가격 : 정가, 판매가, 예상 적립포인트
 					output += '<td class="item_list_price">'
@@ -32,10 +36,10 @@ $(function(){
 							+ '예상 적립포인트 : ' + Math.floor(item.itemVO.item_price * 0.01).toLocaleString() + 'p'
 							+ '</td>';
 					//책 등급 1:상, 2:중, 3:하
-					if(item.itemVO.item_grade==1) output += '<td><span class="item_grade1">상</span></td>';
-					else if(item.itemVO.item_grade==2) output += '<td><span class="item_grade2">중</span></td>';
-					else if(item.itemVO.item_grade==3) output += '<td><span class="item_grade3">하</span></td>';
-					output += '<td><input type="button" data-cartnum="' + item.cart_num + '" value="삭제" class="delete-btn"></td>';
+					if(item.itemVO.item_grade==1) output += '<td class="item_grade_1"><b>상</b></td>';
+					else if(item.itemVO.item_grade==2) output += '<td class="item_grade_2"><b>중</b></td>';
+					else if(item.itemVO.item_grade==3) output += '<td class="item_grade_3"><b>하</b></td>';
+					output += '<td class="del_button"><input type="button" data-cartnum="' + item.cart_num + '" value="삭제" class="delete-btn"></td>';
 					output += '</tr>';
 					
 					$('#output').append(output);
