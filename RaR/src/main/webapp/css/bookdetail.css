@@ -1,0 +1,81 @@
+h4 {
+    font-size: 18pt;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.page-main-top {
+    width: 1200px;
+    margin: 20px auto;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px; /* 이미지 컨테이너와 책 세부 정보 사이 간격을 50px로 조절 */
+}
+
+.book-img,
+.secondhand-image {
+    width: 350px; /* 이미지 너비 */
+    height: 350px; /* 이미지 높이 */
+    margin: 0 20px; /* 이미지 간 간격 조절 */
+}
+
+.book-img img,
+.secondhand-image img {
+    height: 100%; /* 이미지의 높이를 부모 요소의 높이에 맞춤 */
+    width: auto; /* 너비를 자동으로 설정 */
+}
+
+.book-details {
+    font-size: 18px;
+}
+
+.book-details label {
+    display: block; /* 블록 요소로 변경 */
+    height:70px;
+    margin-left:20px;
+}
+
+.select-status {
+    font-size: 18px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.action-buttons {
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    width: 1200px;
+}
+
+.action-buttons input[type="button"],
+.action-buttons input[type="submit"] {
+    background-color: #0099cc;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.comment-box {
+    width: 600px;
+    height: 200px;
+    border: 1px solid #ccc; /* 테두리만 남기기 */
+    padding: 10px;
+    overflow-y: auto; /* 내용이 넘칠 때만 스크롤 표시 */
+    white-space: pre-wrap; /* 줄바꿈을 유지합니다. */
+    margin-top: 20px;
+    margin-left: 20px;
+}

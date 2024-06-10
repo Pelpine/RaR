@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<jsp:include page="/WEB-INF/views/book/headera.jsp"/>
-</body>
-</html>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/book.css">
+<div class="header">
+    <jsp:include page="/WEB-INF/views/book/headera.jsp"/>
+</div>
