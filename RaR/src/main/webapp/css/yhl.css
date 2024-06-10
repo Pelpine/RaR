@@ -1,15 +1,17 @@
 @charset "UTF-8";
 
-/* 공통 정렬
----------------------*/
+/*
+------------------공통 정렬------------------
+*/
 .align-center{
 	text-align:center;
 }
 .align-right{
 	text-align:right;
 }
-/* 공통 메시지
----------------------*/
+/*
+------------------공통 결과 메세지------------------
+*/
 .result-display{
 	width:400px;
 	height:200px;
@@ -20,12 +22,56 @@
 	justify-content:center;/*가로 정렬*/
 }
 /*
+------------------공통 버튼------------------
+*/
+/*제출 버튼*/
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+	padding:10px 10px 10px 10px;
+    border-radius:10px;
+    border-style:none;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+/*일반 버튼*/
+input[type="button"] {
+    background-color: #007bff;
+    color: white;
+	padding:10px 10px 10px 10px;
+	border-radius:10px;
+	border-style:none;
+    cursor: pointer;
+}
+input[type="button"]:hover {
+    background-color: #0056b3;
+}
+/*
+------------------공통 디자인------------------
+*/
+/*테이블 디자인*/
+table{
+	width:1200px;
+	margin : 0 auto;
+	border:1px solid #e0e0e0;
+	border-collapse:collapse;
+	margin-top:30px;
+}
+table td{
+	border:1px solid #e0e0e0;
+	padding:5px;
+}
+table th{
+	border:1px solid #e0e0e0;
+	padding:5px;
+	background-color: #e3f2fd;
+}
+/*
 ------------------장바구니------------------
 */
-#output tr td{
-	font-size:10pt;
-
-}
+/*가격*/
 .item_bk_price{
 	font-size:0.8em;
 	text-decoration: line-through; 
@@ -43,15 +89,15 @@
 	font-weight:bold;
 	font-size:1.3em;
 }
-table{
-	width:100%;
-	border:1px solid #000;
-	border-collapse:collapse;
-	margin-top:5px;
+
+/*동적으로 생성되는 목록*/
+#output tr td{
+	font-size:10pt;
+
 }
-table td, table th{
-	border:1px solid #000;
-	padding:5px;
+/*배송비 안내 문구*/
+#ship_message{
+	font-size:7.5pt;
 }
 /*
 --------------------주문--------------------
