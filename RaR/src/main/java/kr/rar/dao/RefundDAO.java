@@ -72,11 +72,75 @@ public class RefundDAO {
 		return orderdetail;
 	}
 	//상품 번호로 룰렛 티켓 사용 여부 구하기
-	public int getStatusTicket() throws Exception{
-		int status = 0;
-		
+	public int getTicketStatus(int item_num) throws Exception{
+		int status = 5;
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT STATUS FROM roulette_ticket WHERE item_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, status);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				status = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
 		return status;
 	}
+	//상품번호로 룰렛 사용 리워드 구하기
+	public int getTicketReward(int item_num) throws Exception{
+		int reward = 0;
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT reward FROM roulette_ticket WHERE item_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reward);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reward = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reward;
+	}
+	//유저 보유 포인트 구하기
+	public int getPoint(int user_num) throws Exception{
+		int point = 0;
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT user_point FROM member_detail WHERE user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				point = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return point;	
+	}
+	
 	//보유 포인트, 회수 포인트, 룰렛으로 얻은 포인트환불 금액 구하기
 	public int getRefundPrice() throws Exception{
 		int refundPrice = 0;
@@ -117,5 +181,6 @@ public class RefundDAO {
 	}
 	//환불 취소 (환불 신청 단계에서만 가능) 
 	
-	
+	//메서드 오버로딩으로 티켓 status가 1일 때 환불 + 티켓 삭제 메서드
+	// 티켓 status가 0일 때 환불 메서드
 }
