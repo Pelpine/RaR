@@ -99,6 +99,7 @@ $(function(){
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="page-main">
     <div class="container">
         <main class="content">
             <div class="user-info">
@@ -142,6 +143,7 @@ $(function(){
 			</div>
         </main>
     </div>
+</div>
 </body>
 </html>
 

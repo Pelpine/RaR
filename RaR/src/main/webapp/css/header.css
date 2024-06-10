@@ -12,9 +12,9 @@ body {
 .page-main {
 	width: 1200px;
 	background: #FFFFFF;
-	margin: 40px 0;
+	margin: 0 auto;
 	border-radius: 5px;
-	min-height: 650px;
+	min-height: 100%;
 	max-width: 1200px; /* 페이지 최대 너비 지정 */
 }
 
