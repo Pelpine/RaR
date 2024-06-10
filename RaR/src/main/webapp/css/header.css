@@ -54,7 +54,7 @@
     height: 150px;
 }
 
-.search-bar {
+.search-bar2 {
 	margin-right:140px;
     display: flex;
     justify-content: center;
@@ -62,7 +62,7 @@
     flex-grow: 2; /* 중앙 정렬 요소 확장 */
 }
 
-.search-bar input {
+.search-bar2 input {
     width: 400px;
     padding: 8px;
     border: 1px solid #ced4da;
@@ -70,7 +70,7 @@
     margin-right: 8px; /* 버튼과 입력 필드 사이의 간격 추가 */
 }
 
-.search-bar button {
+.search-bar2 button {
     padding: 8px 12px;
     background-color: #ffcc00;
     border: none;

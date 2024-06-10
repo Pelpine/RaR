@@ -48,8 +48,9 @@
        <div class="image-space">
           <h4 class="Topic">최근 입고된 중고 서적</h4>
          <c:forEach var="item" items="${itemList}">
+         <div class="big">
          <div class="horizontal-area">
-             <img src="${item.bookVO.bk_img}" width="60"
+             <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
             <%-- <!-- 상품이미지가 없을 경우, 기본 이미지 처리  -->
             <c:if test="${item.item_img == null}">
@@ -58,15 +59,17 @@
             <c:if test="${item.item_img != null}">
                <img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
             </c:if> --%>
-               <h6>${item.bookVO.bk_name}</h6>
+               <h6 class="name">${item.bookVO.bk_name}</h6>
+         </div>
          </div>
          </c:forEach>
       </div>
       <div class="image-space">
           <h4 class="Topic">인기 급상승 도서</h4>
          <c:forEach var="item" items="${topList}">
+         <div class="big">
          <div class="horizontal-area">
-             <img src="${item.bookVO.bk_img}" width="60"
+             <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
             <%-- <!-- 상품이미지가 없을 경우, 기본 이미지 처리  -->
             <c:if test="${item.item_img == null}">
@@ -75,7 +78,8 @@
             <c:if test="${item.item_img != null}">
                <img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
             </c:if> --%>
-               <h6>${item.orderDetailVO.item_name}</h6>
+               <h6 class="name">${item.orderDetailVO.item_name}</h6>
+         </div>
          </div>
          </c:forEach>
       </div>
