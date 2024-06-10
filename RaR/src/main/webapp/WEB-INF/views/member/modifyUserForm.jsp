@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
-<link rel="stylesheet"href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -36,7 +36,7 @@ $(function(){
     <div class="page-main">
         <jsp:include page="/WEB-INF/views/common/header.jsp"/>
         <div class="content-main">
-            <h2>회원 가입</h2>
+            <h2>정보 수정</h2>
             <form id="modify_form" action="modifyUser.do" method="post">
                 <ul>
 					<li>
@@ -63,7 +63,7 @@ $(function(){
                 </ul>
                 <div class="align-center">
                     <input type="submit" value="수정">
-                    <input type="button" value="myPage"
+                    <input type="button" value="마이페이지"
                      onclick="location.href='myPage.do'">
                 </div>
             </form>

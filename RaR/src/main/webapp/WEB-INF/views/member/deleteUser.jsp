@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
-<link rel="stylesheet"href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
 </head>
 <body>
 <div class="page-main">

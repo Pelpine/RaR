@@ -1,0 +1,159 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.page-main {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.content-main {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.search-left {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 80px; /* 왼쪽 마진 80px */
+}
+
+.search-left li {
+    margin-right: 10px;
+}
+
+.search-left select, 
+.search-left input[type="submit"] {
+    height: 35px; /* 높이를 맞춰줍니다 */
+    font-size: 16px;
+}
+
+.search-left input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.search-left input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.buttons-right {
+    text-align: right;
+    margin-right: 80px; /* 오른쪽 마진 80px */
+}
+
+.buttons-right input[type="button"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.buttons-right input[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+.book-table {
+    width: 1200px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    table-layout: auto; /* 테이블 레이아웃을 자동으로 설정 */
+}
+
+.book-table th {
+    background-color: #e8f4fd;
+    padding: 10px;
+    text-align: center; /* 열 제목 중앙 정렬 */
+}
+
+.book-table th, 
+.book-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center; /* 기본적으로 중앙 정렬 */
+    vertical-align: middle;
+}
+
+.book-table td:nth-child(2) {
+    text-align: left; /* 책이름 열은 왼쪽 정렬 */
+}
+
+.book-table td {
+    white-space: pre-line; /* 줄바꿈을 허용합니다 */
+    word-wrap: break-word; /* 길이가 길면 줄바꿈을 적용합니다 */
+    overflow: hidden; /* 길이가 넘으면 숨깁니다 */
+}
+
+/* 각 열의 너비 조정 */
+.book-table th:nth-child(1), .book-table td:nth-child(1) { 
+    width: 80px; /* 요청 번호 */
+}
+
+.book-table th:nth-child(2), .book-table td:nth-child(2) { 
+    width: 580px; /* 책이름 */
+}
+
+.book-table th:nth-child(3), .book-table td:nth-child(3) { 
+    width: 80px; /* 승인상태 */
+}
+
+.book-table th:nth-child(4), .book-table td:nth-child(4) { 
+    width: 130px; /* 승인요청날짜 */
+}
+
+.book-table th:nth-child(5), .book-table td:nth-child(5) { 
+    width: 130px; /* 승인날짜 */
+}
+
+.book-table th:nth-child(6), .book-table td:nth-child(6) { 
+    width: 200px; /* 승인요청아이디 */
+}
+
+.book-name {
+    color: black;
+    text-decoration: none;
+}
+
+.book-name:visited {
+    color: gray;
+}
+
+.book-name:hover {
+    text-decoration: underline;
+}
+
+.align-center {
+    text-align: center;
+    margin-top: 20px; /* 페이지네이션과 테이블 간격 조정 */
+}

@@ -3,6 +3,7 @@ package kr.board.action;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.rar.dao.BoardDAO;
 import kr.rar.vo.BoardVO;
@@ -13,7 +14,8 @@ public class MyPostingListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		HttpSession session = request.getSession();
+		Integer user_num = (Integer)session.getAttribute("user_num");
 		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null)pageNum = "1";

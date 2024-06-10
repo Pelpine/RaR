@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+	href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
 </head>
 <body>
 <div class="page-main">
@@ -15,7 +15,7 @@
 	<div class="content-main">
 		<h2>내가 좋아요 누른 게시물</h2>
 		<div class="list-space align-right">
-		<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+		<input type="button" value="마이페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 		</div>
 		<c:if test="${count==0}">
 		<div class="result-display">
@@ -24,7 +24,7 @@
 		</c:if>
 		
 		<c:if test="${count>0}">
-		<table>
+		<table class="book-table">
 			<tr>
 				<th>제목</th>
 				<th>작성자 이메일</th>
