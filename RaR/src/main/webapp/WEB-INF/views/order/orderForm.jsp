@@ -88,31 +88,36 @@ window.onload=function(){
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>상품 주문</h2>
-		<table>
+		<table id="order_table" class="no_borderLR">
 			<tr>
-				<th>상품정보</th>
+				<th colspan="2">상품정보</th>
 				<th>가격</th>
 				<th>상태</th>
 			</tr>
 			<c:forEach var="cart" items="${list}">
 			<tr>
-				<%-- 상품정보:책 이미지, 책 이름 --%>
-				<td>
+				<%-- 상품정보:책 이미지 --%>
+				<td class="item_img">
 					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}">
-						<img src="${cart.bookVO.bk_img}" width="60">
+						<img src="${cart.bookVO.bk_img}">
+					</a>
+				</td>
+				<%-- 상품정보:책 이름 --%>
+				<td class="item_name">
+					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}">
 						${cart.bookVO.bk_name}
 					</a>
 				</td>
 				<%-- 상품 가격 --%>
-				<td class="align-center">
+				<td class="item_list_price">
 					<span class="item_bk_price">정가 : <fmt:formatNumber value="${cart.bookVO.bk_price}"/>원</span><br> 
 					판매가 : <span class="item_item_price"><fmt:formatNumber value="${cart.itemVO.item_price}"/></span>원
 				</td>
 				<%-- 상품 상태 --%>
-				<td class="align-center">
-					<c:if test="${cart.itemVO.item_grade == 1}">상</c:if>
-					<c:if test="${cart.itemVO.item_grade == 2}">중</c:if>
-					<c:if test="${cart.itemVO.item_grade == 3}">하</c:if>
+				<td>
+					<c:if test="${cart.itemVO.item_grade == 1}"><span class="item_grade_1">상</span></c:if>
+					<c:if test="${cart.itemVO.item_grade == 2}"><span class="item_grade_2">중</span></c:if>
+					<c:if test="${cart.itemVO.item_grade == 3}"><span class="item_grade_3">하</span></c:if>
 				</td>
 			</tr>
 			</c:forEach>
@@ -120,13 +125,13 @@ window.onload=function(){
 		<p>
 		<table>	
 			<tr>
-				<td class="align-center"><b>결제내역</b><br>(총 구매금액 + 배송비 - 사용포인트)</td>
-				<td class="align-center"><b>총 결제금액</b></td>
-				<td class="align-center">적립포인트</td>
+				<th>결제내역<br><small>(총 구매금액 + 배송비 - 사용포인트)</small></th>
+				<th>총 결제금액</th>
+				<th>적립포인트</th>
 			</tr>
-			<tr>
+			<tr class="pay_content">
 				<!-- 결제내역 -->
-				<td class="align-center">
+				<td>
 				<fmt:formatNumber value="${pay_total}" type="number"/>  +  
 				<fmt:formatNumber value="${pay_ship}" type="number"/>  -  
 				<span id="pay_points_value">0</span>
@@ -139,52 +144,58 @@ window.onload=function(){
 				<td class="align-center"><fmt:formatNumber value="${order_points}" type="number"/>p</td>
 			</tr>
 		</table>
-		<p>
-		<p>
+		
+		<!-- 주문 폼 -->
 		<form action="order.do" method="post" id="order_form">
 			<!-- 사용 포인트 입력 -->
-			<div class="align-center">
-				포인트 사용 : <input type="number" name="pay_points" id="pay_points" min="0" max="${user_points}"> (보유 포인트 : ${user_points})
+			<div id="point_insert">
+				포인트 사용 : <input type="number" name="pay_points" id="pay_points" min="0" max="${user_points}"> (보유 포인트 : <fmt:formatNumber value="${user_points}"/>p)
 			</div>
+			<!-- 서버로 데이터 전송(총 주문금액,배송비,적립포인트) -->
 			<input type="hidden" name="pay_total" value="${pay_total}">
 			<input type="hidden" name="pay_ship" value="${pay_ship}">
 			<input type="hidden" name="order_points" value="${order_points}">
-			<ul>
-				<li>
-					<label for="receive_name">받는 사람</label>
-					<input type="text" name="receive_name" id="receive_name" maxlength="10">
-				</li>
-				<li>
-					<label for="zipcode">우편번호</label>
-					<input type="text" name="receive_post" id="zipcode" maxlength="5">
-					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
-				</li>
-				<li>
-					<label for="address1">주소</label>
-					<input type="text" name="receive_address1" id="address1" maxlength="30">
-				</li>
-				<li>
-					<label for="address2">상세주소</label>
-					<input type="text" name="receive_address2" id="address2" maxlength="30">
-				</li>
-				<li>
-					<label for="receive_phone">전화번호</label>
-					<input type="text" name="receive_phone" id="receive_phone" maxlength="15">
-				</li>
-				<li>
-					<label for="pay_payment">결제수단</label>
-					<input type="radio" name="pay_payment" id="pay_payment1"	value="1">계좌입금
-					<input type="radio" name="pay_payment" id="pay_payment2"	value="2">카드결제
-				</li>
-				<li>
-					<label for="notice">남기실 말씀</label>
-					<textarea rows="5" cols="30" name="notice" id="notice" maxlength="1300"></textarea>
-				</li>
-			</ul>
+			
+			<!-- 배송지 입력 -->
+			<hr size="1" color="#adadad" width="100%">
+			<h2><br>배송지 입력</h2>
+			<div class="delivery_form">
+				<ul>
+					<li>
+						<label for="receive_name">받는 사람</label>
+						<input type="text" name="receive_name" id="receive_name" maxlength="10">
+					</li>
+					<li>
+						<label for="zipcode">우편번호</label>
+						<input type="text" name="receive_post" id="zipcode" maxlength="5">
+						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
+					</li>
+					<li>
+						<label for="address1">주소</label>
+						<input type="text" name="receive_address1" id="address1" maxlength="30">
+					</li>
+					<li>
+						<label for="address2">상세주소</label>
+						<input type="text" name="receive_address2" id="address2" maxlength="30">
+					</li>
+					<li>
+						<label for="receive_phone">전화번호</label>
+						<input type="text" name="receive_phone" id="receive_phone" maxlength="15">
+					</li>
+					<li>
+						<label for="pay_payment">결제수단</label>
+						<input type="radio" name="pay_payment" id="pay_payment1"	value="1">계좌입금
+						<input type="radio" name="pay_payment" id="pay_payment2"	value="2">카드결제
+					</li>
+					<li>
+						<label for="notice">남기실 말씀</label>
+						<textarea rows="5" cols="30" name="notice" id="notice" maxlength="1300"></textarea>
+					</li>
+				</ul>
+			</div>
 			<div class="align-center">
 				<input type="submit" value="주문">
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 		</form>
 		<!-- 다음 우편번호 API 시작 -->

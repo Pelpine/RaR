@@ -36,9 +36,9 @@ $(function(){
 							+ '예상 적립포인트 : ' + Math.floor(item.itemVO.item_price * 0.01).toLocaleString() + 'p'
 							+ '</td>';
 					//책 등급 1:상, 2:중, 3:하
-					if(item.itemVO.item_grade==1) output += '<td class="item_grade_1"><b>상</b></td>';
-					else if(item.itemVO.item_grade==2) output += '<td class="item_grade_2"><b>중</b></td>';
-					else if(item.itemVO.item_grade==3) output += '<td class="item_grade_3"><b>하</b></td>';
+					if(item.itemVO.item_grade==1) output += '<td class="item_grade_1">상</td>';
+					else if(item.itemVO.item_grade==2) output += '<td class="item_grade_2">중</td>';
+					else if(item.itemVO.item_grade==3) output += '<td class="item_grade_3">하</td>';
 					output += '<td class="del_button"><input type="button" data-cartnum="' + item.cart_num + '" value="삭제" class="delete-btn"></td>';
 					output += '</tr>';
 					

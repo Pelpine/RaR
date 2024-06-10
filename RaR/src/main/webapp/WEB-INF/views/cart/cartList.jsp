@@ -23,7 +23,7 @@
 			<!-- 선택상품 hidden -->
 			<div id="selectedItems"></div>
 			<!-- 장바구니 상품 목록, 동적으로 생성 -->
-			<table id="output"></table>
+			<table id="output" class="no_borderLR"></table>
 			<!-- 전체 상품 삭제 버튼 -->
 			<input type="button" value="선택상품 삭제" id="selectAll-btn">
 			<!-- 장바구니 연산 결과 -->
