@@ -18,17 +18,16 @@
 	</c:if>
 	<c:if test="${count > 0}">
 	<div class="content-main">
+		<h2>장바구니 목록</h2>
 		<form id="cart_order" action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
 			<!-- 선택상품 hidden -->
 			<div id="selectedItems"></div>
 			<!-- 장바구니 상품 목록, 동적으로 생성 -->
 			<table id="output"></table>
-			<p>
 			<!-- 전체 상품 삭제 버튼 -->
 			<input type="button" value="선택상품 삭제" id="selectAll-btn">
-			<p>
 			<!-- 장바구니 연산 결과 -->
-			<table>
+			<table id="cart_total">
 				<tr>
 					<th>주문상품 수량</th>
 					<th>총 주문상품 금액</th>
@@ -37,7 +36,7 @@
 					<th>예상 적립 포인트</th>
 				</tr>
 				<!-- 장바구니 총 구매비용 계산, 주문정보에 전송할 데이터 포함 -->
-				<tr id="cart_total">
+				<tr>
 					<!-- 주문상품 수량 -->
 					<td><input type="hidden" name="totalCount" id="totalCount" value="0">0</td>
 					<!-- 총 주문상품 금액 -->
@@ -50,8 +49,10 @@
 					<td><input type="hidden" name="totalPoints" id="totalPoints" value="0">0</td>	
 				</tr>
 			</table>
-			<span id="ship_message">총 주문상품 금액이 30000원 미만인 경우 배송비 4000원이 추가됩니다.<br> </span>
-			<input type="submit" value="주문하기">
+			<div class="order_btn">
+			<span id="ship_message">※총 주문상품 금액이 <b>30000원</b> 미만인 경우 배송비 <b>4000원</b>이 추가됩니다.<br><br> </span>
+			<input type="submit" value="선택한 상품 주문하기" >
+			</div>
 		</form>
 	</div>
 	</c:if>

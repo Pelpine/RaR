@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+*{
+	margin:0;
+	padding:0;
+}
+a:link{
+	text-decoration:none;
+	color:#000000;
+}
+a:visited{
+	text-decoration:none;
+	color:#000000;
+}
+a:hover{
+	text-decoration:underline;
+	color:#6C6C6C;
+}
 /*
 ------------------공통 정렬------------------
 */
@@ -68,36 +84,128 @@ table th{
 	padding:5px;
 	background-color: #e3f2fd;
 }
+h2 {
+    text-align: center;
+    margin: 20px;
+}
 /*
 ------------------장바구니------------------
 */
-/*가격*/
-.item_bk_price{
-	font-size:0.8em;
-	text-decoration: line-through; 
+/*상품테이블*/
+#output{
+	border-left:none;
+	border-right:none;
 }
-.item_item_price{
+#output tr th{
+	border-left:none;
+	border-right:none;
+}
+#output tr td{
+	border-left:none;
+	border-right:none;
+}
+/*테이블 간격 조정*/
+#output td:nth-child(1){
+	width:40px;
+}
+#output td:nth-child(2){
+	width:60px;
+}
+#output td:nth-child(3){
+	width:700px;
+}
+#output td:nth-child(4){
+	width:200px;
+	padding-left:50px;
+}
+#output td:nth-child(5){
+	width:100px;
+}
+#output td:nth-child(6){
+	width:100px;
+}
+
+/*체크박스*/
+.checkbox{
+	text-align:center;
+}
+
+/*상품 이미지*/
+.item_img a img{
+	width:60px;
+}
+
+/*상품 이름*/
+.item_name{
+	
+}
+
+/*가격*/
+.item_list_price{
+	font-size:9pt;
+	line-height: 1.5;
+}
+.item_bk_price{/*정가*/
+	text-decoration: line-through;
+}
+.item_item_price{/*판매가*/
+	font-size:1.2em;
 	color:#a60f0f;
 	font-weight:bold;
 }
-.item_list_price{
-	text-align: right;
-	font-size:8pt;
+
+/*상품 등급*/
+tr .item_grade_1{/*상*/
+	text-align:center;
+	color:#ab0977;
 }
-.totalPayment{
+tr .item_grade_2{/*중*/
+	text-align:center;
+	color:#08a813;
+}
+tr .item_grade_3{/*하*/
+	text-align:center;
+	color:#000000;
+}
+
+/*삭제버튼*/
+tr .del_button{
+	text-align:center;
+}
+
+
+/*전체선택 삭제 버튼*/
+#selectAll-btn{
+	margin-top: 10px;
+}
+
+
+/*결제 테이블*/
+.totalPayment{/*총결제금액*/
 	color:#a60f0f;
 	font-weight:bold;
 	font-size:1.3em;
 }
 
-/*동적으로 생성되는 목록*/
-#output tr td{
-	font-size:10pt;
 
+/*주문하기 버튼*/
+.order_btn{
+	margin-top:50px;
+	text-align: center;
+}
+.order_btn input[type="submit"]{
+	width:300px;
+	background-color:#d93057;
+	font-size:1.3em;
+	font-weight: bold;
+}
+.order_btn input[type="submit"]:hover{
+	background-color:#a11b3a;
 }
 /*배송비 안내 문구*/
 #ship_message{
-	font-size:7.5pt;
+	color:#595959;
+	font-size:9pt;
 }
 /*
 --------------------주문--------------------
