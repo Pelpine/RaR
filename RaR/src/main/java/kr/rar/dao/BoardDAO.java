@@ -816,6 +816,66 @@ public class BoardDAO {
 		    
 		    return genre;
 		}
+		//장르 수정
+		public void updateGenre(GenreVO genre)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+
+			try {
+				conn=DBUtil.getConnection();
+				
+				//SQL문장 작성
+				sql="UPDATE board_genre SET bg_title=? WHERE bg_num=?";
+				
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, genre.getBg_title());
+				pstmt.setInt(2, genre.getBg_num());
+
+				//SQL문 실행
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		//장르 삭제
+		public void deleteGenre(int bg_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			String sql = null;
+			try {
+				//커넥션 풀로부터 커넥션 할당
+				conn=DBUtil.getConnection();
+				//오토커밋 해제
+				conn.setAutoCommit(false);
+				
+				//댓글 삭제
+				sql="DELETE FROM board_genre_user WHERE bg_num=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, bg_num);
+				pstmt.executeUpdate();
+				//부모글 삭제
+				sql="DELETE FROM board_genre WHERE bg_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, bg_num);
+				pstmt2.executeUpdate();
+				
+				//예외 발생 없이 정상적으로 SQL문 실행
+				conn.commit();
+			}catch(Exception e) {
+				//예외 발생
+				conn.rollback();
+				throw new Exception(e);
+			}finally {
+
+				DBUtil.executeClose(null, pstmt2, null);
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 		//장르 글 등록 (댓글)
 				public void insertReplyGenre(GenreUserVO genreUser)throws Exception{
 					Connection conn = null;

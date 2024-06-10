@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+
 import kr.rar.dao.BoardDAO;
 import kr.rar.vo.GenreUserVO;
 import kr.controller.Action;
@@ -24,10 +25,10 @@ public class DeleteReplyGenreAction implements Action {
         int bgu_num = Integer.parseInt(request.getParameter("bgu_num"));
         
         Map<String, String> mapAjax = new HashMap<String, String>();
-        
+
         BoardDAO dao = BoardDAO.getInstance();
         GenreUserVO db_genre = dao.getGenreUser(bgu_num); // 댓글 정보를 가져오는 메서드
-        
+
         HttpSession session = request.getSession();
         Integer user_num = (Integer) session.getAttribute("user_num");
         

@@ -44,7 +44,7 @@
 				<li>
 					<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
 					<c:if test="${user_num == genre.user_num}">
-					<input type="button" value="수정"onclick="location.href='updateForm.do?bg_num=${genre.bg_num}'">
+					<input type="button" value="수정"onclick="location.href='updateGenreForm.do?bg_num=${genre.bg_num}'">
 					<input type="button" value="삭제" id="delete_btn">
 					<script type="text/javascript">
 						const delete_btn = document.getElementById('delete_btn');
@@ -52,7 +52,7 @@
 						delete_btn.onclick=function(){
 							let choice = confirm('삭제하시겠습니까?');
 							if(choice){
-								location.replace('delete.do?bg_num=${genre.bg_num}');
+								location.replace('deleteGenre.do?bg_num=${genre.bg_num}');
 							}
 						};					
 					</script>
@@ -62,7 +62,7 @@
 		</div>
 		<!-- 댓글 시작 -->
 		<div id="reply_div">
-			<span class="re-title">댓글 달기</span>
+			<span class="re-title"></span>
 			<form id="re_form">
 				<input type="hidden" name="bg_num" value="${genre.bg_num}" id="board_num">
 				<textarea rows="3" cols="50" name="content"

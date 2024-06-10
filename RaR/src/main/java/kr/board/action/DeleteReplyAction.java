@@ -37,7 +37,6 @@ public class DeleteReplyAction implements Action {
 						&& user_num == db_reply.getUser_num()) {
 			//로그인한 회원번호와 작성자 회원번호 일치
 			dao.deleteReplyBoard(re_num);
-			
 			mapAjax.put("result", "success");
 		}else {
 			//로그인한 회원번호와 작성자 회원번호 불일치

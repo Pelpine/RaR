@@ -46,6 +46,7 @@
 					</div>
 				</c:if>
 				<p>${board.content}</p>
+				<hr class="section-divider">
 				<ul class="detail-sub">
 					<li><img id="output_fav" data-num="${board.board_num}"
 						src="${pageContext.request.contextPath}/images/favoff.png"

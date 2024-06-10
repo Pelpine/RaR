@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>글 수정</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+	href="${pageContext.request.contextPath}/css/jsy3.css" type="text/css">
 <script type="text/javascript">
 window.onload=function(){
 	const myForm = document.getElementById('update_form');
