@@ -74,6 +74,9 @@ table th{
 	padding:5px;
 	background-color: #e3f2fd;
 }
+form#search-form{
+	border:none;
+}
 form#search_form{
 	border:none;
 }
