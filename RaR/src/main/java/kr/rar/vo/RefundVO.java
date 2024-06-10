@@ -13,6 +13,8 @@ public class RefundVO {
 	private int collect_point;
 	private int refund_price;
 	private int status;
+	private String bank;
+	private String account;
 	public int getRefund_num() {
 		return refund_num;
 	}
@@ -73,6 +75,19 @@ public class RefundVO {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-		
+	public String getBank() {
+		return bank;
+	}
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	
+	
 	
 }

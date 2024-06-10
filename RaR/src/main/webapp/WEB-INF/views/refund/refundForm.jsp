@@ -16,10 +16,18 @@
 	}
 	.order-detail-table .padding{
 	padding-left : 15px;
+	font-size : 14pt;
 	}
 	th{
 	   border-bottom: 2px solid #333;
+	   font-size : 16pt;
 	}
+	 .refund-policy {
+        font-size: 12px; /* 글자 크기 */
+        color: #666; /* 글자 색상 */
+        margin-top: 10px; /* 위 여백 */
+        text-align: right; /* 텍스트 우측 정렬 */
+    }
 </style>
 </head>
 <body>
@@ -64,8 +72,8 @@
     <ul>
     <!-- 환불 사유 선택 -->
     <li>
-        <label for="refund_reason">환불 사유</label>
-        <select name="refund_reason" id="refund_reason_select" onchange="toggleTextarea()">
+        <label for="reason">환불 사유</label>
+        <select name="reason" id="reason_select" onchange="toggleTextarea()">
             <option value="1">단순 변심</option>
             <option value="2">상태 불량</option>
             <option value="3">배송 문제</option>
@@ -73,9 +81,9 @@
         </select>
     </li>
     <!-- 기타 사유 입력 -->
-    <li id="refund_reason_other">
-        <label for="refund_reason_other_textarea">기타 사유</label>
-        <textarea name="refund_reason_other" id="refund_reason_other_textarea" rows="4" cols="50" disabled></textarea>
+    <li id="reason_other">
+        <label for="reason_other_textarea">기타 사유</label>
+        <textarea name="reason_other" id="reason_other_textarea" rows="4" cols="50" disabled></textarea>
     </li>
     <li id="bank">
         <label for="bank">은행</label>
@@ -85,21 +93,21 @@
         <label for="account">계좌번호</label>
         <input type="text" name="account" maxlength="40">
     </li>
-</ul>
-
-<span>환불 신청이 접수되면 상품을 업체주소로 배송해주세요.<br>
-    단순 변심일 경우 환불금액에서 배송료가 차감되어 입금됩니다. </span>
-<p>
+</ul> 
+<span>환불 신청이 접수되면 상품을 업체주소로 배송해주세요.</span><br>
+<span class="refund-policy">
+	
+</span>
 <!-- 버튼 그룹 -->
 <input type="submit" value="신청">
-<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/order/userOrderListDetail.do'">
+<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/order/userOrderListDetail.do?order_num=${order_num}'">
 </form>
 </div>
 
 <script>
 function toggleTextarea() {
-    var selectBox = document.getElementById("refund_reason_select");
-    var textarea = document.getElementById("refund_reason_other_textarea");
+    var selectBox = document.getElementById("reason_select");
+    var textarea = document.getElementById("reason_other_textarea");
 
     if (selectBox.value == "4") {
         textarea.disabled = false;
@@ -109,6 +117,7 @@ function toggleTextarea() {
     }
 }
 </script>
+<hr size="1" color="black">
 </div>
 </div>
 	<footer>

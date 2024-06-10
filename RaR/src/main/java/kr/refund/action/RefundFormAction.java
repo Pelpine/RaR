@@ -8,10 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.rar.dao.ItemDAO;
 import kr.rar.dao.OrderDAO;
 import kr.rar.dao.RefundDAO;
-import kr.rar.vo.ItemVO;
 import kr.rar.vo.OrderDetailVO;
 import kr.rar.vo.OrderVO;
 
@@ -52,7 +50,7 @@ public class RefundFormAction implements Action {
         item = refundDAO.getOrderDetailByItem_num(item_num);
         
         request.setAttribute("item", item);
-
+        request.setAttribute("order_num", order_num);
         return "/WEB-INF/views/refund/refundForm.jsp";
     }
 }

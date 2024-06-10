@@ -85,7 +85,7 @@ public class RefundDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO refund(refund_num, order_num, item_num, reason, reason_other,"
-					+ " collect_point, refund_price) VALUES (refund_seq.nextval,?,?,?,?,?,?)";
+					+ " collect_point, refund_price, bank, account) VALUES (refund_seq.nextval,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, refund.getOrder_num());
 			pstmt.setInt(2, refund.getItem_num());
@@ -93,6 +93,8 @@ public class RefundDAO {
 			pstmt.setString(4, refund.getReason_other());
 			pstmt.setInt(5, refund.getCollect_point());
 			pstmt.setInt(6, refund.getRefund_price());
+			pstmt.setString(7, refund.getBank());
+			pstmt.setString(8, refund.getAccount());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
