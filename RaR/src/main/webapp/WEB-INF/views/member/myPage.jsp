@@ -122,7 +122,7 @@ $(function(){
 						<div id="photo_choice" style="display:none;">
 							<input type="file" id="photo"
 							          accept="image/gif,image/png,image/jpeg">
-							<input type="button" value="전송" id="photo_submit">
+							<input type="button" value="저장" id="photo_submit">
 							<input type="button" value="취소" id="photo_reset">          
 						</div>
 					</li>

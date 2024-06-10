@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
-<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
