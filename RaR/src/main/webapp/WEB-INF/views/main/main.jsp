@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 </head>
 <body>
-<div class="page-main"> 
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page-main"> 
     <div class="content-main">
           <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">

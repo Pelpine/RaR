@@ -1,62 +1,61 @@
-@charset "UTF-8";
-/* 전체 레이아웃
----------------------*/
-body {
-	margin: 0 auto;
-	background: #FFFFFF;
-	width: 80%;
-	font-family: Arial, sans-serif; /* 폰트 지정 */
-}
-/* 페이지 레이아웃
----------------------*/
 .page-main {
-	width: 1200px;
-	background: #FFFFFF;
-	margin: 0 auto;
-	border-radius: 5px;
-	min-height: 100%;
-	max-width: 1200px; /* 페이지 최대 너비 지정 */
+    width: 1200px;
+    background: #FFFFFF;
+    margin: 0 auto;
+    border-radius: 5px;
+    min-height: 100%;
+    max-width: 1200px; /* 페이지 최대 너비 지정 */
+}
+.page-main2 {
+    width: 1200px;
+    margin: 0 auto;
+    max-width: 1200px; /* 페이지 최대 너비 지정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 추가 */
 }
 
 .main-nav {
-	display: flex;
-	flex-direction: column;
-    width: 100%;
-    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     background-color: #ffffff;
 }
 .top-nav {
-	justify-content: flex-end;
-	padding-top : 20px;
-	padding-right: 20px;
+    justify-content: flex-end;
+    padding-top: 20px;
+    padding-right: 20px;
+    width: 100%;
 }
 .header {
-	margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px; /* 요소 사이 간격 추가 */
+    justify-content: space-between; /* 전체 요소를 균등하게 배치 */
+    width: 100%;
+    max-width: 1200px; /* 최대 너비 지정 */
 }
 
 .logo {
-    flex: 1;
+    margin: 0;
+    max-width: 170px;
+    height: 150px;
 }
-	
+    
 .logo img {
     width: 170px;
     height: 150px;
 }
 
 .search-bar {
-    flex: 2;
+	margin-right:130px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-grow: 2; /* 중앙 정렬 요소 확장 */
 }
 
 .search-bar input {
-    width: 400px;
+    width: 430px;
     padding: 8px;
     border: 1px solid #ced4da;
     border-radius: 4px;
@@ -72,10 +71,10 @@ body {
 }
 
 .auth-buttons {
-    flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: 100%;
 }
 
 .header_button_group {
@@ -91,7 +90,7 @@ body {
     border-radius: 4px;
     color: white;
     cursor: pointer;
-    border:1.5px solid black;
+    border: 1.5px solid black;
 }
 
 .menu-profile img {
@@ -111,6 +110,7 @@ body {
     justify-content: center;
     background-color: #e3f2fd;
     padding: 10px 0;
+    width: 100%;
 }
 
 .dropdown {
@@ -148,7 +148,7 @@ body {
 
 .dropdown-content a:hover {
     background-color: #ddd;
-    border:1.5px solid black;
+    border: 1.5px solid black;
 }
 
 .dropdown:hover .dropdown-content {
@@ -157,11 +157,12 @@ body {
 
 .dropdown:hover .dropbtn {
     background-color: #007bb5;
-    border:1.5px solid black;
+    border: 1.5px solid black;
 }
+
 li {
     list-style-type: none;
 }
-.my-photo{
-	border:1.5px solid black;
+.my-photo {
+    border: 1.5px solid black;
 }
