@@ -49,6 +49,13 @@ public class RefundFormAction implements Action {
         OrderDetailVO item = new OrderDetailVO();
         item = refundDAO.getOrderDetailByItem_num(item_num);
         
+        //환불해야 하는 포인트
+        int refund_point = item.getItem_price()/ 100;
+        //유저 보유 포인트
+        int point = refundDAO.getPoint(user_num);
+        if(refund_point > point) {
+        	
+        }
         request.setAttribute("item", item);
         request.setAttribute("order_num", order_num);
         return "/WEB-INF/views/refund/refundForm.jsp";

@@ -41,6 +41,7 @@ public class RefundDAO {
 		return deadline;
 	}
 	//상품 번호로 티켓 번호 구하기
+	//보유 포인트 구하기 
 	//티켓 번호로 status or reward 반환
 	//상품 번호로 상품주문 정보 구하기
 	public OrderDetailVO getOrderDetailByItem_num(int item_num) throws Exception{
