@@ -29,7 +29,7 @@ window.onload=function(){
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-		<h2>내가 작성한 게시글</h2>
+		<h2>작성한 게시글</h2>
 		<form id="search-form" action="myPostingList.do" method="get">
 		<ul class="search">
 			<li>

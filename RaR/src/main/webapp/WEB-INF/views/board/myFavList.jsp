@@ -13,7 +13,7 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-		<h2>내가 좋아요 누른 게시물</h2>
+		<h2>좋아요 목록</h2>
 		<div class="list-space align-right">
 		<input type="button" value="마이페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 		</div>

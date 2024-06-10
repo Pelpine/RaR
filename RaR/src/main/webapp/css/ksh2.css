@@ -68,6 +68,20 @@ table th{
 	padding:5px;
 	background-color: #e3f2fd;
 }
+form#search_form{
+	border:none;
+}
+ul.search{
+	width:340px;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+ul.search li{
+	margin:0 0 9px 0;
+	padding:0;
+	display:inline;
+}
 /*
 ------------------장바구니------------------
 */
