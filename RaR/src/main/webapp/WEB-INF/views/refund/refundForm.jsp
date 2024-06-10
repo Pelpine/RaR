@@ -8,6 +8,13 @@
 <title>환불신청</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
+<script type="text/javascript">
+	window.onload=function(){
+		let item_price = 0;
+		let refund_point = 0;
+		let 
+	}
+</script>
 <style>
 	.order-detail-table{
 	width:700px; 
@@ -26,8 +33,21 @@
         font-size: 12px; /* 글자 크기 */
         color: #666; /* 글자 색상 */
         margin-top: 10px; /* 위 여백 */
-        text-align: right; /* 텍스트 우측 정렬 */
+        text-align: left; /* 텍스트 우측 정렬 */
     }
+    .refund-policy-container {
+    text-align: left; /* 텍스트 우측 정렬 */
+    margin-top: 10px; /* 위 여백 */
+}
+
+.refund-policy {
+    font-size: 12px; /* 글자 크기 */
+    color: #666; /* 글자 색상 */
+}
+.refund_price{
+	border: 1px solid gray;
+	width : 300px;
+}
 </style>
 </head>
 <body>
@@ -49,7 +69,7 @@
 	                    <td rowspan="${empty item ? 1 : 2}"><img src="${empty item ? '' : item.bk_img}" alt="상품 사진" width="100"></td>
 	                    <td class="padding">
 	                        <p>상품명: ${item.item_name}</p>
-	                        <p>구매가격 : ${item.item_price}원</p>
+	                        <p>구매가격 : <span class="item_price"> ${item.item_price}</span>원</p>
 	                        <p>
 	                        <c:if test="${item.item_grade == 1}">
 							<span class="item_grade1">상품등급 : 상</span>
@@ -94,13 +114,23 @@
         <input type="text" name="account" maxlength="40">
     </li>
 </ul> 
-<span>환불 신청이 접수되면 상품을 업체주소로 배송해주세요.</span><br>
-<span class="refund-policy">
-	
-</span>
+	<div class="refund_price">
+		상품 구매 금액 : <span>${item.item_price}</span>원<br>
+		회수 포인트 - 보유 포인트 : <span class="refund_point"></span>원<br>
+		룰렛으로 얻은 포인트 : <span class="refund_point"></span>원<br>
+		환불 예정 금액 : <span class="refund_price"></span>원
+	</div>
 <!-- 버튼 그룹 -->
 <input type="submit" value="신청">
 <input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/order/userOrderListDetail.do?order_num=${order_num}'">
+<div class="refund-policy-container">
+    <span>환불 신청이 접수되면 상품을 업체주소로 배송해주세요.</span><br>
+    <span class="refund-policy">
+        1. 구매 14일 이후에는 환불이 불가능 합니다. <br>
+        2. 단순 변심으로 인한 환불은 직접 배송료를 지불하셔야 합니다. <br>
+        3. 상품 구매로 얻은 포인트와 티켓은 회수되며,<br> 이미 사용했을 경우 환불금액에서 차감됩니다.
+    </span>
+</div>
 </form>
 </div>
 

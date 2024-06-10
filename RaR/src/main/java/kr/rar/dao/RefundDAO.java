@@ -71,6 +71,19 @@ public class RefundDAO {
 		}
 		return orderdetail;
 	}
+	//상품 번호로 룰렛 티켓 사용 여부 구하기
+	public int getStatusTicket() throws Exception{
+		int status = 0;
+		
+		return status;
+	}
+	//보유 포인트, 회수 포인트, 룰렛으로 얻은 포인트환불 금액 구하기
+	public int getRefundPrice() throws Exception{
+		int refundPrice = 0;
+		
+		
+		return refundPrice;
+	}
 	//------------------------------(관리자)
 	//환불 목록
 	//환불 목록 카운트 구하기
