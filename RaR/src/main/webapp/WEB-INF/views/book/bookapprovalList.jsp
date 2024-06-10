@@ -13,12 +13,13 @@
 <script type="text/javascript">
 $(document).ready(function(){
     var userNum = ${user_num};
+    var userauth = ${user_auth};
     
     $("a.private-link").click(function(event){
         var bookUserNum = $(this).data('usernum');
         var privateNum = $(this).data('privatenum');
         
-        if(privateNum == 2 && userNum != bookUserNum){
+        if(userauth != 9 && userNum != bookUserNum){
             alert('본인만 확인 가능합니다.');
             event.preventDefault();
         }
@@ -58,7 +59,7 @@ $(document).ready(function(){
 				</div>
 			</form>
 			<c:if test="${count == 0}">
-				<div class="result-display">표시할 게시물이 없습니다.</div>
+				<div class="book-table">표시할 게시물이 없습니다.</div>
 			</c:if>
 			<c:if test="${count > 0 }">
 				<table class="book-table">
@@ -73,16 +74,15 @@ $(document).ready(function(){
 					<c:forEach var="book" items="${list}">
 						<tr>
 							<td>${book.approval_id}</td>
-							<td><c:if
-									test="${book.private_num == 1 or book.memberVO.user_num == user_num or user_auth == 9}">
-									<a href="bookdetail.do?approval_id=${book.approval_id}"
-										class="private-link book-name"
+							<td><c:choose><c:when test="${book.private_num == 1 or book.memberVO.user_num == user_num or user_auth == 9}">
+										<a href="bookdetail.do?approval_id=${book.approval_id}"
+										class="private-link book-name" data-userauth="${user_auth}"
 										data-usernum="${book.memberVO.user_num}"
-										data-privatenum="${book.private_num}"> ${book.bk_name} </a>
-								</c:if> <c:if
-									test="${book.private_num == 2 and book.memberVO.user_num != user_num}">
-                        비공개 글 입니다.
-                    </c:if></td>
+										data-privatenum="${book.private_num}">${book.bk_name}</a>
+									</c:when><c:when test="${book.private_num == 2 and book.memberVO.user_num != user_num}">
+										(비공개)
+									</c:when>
+								</c:choose></td>
 							<td>${book.status}</td>
 							<td>${book.request_at}</td>
 							<td>${book.approved_at}</td>
