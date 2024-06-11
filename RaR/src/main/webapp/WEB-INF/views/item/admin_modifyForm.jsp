@@ -70,54 +70,50 @@ window.onload=function(){
 				<li>
 					<label>상품표시여부</label>
 					<input type="radio" name="status" value="1"
-					                             id="status1" 
-					                             <c:if test="${item.status==1}">checked</c:if>>미표시
+					    id="status1" <c:if test="${item.item_status == 1}">checked</c:if>>판매중
 					<input type="radio" name="status" value="2"
-					                             id="status2">표시                             
+					    id="status2" <c:if test="${item.item_status == 2}">checked</c:if>>판매완료
+					    <input type="radio" name="status" value="3"
+					    id="status2" <c:if test="${item.item_status == 3}">checked</c:if>>판매중지                         
 				</li>
 				<li>
 					<label for="name">상품명</label>
 					<input type="text" name="name" id="name"
-									value="${item.name}"
+									value="${item.bookVO.bk_name}"
 					                maxlength="10" class="input-check">
 				</li>
 				<li>
 					<label for="price">가격</label>
 					<input type="number" name="price" id="price"
-								value="${item.price}"
+								value="${item.item_price}"
 					   min="1" max="999999999" class="input-check">
 				</li>
 				<li>
-					<label for="quantity">수량</label>
-					<input type="number" name="quantity" id="quantity"
-								value="${item.quantity}"
-					   min="0" max="9999999" class="input-check">
+					<label>상품 등급</label>
+					<input type="radio" name="grade" value="1"
+					                             id="status1" 
+					                             <c:if test="${item.item_grade==1}">checked</c:if>>상
+					<input type="radio" name="grade" value="2"
+					                             id="status2" 
+					                             <c:if test="${item.item_grade==2}">checked</c:if>>중
+					<input type="radio" name="grade" value="3"
+					                             id="status3" 
+					                             <c:if test="${item.item_grade==3}">checked</c:if>>하
+					                                                     
 				</li>
 				<li>
-					<label for="photo1">상품사진1</label>
-					<img src="${pageContext.request.contextPath}/upload/${item.photo1}"
-					data-img="${item.photo1}" width="50" height="50"
+					<label for="photo1">도서이미지</label>
+					<img src="${item.bookVO.bk_img}"
+					data-img="${item.bookVO.bk_img}" width="50" height="50"
 					class="my-photo">
 					<br>
-					<input type="file" name="photo1"
-					  class="form-notice"
-					  id="photo1" accept="image/gif,image/png,image/jpeg">
 				</li>
 				<li>
-					<label for="photo2">상품사진2</label>
-					<img src="${pageContext.request.contextPath}/upload/${item.photo2}"
-					data-img="${item.photo2}" width="50" height="50"
+					<label for="photo2">상품사진</label>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img}"
+					data-img="${item.item_img}" width="50" height="50"
 					class="my-photo">
 					<br>
-					<input type="file" name="photo2"
-					  class="form-notice"
-					  id="photo2" accept="image/gif,image/png,image/jpeg">
-				</li>
-				<li>
-					<label for="detail">상품설명</label>
-					<textarea rows="5" cols="30"
-					  name="detail" id="detail"
-					  class="input-check">${item.detail }</textarea>
 				</li>
 			</ul>   
 			<div class="align-center">

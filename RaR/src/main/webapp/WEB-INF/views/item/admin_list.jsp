@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품관리</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
 <script type="text/javascript">
 window.onload=function(){
 	const myForm = document.getElementById('search_form');
@@ -25,10 +25,10 @@ window.onload=function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-		<h2>상품관리</h2>
+		<h2>상품관리(관리자)</h2>
 		<form id="search_form" action="adminList.do" method="get">
 			<ul class="search">
 				<li>
@@ -69,17 +69,18 @@ window.onload=function(){
 			<c:forEach var="item" items="${list}">
 			<tr>
 				<td>${item.item_num}</td>
-				<td><a href="adminModifyForm.do?item_num=${item.item_num}">${item.bk_name}</a></td>
+				<td><a href="adminModifyForm.do?item_num=${item.item_num}">${item.bookVO.bk_name}</a></td>
 				<td><fmt:formatNumber value="${item.item_price}"/></td>	
 				<td>${item.reg_date}</td>
 				<td>
-					<c:if test="${item.item_grade == 3}">상</c:if>
+					<c:if test="${item.item_grade == 3}">하</c:if>
 					<c:if test="${item.item_grade == 2}">중</c:if>
-					<c:if test="${item.item_grade == 1}">하</c:if>
+					<c:if test="${item.item_grade == 1}">상</c:if>
 				</td>
 				<td>
-					<c:if test="${item.status == 1}">미표시</c:if>
-					<c:if test="${item.status == 2}">표시</c:if>
+					<c:if test="${item.item_status == 1}">판매</c:if>
+					<c:if test="${item.item_status == 2}">판매완료</c:if>
+					<c:if test="${item.item_status == 3}">판매중지</c:if>
 				</td>
 			</tr>				
 			</c:forEach>

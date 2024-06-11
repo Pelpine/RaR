@@ -47,7 +47,7 @@ public class AdminListAction implements Action{
 		
 		List<ItemVO> list = null;
 		if(count > 0) {
-			list = dao.getListItem(page.getStartRow(), 
+			list = dao.getAdminListItem(page.getStartRow(), 
 					               page.getEndRow(), 
 					               keyfield, keyword, 0);
 		}

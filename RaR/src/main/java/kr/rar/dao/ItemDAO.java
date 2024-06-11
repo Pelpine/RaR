@@ -144,7 +144,7 @@ public class ItemDAO {
 			}
 			return count;
 		}
-		//아이템 목록
+		//아이템 목록 //사용자용
 		public List<ItemVO> getListItem(
 			     int start, int end, String keyfield,
 			     String keyword,int status)throws Exception{
@@ -166,8 +166,6 @@ public class ItemDAO {
 			}
 			
 			//SQL문 작성
-			//status가 0이면, 1(미표시),2(표시) 모두 호출 -> 관리자용
-			//status가 1이면, 2(표시) 호출 -> 사용자용
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM "
 				+ "(SELECT * FROM item JOIN book USING (bk_num) WHERE item_status = ? " + sub_sql
 				+ " ORDER BY reg_date DESC)a) "
@@ -297,5 +295,72 @@ public class ItemDAO {
 				DBUtil.executeClose(rs, pstmt, conn);
 			}		
 			return count;
+		}
+		//아이템 목록//관리자
+		public List<ItemVO> getAdminListItem(
+				int start, int end, String keyfield,
+				String keyword,int status)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ItemVO> list = null;
+			String sql = null;
+			String sub_sql = "";
+			int cnt = 0;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+
+				if(keyword !=null && !"".equals(keyword)) {
+					//검색 처리
+					if(keyfield.equals("1")) sub_sql += "AND name LIKE '%' || ? || '%'";
+					else if (keyfield.equals("2")) sub_sql += "AND detail LIKE '%' || ? || '%'";
+				}
+
+				//SQL문 작성
+				//status가 0이면, 1(미표시),2(표시) 모두 호출 -> 관리자용
+				//status가 1이면, 2(표시) 호출 -> 사용자용
+				sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM "
+						+ "(SELECT * FROM item JOIN book USING (bk_num) WHERE item_status >= ? " + sub_sql
+						+ " ORDER BY reg_date DESC)a) "
+						+ "WHERE rnum >= ? AND rnum <= ?";
+
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt, status);
+				if(keyword!=null && !"".equals(keyword)) {
+					pstmt.setString(++cnt, keyword);
+				}
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ItemVO>();
+				while(rs.next()) {
+					ItemVO item = new ItemVO();
+					item.setItem_num(rs.getInt("item_num"));
+					item.setItem_price(rs.getInt("item_price"));
+					item.setItem_grade(rs.getInt("item_grade"));
+					item.setItem_img(rs.getString("item_img"));
+					item.setReg_date(rs.getDate("reg_date"));
+					item.setBk_num(rs.getInt("bk_num"));;
+					item.setItem_status(rs.getInt("item_status"));
+
+
+					BookVO book = new BookVO(); book.setBk_name(rs.getString("bk_name"));
+					book.setBk_price(rs.getInt("bk_price"));
+					book.setBk_img(rs.getString("bk_img"));
+
+					item.setBookVO(book);
+
+					list.add(item);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return list;
 		}
 }
