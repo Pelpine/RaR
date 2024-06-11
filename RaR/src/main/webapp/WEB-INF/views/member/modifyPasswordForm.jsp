@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 수정</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -53,7 +53,7 @@ $(function(){
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
 	<div class="content-main">
-		<h2>비밀번호 수정</h2>
+		<h2 class="h2">비밀번호 수정</h2>
 		<form id="password_form" action="modifyPassword.do"
 		                                      method="post">
 			<ul>
@@ -76,8 +76,8 @@ $(function(){
 				</li>
 			</ul>    
 			<div class="align-center">
-				<input type="submit" value="비밀번호 수정">
-				<input type="button" value="마이페이지"
+				<input type="submit" class="button5" value="비밀번호 수정">
+				<input type="button" class="button5" value="마이페이지"
 				    onclick="location.href='myPage.do'">
 			</div>                                  
 		</form>

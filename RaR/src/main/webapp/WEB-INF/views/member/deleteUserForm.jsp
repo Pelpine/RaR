@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
-<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -52,7 +52,7 @@ $(function(){
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="page-main">
         <div class="content-main">
-            <h2>회원탈퇴</h2>
+            <h2 class="h2">회원탈퇴</h2>
             <form id="delete_form" action="deleteUser.do" method="post">
                 <ul>
                     <li>

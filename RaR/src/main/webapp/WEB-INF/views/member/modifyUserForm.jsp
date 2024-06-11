@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
-<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ysb.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -36,7 +36,7 @@ $(function(){
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="page-main">
         <div class="content-main">
-            <h2>정보 수정</h2>
+            <h2 class="h2">정보 수정</h2>
             <form id="modify_form" action="modifyUser.do" method="post">
                 <ul>
 					<li>
@@ -48,8 +48,8 @@ $(function(){
 					    <label for="user_zipcode">우편번호</label> <input type="text"
 						 name="user_zipcode" id="user_zipcode" maxlength="5" autocomplete="off"
 						 value="${member.user_zipcode}"
-						 class="input-check"> <input type="button" value="우편번호 찾기"
-						 onclick="execDaumPostcode()"></li>
+						 class="input-check"> <input type="button" class="button2" 
+						 value="우편번호 찾기" onclick="execDaumPostcode()"></li>
 					<li>
 					    <label for="user_address1">주소</label> <input type="text"
 					    value="${member.user_address1 }"
@@ -62,8 +62,8 @@ $(function(){
 					</li>
                 </ul>
                 <div class="align-center">
-                    <input type="submit" value="수정">
-                    <input type="button" value="마이페이지"
+                    <input type="submit" class="button4" value="수정">
+                    <input type="button" class="button4" value="마이페이지"
                      onclick="location.href='myPage.do'">
                 </div>
             </form>
