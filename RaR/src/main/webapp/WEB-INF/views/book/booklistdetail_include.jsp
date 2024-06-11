@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="page-main">
-	<div class="content-main">
+	<div class="content-main" id="to">
 		<c:if test="${count == 0}">
 			<div class="result-display">해당 책의 판매 가능한 상품이 없습니다.</div>
 		</c:if>
