@@ -96,19 +96,16 @@ window.onload = function(){
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 		<div class="content-main">
-			<h2>회원 가입</h2>
+			<h2 class="h2">회원 가입</h2>
 			<form id="register_form" action="registerUser.do" method="post">
 				<ul>
-					 <li>
-            			<label for="user_email">이메일</label> 
+					 <li><label for="user_email">이메일</label> 
             			<input type="email" name="user_email" id="user_email" maxLength="50" class="input-check">
-            			<input type="button" id="butn" value="중복 확인">
-            			<span id="message_user_email"></span>
-        			</li>
+            			<input type="button" id="butn" value="중복 확인" class="button2">
+            			<span id="message_user_email"></span></li>
 					
 					<li><label for="user_name">이름</label> <input type="text"
-						name="user_name" id="user_name" maxlength="10" class="input-check">
-					</li>
+						name="user_name" id="user_name" maxlength="10" class="input-check"></li>
 					<li><label for="password" title="영문 또는 숫자,8~12자">비밀번호</label>
 						<input type="password" name="password" id="password"
 						maxlength="12" class="input-check"
@@ -122,7 +119,7 @@ window.onload = function(){
 					<li><label for="user_zipcode">우편번호</label> <input type="text"
 						name="user_zipcode" id="user_zipcode" maxlength="5"
 						autocomplete="off" class="input-check"> <input
-						type="button" value="우편번호 찾기" onclick="execDaumPostcode()"></li>
+						type="button" value="우편번호 찾기" class="button3" onclick="execDaumPostcode()"></li>
 					<li><label for="user_address1">주소</label> <input type="text"
 						name="user_address1" id="user_address1" maxlength="30"
 						class="input-check"></li>
@@ -131,8 +128,8 @@ window.onload = function(){
 						class="input-check"></li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" value="등록"> <input type="button"
-						value="홈으로"
+					<input type="submit" value="등록" class="button1"> <input type="button"
+						value="홈으로" class="button1"
 						onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 				</div>
 			</form>
@@ -145,7 +142,6 @@ window.onload = function(){
 					style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"
 					onclick="closeDaumPostcode()" alt="닫기 버튼">
 			</div>
-
 			<script
 				src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 			<script>
