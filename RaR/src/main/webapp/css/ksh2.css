@@ -80,7 +80,7 @@ form#search-form{
 form#search_form{
 	border:none;
 }
-ul.search{
+/* ul.search{
 	width:340px;
 	list-style:none;
 	padding:0;
@@ -90,7 +90,7 @@ ul.search li{
 	margin:0 0 9px 0;
 	padding:0;
 	display:inline;
-}
+} */
 /*
 ------------------장바구니------------------
 */
