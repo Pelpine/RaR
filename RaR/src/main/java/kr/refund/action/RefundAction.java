@@ -45,6 +45,9 @@ public class RefundAction implements Action{
        refund.setAccount(request.getParameter("account"));
        
        RefundDAO refundDAO = RefundDAO.getInstance();
+       //아이템 구매로 얻은 모든 포인트(구매 포인트 + 룰렛 리워드) 삭제 
+       refundDAO.deleteUserPointByRefund_point(user_num, Integer.parseInt(request.getParameter("refund_point")));
+      
        refundDAO.insertRefund(refund);
        
        request.setAttribute("notice_msg", "환불 신청 접수되었습니다.");

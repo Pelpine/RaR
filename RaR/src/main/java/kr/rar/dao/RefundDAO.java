@@ -453,14 +453,14 @@ public class RefundDAO {
 			return shortage;
 		}
 		
-	//환불 완료 시 티켓을 사용하지 않았다면 티켓 삭제
+	//환불 완료 시 티켓을 사용하지 않았다면 티켓 사용 상태로 변경 (삭제하지 않는 이유는 환불 불가, 취소 가능)
 		public void deleteUnusedTicket(int item_num) throws Exception{
 			Connection conn = null;
 			String sql = null;
 			PreparedStatement pstmt = null;
 			try {
 				conn = DBUtil.getConnection();
-				sql = "DELETE FROM roulette_ticket WHERE item_num=?";
+				sql = "UPDATE roulette_ticket SET status = 0 WHERE item_num=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, item_num);
 				pstmt.executeUpdate();
@@ -507,6 +507,24 @@ public class RefundDAO {
 			sql = "DELETE refund WHERE refund_num =?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, refund_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	//환불 취소시 회수한 포인트 복구
+	public void returnPoint(int refund_point, int user_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE member_detail SET user_point = user_point + ? WHERE user_num =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, refund_point);
+			pstmt.setInt(2, user_num);
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);

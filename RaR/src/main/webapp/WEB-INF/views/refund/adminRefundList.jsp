@@ -15,7 +15,7 @@
 	<div class="content-main">
 		<h2>환불 목록</h2>
 		<div class="align-right">
-			<input type="button" value="MY페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">

@@ -31,9 +31,11 @@ public class DeleteRefundAction implements Action{
             // 구매자 회원번호와 로그인한 회원번호가 불일치할 경우
             return "/WEB-INF/views/common/notice.jsp";
         }
+        int refund_point = refund.getCollect_point();
+        //환불 취소로 포인트 복구
+        refundDAO.returnPoint(refund_point, user_num);
         refundDAO.deleteRefund(refund_num);
-        
-        request.setAttribute("notice_msg", "환불이 취소되었습니다.");
+        request.setAttribute("notice_msg", "환불이 취소되었습니다. (회수 포인트 재지급)");
         request.setAttribute("notice_url",request.getContextPath()+"/refund/userRefundList.do");
         return "/WEB-INF/views/common/alert_view.jsp";
 	}

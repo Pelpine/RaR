@@ -130,10 +130,12 @@ window.onload = function() {
 			</ul> 
 				<div class="refund_price">
 					상품 구매 금액 : <span>${item.item_price}</span>원<br>
-					- (회수 포인트(${refund_point}) - 보유 포인트(${point})) : ${shortage}원 <br>
-					- 룰렛으로 얻은 포인트 : <span class="refund_point">${roulette_reward}</span>원<br>
+					보유 포인트 : ${point}<br>
+					- 회수되는 포인트 : ${refund_point} <br>
+					<c:if test="${roulette_reward != 0}">(룰렛으로 얻은 포인트 ${roulette_reward}원 합산 결과)<br></c:if>
 					<hr size = "1" >
-					= 환불 예정 금액 : <span class="refund_price">${refund_price}</span>원
+					= 환불 예정 금액 : <span class="refund_price">${refund_price}</span>원 <br>
+					<c:if test="${refund_point < point}">환불 후 보유 포인트 = ${afterRefund}원</c:if>
 				</div>
 			<!-- 버튼 그룹 -->
 			<input type="submit" value="신청">
