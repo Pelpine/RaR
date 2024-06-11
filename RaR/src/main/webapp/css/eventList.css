@@ -85,6 +85,9 @@ ul, li {
     line-height: 60px;
 }
 
+.lastli{
+	padding-top : 15px;
+}
 
 #ulTable > li > ul > li:first-child {
     width: 10%;
@@ -176,21 +179,29 @@ ul, li {
     height: 100%; /* 내부 요소의 높이를 부모 요소에 맞춤 */
 }
 
-.search li input[type="submit"] {
-	background-color: #77dd77; /* 파스텔 그린 */
-    border: none;
-    border-radius: 25px; /* 둥근 모서리 */
+input[type="submit"] {
+    background-color: #007bff;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    margin: 10px 2px;
+    border-radius:10px;
+    border-style:none;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+/*일반 버튼*/
+input[type="button"] {
+    background-color: #007bff;
+    color: white;
+	padding:10px 20px 10px 20px;
+	border-radius:10px;
+	border-style:none;
+    cursor: pointer;
+}
+input[type="button"]:hover {
+    background-color: #0056b3;
+}
+
 
 .search .block {
     width: 100%;
@@ -210,28 +221,4 @@ ul, li {
     margin-top: 2px; /* 체크박스를 텍스트 아래로 이동 */
     margin-left: 5px; /* 체크박스와 텍스트 사이의 간격 조정 */
 }
-
-
-.align-right input[type="button"]{
-	 background-color: #77dd77; /* 파스텔 그린 */
-	 border: none;
-	 border-radius: 25px; /* 둥근 모서리 */
-	 color: white;
-	 padding: 10px 20px;
-	 font-size: 16px;
-	 font-weight: bold;
-	 text-align: center;
-	 text-decoration: none;
-	 display: inline-block;
-	 margin: 10px 2px;
-	 cursor: pointer;
-	 transition: background-color 0.3s, box-shadow 0.3s;
-	 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
-}
-
-.align-center input[type="submit"],
-.align-center input[type="button"] {
-/
-}
-
 

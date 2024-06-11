@@ -105,6 +105,7 @@ body{
     border-radius: 10px;
     background-color: #e0f7fa; /* 하늘색 배경 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* 내부 여백 추가 */
 }
 
 .paging-button {

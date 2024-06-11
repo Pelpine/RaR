@@ -760,7 +760,7 @@ public class BoardDAO {
 				
 				if(keyword!=null && !"".equals(keyword)) {
 					//검색 처리 sub_sql 조건
-					if(keyfield.equals("1"))sub_sql += "WHERE title LIKE '%' || ? || '%'";
+					if(keyfield.equals("1"))sub_sql += "WHERE bg_title LIKE '%' || ? || '%'";
 					
 				}
 				sql = "SELECT COUNT(*) FROM board_genre " +sub_sql;

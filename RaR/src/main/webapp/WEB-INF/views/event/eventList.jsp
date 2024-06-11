@@ -82,7 +82,7 @@
 
                     </ul>
                 </li>
-                <li>
+                <li class="lastli">
                     <div class="list-space align-right">
                         <input type="button" value="이벤트 등록" onclick="location.href='insertEventForm.do'" 
                         <c:if test="${user_auth != 9 || empty user_num}">style="display: none;"</c:if>>            

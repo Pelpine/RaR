@@ -86,7 +86,7 @@ public class RefundFormAction implements Action {
         int refund_price = item.getItem_price() - shortage - roulette_reward;
         request.setAttribute("shortage", shortage);
         request.setAttribute("point", point);
-        request.setAttribute("refund_point", refund_point);
+        request.setAttribute("refund_point", refund_point);;
         request.setAttribute("item", item);
         request.setAttribute("item_num", item_num);
         request.setAttribute("order_num", order_num);

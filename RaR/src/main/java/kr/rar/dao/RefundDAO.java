@@ -318,9 +318,45 @@ public class RefundDAO {
 			    }
 			    return count;
 			}	
+	//사용자 상품 환불 정보 
+	public RefundVO getRefundvo(int item_num) throws Exception {
+		RefundVO refund = null;
+		Connection conn= null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM refund WHERE item_num =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, item_num);
+			rs=  pstmt.executeQuery();
+			if(rs.next()) {
+			refund = new RefundVO();
+			refund.setRefund_num(rs.getInt("refund_num"));
+        	refund.setItem_num(rs.getInt("item_num"));
+        	refund.setOrder_num(rs.getInt("order_num"));
+        	refund.setReason(rs.getInt("reason"));
+        	refund.setReason_other(rs.getString("reason_other"));
+        	refund.setBank(rs.getString("bank"));
+        	refund.setAccount(rs.getString("account"));
+        	refund.setRefund_price(rs.getInt("refund_price"));
+        	refund.setCollect_point(rs.getInt("collect_point"));
+        	refund.setRequest_date(rs.getDate("request_date"));
+        	refund.setRefund_date(rs.getDate("refund_date"));
+        	refund.setStatus(rs.getInt("status"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return refund;
+	}
 	//환불 상태 변경
 	//환불 완료 (포인트 회수, 아이템 복귀)
-
+		
 	//회수 포인트, 보유 포인트 우선 차감 후 잔액 반환
 		public int deleteUserPointByRefund_point(int user_num, int refund_point) throws Exception{
 			int user_point = 0;

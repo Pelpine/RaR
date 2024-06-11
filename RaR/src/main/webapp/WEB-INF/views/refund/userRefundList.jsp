@@ -33,7 +33,7 @@
 			</tr>
 			<c:forEach var="refund" items="${list}" varStatus="status">
 			<tr>
-				<td>${itemList[status.index]}</td>
+				<td><a href="userRefundDetail.do?item_num=${refund.item_num}&order_num=${refund.order_num}">${itemList[status.index]}</a></td>
 				<td><fmt:formatNumber value="${refund.refund_price}"/>원</td>
 				<td>${refund.request_date}</td>
 				<td>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/attendance.js"></script>
 <div class="main-nav">
@@ -79,7 +78,7 @@
             </div>
             <div class="dropdown">
                 <button class="dropbtn" onclick="location.href='${pageContext.request.contextPath}/book/list.do'">
-                <h6 class="rit">중고서적<br>판매신청</h6>
+                판매신청
                 </button>
             </div>
             <c:if test="${!empty user_num && user_auth == 9}">
@@ -88,7 +87,7 @@
                     <div class="dropdown-content">
                         <a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
                         <a href="${pageContext.request.contextPath}/item/adminList.do">상품관리</a>
-						<a href="${pageContext.request.contextPath}/order/adminOrder	List.do">주문관리</a>
+						<a href="${pageContext.request.contextPath}/order/adminOrderList.do">주문관리</a>
                         <a href="${pageContext.request.contextPath}/event/eventApproval.do">상품승인</a>
                     </div>
                 </div>
