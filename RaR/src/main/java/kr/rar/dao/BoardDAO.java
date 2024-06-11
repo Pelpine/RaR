@@ -9,6 +9,7 @@ import java.util.List;
 import kr.rar.vo.BoardFavVO;
 import kr.rar.vo.BoardReplyVO;
 import kr.rar.vo.BoardVO;
+import kr.rar.vo.EventVO;
 import kr.rar.vo.GenreUserVO;
 import kr.rar.vo.GenreVO;
 import kr.util.DBUtil;
@@ -1066,6 +1067,39 @@ public class BoardDAO {
 			        
 			        return genreUser;
 			    }
+			    
+			    //이벤트 가저오기
+			    public List<EventVO> getBanner() throws Exception{
+				    Connection conn = null;
+				    PreparedStatement pstmt = null;
+				    String sql = null;
+				    ResultSet rs = null;
+				    List<EventVO> list = null;
+				    try {
+				        conn = DBUtil.getConnection();        
+				        sql = "SELECT * FROM event_list WHERE status=1";
+
+				        pstmt = conn.prepareStatement(sql);
+				      	  
+				        rs = pstmt.executeQuery();
+				        list = new ArrayList<EventVO>();
+				        while(rs.next()) {
+				        	EventVO event = new EventVO();
+				        	event.setEvent_num(rs.getInt("event_num"));
+				        	event.setName(rs.getString("name"));
+				        	event.setStart_date(rs.getDate("start_date"));
+				        	event.setEnd_date(rs.getDate("end_date"));
+				        	event.setNotice(rs.getInt("notice"));
+				        	event.setHit(rs.getInt("hit"));
+				        	list.add(event);
+				        }
+				    } catch(Exception e) {
+				        throw new Exception(e);
+				    } finally {
+				        DBUtil.executeClose(rs, pstmt, conn);
+				    }
+				    return list;
+				}
 	}
 
 

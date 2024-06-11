@@ -5,7 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.rar.dao.BoardDAO;
+import kr.rar.dao.EventDAO;
 import kr.rar.vo.BoardVO;
+import kr.rar.vo.EventVO;
 import kr.controller.Action;
 import kr.util.PagingUtil;
 
@@ -31,6 +33,9 @@ public class ListAction implements Action {
 			list = dao.getListBoard(page.getStartRow(),page.getEndRow(), keyfield, keyword);
 		}
 		
+		List<EventVO> elist = dao.getBanner();
+		
+		request.setAttribute("elist", elist);
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());

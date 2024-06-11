@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,8 @@
 	<div class="page-main">
 		<div>
 			<form action="reviewinsert.do" method="post" name="review_form">
+			<c:forEach var="re" items="${order}"></c:forEach>
+			
 				<ul class="form-list">
 					<li class="form-item form-item-inline">
 						<label for="bk_name">별점</label>

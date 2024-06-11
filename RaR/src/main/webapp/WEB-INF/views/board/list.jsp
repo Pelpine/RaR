@@ -53,7 +53,34 @@
             <c:if test="${count==0}">
                 <div class="result-display">표시할 게시물이 없습니다.</div>
             </c:if>
-
+			<ul id ="ulTable">
+                       <li>
+                            <ul>
+                                <li>No</li>
+                                <li>제목</li>
+                                <li>시작일</li>
+                                <li>종료일</li>
+                                <li>조회수</li>
+                            </ul>
+                        </li>
+			<c:forEach var="event" items="${elist}">
+			<li>
+                            <ul>
+                                <c:if test="${event.notice == 1}"><li class="left">공지사항</li></c:if>
+                                	<li><a href="${pageContext.request.contextPath}/event/eventDetail.do?event_num=${event.event_num}">${event.name}</a></li>
+                                <c:if test="${event.start_date == '2000-01-01'}">
+                                	<li>.</li>
+                                	<li>.</li>
+                                </c:if>
+                                <c:if test="${event.start_date != '2000-01-01'}">
+                                	<li>${event.start_date}</li>
+                                	<li>${event.end_date}</li>
+                                </c:if>
+                                <li>${event.hit}</li>
+                            </ul>
+                        </li>
+			</c:forEach>
+			</ul>
             <c:if test="${count>0}">
                 <table class="genre-table">
                     <thead>
