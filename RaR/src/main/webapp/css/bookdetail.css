@@ -1,5 +1,6 @@
 h4 {
-    font-size: 18pt;
+    font-size: 20pt;
+    margin: 0;
 }
 
 .inline-block {
@@ -8,7 +9,7 @@ h4 {
 
 .page-main-top {
     width: 1200px;
-    margin: 20px auto;
+    margin: 0px auto;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
 }
 

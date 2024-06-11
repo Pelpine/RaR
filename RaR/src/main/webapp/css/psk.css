@@ -25,7 +25,7 @@ h4{
     margin-right: 8px; /* 버튼과 선택 필드 사이의 간격 추가 */
 }
 
-.search-bar1 button {
+.search-bar1 button{
     height: 38px; /* 검색 버튼 높이 */
     padding: 8px 12px;
     background-color: #17a2b8;
@@ -41,11 +41,10 @@ h4{
 }
 
 .container1 {
-    width: 1370px; /* 고정 너비 설정 */
+    width: 1200px; /* 고정 너비 설정 */
     display: flex;
-    justify-content: flex-start; /* 메인 콘텐츠를 왼쪽 정렬 */
-    margin: 0px auto 0px auto;
-    transform: translateX(-85px);
+    justify-content: center; /* 메인 콘텐츠를 왼쪽 정렬 */
+    margin: 0px auto;
 }
 
 .sidebar1 {
@@ -86,7 +85,7 @@ h4{
 
 .main-content1 {
     flex-grow: 1;
-    max-width: 1200px; /* 최대 가로 폭을 더 넓게 설정 */
+    max-width: 1200px - 150px; /* 최대 가로 폭을 더 넓게 설정 */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -117,6 +116,26 @@ h4{
 .list-space1 input:hover {
     background-color: #138496; /* 호버 시 버튼 배경색 변경 */
     border-color: #138496; /* 호버 시 버튼 테두리색 변경 */
+}
+
+.list-space2 {
+    margin-left: 0; /* 버튼 간격 제거 */
+    padding: 8px 12px; /* 버튼 패딩 유지 */
+    background-color: #17a2b8; /* 버튼 배경색 설정 */
+    color: white; /* 버튼 글자색 설정 */
+    border: 1px solid #17a2b8; /* 버튼 테두리 설정 */
+    border-radius: 4px; /* 버튼 테두리 둥글게 설정 */
+    cursor: pointer; /* 커서 변경 */
+}
+
+.list-space2:hover {
+    background-color: #138496; /* 호버 시 버튼 배경색 변경 */
+    border-color: #138496; /* 호버 시 버튼 테두리색 변경 */
+}
+
+.list-space2:disabled {
+    background-color: rgb(128, 128, 128); /* 비활성화시 배경색 변경 */
+    border-color: rgb(128, 128, 128);
 }
 
 .book-list1 {

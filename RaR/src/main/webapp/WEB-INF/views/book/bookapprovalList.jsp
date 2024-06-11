@@ -6,9 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>등록 요청 목록</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/bookapproval.css"
-	type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bookapproval.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -92,5 +90,9 @@ $(document).ready(function(){
 			</c:if>
 		</div>
 	</div>
+<hr width="100%" noshade="noshade">
 </body>
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
 </html>

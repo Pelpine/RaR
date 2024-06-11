@@ -49,6 +49,7 @@
                                 <div class="book-price1">
                                     <div class="original-price1">원가: ${book.bk_price} 원</div>
                                     <div class="discount-price1">최저가: ${book.bk_minprice} 원</div>
+                                    <input type="button" value="구매바로가기" onclick="location.href='booksdetail.do?bk_num=${book.bk_num}#to'" class="list-space2" <c:if test="${book.bk_count <= 0}">disabled</c:if>>
                                 </div>
                             </div>
                         </c:forEach>
@@ -74,5 +75,9 @@
             </div>
         </div>
     </div>
+<hr width="100%" noshade="noshade">
 </body>
+<footer>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
 </html>

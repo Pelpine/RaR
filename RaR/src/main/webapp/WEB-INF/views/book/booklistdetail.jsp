@@ -53,6 +53,10 @@
     document.getElementById('formatted-date').textContent = formattedDate;
 </script>
 <jsp:include page="/WEB-INF/views/book/booklistdetail_include.jsp"/>
+<hr width="100%" noshade="noshade">
 </body>
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
 </html>
 
