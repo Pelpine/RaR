@@ -50,7 +50,7 @@ a:hover{
 input[type="submit"] {
     background-color: #007bff;
     color: white;
-	padding:10px 20px 10px 20px;
+	padding:9.5px 20px 11.5px 20px;
     border-style:none;
     cursor: pointer;
 }
@@ -61,7 +61,7 @@ input[type="submit"]:hover {
 input[type="button"] {
     background-color: #007bff;
     color: white;
-	padding:10px 20px 10px 20px;
+	padding:9.5px 20px 11.5px 20px;
 	border-style:none;
     cursor: pointer;
 }
@@ -337,11 +337,12 @@ ul.search li{
 }
 ul.search li input[type="search"]{
 	width:200px;
-	height:30px;
+	height:39px;
+	padding:5px;
 }
 ul.search li select{
-	width:70px;
-	height:30px;
+	width:120px;
+	height:39px;
 }
 /*상품명*/
 .order_list_names{
