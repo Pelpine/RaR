@@ -15,8 +15,6 @@ public class ModifyRefundAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
         Integer user_num = (Integer)session.getAttribute("user_num");
-        int item_num = Integer.parseInt(request.getParameter("item_num"));
-        int order_num = Integer.parseInt(request.getParameter("order_num"));
         if(user_num == null) {
             return "redirect:/member/loginForm.do";
         }
@@ -37,7 +35,7 @@ public class ModifyRefundAction implements Action{
        refundDAO.updateRefund(refund, refund_num);
        
        request.setAttribute("notice_msg", "환불 정보가 수정되었습니다.");
-       request.setAttribute("notice_url","userRefundDetail.do?item_num="+item_num+"&order_num="+order_num);
+       request.setAttribute("notice_url","userRefundDetail.do?refund_num="+refund_num);
        return "/WEB-INF/views/common/alert_view.jsp";
 	}
 

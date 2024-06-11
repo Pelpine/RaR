@@ -319,7 +319,7 @@ public class RefundDAO {
 			    return count;
 			}	
 	//상품별 사용자 상품 환불 정보 반환
-	public RefundVO getRefundvo(int item_num) throws Exception {
+	public RefundVO getRefundvo(int refund_num) throws Exception {
 		RefundVO refund = null;
 		Connection conn= null;
 		PreparedStatement pstmt = null;
@@ -327,9 +327,9 @@ public class RefundDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM refund WHERE item_num =?";
+			sql = "SELECT * FROM refund WHERE refund_num =?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, item_num);
+			pstmt.setInt(1, refund_num);
 			rs=  pstmt.executeQuery();
 			if(rs.next()) {
 			refund = new RefundVO();
@@ -345,6 +345,7 @@ public class RefundDAO {
         	refund.setRequest_date(rs.getDate("request_date"));
         	refund.setRefund_date(rs.getDate("refund_date"));
         	refund.setStatus(rs.getInt("status"));
+        	refund.setUser_num(rs.getInt("user_num"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -499,5 +500,20 @@ public class RefundDAO {
 		}
 	}
 	//환불 취소 (환불 신청 단계에서만 가능) 
-
+	public void deleteRefund(int refund_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE refund WHERE refund_num =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, refund_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
