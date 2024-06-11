@@ -39,12 +39,23 @@ public class RefundFormAction implements Action {
         // 현재 날짜를 구함
         LocalDate today = LocalDate.now();
         LocalDate refundDeadline = deadline.toLocalDate();
-
+        
         if (today.isAfter(refundDeadline)) {
             // 환불 기한을 넘긴 경우
-            return "/WEB-INF/views/common/notice.jsp";
+        	request.setAttribute("notice_msg", "환불 기한이 지났습니다.");
+        	request.setAttribute("notice_url", request.getContextPath()+"/order/userOrderListDetail.do?order_num="+order_num);
+            return "/WEB-INF/views/common/alert_view.jsp";
         }
+        
         int item_num = Integer.parseInt(request.getParameter("item_num"));
+        //환불 상태를 구함
+        int status = refundDAO.getRefundStatusByItem_num(item_num);
+        
+        
+        
+        
+        /* ------------환불기한 내이고 아직 환불 신청을 하지 않았을 때 -------------*/
+        
         //각 주문에서 한 개 상품의 세부 정보
         OrderDetailVO item = new OrderDetailVO();
         item = refundDAO.getOrderDetailByItem_num(item_num);

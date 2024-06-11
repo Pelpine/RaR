@@ -35,13 +35,15 @@ public class UserOrderListDetailAction implements Action{
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		RefundDAO refundDAO = RefundDAO.getInstance();
+		//환불 기한
 		Date deadline = refundDAO.getRefundDeadLineByOrder_Num(order_num);
+		
 		//주문한 개별상품 정보 반환
 		List<OrderDetailVO> detailList = dao.getOrderListDetail(order_num);
 		
 		LocalDate today = LocalDate.now();
         Date currentDate = Date.valueOf(today);
-
+        
 		
 		request.setAttribute("order", order);
 		request.setAttribute("detailList", detailList);
