@@ -41,6 +41,35 @@
 	border: 1px solid gray;
 	width : 300px;
 }
+ .refund-container {
+     max-width: 600px;
+     margin: 50px auto;
+     padding: 20px;
+     border: 1px solid #ddd;
+     border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     font-family: 'Arial', sans-serif;
+     line-height: 1.6;
+ }
+ .refund-container h2 {
+     text-align: center;
+     color: #333;
+ }
+ .refund-item {
+     margin: 10px 0;
+ }
+ .refund-label {
+     font-weight: bold;
+     color: #555;
+ }
+ .refund-value {
+     margin-left: 10px;
+ }
+ .highlight {
+     background-color: #f9f9f9;
+     padding: 5px;
+     border-radius: 5px;
+ }
 </style>
 </head>
 <body>
@@ -79,32 +108,60 @@
 		</div>
 	<hr size="1" width="100%" noshade="noshade">
 	<p>
-<div class="align-center">
-		환불번호 : ${refund.refund_num}<br>
-		신청일 : ${refund.request_date}<br>
-		환불이유 : 
-		<c:if test="${refund.reason == 1}">단순 변심</c:if>
-		<c:if test="${refund.reason == 2}">상품 불량</c:if>
-		<c:if test="${refund.reason == 3}">배송 문제</c:if>
-		<c:if test="${refund.reason == 4}">기타</c:if>
-		<br>
-		<c:if test="${!empty refund.reason_other}"> 기타 이유 : ${refund.reason_other}</c:if>
-		환불액 : ${refund.refund_price}원
-		환불 상태 : 
-		<c:if test="${refund.status == 1}">환불 신청</c:if>
-		<c:if test="${refund.status == 2}">상품 불량</c:if>
-		<c:if test="${refund.status == 3}">배송 문제</c:if>
-		<c:if test="${refund.status == 4}">기타</c:if>
-</div>	
+<div class="refund-container">
+    <h2>환불 상세 정보</h2>
+    <div class="refund-item">
+        <span class="refund-label">환불번호:</span>
+        <span class="refund-value highlight">${refund.refund_num}</span>
+    </div>
+    <div class="refund-item">
+        <span class="refund-label">신청일:</span>
+        <span class="refund-value highlight">${refund.request_date}</span>
+    </div>
+    <div class="refund-item">
+        <span class="refund-label">환불이유:</span>
+        <span class="refund-value highlight">
+            <c:if test="${refund.reason == 1}">단순 변심</c:if>
+            <c:if test="${refund.reason == 2}">상품 불량</c:if>
+            <c:if test="${refund.reason == 3}">배송 문제</c:if>
+            <c:if test="${refund.reason == 4}">기타</c:if>
+        </span>
+    </div>
+    <c:if test="${!empty refund.reason_other}">
+    <div class="refund-item">
+        <span class="refund-label">기타 이유:</span>
+        <span class="refund-value highlight">${refund.reason_other}</span>
+    </div>
+    </c:if>
+    <div class="refund-item">
+        <span class="refund-label">환불액:</span>
+        <span class="refund-value highlight">${refund.refund_price}원</span>
+    </div>
+    <div class="refund-item">
+        <span class="refund-label">환불 상태:</span>
+        <span class="refund-value highlight">
+            <c:if test="${refund.status == 1}">환불 신청</c:if>
+            <c:if test="${refund.status == 2}">환불검수대기</c:if>
+            <c:if test="${refund.status == 3}">환불검수대기</c:if>
+            <c:if test="${refund.status == 4}">환불 불가</c:if>
+            <c:if test="${refund.status == 5}">환불 완료</c:if>
+        </span>
+    </div>
+    <div class="refund-item">
+        <span class="refund-label">환불 받으실 계좌번호:</span>
+        <span class="refund-value highlight">${refund.bank} / ${refund.account}</span>
+    </div>
+</div>
 	<hr size="1" width="100%" noshade="noshade">
 
 	<div class="align-right">
-			<input type="button" value="수정" onclick="location.href='modifyRefundForm.do?refund_num=${refund.refund_num}'">
-			<input type="button" value="환불 취소" id="delete_btn">
+			<input type="button" value="환불정보수정" onclick="location.href='modifyRefundForm.do?refund_num=${refund.refund_num}'"
+			<c:if test= "${refund.status == 4 || refund.status == 5}">disabled</c:if>>
+			<input type="button" value="환불 취소" id="delete_btn" <c:if test= "${refund.status != 1}">disabled</c:if>>
 			<script type="text/javascript">
 				const delete_btn = document.getElementById('delete_btn');
 				delete_btn.onclick = function(){
-				let choice = confirm('삭제하시겠습니까?');
+				let choice = confirm('환불 취소 하시겠습니까?');
 				if(choice){
 					location.replace('deleteRefund.do?refund_num=${refund.refund_num}');
 					}

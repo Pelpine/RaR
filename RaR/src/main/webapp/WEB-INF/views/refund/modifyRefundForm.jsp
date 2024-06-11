@@ -44,7 +44,7 @@
 </style>
 <script type="text/javascript">
 window.onload = function() {
-    const myForm = document.getElementById('refund_form');
+    const myForm = document.getElementById('modify_form');
     // 이벤트 연결
     myForm.onsubmit = function() {
         const items = document.querySelectorAll('.input-check');
@@ -64,7 +64,7 @@ window.onload = function() {
 <div class="page-main">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="content-main">
-        <h2 class="h2">환불 신청</h2>    
+        <h2 class="h2">환불 내용 수정</h2>    
 
         <!-- 테이블로 환불 상품 정보 표시 -->
         <div class="align-center">
@@ -98,53 +98,40 @@ window.onload = function() {
 		
         <!-- 환불 신청 폼 -->
         <div class="align-center">
-        <form id="refund_form" action="refund.do" method="post">
-	        <input type="hidden" value="${refund_price}" name="refund_price">
-	        <input type="hidden" value="${refund_point}" name="refund_point">
-	        <input type="hidden" value="${order_num}" name="order_num">
-	        <input type="hidden" value="${item_num}" name="item_num" id="item_num">
+        <form id="modify_form" action="modifyRefund.do" method="post">
+        	<input type="hidden" value="${refund.refund_num}" name="refund_num">
+        	<input type="hidden" value="${refund.status}" name="status">
+	        <input type="hidden" value="${refund.order_num}" name="order_num">
+	        <input type="hidden" value="${refund.item_num}" name="item_num" id="item_num">
     		<ul>
 			    <!-- 환불 사유 선택 -->
 			    <li>
 			        <label for="reason">환불 사유</label>
 			        <select name="reason" id="reason" onchange="toggleTextarea()" class="input-check">
-			            <option value="1">단순 변심</option>
-			            <option value="2">상태 불량</option>
-			            <option value="3">배송 문제</option>
-			            <option value="4">기타</option>
+			            <option value="1" ${refund.reason == 1 ? 'selected' : ''}>단순 변심</option>
+			            <option value="2" ${refund.reason == 2 ? 'selected' : ''}>상태 불량</option>
+			            <option value="3" ${refund.reason == 3 ? 'selected' : ''}>배송 문제</option>
+			            <option value="4" ${refund.reason == 4 ? 'selected' : ''}>기타</option>
 			        </select>
 			    </li>
 			    <!-- 기타 사유 입력 -->
 			    <li>
 			        <label for="reason_other">기타 사유</label>
-			        <textarea name="reason_other" id="reason_other" rows="4" cols="50" disabled></textarea>
+			        <textarea name="reason_other" id="reason_other" rows="4" cols="50" disabled>${refund.reason_other}</textarea>
 			    </li>
 			    <li id="bank">
 			        <label for="bank">은행</label>
-			        <input type="text" name="bank" maxlength="12" class="input-check" id="bank">
+			        <input type="text" name="bank" maxlength="12" class="input-check" id="bank" value="${refund.bank}">
 			    </li>
 			    <li id="account">
 			        <label for="account">계좌번호</label>
-			        <input type="text" name="account" maxlength="40" class="input-check" id="account">
+			        <input type="text" name="account" maxlength="40" class="input-check" id="account" value="${refund.account}">
 			    </li>
 			</ul> 
-				<div class="refund_price">
-					상품 구매 금액 : <span>${item.item_price}</span>원<br>
-					- (회수 포인트(${refund_point}) - 보유 포인트(${point})) : ${shortage}원 <br>
-					- 룰렛으로 얻은 포인트 : <span class="refund_point">${roulette_reward}</span>원<br>
-					<hr size = "1" >
-					= 환불 예정 금액 : <span class="refund_price">${refund_price}</span>원
-				</div>
 			<!-- 버튼 그룹 -->
 			<input type="submit" value="신청">
-			<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/order/userOrderListDetail.do?order_num=${order_num}'">
+			<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/order/userRefundDetail.do?item_num=${refund.item_num}'">
 			<div class="refund-policy-container">
-			    <span>환불 신청이 접수되면 상품을 업체주소로 배송해주세요.</span><br>
-			    <span class="refund-policy">
-			        1. 구매 14일 이후에는 환불이 불가능 합니다. <br>
-			        2. 단순 변심으로 인한 환불은 직접 배송료를 지불하셔야 합니다. <br>
-			        3. 상품 구매로 얻은 포인트와 티켓은 회수되며,<br> 이미 사용했을 경우 환불금액에서 차감됩니다.
-			    </span>
 </div>
 </form>
 </div>
