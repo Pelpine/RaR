@@ -73,8 +73,8 @@ $(function(){
                     </li>
                 </ul>
                 <div class="align-center">
-                    <input type="submit" class="button2" value="회원탈퇴">
-                    <input type="button" class="button2" value="MY페이지"
+                    <input type="submit" class="button4" value="회원탈퇴">
+                    <input type="button" class="button4" value="마이페이지"
                            onclick="location.href='myPage.do'">
                 </div>
             </form>
