@@ -139,6 +139,9 @@ $(function(){
 							<li>포인트 : ${member.user_point}</li>
 					</c:when>
 					</c:choose>
+					<li>
+					<input type="button" value="출석체크" data-eventnum="100" id="attendance_button">
+					</li>
 				</ul>
 			</div>
 			<div class="item" onclick="location.href='${pageContext.request.contextPath}/order/userOrderList.do'">
@@ -159,6 +162,10 @@ $(function(){
 			</div>
 			<div class="item" onclick="location.href='${pageContext.request.contextPath}/member/modifyUserForm.do'">
 				<h3>회원 정보 수정</h3>
+				<hr>
+			</div>
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/member/modifyPasswordForm.do'">
+				<h3>비밀번호 수정</h3>
 				<hr>
 			</div>
 			<div class="item" onclick="location.href='${pageContext.request.contextPath}/member/deleteUserForm.do'">

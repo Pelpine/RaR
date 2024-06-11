@@ -77,7 +77,7 @@ $(function(){
 			</ul>    
 			<div class="align-center">
 				<input type="submit" value="비밀번호 수정">
-				<input type="button" value="My페이지"
+				<input type="button" value="마이페이지"
 				    onclick="location.href='myPage.do'">
 			</div>                                  
 		</form>

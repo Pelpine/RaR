@@ -212,3 +212,6 @@ input[type="number"]{
 	opacity:0.65;
 	transform:scale(0.85) translateY(-0.5rem) translateX(-0.5rem);      
 }
+.attendance_button {
+	margin-top: 20px;
+}

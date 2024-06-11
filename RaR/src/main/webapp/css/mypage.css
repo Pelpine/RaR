@@ -85,3 +85,32 @@ ul.search li{
 .item:hover{
 	color: gray;
 }
+/*
+------------------공통 버튼------------------
+*/
+/*제출 버튼*/
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+	padding:10px 10px 10px 10px;
+    border-radius:10px;
+    border-style:none;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+/*일반 버튼*/
+#attendance_button{
+	margin-top : 20px;
+    background-color: #007bff;
+    color: white;
+	padding:10px 10px 10px 10px;
+	border-radius:10px;
+	border-style:none;
+    cursor: pointer;
+}
+#attendance_button:hover{
+    background-color: #0056b3;
+}
+/*
