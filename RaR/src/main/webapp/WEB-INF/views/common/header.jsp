@@ -91,6 +91,7 @@
                         <a href="${pageContext.request.contextPath}/item/adminList.do">상품관리</a>
 						<a href="${pageContext.request.contextPath}/order/adminOrderList.do">주문관리</a>
                         <a href="${pageContext.request.contextPath}/event/eventApproval.do">상품승인</a>
+                        <a href="${pageContext.request.contextPath}/refund/adminRefundList.do">환불관리</a>
                     </div>
                 </div>
             </c:if>

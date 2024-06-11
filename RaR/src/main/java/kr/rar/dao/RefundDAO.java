@@ -253,8 +253,7 @@ public class RefundDAO {
 		return item_name;
 	}
 	//------------------------------(관리자)
-	//전체 사용자 환불 목록
-	//사용자 환불 목록 보기
+	//전체 환불 목록 보기
 		public List<RefundVO> getRefundList(int start, int end) throws Exception{
 			List<RefundVO> list = null;
 			Connection conn = null;
@@ -268,8 +267,8 @@ public class RefundDAO {
 			        		+ "(SELECT * FROM refund ORDER BY refund_date DESC) A) "
 			        		+ "WHERE RN BETWEEN ? AND ?";
 			        pstmt = conn.prepareStatement(sql);  
-			        pstmt.setInt(2, start);
-			        pstmt.setInt(3, end);
+			        pstmt.setInt(1, start);
+			        pstmt.setInt(2, end);
 			        rs = pstmt.executeQuery();
 			        list = new ArrayList<RefundVO>();
 			        while(rs.next()) {
@@ -286,6 +285,7 @@ public class RefundDAO {
 			        	refund.setRequest_date(rs.getDate("request_date"));
 			        	refund.setRefund_date(rs.getDate("refund_date"));
 			        	refund.setStatus(rs.getInt("status"));
+			        	refund.setUser_num(rs.getInt("user_num"));
 			        	list.add(refund);
 			        }
 			    } catch(Exception e) {
@@ -410,9 +410,7 @@ public class RefundDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-	}
-	//환불 완료 (포인트 회수, 아이템 복귀)
-		
+	}	
 	//회수 포인트, 보유 포인트 우선 차감 후 잔액 반환
 		public int deleteUserPointByRefund_point(int user_num, int refund_point) throws Exception{
 			int user_point = 0;
