@@ -8,43 +8,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>메인</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main"> 
     <div class="content-main">
-          <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-              <c:forEach var="event" items="${list}" varStatus="loop">
-              	<c:if test="${!empty event.banner}">
-                  <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="${loop.index}" class="${loop.index == 0 ? 'active' : ''}"></button>
-            	</c:if>
-              </c:forEach>
-          </div>
-          <div class="carousel-inner">
-              <c:forEach var="event" items="${list}" varStatus="loop">
-                 <c:if test="${!empty event.banner}">
-                     <div class="carousel-item ${loop.index == 0 ? 'active' : ''}">
-                         <a href="../event/eventDetail.do?event_num=${event.event_num}"><img src="${pageContext.request.contextPath}/upload/${event.banner}" class="d-block w-100"></a>
-                      <div class="carousel-caption">
-                       <!-- 여기에 캐러셀 캡션 추가 -->
-                      </div>
-                     </div>
-                  </c:if>
-              </c:forEach>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-              <span class="visually-hidden">Previous</span>                             
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-              <span class="carousel-control-next-icon"></span>
-              <span class="visually-hidden">Next</span>                             
-          </button>
-       </div>
+    	<!-- 캐러셀 시작 -->
+    	<div class="carousel">
+	        <div class="carousel-inner">
+	            <div class="carousel-item active">
+	                <img src="../images/독후감 이벤트.jpg">
+	            </div>
+	            <div class="carousel-item">
+	                <img src="../images/출석체크 이벤트.png">
+	            </div>
+	            <div class="carousel-item">
+	                <img src="../images/친구초대 이벤트.png">
+	            </div>
+	        </div>
+	        <a class="carousel-control prev" onclick="prevSlide()"><img src="../images/left_btn.png"></a>
+	        <a class="carousel-control next" onclick="nextSlide()"><img src="../images/right_btn.png"></a>
+	    </div>
+		<!-- 캐러셀 끝 -->
        <div class="image-space">
          <div class="Topic"><h4 class="Topic-h4">최근 입고된 중고 서적</h4></div>
          <c:forEach var="item" items="${itemList}">
