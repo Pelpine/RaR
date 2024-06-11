@@ -352,7 +352,7 @@ ul.search li select{
 .order_list_names span{
 	display: inline-block;
 	height:20px;
-	width:600px;
+	width:500px;
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow: ellipsis;
@@ -418,6 +418,32 @@ input[value="리뷰쓰기"]:hover{
 /*
 --------------------관리자 주문관리--------------------
 */
+/*주문 목록 테이블 간격 조정*/
+#admin_order_list td:nth-child(1){
+	width:80px;
+}
+#admin_order_list td:nth-child(2){
+	width:160px;
+}
+#admin_order_list td:nth-child(3){
+	width:600px;
+}
+#admin_order_list td:nth-child(4){
+	width:120px;
+}
+#admin_order_list td:nth-child(5){
+	width:120px;
+}
+#admin_order_list td:nth-child(6){
+	width:120px;
+}
+/*구매자 아이디 너비 제한*/
+.order_user_emails{
+	display: inline-block;
+	width:150px;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
 /*배송상태 변경 폼*/
 .delivery_status{
 	width:150px;

@@ -68,7 +68,7 @@ window.onload=function(){
 			<c:forEach var="order" items="${list}">
 			<tr>
 				<td>${order.order_num}</td>
-				<td>${order.user_email}</td>
+				<td><span class="order_user_emails">${order.user_email}</span></td>
 				<td class="order_list_names"><a href="adminOrderListDetail.do?order_num=${order.order_num}"><span>${order.item_name}</span></a></td>
 				<td><fmt:formatNumber value="${order.pay_total + order.pay_ship - order.pay_points}"/>원</td>
 				<td>${order.order_date}</td>
