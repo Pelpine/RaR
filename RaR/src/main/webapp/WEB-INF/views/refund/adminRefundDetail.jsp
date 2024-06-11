@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>환불신청정보</title>
+<title>(관리자)환불신청정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 <style>
@@ -138,37 +138,60 @@
         <span class="refund-value highlight">${refund.refund_price}원</span>
     </div>
     <div class="refund-item">
-        <span class="refund-label">환불 상태:</span>
-        <span class="refund-value highlight">
-            <c:if test="${refund.status == 1}">환불 신청</c:if>
-            <c:if test="${refund.status == 2}">환불검수대기</c:if>
-            <c:if test="${refund.status == 3}">환불검수대기</c:if>
-            <c:if test="${refund.status == 4}">환불 불가</c:if>
-            <c:if test="${refund.status == 5}">환불 완료</c:if>
-        </span>
-    </div>
-    <div class="refund-item">
         <span class="refund-label">환불 받으실 계좌번호:</span>
         <span class="refund-value highlight">${refund.bank} / ${refund.account}</span>
     </div>
+    <div>
+    	<form action="modifyStatus.do" method="post" id="status_modifyy">
+			<input type="hidden" name="order_num" value="${refund.refund_num}">
+			<ul>
+				<li>
+					<label for="status">배송상태</label>
+					<c:if test="${refund.status != 5 }">
+						<input type="radio" name="status" id="status1" value="1"
+						<c:if test="${refund.status ==1}">checked</c:if>>환불신청
+						<input type="radio" name="status" id="status2" value="2"
+						<c:if test="${refund.status ==2}">checked</c:if>>배송준비중
+						<input type="radio" name="status" id="status3" value="3"
+						<c:if test="${refund.status ==3}">checked</c:if>>배송중
+						<input type="radio" name="status" id="status4" value="4"
+						<c:if test="${refund.status ==4}">checked</c:if>>환불 불가
+					</c:if>
+					<input type="radio" name="status" id="status5" value="5"
+						<c:if test="${refund.status ==5}">checked</c:if>>주문취소
+				</li>
+				<li>
+			        <label for="reason_other">환불불가이유</label>
+			        <textarea name="reason_other" id="reason_other" rows="4" cols="50" disabled></textarea>
+			    </li>
+			</ul>
+			<div class="align-center">
+				<c:if test="${order.status != 5}">
+					<input type="submit" value="수정">
+					<input type="button" value="주문상세" onclick="location.href='adminDetail.do?order_num=${order.order_num}'">
+				</c:if>
+			</div>
+		</form>	
+    </div>
+<script>
+function toggleTextarea() {
+    var selectBox = document.getElementById("reason");
+    var textarea = document.getElementById("reason_other");
+
+    if (selectBox.value == "4") {
+        textarea.disabled = false;
+    } else {
+        textarea.disabled = true;
+        textarea.value = ""; // 다른 사유 선택 시 입력 내용 초기화
+    }
+}
+</script>    
 </div>
 	<hr size="1" width="100%" noshade="noshade">
 
 	<div class="align-right">
-			<input type="button" value="환불정보수정" onclick="location.href='modifyRefundForm.do?refund_num=${refund.refund_num}'"
-			<c:if test= "${refund.status == 4 || refund.status == 5}">disabled</c:if>>
-			<input type="button" value="환불 취소" id="delete_btn" <c:if test= "${refund.status != 1}">disabled</c:if>>
-			<script type="text/javascript">
-				const delete_btn = document.getElementById('delete_btn');
-				delete_btn.onclick = function(){
-				let choice = confirm('환불 취소 하시겠습니까?');
-				if(choice){
-					location.replace('deleteRefund.do?refund_num=${refund.refund_num}');
-					}
-				};
-			</script>		
-		<input type="button" value="환불목록"
-		       onclick="location.href='userRefundList.do'">
+		<input type="button" value="전체환불목록"
+		       onclick="location.href='adminRefundList.do'">
 	</div>
 </div>
 </div>

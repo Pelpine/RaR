@@ -470,6 +470,43 @@ public class RefundDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
+	//관리자 환불 상태 변경
+		public void adminUpdateRefundStatus(int refund_num, int status) throws Exception{
+			Connection conn = null;
+			String sql = null;
+			PreparedStatement pstmt = null;
+			try {
+				conn = DBUtil.getConnection();
+				sql = "UPDATE refund SET status = ? WHERE refund_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, status);
+				pstmt.setInt(2, refund_num);
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+	//환불 완료시 단순변심 상품 복귀
+		public void returnItemStatus(int item_num) throws Exception{
+			Connection conn = null;
+			String sql = null;
+			PreparedStatement pstmt = null;
+			try {
+				conn = DBUtil.getConnection();
+				sql = "UPDATE item SET status = 1 WHERE item_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(2, item_num);
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+	//환불 
 	//------------------------------(사용자)
 	//환불 신청(사용자)
 	public void insertRefund(RefundVO refund) throws Exception{
