@@ -58,7 +58,7 @@ body{
 }
 
 .search-bar2 {
-	margin-right:140px;
+	margin-left:210px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,14 +105,14 @@ body{
 }
 
 .menu-profile img {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 .profile {
     display: flex;
     align-items: center;
-    margin-left: auto; /* profile을 오른쪽 끝으로 밀기 */
+    margin-left: 80px; /* profile을 오른쪽 끝으로 밀기 */
     padding-right: 10px; /* 오른쪽 패딩 추가 */
 }
 
