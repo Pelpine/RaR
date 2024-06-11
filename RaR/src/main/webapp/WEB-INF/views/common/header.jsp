@@ -87,6 +87,8 @@
                     <button class="dropbtn">관리</button>
                     <div class="dropdown-content">
                         <a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
+                        <a href="${pageContext.request.contextPath}/item/adminList.do">상품관리</a>
+						<a href="${pageContext.request.contextPath}/order/adminOrderList.do">주문관리</a>
                         <a href="${pageContext.request.contextPath}/event/eventApproval.do">상품승인</a>
                     </div>
                 </div>
