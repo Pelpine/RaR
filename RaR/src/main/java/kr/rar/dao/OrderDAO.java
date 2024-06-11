@@ -203,7 +203,7 @@ public class OrderDAO {
 			}
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM ("
-				+ "SELECT * FROM rar_order JOIN (SELECT order_num, LISTAGG('- '||item_name,'<br>') WITHIN GROUP (ORDER BY item_name) item_name "
+				+ "SELECT * FROM rar_order JOIN (SELECT order_num, LISTAGG(item_name,', ') WITHIN GROUP (ORDER BY item_name) item_name "
 				+ "FROM rar_order_detail GROUP BY order_num) USING (order_num) "
 				+ "WHERE user_num=? " + sub_sql
 				+ " ORDER BY order_num DESC)a) WHERE rnum>=? AND rnum<=?";
@@ -296,7 +296,9 @@ public class OrderDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "SELECT * FROM rar_order_detail WHERE order_num=? ORDER BY item_num DESC";
+			sql = "SELECT * FROM rar_order_detail "
+				+ "JOIN item USING (item_num) "
+				+ "WHERE order_num=? ORDER BY item_num DESC";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -315,6 +317,7 @@ public class OrderDAO {
 				detail.setOrder_num(rs.getInt("order_num"));
 				detail.setItem_img(rs.getString("item_img"));
 				detail.setBk_num(rs.getInt("bk_num"));
+				detail.setItem_status(rs.getInt("item_status"));
 				
 				list.add(detail);
 			}
@@ -407,4 +410,154 @@ public class OrderDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//관리자 - 전체 주문 개수/검색 주문 개수
+		public int getAdminOrderCount(String keyfield, String keyword) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			String sub_sql = "";
+			int count = 0;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				
+				if(keyword != null && !"".equals(keyword)) {
+					//검색 글 개수
+					if(keyfield.equals("1")) sub_sql += "WHERE order_num=?";
+					else if(keyfield.equals("2")) sub_sql += "WHERE user_email LIKE '%' || ? || '%'";
+					else if(keyfield.equals("3")) sub_sql += "WHERE item_name LIKE '%' || ? || '%'";
+				}
+				//SQL문 작성
+				sql = "SELECT COUNT(*) FROM rar_order "
+					+ "JOIN (SELECT order_num, LISTAGG(item_name,',') WITHIN GROUP (ORDER BY item_name) item_name "
+					+ "FROM rar_order_detail GROUP BY order_num) USING (order_num) JOIN member USING(user_num) " + sub_sql;
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				if(keyword != null && !"".equals(keyword)) {
+					pstmt.setString(1, keyword);
+				}
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		//관리자 - 전체 주문 목록/검색 주문 목록
+		public List<OrderVO> getAdminOrderList(int start,int end,String keyfield,String keyword) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<OrderVO> list = null;
+			String sql = null;
+			String sub_sql = "";
+			int cnt = 0;
+
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+
+				if(keyword != null && !"".equals(keyword)) {
+					//검색 글 개수
+					if(keyfield.equals("1")) sub_sql += "WHERE order_num=?";
+					else if(keyfield.equals("2")) sub_sql += "WHERE user_email LIKE '%' || ? || '%'";
+					else if(keyfield.equals("3")) sub_sql += "WHERE item_name LIKE '%' || ? || '%'";
+				}
+				//SQL문 작성
+				sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM ("
+					+ "SELECT * FROM rar_order JOIN (SELECT order_num, LISTAGG(item_name,', ') WITHIN GROUP (ORDER BY item_name) item_name "
+					+ "FROM rar_order_detail GROUP BY order_num) USING (order_num) JOIN member USING(user_num) " + sub_sql
+					+ " ORDER BY order_num DESC)a) WHERE rnum>=? AND rnum<=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				if(keyword != null && !"".equals(keyword)) {
+					pstmt.setString(++cnt, keyword);
+				}
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<OrderVO>();
+				rs = pstmt.executeQuery();
+				list = new ArrayList<OrderVO>();
+				while(rs.next()) {
+					OrderVO order = new OrderVO();
+					order.setOrder_num(rs.getInt("order_num"));
+					order.setPay_total(rs.getInt("pay_total"));
+					order.setPay_ship(rs.getInt("pay_ship"));
+					order.setPay_points(rs.getInt("pay_points"));
+					order.setItem_name(rs.getString("item_name"));
+					order.setOrder_status(rs.getInt("order_status"));
+					order.setOrder_date(rs.getDate("order_date"));
+					order.setUser_email(rs.getString("user_email"));
+					
+					list.add(order);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
+		//관리자 - 배송상태 수정
+		public void updateOrderStatus(OrderVO order)throws Exception{  
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//오토 커밋 해제
+				conn.setAutoCommit(false);
+				//SQL문 작성
+				sql = "UPDATE rar_order SET status=?,modify_date=SYSDATE WHERE order_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, order.getOrder_status());
+				pstmt.setInt(2, order.getOrder_num());
+				pstmt.executeUpdate();
+				
+				//주문 취소일 경우만 상품개수 조정
+				if(order.getOrder_status() == 5) {
+					//주문번호에 해당하는 상품정보 구하기
+					List<OrderDetailVO> detailList = getOrderListDetail(order.getOrder_num());
+					//주문 취소로 주문상품의 상품상태 변경
+					sql = "UPDATE item SET item_status=1 WHERE item_num=?";
+					pstmt2 = conn.prepareStatement(sql);
+					for(int i=0;i<detailList.size();i++) {
+						OrderDetailVO detail = detailList.get(i);
+						pstmt2.setInt(1, detail.getItem_num());
+						pstmt2.addBatch();
+						
+						if(i%1000==0) {
+							pstmt2.executeBatch();
+						}
+					}//end of for
+					pstmt2.executeBatch();				
+				}//end of if
+				
+				//모든 SQL문이 성공하면 커밋
+				conn.commit();
+			}catch(Exception e) {
+				//SQL문이 하나라도 실패하면 롤백
+				conn.rollback();
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt2, null);
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 }

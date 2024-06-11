@@ -21,7 +21,7 @@ $(function(){
 					//체크박스
 					output += '<td class="checkbox"><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
 					//상품정보 : 책 이미지
-					output += '<td class="item_img">'
+					output += '<td class="item_img list_height">'
 							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '">'
 							+ '<img src="' + item.bookVO.bk_img + '"></a>'
 							+ '</td>';

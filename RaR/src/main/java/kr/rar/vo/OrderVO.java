@@ -19,111 +19,179 @@ public class OrderVO {
 	private String notice;				//남기실말씀
 	private int user_num;				//회원번호
 	
-	private String id;					//회원아이디
+	private String user_email;			//회원이메일
 	private String item_name;			//상품명
 	
 	public int getOrder_num() {
 		return order_num;
 	}
+
+
 	public void setOrder_num(int order_num) {
 		this.order_num = order_num;
 	}
+
+
 	public Date getOrder_date() {
 		return order_date;
 	}
+
+
 	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
+
+
 	public int getOrder_status() {
 		return order_status;
 	}
+
+
 	public void setOrder_status(int order_status) {
 		this.order_status = order_status;
 	}
+
+
 	public int getOrder_points() {
 		return order_points;
 	}
+
+
 	public void setOrder_points(int order_points) {
 		this.order_points = order_points;
 	}
+
+
 	public int getPay_total() {
 		return pay_total;
 	}
+
+
 	public void setPay_total(int pay_total) {
 		this.pay_total = pay_total;
 	}
+
+
 	public int getPay_points() {
 		return pay_points;
 	}
+
+
 	public void setPay_points(int pay_points) {
 		this.pay_points = pay_points;
 	}
+
+
 	public int getPay_ship() {
 		return pay_ship;
 	}
+
+
 	public void setPay_ship(int pay_ship) {
 		this.pay_ship = pay_ship;
 	}
+
+
 	public int getPay_payment() {
 		return pay_payment;
 	}
+
+
 	public void setPay_payment(int pay_payment) {
 		this.pay_payment = pay_payment;
 	}
+
+
 	public String getReceive_name() {
 		return receive_name;
 	}
+
+
 	public void setReceive_name(String receive_name) {
 		this.receive_name = receive_name;
 	}
+
+
 	public String getReceive_post() {
 		return receive_post;
 	}
+
+
 	public void setReceive_post(String receive_post) {
 		this.receive_post = receive_post;
 	}
+
+
 	public String getReceive_address1() {
 		return receive_address1;
 	}
+
+
 	public void setReceive_address1(String receive_address1) {
 		this.receive_address1 = receive_address1;
 	}
+
+
 	public String getReceive_address2() {
 		return receive_address2;
 	}
+
+
 	public void setReceive_address2(String receive_address2) {
 		this.receive_address2 = receive_address2;
 	}
+
+
 	public String getReceive_phone() {
 		return receive_phone;
 	}
+
+
 	public void setReceive_phone(String receive_phone) {
 		this.receive_phone = receive_phone;
 	}
+
+
 	public String getNotice() {
 		return notice;
 	}
+
+
 	public void setNotice(String notice) {
 		this.notice = notice;
 	}
+
+
 	public int getUser_num() {
 		return user_num;
 	}
+
+
 	public void setUser_num(int user_num) {
 		this.user_num = user_num;
 	}
-	public String getId() {
-		return id;
+
+
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
+
+
 	public String getItem_name() {
 		return item_name;
 	}
+
+
 	public void setItem_name(String item_name) {
 		this.item_name = item_name;
 	}
+
+
 	@Override
 	public String toString() {
 		return "OrderVO [order_num=" + order_num + ", order_date=" + order_date + ", order_status=" + order_status
@@ -131,7 +199,7 @@ public class OrderVO {
 				+ ", pay_ship=" + pay_ship + ", pay_payment=" + pay_payment + ", receive_name=" + receive_name
 				+ ", receive_post=" + receive_post + ", receive_address1=" + receive_address1 + ", receive_address2="
 				+ receive_address2 + ", receive_phone=" + receive_phone + ", notice=" + notice + ", user_num="
-				+ user_num + ", id=" + id + ", item_name=" + item_name + "]";
+				+ user_num + ", user_email=" + user_email + ", item_name=" + item_name + "]";
 	}
 	
 }

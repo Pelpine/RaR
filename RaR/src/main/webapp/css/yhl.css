@@ -70,6 +70,17 @@ input[type="button"] {
 input[type="button"]:hover {
     background-color: #0056b3;
 }
+/*일반 버튼(비활성화)*/
+input[disabled]{
+    background-color: #787878;
+    color: white;
+	padding:10px 20px 10px 20px;
+	border-radius:10px;
+	border-style:none;
+}
+input[disabled]:hover{
+    background-color: #787878;
+}
 /*
 ------------------공통 디자인------------------
 */
@@ -131,6 +142,9 @@ h2 {
 }
 #output td:nth-child(6){
 	width:100px;
+}
+.list_height{
+	height:100px;
 }
 
 /*체크박스*/
@@ -274,8 +288,9 @@ h2 {
 
 /*배송지 입력*/
 .delivery_form{
+	width:500px;
 	text-align: left;
-	margin-left:400px;
+	margin:0 auto;
 	line-height: 2;
 	margin-bottom: 50px;
 }
@@ -284,7 +299,13 @@ h2 {
 	float:left;
 }
 .delivery_form input[type="text"],input[type="password"],input[type="email"]{
-	width:310px;
+	width:360px;
+	height:20px;
+}
+.delivery_form textarea{
+	width:360px;
+	height:100px;
+	margin-top:10px;
 }
 .delivery_form .post_btn{
 	background-color: #e0e0e0;
@@ -294,10 +315,11 @@ h2 {
 	border-style:hidden;
 }
 .delivery_form input[id="zipcode"]{
-	width:205px;
+	width:255px;
+	height:20px;
 }
 .delivery_form input[type="number"]{
-	width:100px;
+	width:10px;
 }
 .delivery_form .form-notice{
 	margin-left:130px;
@@ -333,9 +355,11 @@ ul.search li select{
 }
 .order_list_names span{
 	display: inline-block;
-	height:40px; /* 원하는 너비 설정 */
+	height:20px;
+	width:600px;
+	white-space:nowrap;
 	overflow:hidden;
-	vertical-align: middle;
+	text-overflow: ellipsis;
 }
 /*
 --------------------주문 상세--------------------
@@ -364,4 +388,47 @@ ul.search li select{
 	margin-top:20px;
 	text-align: center;
 }
+/*배송지 정보*/
+.delivery_info{
+	width:500px;
+	margin:0 auto;
 
+}
+.delivery_info li span{
+	width:130px;
+	display:inline-block;
+	border-right: 2px solid #8a8a8a;
+	margin:10px 10px 0 0;
+}
+
+/*버튼들*/
+.order_dtail_button{
+	padding:50px 0 0 0;
+	text-align: center;	
+}
+.order_title{
+	width:500px;
+	margin:0 auto;
+	margin-top:30px;
+	margin-bottom:20px;
+}
+/*
+--------------------관리자 주문관리--------------------
+*/
+/*배송상태 변경 폼*/
+.delivery_status{
+	width:150px;
+	margin:0 auto;
+	font-size:1.1em;
+	margin-top:50px;
+	margin-bottom:50px;
+
+}
+.delivery_status li span{
+	width:100px;
+	display:inline-block;
+	margin:10px 10px 0 0;
+}
+.delivery_status input[type="radio"]{
+	transform: scale(1.5);
+}

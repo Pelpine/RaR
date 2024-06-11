@@ -7,10 +7,13 @@ public class OrderDetailVO {
 	private String bk_img;		//책사진
 	private int bk_price;		//정가
 	private int item_price;		//판매가
-	private int item_grade;		//상품상태
+	private int item_grade;		//상품 등급
 	private int order_num;		//주문번호
 	private String item_img;	//책사진(판매자 업로드)
 	private int bk_num;			//책 번호
+	
+	private int item_status;	//상품 상태
+	
 	
 	public int getDetail_num() {
 		return detail_num;
@@ -71,5 +74,11 @@ public class OrderDetailVO {
 	}
 	public void setBk_num(int bk_num) {
 		this.bk_num = bk_num;
+	}
+	public int getItem_status() {
+		return item_status;
+	}
+	public void setItem_status(int item_status) {
+		this.item_status = item_status;
 	}
 }

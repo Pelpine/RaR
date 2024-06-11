@@ -6,20 +6,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문 상세</title>
+<title>주문 상세(관리자 전용)</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 </head>
 <body>   
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
 	<div class="content-main">
-		<h2>주문 상세</h2>
+		<h2>주문 상세(관리자 전용)</h2>
 		<table id="order_detail" class="no_borderLR">
 			<tr>
 				<th colspan="3">상품정보</th>
 				<th>가격</th>
 				<th>등급</th>
-				<th>환불</th>
 			</tr>
 			<c:forEach var="detail" items="${detailList}">
 			<tr>
@@ -57,10 +56,6 @@
 						<span class="item_grade_3">하</span>
 					</c:if>
 				</td>
-				<td>
-					<input type="button" value="환불 신청" onclick="location.href='${pageContext.request.contextPath}/refund/refundForm.do?item_num=${detail.item_num}&order_num=${order.order_num}'">
-				</td>
-				
 			</tr>
 			</c:forEach>
 		</table>
@@ -126,21 +121,13 @@
 				<c:if test="${order.order_status == 5}">주문취소</c:if>				
 			</li>
 			<li class="order_dtail_button">
-				<c:if test="${order.order_status == 1}">
-				<input type="button" value="배송지정보수정" onclick="location.href='orderModifyForm.do?order_num=${order.order_num}'">
-				<input type="button" value="주문 취소" id="order_cancel">
-				<script>
-					const order_cancel = document.getElementById('order_cancel');
-					order_cancel.onclick=function(){
-						let choice = confirm('주문을 취소하시겠습니까?');
-						if(choice){
-							location.replace('orderCancel.do?order_num=${order.order_num}');//history 지우기 위해 href 말고 replace 사용
-						}
-					};
-				</script>
+				<c:if test="${order.order_status != 5}">
+				<input type="button" value="배송상태수정" onclick="location.href='modifyStatusForm.do?order_num=${order.order_num}'">
 				</c:if>
-				<input type="button" value="주문목록" onclick="location.href='userOrderList.do'">
-				<input type="button" value="MY페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+				<c:if test="${order.order_status == 5}">
+				<input type="button" value="배송상태수정" disabled>
+				</c:if>
+				<input type="button" value="주문목록" onclick="location.href='adminOrderList.do'">
 			</li>
 		</ul>
 	</div>

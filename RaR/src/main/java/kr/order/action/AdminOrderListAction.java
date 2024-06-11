@@ -11,7 +11,7 @@ import kr.rar.dao.OrderDAO;
 import kr.rar.vo.OrderVO;
 import kr.util.PagingUtil;
 
-public class UserOrderListAction implements Action{
+public class AdminOrderListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,6 +22,11 @@ public class UserOrderListAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		if(user_auth != 9) {//관리자가 아닌 경우
+			return "/WEB-INF/views/common/notice.jsp";
+		}
+		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum = "1";
 		
@@ -29,19 +34,19 @@ public class UserOrderListAction implements Action{
 		String keyword = request.getParameter("keyword");
 		
 		OrderDAO dao = OrderDAO.getInstance();
-		int count = dao.getOrderCount(keyfield, keyword, user_num);
+		int count = dao.getAdminOrderCount(keyfield, keyword);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"userOrderList.do");
+		PagingUtil page = new PagingUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"adminOrderList.do");
 		
 		List<OrderVO> list = null;
 		if(count > 0) {
-			list = dao.getOrderList(page.getStartRow(), page.getEndRow(), keyfield, keyword, user_num);
+			list = dao.getAdminOrderList(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
-		return "/WEB-INF/views/order/user_order_list.jsp";
+		return "/WEB-INF/views/order/admin_order_list.jsp";
 	}
 }

@@ -97,7 +97,7 @@ window.onload=function(){
 			<c:forEach var="cart" items="${list}">
 			<tr>
 				<%-- 상품정보:책 이미지 --%>
-				<td class="item_img">
+				<td class="item_img list_height">
 					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}">
 						<img src="${cart.bookVO.bk_img}">
 					</a>
@@ -158,7 +158,10 @@ window.onload=function(){
 			
 			<!-- 배송지 입력 -->
 			<hr size="1" color="#adadad" width="100%">
-			<h2><br>배송지 입력</h2>
+			<div class="order_title">
+				<h3>배송지 입력</h3>
+				<hr size="3" width="100%" color="#000">
+			</div>
 			<div class="delivery_form">
 				<ul>
 					<li>
