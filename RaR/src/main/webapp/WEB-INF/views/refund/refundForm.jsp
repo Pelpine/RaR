@@ -115,7 +115,7 @@ window.onload = function() {
 			        </select>
 			    </li>
 			    <!-- 기타 사유 입력 -->
-			    <li id="reason_other">
+			    <li>
 			        <label for="reason_other">기타 사유</label>
 			        <textarea name="reason_other" id="reason_other" rows="4" cols="50" disabled></textarea>
 			    </li>
@@ -147,7 +147,6 @@ window.onload = function() {
 </div>
 </form>
 </div>
-
 <script>
 function toggleTextarea() {
     var selectBox = document.getElementById("reason");
