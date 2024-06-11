@@ -5,13 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
+<title>좋아요 한 게시글 목록</title>
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>좋아요 목록</h2>
 		<div class="list-space align-right">
