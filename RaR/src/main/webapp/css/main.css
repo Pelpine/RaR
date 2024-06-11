@@ -3,12 +3,10 @@
 ---------------------*/
 .horizontal-area{
 	flex: 0 0 auto;
-	width: 210px; /* 이미지 너비 설정 */
-    height: 210px; /* 이미지 높이 설정 */
+	width: 160px; /* 이미지 너비 설정 */
+    height: 240px; /* 이미지 높이 설정 */
 	display:inline-block;
-	border: 2px solid grey; /* 이미지에 테두리 추가 */
-	border-radius: 5px; /* 모서리를 둥글게 만들기 */
-	margin:0 auto;
+	margin-right: 30px;
 	justify-content: center;
 }
 .horizontal-area img {
@@ -17,20 +15,22 @@
     object-fit: contain; /* 이미지가 박스에 맞도록 조정 */
 	margin-right: 5px;
 	cursor:pointer;
+	margin: 0 auto;
 	justify-content: center;
-	margin:0 auto;
+	border: 2px solid grey; /* 이미지에 테두리 추가 */
+	border-radius: 5px; /* 모서리를 둥글게 만들기 */
 }
 
 .name{
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
-	max-width:210px;
+	max-width:160px;
 	display:inline-block;
-}
-.image-space{
-	display:block;
 	border: 2px solid grey; /* 이미지에 테두리 추가 */
+	border-radius: 5px; /* 모서리를 둥글게 만들기 */
+	cursor:pointer;
+	margin: 0 auto;
 }
 
 

@@ -34,7 +34,12 @@ public class RefundFormAction implements Action {
         }
 
         RefundDAO refundDAO = RefundDAO.getInstance();
+        //환불 기한을 구함
         Date deadline = refundDAO.getRefundDeadLineByOrder_Num(order_num);
+        
+        int item_num = Integer.parseInt(request.getParameter("item_num"));
+        //환불 상태를 구함
+        int status = refundDAO.getRefundStatusByItem_num(item_num);
 
         // 현재 날짜를 구함
         LocalDate today = LocalDate.now();
@@ -46,20 +51,18 @@ public class RefundFormAction implements Action {
         	request.setAttribute("notice_url", request.getContextPath()+"/order/userOrderListDetail.do?order_num="+order_num);
             return "/WEB-INF/views/common/alert_view.jsp";
         }
-        
-        int item_num = Integer.parseInt(request.getParameter("item_num"));
-        //환불 상태를 구함
-        int status = refundDAO.getRefundStatusByItem_num(item_num);
-        
-        
-        
-        
+        if(status != 0) {
+        	//이미 환불 신청한 경우
+        	request.setAttribute("notice_msg", "이미 환불 신청되었습니다.");
+        	request.setAttribute("notice_url", request.getContextPath()+"/order/userOrderListDetail.do?order_num="+order_num);
+            return "/WEB-INF/views/common/alert_view.jsp";
+        }
         /* ------------환불기한 내이고 아직 환불 신청을 하지 않았을 때 -------------*/
         
         //각 주문에서 한 개 상품의 세부 정보
         OrderDetailVO item = new OrderDetailVO();
         item = refundDAO.getOrderDetailByItem_num(item_num);
-        
+        System.out.println(item_num);
         //환불해야 하는 포인트
         int refund_point = item.getItem_price()/ 100;
         //유저 보유 포인트
@@ -85,6 +88,7 @@ public class RefundFormAction implements Action {
         request.setAttribute("point", point);
         request.setAttribute("refund_point", refund_point);
         request.setAttribute("item", item);
+        request.setAttribute("item_num", item_num);
         request.setAttribute("order_num", order_num);
         request.setAttribute("roulette_reward", roulette_reward);
         request.setAttribute("refund_price", refund_price);

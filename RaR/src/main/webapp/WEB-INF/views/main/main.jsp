@@ -50,14 +50,7 @@
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
-            <%-- <!-- 상품이미지가 없을 경우, 기본 이미지 처리  -->
-            <c:if test="${item.item_img == null}">
-               <img src="../images/book_default.png" width="60">
-            </c:if> <!-- 상품이미지가 있을 경우  -->
-            <c:if test="${item.item_img != null}">
-               <img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
-            </c:if> --%>
-               <h6 class="name">${item.bookVO.bk_name}</h6>
+             <h6 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">${item.bookVO.bk_name}</h6>
          </div>
          </c:forEach>
       </div>
@@ -67,14 +60,7 @@
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
-            <%-- <!-- 상품이미지가 없을 경우, 기본 이미지 처리  -->
-            <c:if test="${item.item_img == null}">
-               <img src="../images/book_default.png" width="60">
-            </c:if> <!-- 상품이미지가 있을 경우  -->
-            <c:if test="${item.item_img != null}">
-               <img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60">
-            </c:if> --%>
-               <h6 class="name">${item.orderDetailVO.item_name}</h6>
+               <h6 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">${item.orderDetailVO.item_name}</h6>
          </div>
          </c:forEach>
       </div>

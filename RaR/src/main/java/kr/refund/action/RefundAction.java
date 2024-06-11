@@ -23,6 +23,7 @@ public class RefundAction implements Action{
 
         int order_num = Integer.parseInt(request.getParameter("order_num"));
         int item_num = Integer.parseInt(request.getParameter("item_num"));
+        System.out.println(item_num);
         OrderDAO dao = OrderDAO.getInstance();
         // 주문정보 호출
         OrderVO order = dao.getOrder(order_num);
@@ -31,7 +32,7 @@ public class RefundAction implements Action{
             return "/WEB-INF/views/common/notice.jsp";
         }
       
-        
+       
        RefundVO refund = new RefundVO();
        refund.setOrder_num(order_num);
        refund.setItem_num(item_num);
