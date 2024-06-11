@@ -42,6 +42,23 @@
 	width : 300px;
 }
 </style>
+<script type="text/javascript">
+window.onload = function() {
+    const myForm = document.getElementById('refund_form');
+    // 이벤트 연결
+    myForm.onsubmit = function() {
+        const items = document.querySelectorAll('.input-check');
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].value.trim() == '') {
+                const label = document.querySelector('label[for="' + items[i].id + '"]');
+                alert(label.innerText + ' 항목은 필수 입력');
+                items[i].focus();
+                return false;
+            }
+        }
+    }
+}
+</script>
 </head>
 <body>
 <div class="page-main">
@@ -90,7 +107,7 @@
     <!-- 환불 사유 선택 -->
     <li>
         <label for="reason">환불 사유</label>
-        <select name="reason" id="reason_select" onchange="toggleTextarea()">
+        <select name="reason" id="reason" onchange="toggleTextarea()" class="input-check">
             <option value="1">단순 변심</option>
             <option value="2">상태 불량</option>
             <option value="3">배송 문제</option>
@@ -99,16 +116,16 @@
     </li>
     <!-- 기타 사유 입력 -->
     <li id="reason_other">
-        <label for="reason_other_textarea">기타 사유</label>
-        <textarea name="reason_other" id="reason_other_textarea" rows="4" cols="50" disabled></textarea>
+        <label for="reason_other">기타 사유</label>
+        <textarea name="reason_other" id="reason_other" rows="4" cols="50" disabled></textarea>
     </li>
     <li id="bank">
         <label for="bank">은행</label>
-        <input type="text" name="bank" maxlength="12">
+        <input type="text" name="bank" maxlength="12" class="input-check" id="bank">
     </li>
     <li id="account">
         <label for="account">계좌번호</label>
-        <input type="text" name="account" maxlength="40">
+        <input type="text" name="account" maxlength="40" class="input-check" id="account">
     </li>
 </ul> 
 	<div class="refund_price">
@@ -133,8 +150,8 @@
 
 <script>
 function toggleTextarea() {
-    var selectBox = document.getElementById("reason_select");
-    var textarea = document.getElementById("reason_other_textarea");
+    var selectBox = document.getElementById("reason");
+    var textarea = document.getElementById("reason_other");
 
     if (selectBox.value == "4") {
         textarea.disabled = false;
