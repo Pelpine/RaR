@@ -45,7 +45,7 @@
           </button>
        </div>
        <div class="image-space">
-          <h4 class="Topic">최근 입고된 중고 서적</h4>
+         <div class="Topic"><h4 class="Topic-h4">최근 입고된 중고 서적</h4></div>
          <c:forEach var="item" items="${itemList}">
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 
@@ -55,7 +55,7 @@
          </c:forEach>
       </div>
       <div class="image-space">
-          <h4 class="Topic">인기 급상승 도서</h4>
+         <div class="Topic"><h4 class="Topic">인기 급상승 도서</h4></div>
          <c:forEach var="item" items="${topList}">
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 

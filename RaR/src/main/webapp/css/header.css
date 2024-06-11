@@ -58,7 +58,7 @@ body{
 }
 
 .search-bar2 {
-	margin-left:210px;
+	margin:0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,7 +112,7 @@ body{
 .profile {
     display: flex;
     align-items: center;
-    margin-left: 80px; /* profile을 오른쪽 끝으로 밀기 */
+    margin: 0 auto; /* profile을 오른쪽 끝으로 밀기 */
     padding-right: 10px; /* 오른쪽 패딩 추가 */
 }
 
