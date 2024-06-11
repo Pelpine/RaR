@@ -11,6 +11,7 @@ import kr.rar.dao.ItemDAO;
 import kr.rar.vo.BookVO;
 import kr.rar.vo.ItemVO;
 import kr.util.PagingUtil;
+import kr.review.action.ReviewlistAction;
 
 public class Booklistdetail implements Action{
 
@@ -35,6 +36,9 @@ public class Booklistdetail implements Action{
 		
 		BookDAO bookdao = BookDAO.getInstance();
 		BookVO vo = bookdao.vo(bk_num);
+		
+		ReviewlistAction reviewAction = new ReviewlistAction();
+	    reviewAction.execute(request, response);
 		
 		request.setAttribute("book", vo);
 		

@@ -308,6 +308,7 @@ public class OrderDAO {
 			list = new ArrayList<OrderDetailVO>();
 			while(rs.next()) {
 				OrderDetailVO detail = new OrderDetailVO();
+				detail.setDetail_num(rs.getInt("detail_num"));
 				detail.setItem_num(rs.getInt("item_num"));
 				detail.setItem_name(rs.getString("item_name"));
 				detail.setBk_img(rs.getString("bk_img"));

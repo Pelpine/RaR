@@ -1,5 +1,7 @@
 package kr.rar.vo;
 
+import java.sql.Date;
+
 public class ReviewVO {
 	private int re_num;
 	private int detail_num;
@@ -7,13 +9,26 @@ public class ReviewVO {
 	private String re_comment;
 	private String re_img;
 	private int re_rating;
+	private Date reg_date;
+	private Date modify_date;
 	
 	private MemberVO memberVO;
 	private OrderDetailVO orderDetailVO;
 	private ItemVO itemVO;
 	private BookVO bookVO;
 	
-	
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+	public Date getModify_date() {
+		return modify_date;
+	}
+	public void setModify_date(Date modify_date) {
+		this.modify_date = modify_date;
+	}
 	public int getDetail_num() {
 		return detail_num;
 	}

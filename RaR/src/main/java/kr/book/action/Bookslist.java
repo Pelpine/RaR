@@ -12,6 +12,7 @@ import kr.rar.vo.BookVO;
 import kr.rar.vo.ItemVO;
 import kr.util.PagingUtil;
 
+
 public class Bookslist implements Action{
 
 	@Override
@@ -41,7 +42,6 @@ public class Bookslist implements Action{
                 book.setBk_minprice(bk_price);
             }
 		}
-		
 		
 		
 		request.setAttribute("count", count);

@@ -1,6 +1,7 @@
 <%@page import="kr.rar.dao.ItemDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,20 +37,20 @@
                         <c:forEach var="book" items="${list}">
                             <div class="book-item1">
                                 <div class="book-img1">
-                                    <a href="booksdetail.do?bk_num=${book.bk_num}"><img src="${book.bk_img}" alt="${book.bk_name}"></a>
+                                    <a href="booksdetail.do?bk_num=${book.bk_num}&re_num=2"><img src="${book.bk_img}" alt="${book.bk_name}"></a>
                                 </div>
                                 <div class="book-details1">
                                     <div class="book-name1">
-                                        <a href="booksdetail.do?bk_num=${book.bk_num}">${book.bk_name}</a>
+                                        <a href="booksdetail.do?bk_num=${book.bk_num}&re_num=2">${book.bk_name}</a>
                                     </div>
                                     <div class="book-writer1">${book.bk_writer}</div>
                                     <div class="book-publisher1">${book.bk_publisher}</div>
                                     <div class="book-count1">현재 판매 매수 : ${book.bk_count}</div>
                                 </div>
                                 <div class="book-price1">
-                                    <div class="original-price1">정가: ${book.bk_price} 원</div>
-                                    <div class="discount-price1">최저가: ${book.bk_minprice} 원</div>
-                                    <input type="button" value="구매바로가기" onclick="location.href='booksdetail.do?bk_num=${book.bk_num}#to'" class="list-space2" <c:if test="${book.bk_count <= 0}">disabled</c:if>>
+                                    <div class="original-price1">정가: <fmt:formatNumber value="${book.bk_price}"/>원</div>
+                                    <div class="discount-price1">최저가: <fmt:formatNumber value="${book.bk_minprice}"/>원</div>
+                                    <input type="button" value="구매바로가기" onclick="location.href='booksdetail.do?bk_num=${book.bk_num}&re_num=2#to'" class="list-space2" <c:if test="${book.bk_count <= 0}">disabled</c:if>>
                                 </div>
                             </div>
                         </c:forEach>

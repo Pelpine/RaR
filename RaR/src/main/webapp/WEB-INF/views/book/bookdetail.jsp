@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@
                 <c:if test="${book.item_grade == 3}">하</c:if>
             </label>
             <label><h4 class="inline-block">유저</h4> : ${book.memberVO.user_email}</label>
-            <label><h4 class="inline-block">정가</h4> : ${book.price}</label>
+            <label><h4 class="inline-block">정가</h4> : <fmt:formatNumber value="${book.price}"/>원</label>
             <label><h4 class="inline-block">승인상태</h4> : 
                 <c:if test="${book.status == 1}">미승인</c:if>
                 <c:if test="${book.status == 2}">승인</c:if> 

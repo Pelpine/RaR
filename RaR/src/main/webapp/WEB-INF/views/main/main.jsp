@@ -37,8 +37,8 @@
          <c:forEach var="item" items="${itemList}">
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 
-             onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
-             <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">${item.bookVO.bk_name}</h4>
+             onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">
+             <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">${item.bookVO.bk_name}</h4>
          </div>
          </c:forEach>
       </div>
@@ -47,8 +47,8 @@
          <c:forEach var="item" items="${topList}">
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 
-             onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
-               <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">${item.orderDetailVO.item_name}</h4>
+             onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">
+               <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">${item.orderDetailVO.item_name}</h4>
          </div>
          </c:forEach>
       </div>
