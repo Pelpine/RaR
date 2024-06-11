@@ -189,3 +189,47 @@ input[type="button"]:disabled {
 
 /* 기타 스타일 */
 /* (추가 스타일은 필요에 따라 여기에 추가할 수 있습니다) */
+#ulTable {
+    width: 1200px;
+    margin-bottom: 20px;
+    list-style: none; /* 목록 스타일 제거 */
+    padding: 0; /* 목록의 내부 여백 제거 */
+}
+
+#ulTable > li {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: space-between; /* 요소 사이의 공간을 최대한으로 확보 */
+    border-bottom: 1px solid #ddd; /* 하단 테두리 추가 */
+}
+
+#ulTable > li > ul {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    flex-grow: 1; /* 자식 요소가 늘어나도 부모 요소의 크기에 맞춤 */
+    padding: 10px 0; /* 내부 여백 설정 */
+    align-items: center; /* 세로 가운데 정렬 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+#ulTable > li > ul > li {
+    flex-grow: 1; /* 각 셀이 동일한 너비를 가지도록 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+#ulTable > li > ul > li.left {
+    width: 15%; /* 공지사항 열의 너비 설정 */
+}
+
+#ulTable > li > ul > li:first-child {
+    width: 5%; /* 첫 번째 열의 너비 설정 */
+}
+
+#ulTable > li > ul > li:nth-child(2) {
+    width: 30%; /* 두 번째 열의 너비 설정 */
+}
+
+#ulTable > li > ul > li:nth-child(3),
+#ulTable > li > ul > li:nth-child(4),
+#ulTable > li > ul > li:nth-child(5) {
+    width: 20%; /* 세 번째, 네 번째, 다섯 번째 열의 너비 설정 */
+}
