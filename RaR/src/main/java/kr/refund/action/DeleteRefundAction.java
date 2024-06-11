@@ -21,17 +21,20 @@ public class DeleteRefundAction implements Action{
         RefundDAO refundDAO = RefundDAO.getInstance();
         int refund_num = Integer.parseInt(request.getParameter("refund_num"));
         RefundVO refund = refundDAO.getRefundvo(refund_num);
+        int status = refund.getStatus();
+        if(status != 1) {
+        	request.setAttribute("notice_msg", "이미 환불이 진행중이어서 환불이 불가능합니다.");
+        	return "/WEB-INF/views/common/notice.jsp";
+        }
         // 주문정보 호출
         if(refund.getUser_num() != user_num) {
             // 구매자 회원번호와 로그인한 회원번호가 불일치할 경우
-        	System.out.println(refund.getUser_num());
-        	System.out.println(user_num);
             return "/WEB-INF/views/common/notice.jsp";
         }
         refundDAO.deleteRefund(refund_num);
         
         request.setAttribute("notice_msg", "환불이 취소되었습니다.");
-        request.setAttribute("notice_url","/WEB-INF/views/refund/userRefundList.jsp");
+        request.setAttribute("notice_url",request.getContextPath()+"/refund/userRefundList.do");
         return "/WEB-INF/views/common/alert_view.jsp";
 	}
 
