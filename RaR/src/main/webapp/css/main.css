@@ -3,11 +3,12 @@
 ---------------------*/
 .horizontal-area{
 	flex: 0 0 auto;
-	width: 140px; /* 이미지 너비 설정 */
-    height: 210px; /* 이미지 높이 설정 */
+	width: 156px; /* 이미지 너비 설정 */
+    height: 234px; /* 이미지 높이 설정 */
 	display:inline-block;
-	margin-right: 30px;
+	margin-left: 65px;
 	justify-content: center;
+	margin-top: 20px;
 }
 .horizontal-area img {
 	max-width: 100%;
@@ -23,38 +24,24 @@
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
-	max-width:140px;
+	max-width:156px;
 	display:inline-block;
 	cursor:pointer;
 	margin: 0 auto;
 	border-radius: 5px; /* 모서리를 둥글게 만들기 */
 }
 .Topic{
-	border-radius: 5px; /* 모서리를 둥글게 만들기 */
+	border-radius: 12.5px; /* 모서리를 둥글게 만들기 */
 	background-color: #03a9f4;;
 	color:white;
-	height:35px;
+	height:50px;
+	margin-top: 20px;
+	
 }
 .Topic-h4{
-	margin: 0 0;
+	margin: 0 auto;
 	justify-content: center;
 }
-
-
-/*
-.book-img {
-    flex: 0 0 auto;
-    width: 200px;  이미지 너비 설정 
-    height: 200px;  이미지 높이 설정 
-    margin-right: 20px;
-}
-
-.book-img img {
-    max-width: 100%;
-    height: 100%;
-    object-fit: contain;  이미지가 박스에 맞도록 조정 
-}
-*/
 
 /*캐러셀 css*/
 .carousel {
@@ -96,3 +83,20 @@
 .next {
     right: 10px;
 }
+
+
+
+/*
+.book-img {
+    flex: 0 0 auto;
+    width: 200px;  이미지 너비 설정 
+    height: 200px;  이미지 높이 설정 
+    margin-right: 20px;
+}
+
+.book-img img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;  이미지가 박스에 맞도록 조정 
+}
+*/
