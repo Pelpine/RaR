@@ -24,8 +24,9 @@
     </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
     <div class="page-main">
-        <jsp:include page="/WEB-INF/views/common/header.jsp" />
+        
         <div class="content-main">
             <h2>게시판 목록</h2>
             <form id="search_form" action="list.do" method="get">

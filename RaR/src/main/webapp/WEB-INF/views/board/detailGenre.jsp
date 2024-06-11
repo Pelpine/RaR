@@ -14,8 +14,9 @@
 	src="${pageContext.request.contextPath}/js/board.reply2.js"></script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	
 	<div class="content-main">
 		<div class="post-content">
 			<h2>${board_genre.bg_title}</h2>
@@ -42,22 +43,28 @@
 			<hr class="section-divider">
 			<ul class="detail-sub">
 				<li>
-					<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
-					<c:if test="${user_num == genre.user_num}">
-					<input type="button" value="수정"onclick="location.href='updateGenreForm.do?bg_num=${genre.bg_num}'">
-					<input type="button" value="삭제" id="delete_btn">
-					<script type="text/javascript">
-						const delete_btn = document.getElementById('delete_btn');
-						//이벤트 연결
-						delete_btn.onclick=function(){
-							let choice = confirm('삭제하시겠습니까?');
-							if(choice){
-								location.replace('deleteGenre.do?bg_num=${genre.bg_num}');
-							}
-						};					
-					</script>
-					</c:if>
-				</li>
+    <%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
+    <%
+        Integer user_auth = (Integer) session.getAttribute("user_auth");
+        Integer user_num = (Integer) session.getAttribute("user_num");
+    %>
+    <c:if test="${user_num == genre.user_num}">
+    <input type="button" value="수정" onclick="location.href='updateGenreForm.do?bg_num=${genre.bg_num}'">
+	</c:if>   
+    <c:if test="${user_num == genre.user_num || user_auth==9 }">
+        <input type="button" value="삭제" id="delete_btn">
+        <script type="text/javascript">
+            const delete_btn = document.getElementById('delete_btn');
+            //이벤트 연결
+            delete_btn.onclick = function() {
+                let choice = confirm('삭제하시겠습니까?');
+                if (choice) {
+                    location.replace('deleteGenre.do?bg_num=${genre.bg_num}');
+                }
+            };
+        </script>
+    </c:if>
+</li>
 			</ul>
 		</div>
 		<!-- 댓글 시작 -->

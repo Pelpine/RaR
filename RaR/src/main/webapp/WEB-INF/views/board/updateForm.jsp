@@ -32,8 +32,9 @@ window.onload=function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	
 	<div class="content-main">
 		<h2>글 수정</h2>
 		<form id="update_form" action="update.do" method="post"

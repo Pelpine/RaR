@@ -15,6 +15,7 @@ public class DeleteGenreAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth=(Integer)session.getAttribute("user_auth");
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
@@ -23,10 +24,11 @@ public class DeleteGenreAction implements Action {
 				BoardDAO dao = BoardDAO.getInstance();
 				GenreVO db_genre = dao.getGenre(bg_num);
 				//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-				if(user_num != db_genre.getUser_num()) {
+				if(user_auth !=9 && user_num != db_genre.getUser_num()) {
 					return"/WEB-INF/views/common/notice.jsp";
 				}
-				//로그인한 회원번호와 작성자 회원번호 일치
+				
+				//로그인한 회원번호와 작성자 회원번호 일치 or 관리자
 				dao.deleteGenre(bg_num);
 				
 				

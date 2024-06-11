@@ -15,6 +15,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/board.reply.js"></script>
 </head>
+
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
@@ -51,16 +52,24 @@
 					<li><img id="output_fav" data-num="${board.board_num}"
 						src="${pageContext.request.contextPath}/images/favoff.png"
 						width="50"> <span id="output_fcount"></span> 좋아요</li>
-					<li><c:choose>
+					<li>
+					<c:choose>
 							<c:when test="${not empty board.modify_date}">
                         최근 수정일: ${board.modify_date}
                     </c:when>
 							<c:otherwise>
                         작성일: ${board.reg_date}
                     </c:otherwise>
-						</c:choose> <c:if test="${user_num == board.user_num}">
+						</c:choose> 
+						<%
+ 						Integer user_auth = (Integer) session.getAttribute("user_auth");
+ 						Integer user_num = (Integer) session.getAttribute("user_num");
+ 						%>
+  						<c:if test="${user_num == board.user_num}">
 							<input type="button" value="수정"
 								onclick="location.href='updateForm.do?board_num=${board.board_num}'">
+						</c:if>
+							<c:if test="${user_num == board.user_num || user_auth == 9}">
 							<input type="button" value="삭제" id="delete_btn">
 							<script type="text/javascript">
 								const delete_btn = document
@@ -73,7 +82,8 @@
 									}
 								};
 							</script>
-						</c:if></li>
+						</c:if>
+						</li>
 				</ul>
 			</div>
 			<!-- 댓글 시작 -->

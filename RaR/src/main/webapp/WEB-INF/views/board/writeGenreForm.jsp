@@ -23,8 +23,9 @@ window.onload = function() {
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    
     <div class="content-main">
         <h2>글쓰기</h2>
         <form id="write_form_genre" action="writeGenre.do" method="post" enctype="multipart/form-data">
