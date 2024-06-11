@@ -23,7 +23,7 @@
 		<h2>${result_title}</h2>
 		<div class="result-display">
 			<div class="align-center">
-				${result_msg}
+				${result_msg}<br>
 				<p>
 				<input type="button" value="확인"
 				   onclick="location.href='${result_url}'">

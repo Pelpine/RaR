@@ -523,7 +523,7 @@ public class OrderDAO {
 				//오토 커밋 해제
 				conn.setAutoCommit(false);
 				//SQL문 작성
-				sql = "UPDATE rar_order SET status=?,modify_date=SYSDATE WHERE order_num=?";
+				sql = "UPDATE rar_order SET order_status=?,modify_date=SYSDATE WHERE order_num=?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, order.getOrder_status());

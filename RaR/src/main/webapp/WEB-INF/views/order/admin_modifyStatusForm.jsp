@@ -18,12 +18,12 @@
 			<ul class="delivery_status">
 				<li>
 					<c:if test="${order.order_status != 5}">
-					<span>배송대기</span> <input type="radio" name="status" id="status1" value="1" <c:if test="${order.order_status==1}">checked</c:if>><br>
-					<span>배송준비중</span> <input type="radio" name="status" id="status2" value="2" <c:if test="${order.order_status==2}">checked</c:if>><br>
-					<span>배송중</span> <input type="radio" name="status" id="status3" value="3" <c:if test="${order.order_status==3}">checked</c:if>><br>
-					<span>배송완료</span> <input type="radio" name="status" id="status4" value="4" <c:if test="${order.order_status==4}">checked</c:if>><br>
+					<span>배송대기</span> <input type="radio" name="order_status" id="status1" value="1" <c:if test="${order.order_status==1}">checked</c:if>><br>
+					<span>배송준비중</span> <input type="radio" name="order_status" id="status2" value="2" <c:if test="${order.order_status==2}">checked</c:if>><br>
+					<span>배송중</span> <input type="radio" name="order_status" id="status3" value="3" <c:if test="${order.order_status==3}">checked</c:if>><br>
+					<span>배송완료</span> <input type="radio" name="order_status" id="status4" value="4" <c:if test="${order.order_status==4}">checked</c:if>><br>
 					</c:if>
-					<span>주문취소</span> <input type="radio" name="status" id="status5" value="5" <c:if test="${order.order_status==5}">checked</c:if>>
+					<span>주문취소</span> <input type="radio" name="order_status" id="status5" value="5" <c:if test="${order.order_status==5}">checked</c:if>>
 				</li>
 			</ul>
 			<div class="align-center">

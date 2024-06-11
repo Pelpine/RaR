@@ -141,6 +141,9 @@
 				</c:if>
 				<input type="button" value="주문목록" onclick="location.href='userOrderList.do'">
 				<input type="button" value="MY페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+				<c:if test="${order.order_status == 4}">
+				<input type="button" value="리뷰쓰기" onclick="location.href='${pageContext.request.contextPath}/review/review.do?order_num=${order.order_num}'">
+				</c:if>
 			</li>
 		</ul>
 	</div>
