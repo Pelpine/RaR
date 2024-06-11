@@ -13,6 +13,7 @@ public class RefundAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		 request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
         Integer user_num = (Integer)session.getAttribute("user_num");
 
@@ -29,7 +30,7 @@ public class RefundAction implements Action{
             // 구매자 회원번호와 로그인한 회원번호가 불일치할 경우
             return "/WEB-INF/views/common/notice.jsp";
         }
-       request.setCharacterEncoding("utf-8");
+      
         
        RefundVO refund = new RefundVO();
        refund.setOrder_num(order_num);
