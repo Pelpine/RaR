@@ -13,7 +13,7 @@ import kr.rar.dao.RefundDAO;
 import kr.rar.vo.RefundVO;
 import kr.util.PagingUtil;
 
-public class RefundListAction implements Action{
+public class UserRefundListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -50,7 +50,7 @@ public class RefundListAction implements Action{
 		
 
 	}
-		return "/WEB-INF/views/refund/refundList.jsp";
+		return "/WEB-INF/views/refund/userRefundList.jsp";
 	}
 }
 

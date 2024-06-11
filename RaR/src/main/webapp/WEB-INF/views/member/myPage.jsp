@@ -148,7 +148,7 @@ $(function(){
 				<h3>주문 조회</h3>
 				<hr>
 			</div>
-			<div class="item" onclick="location.href='${pageContext.request.contextPath}/refund/refundList.do'">
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/refund/userRefundList.do'">
 				<h3>환불 목록</h3>
 				<hr>
 			</div>
