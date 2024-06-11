@@ -8,13 +8,6 @@
 <title>환불신청</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
-<script type="text/javascript">
-	window.onload=function(){
-		let item_price = 0;
-		let refund_point = 0;
-		let 
-	}
-</script>
 <style>
 	.order-detail-table{
 	width:700px; 
@@ -91,6 +84,8 @@
         <form id="refund_form" action="refund.do" method="post">
         <input type="hidden" value="${refund_price}" name="refund_price">
         <input type="hidden" value="${refund_point}" name="refund_point">
+        <input type="hidden" value="${order_num}" name="order_num">
+        <input type="hidden" value="${item.item_num}" name="item_num">
     <ul>
     <!-- 환불 사유 선택 -->
     <li>

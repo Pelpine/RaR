@@ -43,6 +43,8 @@ public class RefundAction implements Action{
        
        RefundDAO refundDAO = RefundDAO.getInstance();
        refundDAO.insertRefund(refund);
+       
+       
         return "redirect:/order/userOrderListDetail.do?order_num="+order_num;
 	}
 }
