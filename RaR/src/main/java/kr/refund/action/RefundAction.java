@@ -36,6 +36,7 @@ public class RefundAction implements Action{
        RefundVO refund = new RefundVO();
        refund.setOrder_num(order_num);
        refund.setItem_num(item_num);
+       refund.setUser_num(user_num);
        refund.setRefund_price(Integer.parseInt(request.getParameter("refund_price")));
        refund.setCollect_point(Integer.parseInt(request.getParameter("refund_point")));
        refund.setReason(Integer.parseInt(request.getParameter("reason")));
@@ -46,7 +47,8 @@ public class RefundAction implements Action{
        RefundDAO refundDAO = RefundDAO.getInstance();
        refundDAO.insertRefund(refund);
        
-       
-        return "redirect:/order/userOrderListDetail.do?order_num="+order_num;
+       request.setAttribute("notice_msg", "환불 신청 접수되었습니다.");
+       request.setAttribute("notice_url", request.getContextPath()+"/order/userOrderListDetail.do?order_num="+order_num);
+       return "/WEB-INF/views/common/alert_view.jsp";
 	}
 }

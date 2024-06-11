@@ -15,6 +15,7 @@ public class RefundVO {
 	private int status;
 	private String bank;
 	private String account;
+	private int user_num;
 	public int getRefund_num() {
 		return refund_num;
 	}
@@ -87,7 +88,12 @@ public class RefundVO {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	
+	public int getUser_num() {
+		return user_num;
+	}
+	public void setUser_num(int user_num) {
+		this.user_num = user_num;
+	}
 	
 	
 }
