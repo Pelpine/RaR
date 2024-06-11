@@ -89,6 +89,8 @@
         <!-- 환불 신청 폼 -->
         <div class="align-center">
         <form id="refund_form" action="refund.do" method="post">
+        <input type="hidden" value="${refund_price}" name="refund_price">
+        <input type="hidden" value="${refund_point}" name="refund_point">
     <ul>
     <!-- 환불 사유 선택 -->
     <li>
@@ -116,9 +118,9 @@
 </ul> 
 	<div class="refund_price">
 		상품 구매 금액 : <span>${item.item_price}</span>원<br>
-		회수 포인트 - 보유 포인트 : <span class="refund_point"></span>원<br>
-		룰렛으로 얻은 포인트 : <span class="refund_point"></span>원<br>
-		환불 예정 금액 : <span class="refund_price"></span>원
+		회수 포인트(${refund_point}) - 보유 포인트(${point}) : ${shortage}
+		룰렛으로 얻은 포인트 : <span class="refund_point">${roulette_reward}</span>원<br>
+		환불 예정 금액 : <span class="refund_price">${refund_price}</span>원
 	</div>
 <!-- 버튼 그룹 -->
 <input type="submit" value="신청">

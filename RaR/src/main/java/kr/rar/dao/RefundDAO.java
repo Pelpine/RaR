@@ -40,6 +40,48 @@ public class RefundDAO {
 		
 		return deadline;
 	}
+	//회수 포인트, 보유 포인트 우선 차감 후 잔액 반환
+	public int deleteUserPointByRefund_point(int user_num, int refund_point) throws Exception{
+		int user_point = 0;
+		int shortage = 0;
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			sql = "SELECT user_point FROM member_detail WHERE user_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user_point = rs.getInt(1);
+			}
+			sql ="UPDATE member_detail SET user_point = ? WHERE user_num = ?";
+			pstmt2 = conn.prepareStatement(sql);
+			if(refund_point > user_point) {
+				//유저 보유 포인트 0 으로 만듦
+				pstmt2.setInt(1, 0);
+				// 부족 포인트 구함.
+				shortage = refund_point - user_point;
+			}else if(user_point > refund_point) {
+				pstmt2.setInt(1, user_point - refund_point);
+			}
+			pstmt2.setInt(2, user_num);
+			pstmt2.executeUpdate();
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return shortage;
+	}
+	
 	//상품 번호로 티켓 번호 구하기
 	//보유 포인트 구하기 
 	//티켓 번호로 status or reward 반환
@@ -117,6 +159,23 @@ public class RefundDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return reward;
+	}
+	//티켓을 사용하지 않았다면 티켓 삭제
+	public void deleteUnusedTicket(int item_num) throws Exception{
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM roulette_ticket WHERE item_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, item_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 	//유저 보유 포인트 구하기
 	public int getPoint(int user_num) throws Exception{

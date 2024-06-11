@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.rar.dao.OrderDAO;
+import kr.rar.dao.RefundDAO;
 import kr.rar.vo.OrderVO;
 import kr.rar.vo.RefundVO;
 
@@ -33,11 +34,15 @@ public class RefundAction implements Action{
        RefundVO refund = new RefundVO();
        refund.setOrder_num(order_num);
        refund.setItem_num(item_num);
+       refund.setRefund_price(Integer.parseInt(request.getParameter("refund_price")));
+       refund.setCollect_point(Integer.parseInt(request.getParameter("refund_point")));
        refund.setReason(Integer.parseInt(request.getParameter("reason")));
        refund.setReason_other(request.getParameter("reason_other"));
        refund.setBank(request.getParameter("bank"));
        refund.setAccount(request.getParameter("account"));
-        
+       
+       RefundDAO refundDAO = RefundDAO.getInstance();
+       refundDAO.insertRefund(refund);
         return "redirect:/order/userOrderListDetail.do?order_num="+order_num;
 	}
 }

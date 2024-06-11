@@ -53,11 +53,30 @@ public class RefundFormAction implements Action {
         int refund_point = item.getItem_price()/ 100;
         //유저 보유 포인트
         int point = refundDAO.getPoint(user_num);
+        //환불 포인트 대비 유저 부족분
+        int shortage = 0;
+        
         if(refund_point > point) {
-        	
+           shortage = Math.abs(point - refund_point);
+        }else if (point > refund_point) {
+        	shortage = 0;
         }
+        //아이템 구매로 얻은 룰렛 티켓 사용 여부 구하기
+        int ticket_status = refundDAO.getTicketStatusByItem_num(item_num);
+        int roulette_reward = 0;
+        if(ticket_status == 0) {
+        	roulette_reward = refundDAO.getTicketRewardByItem_num(item_num);
+        }
+        
+        //최종 환불 금액
+        int refund_price = item.getItem_price() - shortage - roulette_reward;
+        request.setAttribute("shortage", shortage);
+        request.setAttribute("point", point);
+        request.setAttribute("refund_point", refund_point);
         request.setAttribute("item", item);
         request.setAttribute("order_num", order_num);
+        request.setAttribute("roulette_reward", roulette_reward);
+        request.setAttribute("refund_price", refund_price);
         return "/WEB-INF/views/refund/refundForm.jsp";
     }
 }
