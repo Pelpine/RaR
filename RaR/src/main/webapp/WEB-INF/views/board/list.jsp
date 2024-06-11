@@ -28,7 +28,7 @@
     <div class="page-main">
         
         <div class="content-main">
-            <h2>게시판 목록</h2>
+            <h2>자유 게시판</h2>
             <form id="search_form" action="list.do" method="get">
                 <ul class="search">
                     <li>

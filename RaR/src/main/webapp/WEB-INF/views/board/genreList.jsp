@@ -26,21 +26,13 @@ window.onload=function(){
 </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-		
+
 		<div class="content-main">
-			<h2>게시판 목록</h2>
+			<h2>장르 게시판</h2>
 			<form id="search_form" action="genreList.do" method="get">
 				<ul class="search">
-					<li><select name="keyfield">
-							<option value="1"
-								<c:if test ="${param.keyfield==1}">selected</c:if>>a</option>
-							<option value="2"
-								<c:if test ="${param.keyfield==2}">selected</c:if>>b</option>
-							<option value="3"
-								<c:if test ="${param.keyfield==3}">selected</c:if>>c</option>
-					</select></li>
 					<li><input type="search" size="50" name="keyword" id="keyword"
 						value="${param.keyword}"></li>
 					<li><input type="submit" value="검색"></li>
@@ -65,18 +57,18 @@ window.onload=function(){
 						</tr>
 					</thead>
 					<tbody>
-					<tr class="genre-divider">
-								<td colspan="1"></td>
+
+
 						<c:forEach var="genre" items="${list}">
 							<!-- 구분선 추가 -->
-							
-							
+
+
 							<tr>
 								<td>${genre.bg_num}</td>
 								<td><a href="detailGenre.do?bg_num=${genre.bg_num}">${genre.bg_title}</a></td>
 							</tr>
 						</c:forEach>
-						</tr>
+
 					</tbody>
 				</table>
 				<div class="align-center">${page}</div>
