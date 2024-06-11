@@ -12,7 +12,7 @@ public class BoardVO {
 	private String filename;
 	private String user_ip;
 	private int user_num;
-
+	
 	
 	private String user_email;			//회원 아이디
 	private String user_photo;		//회원 프로필 사진명
