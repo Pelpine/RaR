@@ -43,8 +43,8 @@ public class RefundFormAction implements Action {
         if (today.isAfter(refundDeadline)) {
             // 환불 기한을 넘긴 경우
         	request.setAttribute("notice_msg", "환불 기한이 지났습니다.");
-        	request.setAttribute("notice_url", "userOrderListDetail.do?order_num="+order_num);
-            return "/WEB-INF/views/common/alert.jsp";
+        	request.setAttribute("notice_url", request.getContextPath()+"/order/userOrderListDetail.do?order_num="+order_num);
+            return "/WEB-INF/views/common/alert_view.jsp";
         }
         
         int item_num = Integer.parseInt(request.getParameter("item_num"));
