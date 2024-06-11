@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문 목록</title>
+<title>환불 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 </head>
 <body>
