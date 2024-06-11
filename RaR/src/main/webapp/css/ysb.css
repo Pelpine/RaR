@@ -83,3 +83,11 @@ input[type="number"]{
 .form-notice{
 	margin-left:130px;
 }
+input[type="button"], input[type="sumit"]{
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+input[type="button"]:hover, input[type="sumit"]:hover{
+    background-color: #0056b3;
+}

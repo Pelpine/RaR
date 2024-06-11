@@ -78,7 +78,7 @@
             </div>
             <div class="dropdown">
                 <button class="dropbtn" onclick="location.href='${pageContext.request.contextPath}/book/list.do'">
-                <h6 class="rit">중고서적<br>판매신청</h6>
+                판매신청
                 </button>
             </div>
             <c:if test="${!empty user_num && user_auth == 9}">
@@ -87,7 +87,7 @@
                     <div class="dropdown-content">
                         <a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
                         <a href="${pageContext.request.contextPath}/item/adminList.do">상품관리</a>
-						<a href="${pageContext.request.contextPath}/order/adminOrder	List.do">주문관리</a>
+						<a href="${pageContext.request.contextPath}/order/adminOrderList.do">주문관리</a>
                         <a href="${pageContext.request.contextPath}/event/eventApproval.do">상품승인</a>
                     </div>
                 </div>
