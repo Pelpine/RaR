@@ -13,7 +13,7 @@
                                 onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'">회원가입</button>
                         <button class="header_button" 
                                 onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">로그인</button>
-                    </div>
+                    </div> 
                 </c:if>
                 <c:if test="${!empty user_num}">
                     <div class="header_button_group">
