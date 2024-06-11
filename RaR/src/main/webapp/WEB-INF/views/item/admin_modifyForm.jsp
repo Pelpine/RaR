@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 수정</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ksh2.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 window.onload=function(){
@@ -78,9 +78,7 @@ window.onload=function(){
 				</li>
 				<li>
 					<label for="name">상품명</label>
-					<input type="text" name="name" id="name"
-									value="${item.bookVO.bk_name}"
-					                maxlength="10" class="input-check">
+					<label>${item.bookVO.bk_name}"</label>s
 				</li>
 				<li>
 					<label for="price">가격</label>

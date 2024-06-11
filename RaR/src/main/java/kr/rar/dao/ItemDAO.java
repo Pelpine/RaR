@@ -363,4 +363,31 @@ public class ItemDAO {
 			}		
 			return list;
 		}
+		//관리자 - 상품 수정
+		public void updateItem(ItemVO item)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+
+
+				sql = "UPDATE item SET item_price=?, item_grade=?, item_status=? WHERE item_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, item.getItem_price());
+				pstmt.setInt(2, item.getItem_grade());
+				pstmt.setInt(3, item.getItem_status());
+				pstmt.setInt(4, item.getItem_num());
+				//SQL문 실행
+				pstmt.executeUpdate();
+
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 }
