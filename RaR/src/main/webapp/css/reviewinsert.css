@@ -1,0 +1,33 @@
+.rating {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    direction: row-reverse;
+}
+.rating input {
+    display: none;
+}
+.rating label {
+    font-size: 2em;
+    color: lightgray;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.rating label::before {
+    content: '☆';
+}
+.rating label.full::before {
+    content: '★';
+}
+.rating label:hover,
+.rating label:hover ~ label {
+    color: gold;
+}
+.rating input:checked ~ label {
+    color: gold;
+}
+.selected-rating {
+    font-size: 1.5em;
+    margin-left: 10px;
+    color: #333;
+}

@@ -19,9 +19,10 @@ public class ReviewinsertformAction implements Action{
 		if(user_num == null) {
 			return "redirect:/book/loginForm.do";
 		}
-		int order_num = Integer.parseInt(request.getParameter("order_num"));
+		String order_num = request.getParameter("order_num");
+		
 		OrderDAO dao = OrderDAO.getInstance();
-		List<OrderDetailVO> vo = dao.getOrderListDetail(order_num);
+		List<OrderDetailVO> vo = dao.getOrderListDetail(Integer.parseInt(order_num));
 		
 		request.setAttribute("order", vo);
 		
