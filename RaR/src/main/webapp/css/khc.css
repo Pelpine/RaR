@@ -60,22 +60,29 @@ ul li input[type="checkbox"] {
     margin-top: 20px;
 }
 
-.align-center input[type="submit"],
-input[type="button"]{
-    background-color: #77dd77; /* 파스텔 그린 */
-	 border: none;
-	 border-radius: 25px; /* 둥근 모서리 */
-	 color: white;
-	 padding: 10px 20px;
-	 font-size: 16px;
-	 font-weight: bold;
-	 text-align: center;
-	 text-decoration: none;
-	 display: inline-block;
-	 margin: 10px 2px;
-	 cursor: pointer;
-	 transition: background-color 0.3s, box-shadow 0.3s;
-	 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+.input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+	padding:10px 20px 10px 20px;
+    border-radius:10px;
+    border-style:none;
+    cursor: pointer;
 }
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+/*일반 버튼*/
+input[type="button"] {
+    background-color: #007bff;
+    color: white;
+	padding:10px 20px 10px 20px;
+	border-radius:10px;
+	border-style:none;
+    cursor: pointer;
+}
+input[type="button"]:hover {
+    background-color: #0056b3;
+}
+/*
 
 
