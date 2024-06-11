@@ -92,6 +92,10 @@ input[type="number"]{
     cursor: pointer;
     text-shadow: 0px 0px 15px black;
 }
+.button1:hover, .button2:hover, .button3:hover{
+	background-color: #005E8C; /* 더 진한 주황색 호버 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
 .button1{
 	width:65px;
 }
