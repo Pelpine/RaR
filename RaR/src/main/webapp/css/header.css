@@ -45,6 +45,9 @@ body{
     width: 100%;
     max-width: 1200px; /* 최대 너비 지정 */
 }
+.header-box{
+	width:1200px;
+}
 
 .logo {
     margin: 0;

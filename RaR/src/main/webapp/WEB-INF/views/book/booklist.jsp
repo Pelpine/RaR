@@ -44,10 +44,10 @@
                                     </div>
                                     <div class="book-writer1">${book.bk_writer}</div>
                                     <div class="book-publisher1">${book.bk_publisher}</div>
-                                    <div class="book-count1">현재 판매 매수: ${book.bk_count}</div>
+                                    <div class="book-count1">현재 판매 매수 : ${book.bk_count}</div>
                                 </div>
                                 <div class="book-price1">
-                                    <div class="original-price1">원가: ${book.bk_price} 원</div>
+                                    <div class="original-price1">정가: ${book.bk_price} 원</div>
                                     <div class="discount-price1">최저가: ${book.bk_minprice} 원</div>
                                     <input type="button" value="구매바로가기" onclick="location.href='booksdetail.do?bk_num=${book.bk_num}#to'" class="list-space2" <c:if test="${book.bk_count <= 0}">disabled</c:if>>
                                 </div>

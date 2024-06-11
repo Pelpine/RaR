@@ -176,7 +176,8 @@ h4{
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0; 
 }
 
 .book-name1 a {
@@ -187,10 +188,15 @@ h4{
 }
 
 .book-writer1,
-.book-publisher1,
-.book-count1 {
-    font-size: 13pt; /* 나머지 글씨 크기 변경 */
+.book-publisher1 {
+    font-size: 13pt;
     color: #555;
+}
+.book-count1{
+	font-weight: bold;
+	font-size: 15pt;
+	color:#276096;
+	margin-top: auto;
 }
 
 .book-price1 {

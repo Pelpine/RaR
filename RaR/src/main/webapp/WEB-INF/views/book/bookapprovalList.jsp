@@ -79,7 +79,7 @@ $(document).ready(function(){
 										(비공개)
 									</c:when>
 								</c:choose></td>
-							<td>${book.status}</td>
+							<td><c:if test="${book.status == 1}">미승인</c:if><c:if test="${book.status == 2}">승인</c:if><c:if test="${book.status == 3}">반려</c:if></td>
 							<td>${book.request_at}</td>
 							<td>${book.approved_at}</td>
 							<td>${book.memberVO.user_email}</td>

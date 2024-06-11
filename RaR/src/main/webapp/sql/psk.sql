@@ -25,4 +25,19 @@ CREATE TABLE BOOK_APPROVAL (
 ALTER TABLE BOOK_APPROVAL ADD CONSTRAINT PK_BOOK_APPROVAL PRIMARY KEY (
 	approval_id
 );
+
 create sequence approval_id_seq;
+
+//리뷰
+create table REVIEW(
+	re_num number primary key,
+	detail_num number not null,
+	re_comment clob not null,
+	user_num number not null,
+	re_img varchar2(500) not null,
+	re_rating number not null,
+	constraint re_fk1 foreign key (user_num) references member (user_num),
+	constraint re_fk2 foreign key (detail_num) references rar_order_detail (detail_num)
+)
+
+create sequence re_num_seq;

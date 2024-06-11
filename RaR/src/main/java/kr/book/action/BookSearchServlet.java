@@ -31,7 +31,7 @@ public class BookSearchServlet implements Action {
 	    	
 	    	int maxresults = 20; //검색결과 한페이지당 최데 출력 개수
 	        String urlStr = null;
-	        urlStr = "https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey="+key+"&Query="+sheck+"&QueryType="+sk+"&MaxResults="+maxresults+"&start="+start+"&SearchTarget=Book&output=xml&Cover=MidBig&pricesales";
+	        urlStr = "https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey="+key+"&Query="+sheck+"&QueryType="+sk+"&MaxResults="+maxresults+"&start="+start+"&SearchTarget=Book&output=xml&Cover=Big&pricesales";
 	        URL url = new URL(urlStr);
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	        conn.setRequestMethod("GET");

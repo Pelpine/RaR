@@ -10,6 +10,7 @@ import kr.rar.vo.BookApprovalVO;
 import kr.rar.vo.BookVO;
 import kr.rar.vo.ItemVO;
 import kr.rar.vo.MemberVO;
+import kr.rar.vo.ReviewVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
 

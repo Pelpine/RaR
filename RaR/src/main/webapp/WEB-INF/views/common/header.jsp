@@ -5,6 +5,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/attendance.js"></script>
 <div class="main-nav">
     <div class="page-main2">
+     <div class="header-box">
         <div class="top-nav">
             <div class="auth-buttons">
                 <c:if test="${empty user_num}">
@@ -57,6 +58,7 @@
                     </c:if>
                 </ul>
             </div>
+        </div>
         </div>
         <div class="menu">
             <div class="dropdown">

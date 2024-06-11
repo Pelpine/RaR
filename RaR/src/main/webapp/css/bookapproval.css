@@ -97,7 +97,7 @@ h2 {
 }
 
 .book-table td {
-    white-space: pre-line; /* 줄바꿈을 허용합니다 */
+	height : 50px;
     word-wrap: break-word; /* 길이가 길면 줄바꿈을 적용합니다 */
     overflow: hidden; /* 길이가 넘으면 숨깁니다 */
 }

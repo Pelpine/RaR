@@ -13,12 +13,15 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page-main-3">
+	<div class="book-title">${book.bk_name}</div>
+	<hr class="custom-hr" width=1200px; noshade="noshade">
+</div>
 <div class="page-main-top">
     <div class="book-img">
         <img alt="${book.bk_name}" src="${book.bk_img}">
     </div>
     <div class="book-details">
-        <div class="book-title">제목 : ${book.bk_name}</div>
         <div>저자 : ${book.bk_writer}</div>
         <div>장르 : ${book.bk_genre}</div>
         <div id="formatted-date-container">출고일 : <span id="formatted-date"></span></div>
