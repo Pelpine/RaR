@@ -33,22 +33,22 @@
 	    </div>
 		<!-- 캐러셀 끝 -->
        <div class="image-space">
-         <div class="Topic"><h4 class="Topic-h4">최근 입고된 중고 서적</h4></div>
+         <div class="Topic"><h2 class="Topic-h4">&nbsp 최근 입고된 중고 서적</h2></div>
          <c:forEach var="item" items="${itemList}">
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
-             <h6 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">${item.bookVO.bk_name}</h6>
+             <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">${item.bookVO.bk_name}</h4>
          </div>
          </c:forEach>
       </div>
       <div class="image-space">
-         <div class="Topic"><h4 class="Topic">인기 급상승 도서</h4></div>
+         <div class="Topic"><h2 class="Topic">&nbsp 인기 급상승 도서</h2></div>
          <c:forEach var="item" items="${topList}">
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">
-               <h6 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">${item.orderDetailVO.item_name}</h6>
+               <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}'">${item.orderDetailVO.item_name}</h4>
          </div>
          </c:forEach>
       </div>
