@@ -217,7 +217,7 @@ input[type="button"]:disabled {
 }
 
 #ulTable > li > ul > li.left {
-    width: 15%; /* 공지사항 열의 너비 설정 */
+    width: 20%; /* 공지사항 열의 너비 설정 */
 }
 
 #ulTable > li > ul > li:first-child {
