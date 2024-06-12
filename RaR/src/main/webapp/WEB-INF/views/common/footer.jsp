@@ -38,9 +38,3 @@
 </footer>
 </body>
 </html>
-
-
-
-
-
-
