@@ -143,48 +143,59 @@
     </div>
     <div>
     	<form action="modifyStatus.do" method="post" id="status_modifyy">
-			<input type="hidden" name="order_num" value="${refund.refund_num}">
-			<ul>
-				<li>
-					<label for="status">배송상태</label>
-					<c:if test="${refund.status != 5 }">
-						<input type="radio" name="status" id="status1" value="1"
-						<c:if test="${refund.status ==1}">checked</c:if>>환불신청
-						<input type="radio" name="status" id="status2" value="2"
-						<c:if test="${refund.status ==2}">checked</c:if>>배송준비중
-						<input type="radio" name="status" id="status3" value="3"
-						<c:if test="${refund.status ==3}">checked</c:if>>배송중
-						<input type="radio" name="status" id="status4" value="4"
-						<c:if test="${refund.status ==4}">checked</c:if>>환불 불가
-					</c:if>
-					<input type="radio" name="status" id="status5" value="5"
-						<c:if test="${refund.status ==5}">checked</c:if>>주문취소
-				</li>
-				<li>
-			        <label for="reason_other">환불불가이유</label>
-			        <textarea name="reason_other" id="reason_other" rows="4" cols="50" disabled></textarea>
-			    </li>
-			</ul>
-			<div class="align-center">
-				<c:if test="${order.status != 5}">
-					<input type="submit" value="수정" style="margin-right:5px;">
-					<input type="button" value="주문상세" onclick="location.href='adminDetail.do?order_num=${order.order_num}'" style="margin-left:5px;">
-				</c:if>
-			</div>
-		</form>	
+    <input type="hidden" name="order_num" value="${refund.refund_num}">
+    <ul>
+        <li>
+            <label for="status">배송상태</label>
+            <c:if test="${refund.status != 5 }">
+                <input type="radio" name="status" id="status1" value="1"
+                    <c:if test="${refund.status == 1}">checked</c:if>>환불신청
+                <input type="radio" name="status" id="status2" value="2"
+                    <c:if test="${refund.status == 2}">checked</c:if>>배송준비중
+                <input type="radio" name="status" id="status3" value="3"
+                    <c:if test="${refund.status == 3}">checked</c:if>>배송중
+                <input type="radio" name="status" id="status4" value="4"
+                    <c:if test="${refund.status == 4}">checked</c:if>>환불 불가
+            </c:if>
+            <input type="radio" name="status" id="status5" value="5"
+                <c:if test="${refund.status == 5}">checked</c:if>>주문취소
+        </li>
+        <li>
+            <label for="reason_other">환불불가이유</label>
+            <textarea name="reason_other" id="reason_other" rows="4" cols="50" disabled></textarea>
+        </li>
+    </ul>
+    <div class="align-center">
+        <c:if test="${order.status != 5}">
+            <input type="submit" value="수정" style="margin-right:5px;">
+            <input type="button" value="주문상세" onclick="location.href='adminDetail.do?order_num=${order.order_num}'" style="margin-left:5px;">
+        </c:if>
+    </div>
+</form>
     </div>
 <script>
-function toggleTextarea() {
-    var selectBox = document.getElementById("reason");
-    var textarea = document.getElementById("reason_other");
+document.addEventListener('DOMContentLoaded', () => {
+    const status4 = document.getElementById('status4');
+    const textarea = document.getElementById('reason_other');
+    const radios = document.querySelectorAll('input[name="status"]');
 
-    if (selectBox.value == "4") {
-        textarea.disabled = false;
-    } else {
-        textarea.disabled = true;
-        textarea.value = ""; // 다른 사유 선택 시 입력 내용 초기화
+    function toggleTextarea() {
+        if (status4.checked) {
+            textarea.disabled = false;
+        } else {
+            textarea.disabled = true;
+            textarea.value = ""; // 다른 사유 선택 시 입력 내용 초기화
+        }
     }
-}
+
+    // 라디오 버튼 변경 이벤트에 toggleTextarea 함수 바인딩
+    radios.forEach(radio => {
+        radio.addEventListener('change', toggleTextarea);
+    });
+
+    // 페이지 로드 시 초기 상태 설정
+    toggleTextarea();
+});
 </script>    
 </div>
 	<hr size="1" width="100%" noshade="noshade">
