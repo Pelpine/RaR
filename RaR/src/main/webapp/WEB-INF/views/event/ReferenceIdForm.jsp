@@ -52,8 +52,8 @@ window.onload = function(){
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="page-main">
 	<div class="content-main">
 		<h2>추천인 이벤트</h2>
 		<div class="result-display">

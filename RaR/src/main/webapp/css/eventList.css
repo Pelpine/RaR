@@ -1,21 +1,3 @@
----------------------*/
-body{
-	margin:0 auto;
-	background:#FFFFFF;
-}
-/* 페이지 레이아웃
----------------------*/
-.page-main{
-	width:1200px;
-	background:#FFFFFF;
-	margin:40px 0;
-	border-radius:5px;
-	box-shadow:0 2px 6px rgba(100,100,100,0.3);
-	min-height:650px;
-}
-
-
-
 a:link {
     text-decoration: none;
     color: #000000;
@@ -43,7 +25,7 @@ ul, li {
 }
 
 #mainWrapper {
-    width: 1000px;
+    width: 1200px;
     margin: 0 auto; /* 가운데 정렬 */
 }
 
@@ -85,7 +67,7 @@ ul, li {
     line-height: 60px;
 }
 
-.lastli{
+.lastli input {
 	padding-top : 15px;
 }
 

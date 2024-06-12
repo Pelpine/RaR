@@ -73,8 +73,8 @@
 </style>
 </head>
 <body>
-<div class="page-main">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="page-main">
     <div class="content-main">
         <h2 class="h2">환불 신청 정보</h2>    
         <!-- 테이블로 환불 상품 정보 표시 -->

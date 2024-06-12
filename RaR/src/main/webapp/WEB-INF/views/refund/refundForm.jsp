@@ -61,8 +61,8 @@ window.onload = function() {
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="content-main">
         <h2 class="h2">환불 신청</h2>    
 
