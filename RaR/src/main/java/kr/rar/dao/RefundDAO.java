@@ -212,7 +212,7 @@ public class RefundDAO {
 		    try {
 		        conn = DBUtil.getConnection();        
 		        sql=    "SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM "
-		        		+ "(SELECT * FROM refund WHERE user_num=? ORDER BY refund_date DESC) A) "
+		        		+ "(SELECT * FROM refund WHERE user_num=? ORDER BY request_date DESC) A) "
 		        		+ "WHERE RN BETWEEN ? AND ?";
 		        pstmt = conn.prepareStatement(sql);
 		      	pstmt.setInt(1, user_num);     
@@ -301,7 +301,7 @@ public class RefundDAO {
 			    try {
 			        conn = DBUtil.getConnection();        
 			        sql=    "SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM "
-			        		+ "(SELECT * FROM refund ORDER BY refund_date DESC) A) "
+			        		+ "(SELECT * FROM refund ORDER BY request_date DESC) A) "
 			        		+ "WHERE RN BETWEEN ? AND ?";
 			        pstmt = conn.prepareStatement(sql);  
 			        pstmt.setInt(1, start);

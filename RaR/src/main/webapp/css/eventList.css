@@ -60,7 +60,7 @@ ul, li {
 }
 
 #ulTable > li:first-child > ul > li {
-    background-color: #c9c9c9;
+    background-color: #e3f2fd;
     font-weight: bold;
     text-align: center;
 }
