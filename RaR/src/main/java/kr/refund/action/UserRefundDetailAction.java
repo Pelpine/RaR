@@ -28,7 +28,6 @@ public class UserRefundDetailAction implements Action{
         //환불 신청한 상품의 세부 정보
         OrderDetailVO item = new OrderDetailVO();
         item = refundDAO.getOrderDetailByItem_num(item_num);
-        System.out.println(item_num);
       
         request.setAttribute("refund", refund);
         request.setAttribute("item", item);

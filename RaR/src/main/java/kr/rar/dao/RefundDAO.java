@@ -546,7 +546,7 @@ public class RefundDAO {
 				if(unable_reason!=null) {
 					sub_sql += ",unable_reason = ?";
 				}
-				if(status == 4 || status==3) {
+				if(status == 4) {
 					sub_sql2 += ",refund_date = sysdate";
 				}
 				sql = "UPDATE refund SET status = ?" + sub_sql + sub_sql2 + " WHERE refund_num=?";

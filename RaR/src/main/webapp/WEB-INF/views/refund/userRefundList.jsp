@@ -37,9 +37,7 @@
 				<td><fmt:formatNumber value="${refund.refund_price}"/>원</td>
 				<td>${refund.request_date}</td>
 				<td>
-					<c:if test= "${refund.status == 3 || refund.status==4}">${refund.refund_date}</c:if>
-				
-					
+					<c:if test= "${refund.status==4}">${refund.refund_date}</c:if>
 				</td>
 				<td>
 					<c:choose>
