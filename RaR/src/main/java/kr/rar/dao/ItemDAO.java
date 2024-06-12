@@ -222,14 +222,18 @@ public class ItemDAO {
 
 
 				//SQL문 작성
-				sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM "
-						+ "(SELECT i.bk_num, b.bk_img, r.item_name, r.bk_price, COUNT(i.bk_num) "
-						+ "FROM item i JOIN rar_order_detail r USING(item_num) "
-						+ "            JOIN book b ON i.bk_num = b.bk_num "
-						+ "GROUP BY i.bk_num, b.bk_img, r.item_name, r.bk_price "
-						+ "ORDER BY COUNT(i.bk_num) DESC)a) "
-						+ "WHERE rnum >= ? AND rnum <=?";
-
+				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+						+ "(SELECT i.bk_num, "
+						+ "COUNT(r.item_num) AS order_count, "
+						+ "b.bk_price, \r\n"
+						+ "MAX(i.item_price) AS max_price,"
+						+ "MIN(i.item_price) AS min_price, "
+						+ "b.bk_img, r.item_name, "
+						+ "ROW_NUMBER() OVER (PARTITION BY i.bk_num ORDER BY COUNT(r.item_num) DESC) AS rn "
+						+ "FROM rar_order_detail r JOIN item i ON r.item_num = i.item_num JOIN book b ON i.bk_num = b.bk_num "
+						+ "GROUP BY i.bk_num, b.bk_img, r.item_name, b.bk_price "
+						+ "ORDER BY order_count DESC)a WHERE rn = 1) "
+						+ "WHERE rnum >= ? AND rnum <= ?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
@@ -241,13 +245,15 @@ public class ItemDAO {
 				while(rs.next()) {
 					ItemVO item = new ItemVO();
 					item.setBk_num(rs.getInt("bk_num"));
+					item.setMax_price(rs.getInt("max_price"));
+					item.setMin_price(rs.getInt("min_price"));
 					
 					BookVO book = new BookVO();
 					book.setBk_img(rs.getString("bk_img"));
+					book.setBk_price(rs.getInt("bk_price"));
 					
 					OrderDetailVO order = new OrderDetailVO();
 					order.setItem_name(rs.getString("item_name"));
-					order.setBk_price(rs.getInt("bk_price"));
 
 					
 					item.setBookVO(book);

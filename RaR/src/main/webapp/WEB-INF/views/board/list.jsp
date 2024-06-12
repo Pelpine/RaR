@@ -28,7 +28,7 @@
 	<div class="page-main">
 
 		<div class="content-main">
-			<h2>자유 게시판</h2>
+			<h2>게시판</h2>
 			<form id="search_form" action="list.do" method="get">
 				<ul class="search">
 					<li><select name="keyfield">
@@ -55,6 +55,7 @@
 			<c:if test="${count==0}">
 				<div class="result-display">표시할 게시물이 없습니다.</div>
 			</c:if>
+			<h3>이벤트-공지</h3>
 			<ul id="ulTable">
 				<li>
 					<ul>
@@ -85,9 +86,8 @@
 						</li>
 					</c:if>
 				</c:forEach>
-
-
 			</ul>
+			<h3>자유게시판</h3>
 			<c:if test="${count>0}">
 				<table class="genre-table">
 					<thead>

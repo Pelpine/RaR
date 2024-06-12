@@ -11,6 +11,21 @@ public class ItemVO {
 	private int approval_id;	//등록요청코드
 	private int item_status;	//판매 상태 (1:판매중,2:판매완료,3:판매정지)
 	private Date reg_date;		//등록 날짜
+	private int max_price;
+	private int min_price;
+	
+	public int getMax_price() {
+		return max_price;
+	}
+	public void setMax_price(int max_price) {
+		this.max_price = max_price;
+	}
+	public int getMin_price() {
+		return min_price;
+	}
+	public void setMin_price(int min_price) {
+		this.min_price = min_price;
+	}
 	
 	public Date getReg_date() {
 		return reg_date;
