@@ -8,7 +8,6 @@ body{
     border-radius: 5px;
     min-height: 100%;
     max-width: 1200px; /* 페이지 최대 너비 지정 */
-    min-height: 630px;
 }
 
 .menu {
@@ -16,6 +15,7 @@ body{
     display: flex;
     justify-content: center;
     background-color: #03a9f4;
+    
 }
 
 .page-main2 {
@@ -105,7 +105,9 @@ body{
     border-radius: 4px;
     color: white;
     cursor: pointer;
-    border: 1.5px solid black;
+}
+.header_button:hover{
+	background-color:orange;
 }
 
 .menu-profile img {

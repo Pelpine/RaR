@@ -29,6 +29,9 @@
 	cursor:pointer;
 	margin: 0 auto;
 }
+.h5{
+	margin: 0 auto;
+}
 .Topic{
 	border-radius: 12.5px; /* 모서리를 둥글게 만들기 */
 	background-color: #03a9f4;;
