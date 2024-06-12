@@ -24,11 +24,10 @@
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
-	max-width:156px;
+	width:156px;
 	display:inline-block;
 	cursor:pointer;
 	margin: 0 auto;
-	border-radius: 5px; /* 모서리를 둥글게 만들기 */
 }
 .Topic{
 	border-radius: 12.5px; /* 모서리를 둥글게 만들기 */
