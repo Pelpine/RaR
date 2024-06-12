@@ -152,6 +152,10 @@ $(function(){
 				<h3>환불 목록</h3>
 				<hr>
 			</div>
+			<div class="item" onclick="location.href='${pageContext.request.contextPath}/review/reviewlist.do?re_num=1'">
+				<h3>나의 리뷰</h3>
+				<hr>
+			</div>
 			<div class="item" onclick="location.href='${pageContext.request.contextPath}/board/myPostingList.do'">
 				<h3>작성 게시글 목록</h3>
 				<hr>

@@ -14,7 +14,7 @@
 	<div class="content-main">
 		<h2>좋아요 목록</h2>
 		<div class="list-space align-right">
-		<input type="button" value="마이페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+			<input type="button" value="마이페이지" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 		</div>
 		<c:if test="${count==0}">
 		<div class="result-display">

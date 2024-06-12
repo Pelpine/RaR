@@ -21,7 +21,7 @@ public class ReviewlistAction implements Action {
         HttpSession session = request.getSession();
         Integer user_num = (Integer) session.getAttribute("user_num");
 
-        int bk_num = Integer.parseInt(request.getParameter("bk_num"));
+        String bk_num = request.getParameter("bk_num");
         int re_num = Integer.parseInt(request.getParameter("re_num"));
         
 		logger.info("bk_num: " + bk_num);
@@ -47,10 +47,10 @@ public class ReviewlistAction implements Action {
                 }
             }
         } else if (re_num == 2) {
-            count = dao.getreviewCount(bk_num, re_num);
+            count = dao.getreviewCount(Integer.parseInt(bk_num), re_num);
             if (count > 0) {
                 page = new PagingUtil(null, null, Integer.parseInt(pageNum), count, 20, 10, "reviewlist.do");
-                list = dao.getListreviewlist(page.getStartRow(), page.getEndRow(), bk_num, 2);
+                list = dao.getListreviewlist(page.getStartRow(), page.getEndRow(), Integer.parseInt(bk_num), 2);
                 for (ReviewVO vo : list) {
                     vo.setMemberVO(mdao.getMember(vo.getUser_num()));
                 }
