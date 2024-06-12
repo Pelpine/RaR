@@ -34,11 +34,11 @@
 					</c:if> <%-- 상품이미지가 있을 경우 --%> 
 					<c:if test="${detail.item_img != null}">
 						<a href="javascript:void(0);" onclick="showPopup('${pageContext.request.contextPath}/upload/${detail.item_img}')">
-						<img src="${pageContext.request.contextPath}/upload/${detail.item_img}" width="60"></a>
+						<img src="${pageContext.request.contextPath}/upload/${detail.item_img}"></a>
 					</c:if>
 				</td>
 				<td class="item_name">
-					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${detail.bk_num}">${detail.item_name}</a>
+					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${detail.bk_num}&re_num=2">${detail.item_name}</a>
 				</td>
 				<%-- 가격 --%>
 				<td class="item_list_price">

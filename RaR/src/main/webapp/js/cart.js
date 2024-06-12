@@ -22,12 +22,12 @@ $(function(){
 					output += '<td class="checkbox"><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
 					//상품정보 : 책 이미지
 					output += '<td class="item_img list_height">'
-							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '">'
+							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '&re_num=2">'
 							+ '<img src="' + item.bookVO.bk_img + '"></a>'
 							+ '</td>';
 					//상품정보 : 책 이름
 					output += '<td class="item_name">'
-							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '">' + item.bookVO.bk_name + '</a>'
+							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '&re_num=2">' + item.bookVO.bk_name + '</a>'
 							+ '</td>';
 					//상품 가격 : 정가, 판매가, 예상 적립포인트
 					output += '<td class="item_list_price">'
