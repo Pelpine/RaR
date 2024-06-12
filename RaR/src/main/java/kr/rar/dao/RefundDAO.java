@@ -164,7 +164,6 @@ public class RefundDAO {
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
 			sql = "UPDATE member_detail SET user_point = user_point+? WHERE user_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, refund_point);
@@ -539,6 +538,7 @@ public class RefundDAO {
 			Connection conn = null;
 			String sql = null;
 			String sub_sql = "";
+			String sub_sql2 = "";
 			PreparedStatement pstmt = null;
 			int cnt = 0;
 			try {
@@ -546,7 +546,10 @@ public class RefundDAO {
 				if(unable_reason!=null) {
 					sub_sql += ",unable_reason = ?";
 				}
-				sql = "UPDATE refund SET status = ?" + sub_sql + " WHERE refund_num=?";
+				if(status == 4 || status==3) {
+					sub_sql2 += ",refund_date = sysdate";
+				}
+				sql = "UPDATE refund SET status = ?" + sub_sql + sub_sql2 + " WHERE refund_num=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(++cnt, status);
 				if(unable_reason!=null) {

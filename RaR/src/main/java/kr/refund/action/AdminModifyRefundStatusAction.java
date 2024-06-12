@@ -55,6 +55,7 @@ public class AdminModifyRefundStatusAction implements Action{
 			}
 			//환불 신청 유저의 포인트 복구
 			dao.getBackPoint(collect_point, refund_user_num);
+			System.out.println("환불 신청자 포인트 복구");
 		}		
 	    if(status == 4 && refund_reason ==1) {//환불 상태가 환불 완료로 변경되었고, 환불 이유가 단순 변심일 경우
 	    	//아이템 판매 상태 판매중(1) 로 변경
