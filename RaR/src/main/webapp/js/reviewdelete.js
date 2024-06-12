@@ -1,10 +1,10 @@
-$(function() {
+$(document).ready(function() {
     // 리뷰 수정
     $(document).on('click', '.update', function() {
         // 댓글 번호
         let re_num = $(this).attr('data-renum');
         // 댓글 내용
-        let re_comment_element = $(this).closest('.review').find('p');
+        let re_comment_element = $(this).closest('.review-container').find('p');
         if (re_comment_element.length > 0) {
             let re_comment = re_comment_element.html().replace(/<br>/gi, '\n');
 
@@ -26,7 +26,7 @@ $(function() {
             $(this).parent().hide();
 
             // 수정 폼을 수정하고자 하는 데이터가 있는 div에 노출
-            $(this).closest('.review').append(modifyUI);
+            $(this).closest('.review-container').append(modifyUI);
         } else {
             alert('댓글 내용을 찾을 수 없습니다.');
         }
@@ -65,7 +65,7 @@ $(function() {
                     alert('로그인 해야 수정할 수 있습니다');
                 } else if (param.result == 'success') {
                     $('#mre_form').parent().find('p').html($('#re_comment').val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>'));
-                    $('#mre_form').parent().find('.modify-date').text('최근 수정일 : 5초 미만');
+                    $('#mre_form').parent().find('.modify-date').text('최근 수정일: ' + param.modify_date);
 
                     // 수정폼 삭제 및 초기화
                     initModifyForm();
@@ -83,7 +83,8 @@ $(function() {
         // 기본 이벤트 제거
         event.preventDefault();
     });
-     // 리뷰 삭제
+
+    // 리뷰 삭제
     $(document).on('click', '.delete', function() {
         // 댓글 번호
         let re_num = $(this).attr('data-renum');
@@ -99,7 +100,7 @@ $(function() {
                     alert('로그인 해야 삭제할 수 있습니다');
                 } else if (param.result == 'success') {
                     alert('삭제 완료');
-                    selectList(1); // 리뷰 목록을 다시 로드합니다.
+                    location.reload(); // 페이지를 다시 로드하여 리뷰 목록을 업데이트합니다.
                 } else if (param.result == 'pass') {
                     alert('타인의 글을 삭제할 수 없습니다.');
                 } else {
@@ -111,5 +112,4 @@ $(function() {
             }
         });
     });
-    selectList(1);
 });
