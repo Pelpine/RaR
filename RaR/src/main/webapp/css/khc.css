@@ -22,6 +22,10 @@
     align-items: center; /* 세로 방향 가운데 정렬 */
     height: 100%; /* 필요에 따라 높이를 설정하세요 */
 }
+.align-center3{
+	align-items: center; /* 세로 방향 가운데 정렬 */
+    justify-content: center; /* 가로 방향 가운데 정렬 */ 
+}
 .align-right{
 	text-align:right;
 }
