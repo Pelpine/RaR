@@ -164,4 +164,60 @@ public class ReviewDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		//리뷰 삭제
+		public void delete(int re_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "delete from review where re_num=?"; 
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, re_num);
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
+		//상세정보 가져오기
+		public ReviewVO vo(int re_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			ReviewVO vo = null;
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "select * from review where re_num=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, re_num);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					vo = new ReviewVO();
+					vo.setDetail_num(rs.getInt("detail"));
+					vo.setRe_num(rs.getInt("re_num"));
+					vo.setRe_img(rs.getString("re_img"));
+					vo.setRe_rating(rs.getInt("re_rating"));
+					vo.setUser_num(rs.getInt("user_num"));
+					vo.setRe_comment(rs.getString("comment"));
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			
+			return vo;
+		}
 }
+

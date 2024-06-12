@@ -66,7 +66,7 @@
 				</c:forEach>
 			</table>
 			<!-- 페이지 -->
-			<div class="align-center">${page}</div>
+			<div class="pageNum">${page}</div>
 		</c:if>
 	</div>
 </div>

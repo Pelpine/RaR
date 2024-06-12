@@ -142,59 +142,68 @@
         <span class="refund-value highlight">${refund.bank} / ${refund.account}</span>
     </div>
     <div>
-    	<form action="modifyStatus.do" method="post" id="status_modifyy">
-    <input type="hidden" name="order_num" value="${refund.refund_num}">
-    <ul>
-        <li>
-            <label for="status">배송상태</label>
-            <c:if test="${refund.status != 5 }">
-                <input type="radio" name="status" id="status1" value="1"
-                    <c:if test="${refund.status == 1}">checked</c:if>>환불신청
-                <input type="radio" name="status" id="status2" value="2"
-                    <c:if test="${refund.status == 2}">checked</c:if>>배송준비중
-                <input type="radio" name="status" id="status3" value="3"
-                    <c:if test="${refund.status == 3}">checked</c:if>>배송중
-                <input type="radio" name="status" id="status4" value="4"
-                    <c:if test="${refund.status == 4}">checked</c:if>>환불 불가
-            </c:if>
-            <input type="radio" name="status" id="status5" value="5"
-                <c:if test="${refund.status == 5}">checked</c:if>>주문취소
-        </li>
-        <li>
-            <label for="reason_other">환불불가이유</label>
-            <textarea name="reason_other" id="reason_other" rows="4" cols="50" disabled></textarea>
-        </li>
-    </ul>
-    <div class="align-center">
-        <c:if test="${order.status != 5}">
-            <input type="submit" value="수정" style="margin-right:5px;">
-            <input type="button" value="주문상세" onclick="location.href='adminDetail.do?order_num=${order.order_num}'" style="margin-left:5px;">
-        </c:if>
-    </div>
-</form>
+    	<form action="adminModifyRefundStatus.do" method="post" id="status_modify">
+		    <input type="hidden" name="refund_num" value="${refund.refund_num}">
+		    <input type="hidden" name="unchangedStatus" value="${refund.status}">
+		    <input type="hidden" name="refund_reason" value="${refund.reason}">
+		    <input type="hidden" name="item_num" value="${refund.item_num}">
+		    <input type="hidden" name="collect_point" value="${refund.collect_point}">
+		    <input type="hidden" name="refund_user_num" value="${refund.user_num}">
+		    <ul>
+		        <li>
+		            <label for="status">배송상태</label>
+		                <input type="radio" name="status" id="status1" value="1"
+		                    <c:if test="${refund.status == 1}">checked</c:if>>환불신청
+		                <input type="radio" name="status" id="status2" value="2"
+		                    <c:if test="${refund.status == 2}">checked</c:if>>환불검수중
+		                <input type="radio" name="status" id="status3" value="3"
+		                    <c:if test="${refund.status == 3}">checked</c:if>>환불 불가
+		            <input type="radio" name="status" id="status4" value="4"
+		                <c:if test="${refund.status == 4}">checked</c:if>>환불 완료
+		        </li>
+		        <li>
+		            <label for="reason_other">환불불가이유</label>
+		            <textarea name="unable_reason" id="unable_reason" rows="4" cols="50" disabled>${refund.unable_reason}</textarea>
+		        </li>
+		    </ul>
+		    <div class="align-center">
+		            <input type="submit" value="수정" <c:if test="${refund.status == 3 || refund.status== 4}">disabled</c:if>>
+		    </div>
+		</form>
     </div>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const status4 = document.getElementById('status4');
-    const textarea = document.getElementById('reason_other');
-    const radios = document.querySelectorAll('input[name="status"]');
+    const statusRadios = document.querySelectorAll('input[name="status"]');
+    const unableReasonTextarea = document.getElementById('unable_reason');
+    const initialStatus = document.querySelector('input[name="status"]:checked').value;
 
     function toggleTextarea() {
-        if (status4.checked) {
-            textarea.disabled = false;
+        const selectedStatus = document.querySelector('input[name="status"]:checked').value;
+
+        if (selectedStatus === "3") {
+            unableReasonTextarea.disabled = false;
         } else {
-            textarea.disabled = true;
-            textarea.value = ""; // 다른 사유 선택 시 입력 내용 초기화
+            unableReasonTextarea.disabled = true;
+            unableReasonTextarea.value = ""; // 다른 사유 선택 시 입력 내용 초기화
         }
     }
 
+    // 초기 status가 3이나 4이면 다른 라디오 버튼을 비활성화
+    if (initialStatus === "3" || initialStatus == "4") {
+        statusRadios.forEach(radio => {
+            if (radio.value !== "3" || radio.value !== "4") {
+                radio.disabled = true;
+            }
+        });
+    }
+
+    // 텍스트 박스 초기 설정
+    toggleTextarea();
+
     // 라디오 버튼 변경 이벤트에 toggleTextarea 함수 바인딩
-    radios.forEach(radio => {
+    statusRadios.forEach(radio => {
         radio.addEventListener('change', toggleTextarea);
     });
-
-    // 페이지 로드 시 초기 상태 설정
-    toggleTextarea();
 });
 </script>    
 </div>
