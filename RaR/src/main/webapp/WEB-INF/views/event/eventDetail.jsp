@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>이벤트 상세 정보</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 </head>
 <style>
@@ -29,7 +29,7 @@
 		조회수 : ${event.hit}
 	</p>
 	<hr size="1" width="100%" noshade="noshade">
-	<div class="align-center">
+	<div class="align-center2">
 		<img src="${pageContext.request.contextPath}/upload/${event.filename}"
 		                    style="max-width: 500px">
 	<p>
