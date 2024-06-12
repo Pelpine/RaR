@@ -23,6 +23,7 @@ public class Bookdetail implements Action{
 		BookApprovalDAO dao = BookApprovalDAO.getInstance();
 		BookApprovalVO vo = dao.selectbook(id);
 		
+		request.setAttribute("user_num", user_num);
 		request.setAttribute("user_auth", user_auth);
 		request.setAttribute("book", vo);
 		return "/WEB-INF/views/book/bookdetail.jsp";
