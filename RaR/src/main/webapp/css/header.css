@@ -170,8 +170,7 @@ body{
 }
 
 .dropdown:hover .dropbtn {
-	color: black;
-    background-color: #b2ebf2;
+    background-color: orange;
 }
 
 li {
