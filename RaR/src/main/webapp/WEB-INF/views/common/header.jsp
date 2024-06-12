@@ -1,4 +1,4 @@
-    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -90,7 +90,6 @@
                         <a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
                         <a href="${pageContext.request.contextPath}/item/adminList.do">상품관리</a>
 						<a href="${pageContext.request.contextPath}/order/adminOrderList.do">주문관리</a>
-                        <a href="${pageContext.request.contextPath}/event/eventApproval.do">상품승인</a>
                         <a href="${pageContext.request.contextPath}/refund/adminRefundList.do">환불관리</a>
                     </div>
                 </div>
