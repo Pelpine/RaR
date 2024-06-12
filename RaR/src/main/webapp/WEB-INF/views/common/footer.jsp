@@ -28,7 +28,7 @@
 	        박상기<br>
 	        정신영<br>
 	        육하림<br>
-	        정한철<br>
+	        김한철<br>
 	        강신희
 	    </div>
 	    <div class="footer-section">
