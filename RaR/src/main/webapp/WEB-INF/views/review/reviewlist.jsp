@@ -15,6 +15,8 @@
             <div>입력일 : ${re.reg_date}</div>
             <div>수정일 : ${re.modify_date}</div>
         </c:forEach>
+        <input type="button" onclick="location.href=''" value="수정">
+        <input type="button" onclick="" value="삭제">
     </c:if>
     <div class="align-center1">${page2}</div>
 </div>

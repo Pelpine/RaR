@@ -16,13 +16,22 @@ public class ReviewinsertAction implements Action{
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		int order_num = Integer.parseInt(request.getParameter("order_num"));
+		int detail_num = Integer.parseInt(request.getParameter("detail_num"));
 		if(user_num == null) {
 			return "redirect:/book/loginForm.do";
 		}
 		ReviewDAO dao = ReviewDAO.getInstance();
+		int count = dao.reviewnum(detail_num);
 		ReviewVO vo = new ReviewVO();
 		
-		vo.setDetail_num(Integer.parseInt(request.getParameter("detail_num")));
+		if(count == 1) {
+			request.setAttribute("notice_msg", "이미 작성한 리뷰 입니다.");
+			request.setAttribute("notice_url", request.getContextPath()+"/order/userOrderListDetail.do?order_num="+order_num);
+			
+			return "/WEB-INF/views/common/alert_view.jsp";
+		}
+		
+		vo.setDetail_num(detail_num);
 		vo.setRe_comment(request.getParameter("re_comment"));
 		vo.setRe_img(request.getParameter("re_img"));
 		vo.setRe_rating(Integer.parseInt(request.getParameter("rating")));

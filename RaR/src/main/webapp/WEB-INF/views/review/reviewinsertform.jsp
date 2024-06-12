@@ -64,7 +64,7 @@
             </table>
         </div>
         <div>
-            <div>코멘트 : ${detail.detail_num} : ${detail.order_num}</div>
+            <div>리뷰</div>
             <textarea rows="5" cols="30" id="re_comment" name="re_comment"></textarea>
             <label for="re_img">상품사진</label>
             <input type="file" name="re_img" class="input-check" id="re_img" accept="image/gif,image/png,image/jpeg">
