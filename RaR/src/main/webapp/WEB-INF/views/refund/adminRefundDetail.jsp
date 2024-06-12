@@ -167,8 +167,8 @@
 			</ul>
 			<div class="align-center">
 				<c:if test="${order.status != 5}">
-					<input type="submit" value="수정">
-					<input type="button" value="주문상세" onclick="location.href='adminDetail.do?order_num=${order.order_num}'">
+					<input type="submit" value="수정" style="margin-right:5px;">
+					<input type="button" value="주문상세" onclick="location.href='adminDetail.do?order_num=${order.order_num}'" style="margin-left:5px;">
 				</c:if>
 			</div>
 		</form>	
