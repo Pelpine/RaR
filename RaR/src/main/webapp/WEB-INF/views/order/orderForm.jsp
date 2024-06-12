@@ -98,13 +98,13 @@ window.onload=function(){
 			<tr>
 				<%-- 상품정보:책 이미지 --%>
 				<td class="item_img list_height">
-					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}">
+					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}&re_num=2">
 						<img src="${cart.bookVO.bk_img}">
 					</a>
 				</td>
 				<%-- 상품정보:책 이름 --%>
 				<td class="item_name">
-					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}">
+					<a href="${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${cart.bk_num}&re_num=2">
 						${cart.bookVO.bk_name}
 					</a>
 				</td>

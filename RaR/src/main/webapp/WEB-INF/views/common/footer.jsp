@@ -9,7 +9,7 @@
 </head>
 <body>
 <footer>
-<hr width="100%" noshade="noshade"/>
+<hr size="2" width="100%" noshade="noshade"/>
 	<div class="footer-main">
 	    <div class="footer-section">
 	        <h5>Customer Service</h5>
