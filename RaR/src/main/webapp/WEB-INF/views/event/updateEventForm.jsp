@@ -92,8 +92,8 @@ window.onload=function(){
 						(배너 사이즈 : 850~1000x250~350)</li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" value="등록"> <input type="button"
-						value="목록" onclick="location.href='eventList.do'">
+					<input type="submit" value="등록" style="margin-right:5px;">
+					 <input type="button" value="목록" onclick="location.href='eventList.do'" style="margin-left:5px;">
 				</div>
 			</form>
 		</div>
