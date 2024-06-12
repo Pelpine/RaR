@@ -92,40 +92,40 @@
 		</div>
 		<ul class="delivery_info">
 			<li>
-				<span>주문 날짜</span> ${order.order_date}
+				<span class="info_title">주문 날짜</span> ${order.order_date}
 			</li>
 			<li>
-				<span>환불 기한</span> ${deadline}
+				<span class="info_title">환불 기한</span> ${deadline}
 			</li>
 			<li>
-				<span>받는 사람</span> ${order.receive_name}
+				<span class="info_title">받는 사람</span> ${order.receive_name}
 			</li>
 			<li>
-				<span>우편 번호</span> ${order.receive_post}
+				<span class="info_title">우편 번호</span> ${order.receive_post}
 			</li>
 			<li>
-				<span>주소</span> ${order.receive_address1} ${order.receive_address2}
+				<span class="info_title">주소</span> <span class="info_content">${order.receive_address1} ${order.receive_address2}</span>
 			</li>
 			<li>
-				<span>전화번호</span> ${order.receive_phone}
+				<span class="info_title">전화번호</span> ${order.receive_phone}
 			</li>
 			<li>
-				<span>남기실 말씀</span> ${order.notice}
+				<span class="info_title">남기실 말씀</span> <span class="info_content">${order.notice}</span>
 			</li>
 			<li>
-				<span>결제수단</span>
+				<span class="info_title">결제수단</span>
 				<c:if test="${order.pay_payment == 1}">계좌입금</c:if>
 				<c:if test="${order.pay_payment == 2}">카드결제</c:if>
 			</li>
 			<li>
-				<span>배송상태</span>
+				<span class="info_title">배송상태</span>
 				<c:if test="${order.order_status == 1}">배송대기</c:if>
 				<c:if test="${order.order_status == 2}">배송준비중</c:if>
 				<c:if test="${order.order_status == 3}">배송중</c:if>
 				<c:if test="${order.order_status == 4}">배송완료</c:if>
 				<c:if test="${order.order_status == 5}">주문취소</c:if>				
 			</li>
-			<li class="order_dtail_button">
+			<li class="order_detail_button">
 				<c:if test="${order.order_status == 1}">
 				<input type="button" value="배송지정보수정" onclick="location.href='orderModifyForm.do?order_num=${order.order_num}'">
 				<input type="button" value="주문 취소" id="order_cancel">
