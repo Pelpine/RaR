@@ -1,0 +1,73 @@
+.review-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-item {
+    display: flex;
+    border: 1px solid #ccc;
+    height:150px;
+    
+}
+.tltie{
+	font-size: 18pt;
+	font-weight: bold;
+}
+.rep-content {
+    width: 100%; /* 원하는 너비 */
+    height: 130px; /* 원하는 높이 */
+    box-sizing: border-box; /* 패딩과 보더를 포함한 크기 계산 */
+}
+.rating-stars {
+	display: flex;
+    width: 160px;
+    justify-content: center;
+    margin: auto 0;
+    border-right: 1px solid #ccc;
+    height:100%;
+    align-items: center;
+}
+
+.review-image img {
+    max-width: 150px;
+    max-height: 150px;
+    display: block;
+    margin: 0 auto;
+    border-right: 1px solid #ccc;
+}
+
+.review-comment {
+	display: flex;
+	align-items: center;
+    width: 600px;
+    height:150px;
+    flex-wrap: wrap;
+    word-break: break-word;
+    padding: 0 10px;
+    margin: auto 0;
+    border-right: 1px solid #ccc;
+}
+
+.review-details {
+    flex-grow: 1;
+    text-align: center;
+    margin: auto 0;
+}
+
+.review-buttons {
+    margin-top: 10px;
+}
+
+.review-buttons input {
+    margin-right: 5px;
+}
+
+.modify-date {
+    margin-top: 10px;
+    color: #888;
+}
+
+.align-center1 {
+    text-align: center;
+    margin-top: 20px;
+}

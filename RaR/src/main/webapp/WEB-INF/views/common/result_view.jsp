@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>${result_title}</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
  <script type="text/javascript">
  window.onload = function() {
         history.pushState(null, null, location.href);

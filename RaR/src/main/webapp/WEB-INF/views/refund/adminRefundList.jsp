@@ -41,16 +41,14 @@
 				<td><fmt:formatNumber value="${refund.refund_price}"/>원</td>
 				<td>${refund.request_date}</td>
 				<td>
-					<c:if test= "${!empty refund.refund_date}">${refund.refund_date}</c:if>
-					<c:if test= "${empty refund.refund_date}">환불 진행중</c:if>
+					<c:if test= "${refund.status==4}">${refund.refund_date}</c:if>
 				</td>
 				<td>
 					<c:choose>
 						<c:when test="${refund.status == 1}">환불신청</c:when>
-						<c:when test="${refund.status == 2}">상품검수대기</c:when>
-						<c:when test="${refund.status == 3}">상품검수중</c:when>
-						<c:when test="${refund.status == 4}">환불 불가</c:when>
-						<c:when test="${refund.status == 5}">환불 완료</c:when>
+						<c:when test="${refund.status == 2}">상품검수중</c:when>
+						<c:when test="${refund.status == 3}">환불 불가</c:when>
+						<c:when test="${refund.status == 4}">환불 완료</c:when>
 					</c:choose>
 				</td>
 			</tr>

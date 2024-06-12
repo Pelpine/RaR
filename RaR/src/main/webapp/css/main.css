@@ -31,6 +31,7 @@
 }
 .h5{
 	margin: 0 auto;
+	color:black;
 }
 .Topic{
 	border-radius: 12.5px; /* 모서리를 둥글게 만들기 */
@@ -38,7 +39,7 @@
 	color:white;
 	height:50px;
 	margin-top: 20px;
-	
+	text-shadow: 1px 1px 3px grey;
 }
 .Topic-h4{
 	margin: 0 auto;

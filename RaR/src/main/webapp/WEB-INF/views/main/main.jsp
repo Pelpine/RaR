@@ -39,9 +39,13 @@
              <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">
              <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">${item.bookVO.bk_name}</h4>
+<<<<<<< HEAD
              가격: ${item.item_price}<br>
              <h5></h5>
              <h5></h5>
+=======
+             <h5 class="h5">가격: ${item.item_price}원</h5>
+>>>>>>> branch 'main' of https://github.com/Pelpine/RaR.git
          </div>
          </c:forEach>
       </div>
@@ -52,9 +56,13 @@
              <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">
                <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">${item.orderDetailVO.item_name}</h4>
+<<<<<<< HEAD
                <a>정가:${item.bookVO.bk_price}</a><br>
                <a>최고가:${item.max_price}</a><br>
                <a>최저가:${item.min_price}</a>
+=======
+               <h5 class="h5">정가: ${item.orderDetailVO.bk_price}원</h5>
+>>>>>>> branch 'main' of https://github.com/Pelpine/RaR.git
          </div>
          </c:forEach>
       </div>

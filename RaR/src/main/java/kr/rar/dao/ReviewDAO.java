@@ -151,11 +151,11 @@ public class ReviewDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "update review set comment=?, modify_date=sysdate where re_num=?";
+				sql = "update review set re_comment=?, modify_date=sysdate where re_num=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, vo.getRe_comment());
-				pstmt.setInt(1, vo.getRe_num());
+				pstmt.setInt(2, vo.getRe_num());
 				
 				pstmt.executeUpdate();
 			}catch(Exception e) {
@@ -204,12 +204,12 @@ public class ReviewDAO {
 				
 				if(rs.next()) {
 					vo = new ReviewVO();
-					vo.setDetail_num(rs.getInt("detail"));
+					vo.setDetail_num(rs.getInt("detail_num"));
 					vo.setRe_num(rs.getInt("re_num"));
 					vo.setRe_img(rs.getString("re_img"));
 					vo.setRe_rating(rs.getInt("re_rating"));
 					vo.setUser_num(rs.getInt("user_num"));
-					vo.setRe_comment(rs.getString("comment"));
+					vo.setRe_comment(rs.getString("re_comment"));
 				}
 			}catch(Exception e) {
 				throw new Exception(e);

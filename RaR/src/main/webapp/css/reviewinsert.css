@@ -1,14 +1,17 @@
+/* 기존 스타일 */
 .rating {
     display: flex;
     justify-content: center;
     position: relative;
     direction: row-reverse;
+    
 }
+
 .rating input {
     display: none;
 }
 .rating label {
-    font-size: 2em;
+    font-size: 1.5em;
     color: lightgray;
     cursor: pointer;
     transition: color 0.2s;
@@ -27,7 +30,135 @@
     color: gold;
 }
 .selected-rating {
-    font-size: 1.5em;
+    font-size: 1.0em;
     margin-left: 10px;
     color: #333;
 }
+
+/* 추가된 스타일 */
+.page-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    border: 2px solid #87CEEB; /* 하늘색 테두리 */
+    border-radius: 10px; /* 테두리를 둥글게 */
+    background-color: #E0F7FA; /* 하늘색 배경 */
+}
+
+.order-detail-container {
+    display: flex;
+    align-items: flex-start;
+    width: 80%;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.item-image {
+    flex: 0 0 150px;
+    margin-right: 20px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.item-details th, .item-details td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.item-details th {
+    background-color: #fc004d;
+}
+
+.item-grade {
+    font-size: 1.2em;
+    width: 60px; /* 등급 열의 너비를 조정합니다. */
+}
+
+.item-grade .item_grade_1 {
+    color: red;
+}
+
+.item-grade .item_grade_2 {
+    color: green;
+}
+
+.item-grade .item_grade_3 {
+    color: black;
+}
+
+.divider {
+    width: 80%;
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+/* 수정된 부분 */
+.review-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    margin-top: 20px;
+    
+}
+
+.review-container {
+    flex: 2;
+    margin-right: 20px; /* 공간을 주기 위해 오른쪽 여백 추가 */
+    
+}
+
+textarea#re_comment {
+	border: 2px solid #ccc; /* 기본 테두리 */
+    border-radius: 10px; /* 테두리를 둥글게 */
+    width: 500px;
+    resize: none;
+    padding: 10px; /* 내부 여백 */
+    margin-bottom: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
+    background-color: #f9f9f9; /* 배경색 */
+    height: 200px; /* 더 넓은 리뷰 작성 칸으로 수정 */
+}
+
+.rating-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%; /* 별점 부여 이미지 크기를 줄이기 위해 너비 조정 */
+    margin-top: 20px; /* 별점 이미지 입력 부분을 위로 옮김 */
+    float: right; /* 오른쪽으로 이동 */
+}
+
+.rating {
+    font-size: 1em; /* 별점 이미지 크기 조정 */
+}
+
+.image-upload-container {
+    width: 30%; /* 상품 사진 등록 부분 너비 조정 */
+    margin-bottom: 20px; /* 공간을 주기 위해 아래 여백 추가 */
+}
+.row-divider {
+    border-bottom: 1px solid #ddd; /* 구분선 스타일 및 색상 */
+}
+
+.column-divider {
+    border-right: 1px solid #ddd; /* 구분선 스타일 및 색상 */
+}
+
+.faint-divider {
+    border: none; /* 바깥테두리 없음 */
+    border-top: 1px solid #ddd; /* 구분선 스타일 및 색상 */
+}
+

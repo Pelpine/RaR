@@ -94,7 +94,7 @@ body{
 
 .header_button_group {
     display: flex;
-    align-items: center;
+    align-items: center; 
 }
 
 .header_button {
@@ -105,6 +105,10 @@ body{
     border-radius: 4px;
     color: white;
     cursor: pointer;
+    text-shadow: 1px 1px 3px grey
+    1px 1px 3px grey
+    1px 1px 3px grey
+    1px 1px 3px grey;
 }
 .header_button:hover{
 	background-color:orange;
@@ -137,6 +141,7 @@ body{
     font-size: 16px;
     width: 160px;
     height: 60px;
+    text-shadow: 1px 1px 3px grey;
 }
 
 .dropdown-content {
@@ -165,8 +170,7 @@ body{
 }
 
 .dropdown:hover .dropbtn {
-	color: black;
-    background-color: #b2ebf2;
+    background-color: orange;
 }
 
 li {

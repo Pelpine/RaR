@@ -141,16 +141,21 @@
         <span class="refund-label">환불 상태:</span>
         <span class="refund-value highlight">
             <c:if test="${refund.status == 1}">환불 신청</c:if>
-            <c:if test="${refund.status == 2}">환불검수대기</c:if>
-            <c:if test="${refund.status == 3}">환불검수대기</c:if>
-            <c:if test="${refund.status == 4}">환불 불가</c:if>
-            <c:if test="${refund.status == 5}">환불 완료</c:if>
+            <c:if test="${refund.status == 2}">환불검수중</c:if>
+            <c:if test="${refund.status == 3}">환불 불가</c:if>
+            <c:if test="${refund.status == 4}">환불 완료</c:if>
         </span>
     </div>
     <div class="refund-item">
         <span class="refund-label">환불 받으실 계좌번호:</span>
         <span class="refund-value highlight">${refund.bank} / ${refund.account}</span>
     </div>
+    <c:if test="${refund.status == 3}">
+    	<div>
+   			<span class="refund-label">환불 불가 이유 :</span>
+      		<span class="refund-value highlight">${refund.unable_reason}</span>
+    	</div>
+    </c:if>
 </div>
 	<hr size="1" width="100%" noshade="noshade">
 

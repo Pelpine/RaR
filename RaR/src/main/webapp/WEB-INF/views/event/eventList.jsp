@@ -66,7 +66,7 @@
                             <ul>
                                 <c:if test="${event.notice == 1}"><li class="left">공지사항</li></c:if>
                                 <c:if test="${event.notice == 0}"><li class="left">${event.event_num}</li></c:if>
-                                	<li><a href="eventDetail.do?event_num=1">${event.name}</a></li>
+                                	<li><a href="eventDetail.do?event_num=${event.event_num}">${event.name}</a></li>
                                 <c:if test="${event.start_date == '2000-01-01'}">
                                 	<li>.</li>
                                 	<li>.</li>

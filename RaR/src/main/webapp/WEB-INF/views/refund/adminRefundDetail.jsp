@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
+ 
     // 텍스트 박스 초기 설정
     toggleTextarea();
 
