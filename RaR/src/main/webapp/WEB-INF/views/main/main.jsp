@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -40,9 +39,6 @@
              <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">
              <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">${item.bookVO.bk_name}</h4>
-             <h5></h5>
-             <h5></h5>
-             <h5></h5>
          </div>
          </c:forEach>
       </div>
@@ -53,9 +49,6 @@
              <img src="${item.bookVO.bk_img}" 
              onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">
                <h4 class="name" onclick="location.href='${pageContext.request.contextPath}/book/booksdetail.do?bk_num=${item.bk_num}&re_num=2'">${item.orderDetailVO.item_name}</h4>
-               <h5></h5>
-               <h5></h5>
-               <h5></h5>
          </div>
          </c:forEach>
       </div>
