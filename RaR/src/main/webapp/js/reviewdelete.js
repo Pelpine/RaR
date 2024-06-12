@@ -4,15 +4,14 @@ $(function() {
         // 댓글 번호
         let re_num = $(this).attr('data-renum');
         // 댓글 내용
-        let bgu_content_element = $(this).closest('.review').find('p');
-        if (bgu_content_element.length > 0) {
-            let bgu_content = bgu_content_element.html().replace(/<br>/gi, '\n');
+        let re_comment_element = $(this).closest('.review').find('p');
+        if (re_comment_element.length > 0) {
+            let re_comment = re_comment_element.html().replace(/<br>/gi, '\n');
 
             // 댓글 수정폼 UI
             let modifyUI = '<form id="mre_form">';
             modifyUI += '<input type="hidden" name="re_num" id="re_num" value="' + re_num + '">';
-            modifyUI += '<textarea rows="3" cols="50" name="bgu_content" id="bgu_content" class="rep-content">' + bgu_content + '</textarea>';    
-            modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
+            modifyUI += '<textarea rows="3" cols="50" name="re_comment" id="re_comment" class="rep-content">' + re_comment + '</textarea>';    
             modifyUI += '<div id="mre_second" class="align-right">';
             modifyUI += ' <input type="submit" value="수정">';
             modifyUI += ' <input type="button" value="취소" class="re-reset">';
@@ -46,9 +45,9 @@ $(function() {
 
     // 댓글 수정
     $(document).on('submit', '#mre_form', function(event) {
-        if ($('#bgu_content').val().trim() == '') {
+        if ($('#re_comment').val().trim() == '') {
             alert('내용을 입력하세요');
-            $('#bgu_content').val('').focus();
+            $('#re_comment').val('').focus();
             return false;
         }
 
@@ -65,12 +64,12 @@ $(function() {
                 if (param.result == 'logout') {
                     alert('로그인 해야 수정할 수 있습니다');
                 } else if (param.result == 'success') {
-                    $('#mre_form').parent().find('p').html($('#bgu_content').val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>'));
+                    $('#mre_form').parent().find('p').html($('#re_comment').val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>'));
                     $('#mre_form').parent().find('.modify-date').text('최근 수정일 : 5초 미만');
 
                     // 수정폼 삭제 및 초기화
                     initModifyForm();
-                } else if (param.result == 'wrongAccess') {
+                } else if (param.result == 'pass') {
                     alert('타인의 글을 수정할 수 없습니다.');
                 } else {
                     alert('댓글 수정 오류 발생');
@@ -84,8 +83,7 @@ $(function() {
         // 기본 이벤트 제거
         event.preventDefault();
     });
-
-    // 리뷰 삭제
+     // 리뷰 삭제
     $(document).on('click', '.delete', function() {
         // 댓글 번호
         let re_num = $(this).attr('data-renum');
@@ -113,4 +111,5 @@ $(function() {
             }
         });
     });
+    selectList(1);
 });
