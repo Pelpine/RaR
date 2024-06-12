@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>이벤트 상세 정보</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 </head>
 <body>
@@ -17,12 +17,12 @@
 		
 	</p>
 	<hr size="1" width="100%" noshade="noshade">
-	<div class="align-center">
+	<div class="align-center3">
 	
 	<p>
 		<iframe width="420" height="500" src="roulette.do" scrolling="no"></iframe>
 	</p>
-	책을 한 권 구매할 때마다 주어지는 룰렛 티켓으로 포인트를 획득하세요!
+	<br>책을 한 권 구매할 때마다 주어지는 룰렛 티켓으로 포인트를 획득하세요!
 </div>		
 	<hr size="1" width="100%" noshade="noshade">
 	<div class="align-right">
