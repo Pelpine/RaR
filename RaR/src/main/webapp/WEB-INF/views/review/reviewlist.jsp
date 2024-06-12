@@ -58,3 +58,6 @@
     </c:if>
     <div class="align-center1">${page2}</div>
 </div>
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
