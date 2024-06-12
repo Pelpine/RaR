@@ -109,6 +109,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				member = new MemberVO();
 				member.setUser_num(rs.getInt("user_num"));
+				member.setUser_name(rs.getString("user_name"));
 				member.setUser_email(rs.getString("user_email"));
 				member.setUser_auth(rs.getInt("user_auth"));
 				member.setPassword(rs.getString("password"));
