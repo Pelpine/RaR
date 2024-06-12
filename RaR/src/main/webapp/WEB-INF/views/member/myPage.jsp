@@ -140,7 +140,7 @@ $(function(){
 					</c:when>
 					</c:choose>
 					<li>
-					<input type="button" value="출석체크" data-eventnum="100" id="attendance_button">
+					<input type="button" value="출석체크" data-eventnum="100" id="attendance_button" class="check-in">
 					</li>
 				</ul>
 			</div>

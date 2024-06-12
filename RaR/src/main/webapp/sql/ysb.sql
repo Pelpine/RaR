@@ -24,38 +24,3 @@ CREATE TABLE member_detail (
  constraint member_detail_fk foreign key (user_num)
                                 references member (user_num)
 );
-
---QnA
-CREATE TABLE question (
-    question_num number NOT NULL,
-    question_title varchar2(50) NOT NULL,
-    question_content clob NOT NULL,
-    question_filename VARCHAR2(500) NULL,
-    question_reg_date DATE DEFAULT SYSDATE NOT NULL,
-    question_modify_date DATE NOT NULL,
-    user_num number NOT NULL,
-    user_auth number(1) DEFAULT 2 NOT NULL,
-	user_ip	VARCHAR2 (40) NOT NULL,
- constraint question_pk primary key (question_num),
- constraint question_fk foreign key (user_num)
-                           references member (user_num)
-);
-CREATE sequence question_seq;
-
-CREATE TABLE answer (
-    answer_num number NOT NULL,
-    answer_content clob NOT NULL,
-    answer_reg_date DATE DEFAULT SYSDATE NOT NULL,
-    answer_modify_date DATE NOT NULL,
-    question_num number NOT NULL,
-    user_num number NOT NULL,
-    user_auth number(1) DEFAULT 2 NOT NULL,
-    user_ip	VARCHAR2 (40) NOT NULL,
- constraint answer_pk primary key (answer_num),
- constraint answer_fk foreign key (question_num)
-                         references question (question_num),
- constraint answer_fk2 foreign key (user_num)
-                          references member (user_num),
- constraint answer_fk3 foreign key (user_auth)
-                          references member (user_num)
-);

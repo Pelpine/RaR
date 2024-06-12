@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 </head>
 <body>
-<div class="page-main">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page-main">
 	<h2>룰렛 이벤트!</h2>
 	<p>
 		
