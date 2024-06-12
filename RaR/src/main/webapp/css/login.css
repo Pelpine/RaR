@@ -49,6 +49,7 @@ input[type="text"],input[type="password"],
 ---------------------*/
 .h2{
 	text-align:center;
+	margin-top:50px;
 }
 input[id="user_zipcode"]{
 	width:205px;
@@ -59,12 +60,15 @@ input[type="number"]{
 .form-notice{
 	margin-left:130px;
 }
+
 .button1, .button2, .button3{
 	text-align:center;
     background-color: #007bff;
     color: white;
     cursor: pointer;
     text-shadow: 0px 0px 15px black;
+    border-style:none;
+    height:30px;
 }
 .button1:hover, .button2:hover, .button3:hover{
 	background-color: #005E8C;

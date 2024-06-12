@@ -65,6 +65,7 @@ table td, table th{
 }
 .h2{
 	text-align:center;
+	margin-top:50px;
 }
 #register_form input[id="user_email"]{
 	width:230px;
@@ -78,12 +79,15 @@ input[type="number"]{
 .form-notice{
 	margin-left:130px;
 }
+
 .button1, .button2, .button3, .button4, .button5{
 	text-align:center;
     background-color: #007bff;
     color: white;
     cursor: pointer;
     text-shadow: 0px 0px 15px black;
+    border-style:none;
+    height:25px;
 }
 .button1:hover, .button2:hover, .button3:hover, .button4:hover .button5:hover{
 	background-color: #005E8C; /* 더 진한 주황색 호버 */

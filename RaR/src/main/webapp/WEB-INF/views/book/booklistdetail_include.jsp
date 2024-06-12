@@ -10,9 +10,9 @@
 		</c:if>
 		<!-- 상품 목록 -->
 		<c:if test="${count > 0}">
-			<table>
+			<table id="booklist_detail" class="no_borderLR">
 				<tr>
-					<th>상품정보</th>
+					<th colspan="3">상품정보</th>
 					<th>등급</th>
 					<th>판매가</th>
 					<th>장바구니 담기</th>
@@ -20,39 +20,42 @@
 				<c:forEach var="item" items="${list}">
 					<c:if test="${item.item_status == 1}">
 					<tr>
-						<td>
-							<img src="${item.bookVO.bk_img}" width="60">
+						<td class="item_img">
+							<img src="${item.bookVO.bk_img}">
+						</td>
+						<td class="item_img">
 							<%-- 상품이미지가 없을 경우, 기본 이미지 처리 --%>
 							<c:if test="${item.item_img == null}">
-								<img src="../images/book_default.png" width="60">
+								<img src="../images/book_default.png">
 							</c:if> <%-- 상품이미지가 있을 경우 --%> 
 							<c:if test="${item.item_img != null}">
 								<a href="javascript:void(0);" onclick="showPopup('${pageContext.request.contextPath}/upload/${item.item_img}')">
-								<img src="${pageContext.request.contextPath}/upload/${item.item_img}" width="60"></a>
+								<img src="${pageContext.request.contextPath}/upload/${item.item_img}"></a>
 							</c:if>
+						</td>
+						<td class="item_name">
 							${item.bookVO.bk_name}
 						</td>
 						<%-- 책 등급 --%>
 						<td>
 							<c:if test="${item.item_grade == 1}">
-								<span class="item_grade1">상</span>
+								<span class="item_grade_1">상</span>
 							</c:if>
 							<c:if test="${item.item_grade == 2}">
-								<span class="item_grade2">중</span>
+								<span class="item_grade_2">중</span>
 							</c:if> 
 							<c:if test="${item.item_grade == 3}">
-								<span class="item_grade3">하</span>
+								<span class="item_grade_3">하</span>
 							</c:if>
 						</td>
 						<%-- 가격 --%>
-						<td>
+						<td class="item_list_price">
 						<span class="item_bk_price">정가 : <fmt:formatNumber value="${item.bookVO.bk_price}"/>원</span><br>
 						판매가 : <span class="item_item_price"><fmt:formatNumber value="${item.item_price}"/></span>원
 						</td>
 						<%-- 장바구니 담기 --%>
 						<td>
-							<form class="insertCart" method="post"
-								style="width: 0; margin: 10px 0; border: 0; padding: 0;">
+							<form class="insertCart" method="post">
 								<input type="hidden" name="item_num" value="${item.item_num}">
 								<input type="hidden" name="bk_num" value="${item.bk_num}">
 								<input type="submit" value="장바구니 담기">

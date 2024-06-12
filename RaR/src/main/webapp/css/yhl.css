@@ -232,6 +232,28 @@ h2 {
 	font-size:9pt;
 }
 /*
+--------------------도서 목록--------------------
+*/
+#booklist_detail td:nth-child(1){
+	width:60px;
+}
+#booklist_detail td:nth-child(2){
+	width:60px;
+}
+#booklist_detail td:nth-child(3){
+	width:580px;
+}
+#booklist_detail td:nth-child(4){
+	width:150px;
+}
+#booklist_detail td:nth-child(5){
+	width:150px;
+	padding-left:30px;
+}
+#booklist_detail td:nth-child(6){
+	width:200px;
+}
+/*
 --------------------주문--------------------
 */
 /*테이블 간격 조정*/
