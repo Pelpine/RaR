@@ -44,7 +44,7 @@ public class Bookdetailupdate implements Action{
 		}else if(item_grade == 2) {
 			prs = (float) (price * 0.70);
 		}else if(item_grade == 3) {
-			prs = (float) (price * 0.70);
+			prs = (float) (price * 0.60);
 		}
 		int truncatedPrs = (int) (prs / 10) * 10;
 

@@ -16,11 +16,12 @@ $(document).ready(function(){
     $("a.private-link").click(function(event){
         var bookUserNum = $(this).data('usernum');
         var privateNum = $(this).data('privatenum');
-        
-        if(userauth != 9 && userNum != bookUserNum){
-            alert('본인만 확인 가능합니다.');
-            event.preventDefault();
-        }
+        if(privateNum == 2){
+        	if(userauth != 9 && userNum != bookUserNum){
+           	 	alert('본인만 확인 가능합니다.');
+            	event.preventDefault();
+        	}
+    	}
     });
 });
 </script>

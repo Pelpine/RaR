@@ -170,6 +170,7 @@ public class BookApprovalDAO {
 					vo.setDescription(rs.getString("description"));
 					vo.setPhoto(rs.getString("photo"));
 					vo.setPrivate_num(rs.getInt("private_num"));
+					vo.setUser_num(rs.getInt("user_num"));
 					
 					MemberVO member = new MemberVO();
 					member.setUser_email(rs.getString("user_email"));//유저 이메일

@@ -115,6 +115,10 @@
         <span class="refund-value highlight">${refund.refund_num}</span>
     </div>
     <div class="refund-item">
+        <span class="refund-label">상품번호:</span>
+        <span class="refund-value highlight">${refund.item_num}</span>
+    </div>
+    <div class="refund-item">
         <span class="refund-label">신청일:</span>
         <span class="refund-value highlight">${refund.request_date}</span>
     </div>

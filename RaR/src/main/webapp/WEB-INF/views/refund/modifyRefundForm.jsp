@@ -130,7 +130,7 @@ window.onload = function() {
 			</ul> 
 			<!-- 버튼 그룹 -->
 			<input type="submit" value="수정">
-			<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/order/userRefundDetail.do?item_num=${refund.item_num}'">
+			<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/refund/userRefundDetail.do?refund_num=${refund.refund_num}'">
 			<div class="refund-policy-container">
 </div>
 </form>
