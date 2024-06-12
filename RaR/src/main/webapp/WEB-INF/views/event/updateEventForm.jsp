@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>이벤트 등록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 <script type="text/javascript">
 window.onload=function(){
