@@ -18,15 +18,16 @@
     	<!-- 캐러셀 시작 -->
     	<div class="carousel">
 	        <div class="carousel-inner">
-	            <div class="carousel-item active">
-	                <img src="../images/독후감 이벤트.jpg">
-	            </div>
-	            <div class="carousel-item">
-	                <img src="../images/출석체크 이벤트.png">
-	            </div>
-	            <div class="carousel-item">
-	                <img src="../images/친구초대 이벤트.png">
-	            </div>
+	          <c:forEach var="event" items="${list}" varStatus="loop">
+                 <c:if test="${!empty event.banner}">
+                     <div class="carousel-item ${loop.index == 0 ? 'active' : ''}">
+                         <a href="../event/eventDetail.do?event_num=${event.event_num}"><img src="${pageContext.request.contextPath}/upload/${event.banner}" class="d-block w-100"></a>
+                      <div class="carousel-caption">
+                       <!-- 여기에 캐러셀 캡션 추가 -->
+                      </div>
+                     </div>
+                  </c:if>
+              </c:forEach>	          
 	        </div>
 	        <a class="carousel-control prev" onclick="prevSlide()"><img src="../images/left_btn.png"></a>
 	        <a class="carousel-control next" onclick="nextSlide()"><img src="../images/right_btn.png"></a>

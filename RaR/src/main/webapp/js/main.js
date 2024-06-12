@@ -1,4 +1,5 @@
 let currentIndex = 0;
+let slideInterval;
 
 function showSlide(index) {
     const slides = document.querySelectorAll('.carousel-item');
@@ -23,6 +24,8 @@ function showSlide(index) {
             slide.classList.remove('active');
         }
     });
+
+    resetInterval();
 }
 
 function nextSlide() {
@@ -33,8 +36,15 @@ function prevSlide() {
     showSlide(currentIndex - 1);
 }
 
-// 일정 시간 간격으로 슬라이드 넘기기 (4초마다 다음 슬라이드)
-setInterval(nextSlide, 4000);
+function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 4000);
+}
 
-// 초기 슬라이드 표시
+// 초기 슬라이드 표시 및 타이머 설정
 showSlide(currentIndex);
+slideInterval = setInterval(nextSlide, 4000);
+
+// 버튼 이벤트 핸들러 추가
+document.querySelector('.next-button').addEventListener('click', nextSlide);
+document.querySelector('.prev-button').addEventListener('click', prevSlide);
