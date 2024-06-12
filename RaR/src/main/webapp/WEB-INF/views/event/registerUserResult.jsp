@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${result_title}</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
 </head>
 <body>
 <div class="page-main">
@@ -13,7 +13,7 @@
 	<div class="content-main">
 		<h2>${result_title}</h2>
 		<div class="result-display">
-			<div class="align-center">
+			<div class="align-center3">
 				${result_msg}<br>
 				누군가의 추천으로 Read & Renew를 찾아오셨나요?
 				<p>
