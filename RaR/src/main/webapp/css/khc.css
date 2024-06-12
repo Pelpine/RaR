@@ -29,7 +29,9 @@
 .align-right{
 	text-align:right;
 }
-
+.content-main{
+	padding:10px 130px;
+}
 
 /* 폼 스타일 */
 ul {
