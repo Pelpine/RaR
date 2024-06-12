@@ -69,7 +69,7 @@ const rotate = () => {
         } else if (param.result == 'noTicket') {
           alert('티켓이 없습니다.');
         } else if (param.result == 'success') {
-          alert(`${point} 당첨!`);
+          alert(`${point} point 당첨!`);
           const ticketCount = document.getElementById('ticketCount');
           ticketCount.innerText -= 1; //어차피 새로 고침하면 새롭게 불러온 티켓 카운트가 표시, 이는 1씩 빼준 값과 동일
         } else {
