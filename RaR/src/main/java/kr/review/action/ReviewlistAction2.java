@@ -11,9 +11,9 @@ import kr.rar.vo.ReviewVO;
 import kr.util.PagingUtil;
 import java.util.logging.Logger;
 
-public class ReviewlistAction implements Action {
+public class ReviewlistAction2 implements Action {
 	
-	 private static final Logger logger = Logger.getLogger(ReviewlistAction.class.getName());
+	 private static final Logger logger = Logger.getLogger(ReviewlistAction2.class.getName());
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -60,6 +60,6 @@ public class ReviewlistAction implements Action {
             request.setAttribute("page2", page.getPage());
         }
 
-        return "/WEB-INF/views/review/reviewlist.jsp";
+        return "/WEB-INF/views/review/reviewlist2.jsp";
     }
 }

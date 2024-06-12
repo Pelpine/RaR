@@ -353,7 +353,7 @@ public class BookDAO {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
 			
-			sql = "SELECT b.*, MIN(i.item_price) OVER() as item_price FROM book b JOIN item i ON b.bk_num = i.bk_num WHERE b.bk_num = ?";
+			sql = "SELECT b.*, (SELECT NVL(MIN(i.item_price), 0) FROM item i WHERE i.bk_num = b.bk_num AND i.item_status = 1) AS item_price FROM book b WHERE b.bk_num = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -394,7 +394,7 @@ public class BookDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "select min(item_price) from item where bk_num=?";
+			sql = "SELECT NVL(MIN(item_price), 0) FROM item WHERE bk_num =? AND item_status = 1";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, bk_num);
