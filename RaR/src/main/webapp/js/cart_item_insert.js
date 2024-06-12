@@ -1,7 +1,7 @@
 $(function(){
 	//장바구니에 담기
 	
-	$(document).on('submit','.insertCart',function(){
+	$(document).on('submit','.insertCart',function(event){
 		let form_data = $(this).serialize();
 		
 	    $.ajax({
@@ -27,5 +27,6 @@ $(function(){
 	            alert('네트워크 오류 발생');
 	        }
 	    });
+	    event.preventDefault();
 	});
 });

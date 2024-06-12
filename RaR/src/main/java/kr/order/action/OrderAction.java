@@ -39,7 +39,7 @@ public class OrderAction implements Action{
 	    int pay_total = dao.getSelectedCartTotal(user_num);
 	    if(pay_total <= 0) {//이미 구매가 완료된 경우 재구매 방지 (back버튼 눌러서 돌아간 후 재구매하는 오류 방지)
 	    	request.setAttribute("notice_msg", "정상적인 주문이 아니거나 상품이 판매중이 아닙니다.");
-	    	request.setAttribute("notice_url", request.getContextPath()+"/item/itemList.do");
+	    	request.setAttribute("notice_url", request.getContextPath()+"/cart/cartList.do");
 	    	return "/WEB-INF/views/common/alert_view.jsp";
 	    }
 	    //장바구니에 담겨있는 상품 정보 호출

@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yhl.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/booksdetail.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>

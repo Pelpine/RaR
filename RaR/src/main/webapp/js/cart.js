@@ -68,7 +68,7 @@ $(function(){
 				}else if(param.result == 'success'){
 					selectList();
 				}else{
-					alert('댓글 삭제 오류 발생');
+					alert('장바구니 삭제 오류 발생');
 				}
 			},
 			error:function(){

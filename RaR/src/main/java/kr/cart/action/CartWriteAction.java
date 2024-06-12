@@ -24,6 +24,7 @@ public class CartWriteAction implements Action{
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
+		int bk_num = Integer.parseInt(request.getParameter("bk_num"));
 
 		if(user_num==null) {//로그인이 되지 않은 경우
 			mapAjax.put("result", "logout");
@@ -37,17 +38,17 @@ public class CartWriteAction implements Action{
 			//상품 상태가 판매상태가 아닐 경우
 			if(itemVO.getItem_status() > 1) {
 				mapAjax.put("result", "noSale");
-			}else {
+			}else {//상품이 판매중일 경우
 				CartDAO dao = CartDAO.getInstance();
 				//상품 중복체크
 				boolean isItemExists = dao.isItemExists(user_num, item_num);
-				if (isItemExists) {
-					mapAjax.put("result", "duplicated"); // 중복된 아이템이 있을 경우
-				}else {
+				if (isItemExists) {// 중복된 아이템이 있을 경우
+					mapAjax.put("result", "duplicated"); 
+				}else {// 중복된 아이템이 없을 경우
 					CartVO cart = new CartVO();
 					cart.setUser_num(user_num);
 					cart.setItem_num(item_num);
-					cart.setBk_num(Integer.parseInt(request.getParameter("bk_num")));
+					cart.setBk_num(bk_num);
 					
 					dao.insertCart(cart);
 					mapAjax.put("result", "success");
