@@ -178,7 +178,7 @@
 			        }
 			    };
 			    modifyBtn.onclick = function(){
-			    	if (refundStatus === 4 || refundStatus === 5) {
+			    	if (refundStatus === 3 || refundStatus === 4) {
 			            alert('이미 환불 단계가 완료되어 수정이 불가능합니다.');
 			    }else{
 			    	location.replace('modifyRefundForm.do?refund_num=${refund.refund_num}');
