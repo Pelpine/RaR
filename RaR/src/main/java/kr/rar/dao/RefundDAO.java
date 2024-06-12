@@ -96,7 +96,7 @@ public class RefundDAO {
 	}
 	//상품 번호로 룰렛 티켓 사용 여부 구하기
 	public int getTicketStatusByItem_num(int item_num) throws Exception{
-		int status = 5;
+		int status = 0;
 		Connection conn = null;
 		String sql = null;
 		PreparedStatement pstmt = null;
@@ -105,7 +105,7 @@ public class RefundDAO {
 			conn = DBUtil.getConnection();
 			sql = "SELECT STATUS FROM roulette_ticket WHERE item_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, status);
+			pstmt.setInt(1, item_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				status = rs.getInt(1);
@@ -116,6 +116,67 @@ public class RefundDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return status;
+	}
+	//티켓 삭제 여부 구하기
+	public int getDeleteStatusByItem_num(int item_num) throws Exception{
+		int delete_ticket = 0;
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT delete_ticket FROM roulette_ticket WHERE item_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, item_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				delete_ticket = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return delete_ticket;
+	}
+	//환불 불가시 티켓 돌려주기
+	public void getBackUnusedTicket(int item_num) throws Exception{
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE roulette_ticket SET status = 1, delete_ticket=0 WHERE item_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, item_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	//환불 불가시 회수한 포인트 돌려주기
+	public void getBackPoint (int refund_point, int user_num) throws Exception{
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			sql = "UPDATE member_detail SET user_point = user_point+? WHERE user_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, refund_point);
+			pstmt.setInt(2, user_num);
+			System.out.println("포인트 복구 완료");
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+			
+		}
 	}
 	//상품번호로 룰렛 사용 리워드 구하기
 	public int getTicketRewardByItem_num(int item_num) throws Exception{
@@ -141,29 +202,6 @@ public class RefundDAO {
 		return reward;
 	}
 	
-	//유저 보유 포인트 구하기
-	public int getPoint(int user_num) throws Exception{
-		int point = 0;
-		Connection conn = null;
-		String sql = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			conn = DBUtil.getConnection();
-			sql = "SELECT user_point FROM member_detail WHERE user_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, user_num);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				point = rs.getInt(1);
-			}
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
-		return point;	
-	}
 	//사용자 환불 목록 보기
 	public List<RefundVO> getRefundListByUserNum(int start, int end, int user_num) throws Exception{
 		List<RefundVO> list = null;
@@ -346,6 +384,7 @@ public class RefundDAO {
         	refund.setRefund_date(rs.getDate("refund_date"));
         	refund.setStatus(rs.getInt("status"));
         	refund.setUser_num(rs.getInt("user_num"));
+        	refund.setUnable_reason(rs.getString("unable_reason"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -411,6 +450,25 @@ public class RefundDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}	
+	//환불 완료아이템 상태 변경
+	public void returnItem(int item_num, int new_status) throws Exception{
+		Connection conn = null;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE item SET item_status =? WHERE item_num =? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, new_status);
+			pstmt.setInt(2, item_num);
+			//아이템 상태 변경 완료
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//회수 포인트, 보유 포인트 우선 차감 후 잔액 반환
 		public int deleteUserPointByRefund_point(int user_num, int refund_point) throws Exception{
 			int user_point = 0;
@@ -427,20 +485,25 @@ public class RefundDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, user_num);
 				rs = pstmt.executeQuery();
+				int result = 0;
 				if(rs.next()) {
 					user_point = rs.getInt(1);
 				}
+				
 				sql ="UPDATE member_detail SET user_point = ? WHERE user_num = ?";
 				pstmt2 = conn.prepareStatement(sql);
-				if(refund_point > user_point) {
+				if(refund_point >= user_point) {
 					//유저 보유 포인트 0 으로 만듦
 					pstmt2.setInt(1, 0);
+					pstmt2.setInt(2, user_num);
 					// 부족 포인트 구함.
 					shortage = refund_point - user_point;
 				}else if(user_point > refund_point) {
-					pstmt2.setInt(1, user_point - refund_point);
+					result = user_point - refund_point;
+					pstmt2.setInt(1, result);
+					pstmt2.setInt(2, user_num);
 				}
-				pstmt2.setInt(2, user_num);
+			
 				pstmt2.executeUpdate();
 				conn.commit();
 			}catch(Exception e) {
@@ -453,14 +516,14 @@ public class RefundDAO {
 			return shortage;
 		}
 		
-	//환불 완료 시 티켓을 사용하지 않았다면 티켓 사용 상태로 변경 (삭제하지 않는 이유는 환불 불가, 취소 가능)
+	//환불 완료 시 티켓을 사용하지 않았다면 티켓 사용 및, 삭제 티켓으로 처리 (삭제하지 않는 이유는 환불 불가, 취소 가능)
 		public void deleteUnusedTicket(int item_num) throws Exception{
 			Connection conn = null;
 			String sql = null;
 			PreparedStatement pstmt = null;
 			try {
 				conn = DBUtil.getConnection();
-				sql = "UPDATE roulette_ticket SET status = 0 WHERE item_num=?";
+				sql = "UPDATE roulette_ticket SET status = 0, delete_ticket=1 WHERE item_num=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, item_num);
 				pstmt.executeUpdate();
@@ -470,18 +533,26 @@ public class RefundDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
-		
+	//	
 	//관리자 환불 상태 변경
-		public void adminUpdateRefundStatus(int refund_num, int status) throws Exception{
+		public void adminUpdateRefundStatus(int refund_num, int status, String unable_reason) throws Exception{
 			Connection conn = null;
 			String sql = null;
+			String sub_sql = "";
 			PreparedStatement pstmt = null;
+			int cnt = 0;
 			try {
 				conn = DBUtil.getConnection();
-				sql = "UPDATE refund SET status = ? WHERE refund_num=?";
+				if(unable_reason!=null) {
+					sub_sql += ",unable_reason = ?";
+				}
+				sql = "UPDATE refund SET status = ?" + sub_sql + " WHERE refund_num=?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, status);
-				pstmt.setInt(2, refund_num);
+				pstmt.setInt(++cnt, status);
+				if(unable_reason!=null) {
+					pstmt.setString(++cnt,unable_reason);
+				}
+				pstmt.setInt(++cnt, refund_num);
 				pstmt.executeUpdate();
 			}catch(Exception e) {
 				throw new Exception(e);
@@ -489,24 +560,6 @@ public class RefundDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
-	//환불 완료시 단순변심 상품 복귀
-		public void returnItemStatus(int item_num) throws Exception{
-			Connection conn = null;
-			String sql = null;
-			PreparedStatement pstmt = null;
-			try {
-				conn = DBUtil.getConnection();
-				sql = "UPDATE item SET status = 1 WHERE item_num=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(2, item_num);
-				pstmt.executeUpdate();
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
-			}
-		}
-	//환불 
 	//------------------------------(사용자)
 	//환불 신청(사용자)
 	public void insertRefund(RefundVO refund) throws Exception{
@@ -551,22 +604,28 @@ public class RefundDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//환불 취소시 회수한 포인트 복구
-	public void returnPoint(int refund_point, int user_num) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-		try {
-			conn = DBUtil.getConnection();
-			sql = "UPDATE member_detail SET user_point = user_point + ? WHERE user_num =?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, refund_point);
-			pstmt.setInt(2, user_num);
-			pstmt.executeUpdate();
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
+	//사용자 보유 포인트 구하기
+	public int getUserPoint (int user_num) throws Exception{
+			int user_point = 0;
+			Connection conn = null;
+			String sql = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			    try {
+			        conn = DBUtil.getConnection();        
+			        sql=    "SELECT user_point FROM member_detail WHERE user_num=? ";
+			        pstmt = conn.prepareStatement(sql);
+			        pstmt.setInt(1, user_num);
+			        rs = pstmt.executeQuery();
+			        if(rs.next()) {
+			        	user_point = rs.getInt(1);
+			        }
+			    } catch(Exception e) {
+			        throw new Exception(e);
+			    } finally {
+			        DBUtil.executeClose(rs, pstmt, conn);
+			    }
+			    return user_point;
+			}	
 	}
-}

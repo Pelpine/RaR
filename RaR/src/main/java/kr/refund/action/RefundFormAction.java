@@ -67,10 +67,11 @@ public class RefundFormAction implements Action {
         if(ticket_status == 0) {
         	roulette_reward = refundDAO.getTicketRewardByItem_num(item_num);
         }
+
         //환불해야 하는 포인트
         int refund_point = (item.getItem_price()/ 100) + roulette_reward;
         //유저 보유 포인트
-        int point = refundDAO.getPoint(user_num);
+        int point = refundDAO.getUserPoint(user_num);
         //환불 포인트 대비 유저 부족분
         int shortage = 0;
         //환불 후 보유 포인트

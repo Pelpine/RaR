@@ -16,6 +16,7 @@ public class RefundVO {
 	private String bank;
 	private String account;
 	private int user_num;
+	private String unable_reason;
 	public int getRefund_num() {
 		return refund_num;
 	}
@@ -94,6 +95,11 @@ public class RefundVO {
 	public void setUser_num(int user_num) {
 		this.user_num = user_num;
 	}
-	
-	
+	public String getUnable_reason() {
+		return unable_reason;
+	}
+	public void setUnable_reason(String unable_reason) {
+		this.unable_reason = unable_reason;
+	}
+		
 }

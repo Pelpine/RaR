@@ -156,17 +156,30 @@
 
 	<div class="align-right">
 			<input type="button" value="환불정보수정" onclick="location.href='modifyRefundForm.do?refund_num=${refund.refund_num}'"
-			<c:if test= "${refund.status == 4 || refund.status == 5}">disabled</c:if>>
-			<input type="button" value="환불 취소" id="delete_btn" <c:if test= "${refund.status != 1}">disabled</c:if>>
+			id = "modify_btn">
+			<input type="button" value="환불 취소" id="delete_btn">
 			<script type="text/javascript">
-				const delete_btn = document.getElementById('delete_btn');
-				delete_btn.onclick = function(){
-				let choice = confirm('환불 취소 하시겠습니까?');
-				if(choice){
-					location.replace('deleteRefund.do?refund_num=${refund.refund_num}');
-					}
-				};
-			</script>		
+			    const refundStatus = ${refund.status};
+			    const deleteBtn = document.getElementById('delete_btn');
+			    const modifyBtn = document.getElementById('modify_btn');
+			    deleteBtn.onclick = function() {
+			        if (refundStatus !== 1) {
+			            alert('이미 환불이 진행중이거나 완료되어 취소가 불가능합니다.');
+			        } else {
+			            let choice = confirm('환불 취소 하시겠습니까?');
+			            if (choice) {
+			                location.replace('deleteRefund.do?refund_num=${refund.refund_num}');
+			            }
+			        }
+			    };
+			    modifyBtn.onclick = function(){
+			    	if (refundStatus === 4 || refundStatus === 5) {
+			            alert('이미 환불 단계가 완료되어 수정이 불가능합니다.');
+			    }else{
+			    	location.replace('modifyRefundForm.do?refund_num=${refund.refund_num}');
+			    }
+			    }
+		</script>		
 		<input type="button" value="환불목록"
 		       onclick="location.href='userRefundList.do'">
 	</div>

@@ -31,14 +31,14 @@ public class RefundAction implements Action{
             // 구매자 회원번호와 로그인한 회원번호가 불일치할 경우
             return "/WEB-INF/views/common/notice.jsp";
         }
-      
+      int refund_point = Integer.parseInt(request.getParameter("refund_point"));
        
        RefundVO refund = new RefundVO();
        refund.setOrder_num(order_num);
        refund.setItem_num(item_num);
        refund.setUser_num(user_num);
        refund.setRefund_price(Integer.parseInt(request.getParameter("refund_price")));
-       refund.setCollect_point(Integer.parseInt(request.getParameter("refund_point")));
+       refund.setCollect_point(refund_point);
        refund.setReason(Integer.parseInt(request.getParameter("reason")));
        refund.setReason_other(request.getParameter("reason_other"));
        refund.setBank(request.getParameter("bank"));
@@ -46,7 +46,7 @@ public class RefundAction implements Action{
        
        RefundDAO refundDAO = RefundDAO.getInstance();
        //아이템 구매로 얻은 모든 포인트(구매 포인트 + 룰렛 리워드) 삭제 
-       refundDAO.deleteUserPointByRefund_point(user_num, Integer.parseInt(request.getParameter("refund_point")));
+       refundDAO.deleteUserPointByRefund_point(user_num, refund_point);
       
        refundDAO.insertRefund(refund);
        

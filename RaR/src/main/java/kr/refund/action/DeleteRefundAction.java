@@ -33,7 +33,9 @@ public class DeleteRefundAction implements Action{
         }
         int refund_point = refund.getCollect_point();
         //환불 취소로 포인트 복구
-        refundDAO.returnPoint(refund_point, user_num);
+        System.out.println(refund_point);
+        System.out.println(user_num);
+        refundDAO.getBackPoint(refund_point, user_num);
         refundDAO.deleteRefund(refund_num);
         request.setAttribute("notice_msg", "환불이 취소되었습니다. (회수 포인트 재지급)");
         request.setAttribute("notice_url",request.getContextPath()+"/refund/userRefundList.do");
