@@ -16,8 +16,8 @@
 	}
 </style>
 <body>
-<div class="page-main">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page-main">
 	<h2>${event.name}</h2>
 	<p>
 		이벤트 번호 : ${event.event_num}<br>
