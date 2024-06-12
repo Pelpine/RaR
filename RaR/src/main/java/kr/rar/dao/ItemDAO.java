@@ -390,4 +390,35 @@ public class ItemDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		//관리자 - 상품 삭제
+		public void deleteItem(int item_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//오토 커밋 해제
+				conn.setAutoCommit(false);
+				
+				sql = "DELETE FROM cart WHERE item_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, item_num);
+				pstmt.executeUpdate();
+				
+				sql = "DELETE FROM item WHERE item_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, item_num);
+				pstmt2.executeUpdate();
+				
+				//모든 SQL문이 성공하면 commit
+				conn.commit();			
+			}catch(Exception e) {
+				//SQL문이 하나라도 실패하면 rollback
+				conn.rollback();
+				DBUtil.executeClose(null, pstmt, null);
+				DBUtil.executeClose(null, pstmt2, conn);
+			}
+		}
 }
