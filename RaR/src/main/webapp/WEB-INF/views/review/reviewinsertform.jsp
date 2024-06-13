@@ -58,14 +58,6 @@
 					</div>
 				</div>
 				<!-- 구분선 추가 -->
-				<div class="review-container">
-					<div>리뷰 남기기</div>
-					<textarea rows="5" cols="30" id="re_comment" name="re_comment"></textarea>
-					<label for="re_img">상품사진</label> <input type="file" name="re_img"
-						class="input-check" id="re_img"
-						accept="image/gif,image/png,image/jpeg">
-				</div>
-				<!-- 별점 주는 기능을 이동한 부분 -->
 				<div class="rating-container">
 					<div class="rating">
 						<input type="radio" name="rating" id="rate-5" value="5"><label
@@ -79,7 +71,16 @@
 					</div>
 					<div class="selected-rating">1/5</div>
 				</div>
-				<input type="submit" value="댓글등록">
+				<div class="review-container">
+					<div>리뷰 남기기</div>
+					<textarea rows="5" cols="30" id="re_comment" name="re_comment"></textarea>
+					<label for="re_img">상품사진</label> <input type="file" name="re_img"
+						class="input-check" id="re_img"
+						accept="image/gif,image/png,image/jpeg">
+				</div>
+				<!-- 별점 주는 기능을 이동한 부분 -->
+				
+				<input type="submit" value="댓글등록" class="submit-btn">
 			</form>
 		</c:forEach>
 	</div>
