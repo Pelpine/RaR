@@ -68,8 +68,9 @@
 							id="rate-2" value="2"><label for="rate-2"></label> <input
 							type="radio" name="rating" id="rate-1" value="1" checked><label
 							for="rate-1"></label>
-					</div>
+					
 					<div class="selected-rating">1/5</div>
+					</div>
 				</div>
 				<div class="review-container">
 					<div>리뷰 남기기</div>
