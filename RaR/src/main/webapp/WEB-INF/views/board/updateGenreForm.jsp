@@ -34,8 +34,8 @@ window.onload=function(){
 		<input type="hidden" name="bg_num" value="${genre.bg_num}">
 			<ul>
 				<li>
-					<label for="title">장르</label>
-					<input type="text" name="genre" id="genre"
+					<label for="bg_title">장르</label>
+					<input type="text" name="bg_title" id="bg_title"
 								value="${genre.bg_title}" maxlength="50">
 				</li>
 				

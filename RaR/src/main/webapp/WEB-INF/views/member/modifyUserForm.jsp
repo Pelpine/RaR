@@ -172,5 +172,6 @@ $(function(){
 			<!-- 다음 우편번호 API 끝 -->
         </div>
     </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

@@ -70,7 +70,6 @@
 		</c:if>
 	</div>
 </div>
-
 <script type="text/javascript">
 function showPopup(imgSrc) {
     var popupWindow = window.open("", "popupWindow", "width=400,height=400,scrollbars=yes");

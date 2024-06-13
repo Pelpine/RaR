@@ -1,20 +1,16 @@
-/* 전체 레이아웃
----------------------*/
-body{
-	margin:0 auto;
-	background:#FFFFFF;
-	width:80%;
-	font-family: Arial, sans-serif; /* 폰트 지정 */
+/*------------------공통 정렬----------------------*/
+
+.align-center{
+	text-align:center;
 }
-/* 페이지 레이아웃
----------------------*/
+.align-right{
+	text-align:right;
+}
 .page-main{
-	width:1200px;
-	background:#FFFFFF;
-	margin:0 auto;
-	border-radius:5px;
-	min-height:650px;
-	max-width: 1200px; /* 페이지 최대 너비 지정 */
+	padding-bottom:100px;
+}
+.content-main {
+    width: 100%; /* main-content를 가득 채우도록 설정 */
 }
 #reply_div {
     padding: 20px;

@@ -57,7 +57,6 @@
 </script>
 <jsp:include page="/WEB-INF/views/book/booklistdetail_include.jsp"/>
 <jsp:include page="/WEB-INF/views/review/reviewlist.jsp"/>
-<hr width="100%" noshade="noshade">
 </body>
 <footer>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

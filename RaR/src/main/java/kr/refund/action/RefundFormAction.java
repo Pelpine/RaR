@@ -74,15 +74,10 @@ public class RefundFormAction implements Action {
         int afterRefund = 0;
         if(refund_point > point) {
            shortage = Math.abs(point - refund_point);
-           System.out.println(roulette_reward);
         }else if (point > refund_point) {
         	shortage = 0;
         	afterRefund = point - refund_point;
-        	System.out.println(roulette_reward);
-        	System.out.println(item_num);
         }
-        //아이템 구매로 얻은 룰렛 티켓 사용 여부 구하기
-        
         
         //최종 환불 금액
         int refund_price = item.getItem_price() - shortage - roulette_reward;

@@ -62,7 +62,6 @@ $(document).ready(function(){
     </div>
 </c:forEach>
 </div>
-<hr width="100%" noshade="noshade">
 </body>
 <footer>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

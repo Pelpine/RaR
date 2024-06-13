@@ -16,3 +16,6 @@ p {
 .about-section {
 	font-size: 13px;
 }
+#comment p.comment {
+    font-size: 14pt !important;
+}
