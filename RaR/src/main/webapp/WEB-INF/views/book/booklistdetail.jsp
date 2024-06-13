@@ -28,7 +28,7 @@
         <div>출판사 : ${book.bk_publisher}</div>
         <div>정가 : <fmt:formatNumber value="${book.bk_price}"/>원</div>
         <div>최저가 : <fmt:formatNumber value="${book.itemVO.item_price}"/>원</div>
-        <div>설명 : ${book.bk_description}</div>
+        <div>소개 : ${book.bk_description}</div>
     </div>
 </div>
 <script>
@@ -56,7 +56,10 @@
     document.getElementById('formatted-date').textContent = formattedDate;
 </script>
 <jsp:include page="/WEB-INF/views/book/booklistdetail_include.jsp"/>
+<div>
+<div class="tltie">구매자 리뷰</div>
 <jsp:include page="/WEB-INF/views/review/reviewlist.jsp"/>
+</div>
 </body>
 <footer>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

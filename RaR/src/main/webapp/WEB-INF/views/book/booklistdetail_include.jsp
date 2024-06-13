@@ -30,7 +30,7 @@
 							</c:if> <%-- 상품이미지가 있을 경우 --%> 
 							<c:if test="${item.item_img != null}">
 								<a href="javascript:void(0);" onclick="showPopup('${pageContext.request.contextPath}/upload/${item.item_img}')">
-								<img src="${pageContext.request.contextPath}/upload/${item.item_img}"></a>
+								중고책 상태<br> 보기</a>
 							</c:if>
 						</td>
 						<td class="item_name">
@@ -75,7 +75,11 @@ function showPopup(imgSrc) {
     var popupWindow = window.open("", "popupWindow", "width=400,height=400,scrollbars=yes");
 
     popupWindow.document.write("<html><head><title>이미지 팝업</title></head><body>");
-    popupWindow.document.write("<img src='" + imgSrc + "' width='100%' height='100%'><br>");
+    popupWindow.document.write("<style>");
+    popupWindow.document.write("body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }");
+    popupWindow.document.write("img { max-width: 100%; height: 100%; }");
+    popupWindow.document.write("</style>");
+    popupWindow.document.write("<img src='" + imgSrc + "'onclick='window.close();'><br>");
     popupWindow.document.write("</body></html>");
 }
 </script>

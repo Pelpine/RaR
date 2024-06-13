@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>안내</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>

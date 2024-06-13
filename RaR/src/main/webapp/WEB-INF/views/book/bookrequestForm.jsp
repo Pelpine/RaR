@@ -74,7 +74,7 @@ window.onload = function() {
                 <input type="text" id="publisher" name="publisher" value="${books.publisher}" readonly>
             </li>
             <li class="form-item">
-                <div>설명 :</div>
+                <div>소개 :</div>
                 <textarea rows="5" cols="30" name="description" id="description" readonly>${books.description}</textarea>
             </li>
             <li class="form-item form-item-inline">
