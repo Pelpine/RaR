@@ -102,7 +102,7 @@ window.onload = function(){
 					 <li><label for="user_email">이메일</label> 
             			<input type="email" name="user_email" id="user_email" maxLength="50" class="input-check">
             			<input type="button" id="butn" value="중복 확인" class="button2">
-            			<span id="message_user_email"></span></li>
+            			<span id="message_user_email" class="checkID"></span></li>
 					
 					<li><label for="user_name">이름</label> <input type="text"
 						name="user_name" id="user_name" maxlength="10" class="input-check"></li>
