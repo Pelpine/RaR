@@ -9,7 +9,7 @@
                 <option value="Author" <c:if test="${param.ck=='Author'}">selected</c:if>>저자</option>
                 <option value="Publisher" <c:if test="${param.ck=='Publisher'}">selected</c:if>>출판사</option>
             </select>
-        </div>
+        </div> 
         <div class="search-input">
             <input type="search" name="sheck" placeholder="검색어를 입력하세요" id="sheck" value="${param.sheck}">
             <input type="hidden" value="${param.start != null ? param.start : 1}" id="start" name="start">
