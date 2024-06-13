@@ -30,7 +30,7 @@
 							</c:if> <%-- 상품이미지가 있을 경우 --%> 
 							<c:if test="${item.item_img != null}">
 								<a href="javascript:void(0);" onclick="showPopup('${pageContext.request.contextPath}/upload/${item.item_img}')">
-								중고책 상태<br> 보기</a>
+								<img src="${pageContext.request.contextPath}/upload/${item.item_img}"></a>
 							</c:if>
 						</td>
 						<td class="item_name">
