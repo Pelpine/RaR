@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="tltie">나의 리뷰</div>
 <jsp:include page="/WEB-INF/views/review/reviewlist.jsp"/>
 </body>
 </html>

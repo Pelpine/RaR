@@ -7,9 +7,8 @@
 <script src="${pageContext.request.contextPath}/js/reviewdelete.js"></script>
 
 <div class="page-main">
-    <div class="tltie">리뷰</div>
     <c:if test="${count2 == 0}">
-        <div class="result-display1">표시할 리뷰가 없습니다.</div>
+        <div class="result-display1">리뷰 없음</div>
     </c:if>
     <c:if test="${count2 > 0}">
         <div class="review-container">

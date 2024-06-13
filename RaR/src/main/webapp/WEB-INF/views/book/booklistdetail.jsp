@@ -56,7 +56,10 @@
     document.getElementById('formatted-date').textContent = formattedDate;
 </script>
 <jsp:include page="/WEB-INF/views/book/booklistdetail_include.jsp"/>
+<div>
+<div class="tltie">구매자 리뷰</div>
 <jsp:include page="/WEB-INF/views/review/reviewlist.jsp"/>
+</div>
 </body>
 <footer>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
