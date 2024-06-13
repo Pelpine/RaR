@@ -78,8 +78,6 @@ public class RefundFormAction implements Action {
         	shortage = 0;
         	afterRefund = point - refund_point;
         }
-        //아이템 구매로 얻은 룰렛 티켓 사용 여부 구하기
-        
         
         //최종 환불 금액
         int refund_price = item.getItem_price() - shortage - roulette_reward;
