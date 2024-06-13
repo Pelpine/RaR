@@ -29,32 +29,6 @@
 
 		<div class="content-main">
 			<h2>게시판</h2>
-			<form id="search_form" action="list.do" method="get">
-				<ul class="search">
-					<li><select name="keyfield">
-							<option value="1"
-								<c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-							<option value="2"
-								<c:if test="${param.keyfield==2}">selected</c:if>>이메일</option>
-							<option value="3"
-								<c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
-					</select></li>
-					<li><input type="search" size="50" name="keyword" id="keyword"
-						value="${param.keyword}"></li>
-					<li><input type="submit" value="검색"></li>
-				</ul>
-			</form>
-			<div class="list-space align-right">
-				<input type="button" value="글 쓰기"
-					onclick="location.href='writeForm.do'"
-					<c:if test="${empty user_num}">disabled="disabled"</c:if>>
-				<input type="button" value="목록" onclick="location.href='list.do'">
-				<input type="button" value="홈으로"
-					onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-			<c:if test="${count==0}">
-				<div class="result-display">표시할 게시물이 없습니다.</div>
-			</c:if>
 			<h3>이벤트-공지</h3>
 			<ul id="ulTable">
 				<li>
@@ -88,6 +62,32 @@
 				</c:forEach>
 			</ul>
 			<h3>자유게시판</h3>
+			<form id="search_form" action="list.do" method="get">
+				<ul class="search">
+					<li><select name="keyfield">
+							<option value="1"
+								<c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+							<option value="2"
+								<c:if test="${param.keyfield==2}">selected</c:if>>이메일</option>
+							<option value="3"
+								<c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
+					</select></li>
+					<li><input type="search" size="50" name="keyword" id="keyword"
+						value="${param.keyword}"></li>
+					<li><input type="submit" value="검색"></li>
+				</ul>
+			</form>
+			<div class="list-space align-right">
+				<input type="button" value="글 쓰기"
+					onclick="location.href='writeForm.do'"
+					<c:if test="${empty user_num}">disabled="disabled"</c:if>>
+				<input type="button" value="목록" onclick="location.href='list.do'">
+				<input type="button" value="홈으로"
+					onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+			</div>
+			<c:if test="${count==0}">
+				<div class="result-display">표시할 게시물이 없습니다.</div>
+			</c:if>
 			<c:if test="${count>0}">
 				<table class="genre-table">
 					<thead>

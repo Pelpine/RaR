@@ -53,8 +53,12 @@ window.onload=function(){
 						name="content" id="content">${board.content}</textarea>
 				</li>
 				<li>
-    <label for="filename">이미지</label>
-    <input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg">
+    <li><label for="filename">이미지</label>
+						<div class="input-group">
+							<input type="file" name="filename" id="filename"
+								accept="image/gif,image/png,image/jpeg"> <label
+								for="filename" class="file-upload-label">이미지 등록</label>
+						</div></li>
     <c:if test="${!empty board.filename}">
         <div id="file_detail">
             <img src="${pageContext.request.contextPath}/upload/${board.filename}" width="100">
@@ -95,7 +99,7 @@ window.onload=function(){
         });
         </script>
     </c:if>
-</li>
+
 			</ul>
 			<div class="align-center">
 				<input type="submit" value="수정">
