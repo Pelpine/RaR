@@ -14,7 +14,7 @@ public class UpdateGenreAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
+
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
@@ -34,12 +34,12 @@ public class UpdateGenreAction implements Action {
 		}
 		//로그인한 회원번호와 작성자 회원번호 일치
 		GenreVO board = new GenreVO();
-		genre.setBg_num(bg_num);
+		board.setBg_num(bg_num);
 		board.setBg_title(request.getParameter("bg_title"));
 		board.setUser_num(user_num);
 		
 		
-		dao.updateGenre(genre);
+		dao.updateGenre(board);
 		
 		
 		
