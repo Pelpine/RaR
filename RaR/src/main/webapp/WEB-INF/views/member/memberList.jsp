@@ -27,7 +27,7 @@ window.onload=function(){
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
 	<div class="content-main">
-		<h2>회원목록</h2>
+		<h2>회원목록(관리자)</h2>
 		<form id="search_form" action="adminList.do"
 		                                    method="get">
 			<ul class="search">
