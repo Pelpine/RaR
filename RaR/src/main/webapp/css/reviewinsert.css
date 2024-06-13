@@ -161,4 +161,7 @@ textarea#re_comment {
     border: none; /* 바깥테두리 없음 */
     border-top: 1px solid #ddd; /* 구분선 스타일 및 색상 */
 }
+.comment {
+    font-size: 16pt !important;
+}
 

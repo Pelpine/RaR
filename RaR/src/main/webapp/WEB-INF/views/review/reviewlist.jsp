@@ -2,11 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- CSS 파일 포함 -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/review.css">
-<!-- jQuery 파일 포함 -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<!-- JavaScript 파일 포함 -->
 <script src="${pageContext.request.contextPath}/js/reviewdelete.js"></script>
 
 <div class="page-main">
@@ -19,21 +16,21 @@
             <c:forEach var="re" items="${list2}">
                 <div class="review-item">
                     <div class="rating-stars">
-                        <!-- 별점 표시 -->
                         <c:forEach var="i" begin="1" end="${re.re_rating}">
                             ★
                         </c:forEach>
                         <c:forEach var="i" begin="1" end="${5 - re.re_rating}">
                             <span class="empty">☆</span>
                         </c:forEach>
+                        <span>${re.re_rating}/5</span>
                     </div>
                     <div class="review-image">
                         <c:if test="${not empty re.re_img}">
                             <img src="../upload/${re.re_img}" alt="리뷰 이미지" width="150" height="150">
                         </c:if>
                     </div>
-                    <div class="review-comment">
-                        <p>${re.re_comment}</p>
+                    <div class="review-comment" id="comment">
+                        <p class="comment">${re.re_comment}</p>
                     </div>
                     <div class="review-details">
                         <div>${re.memberVO.user_email}</div>
