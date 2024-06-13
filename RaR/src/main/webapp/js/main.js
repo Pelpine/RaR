@@ -24,8 +24,6 @@ function showSlide(index) {
             slide.classList.remove('active');
         }
     });
-
-    resetInterval();
 }
 
 function nextSlide() {
@@ -42,9 +40,18 @@ function resetInterval() {
 }
 
 // 초기 슬라이드 표시 및 타이머 설정
-showSlide(currentIndex);
-slideInterval = setInterval(nextSlide, 4000);
+document.addEventListener('DOMContentLoaded', (event) => {
+    showSlide(currentIndex);
+    resetInterval();
+});
 
 // 버튼 이벤트 핸들러 추가
-document.querySelector('.next-button').addEventListener('click', nextSlide);
-document.querySelector('.prev-button').addEventListener('click', prevSlide);
+document.querySelector('.next-button').addEventListener('click', () => {
+    nextSlide();
+    resetInterval();
+});
+
+document.querySelector('.prev-button').addEventListener('click', () => {
+    prevSlide();
+    resetInterval();
+});

@@ -62,12 +62,8 @@ public class RefundFormAction implements Action {
         //각 주문에서 한 개 상품의 세부 정보
         OrderDetailVO item = new OrderDetailVO();
         item = refundDAO.getOrderDetailByItem_num(item_num);
-        int ticket_status = refundDAO.getTicketStatusByItem_num(item_num);
-        int roulette_reward = 0;
-        if(ticket_status == 0) {
-        	roulette_reward = refundDAO.getTicketRewardByItem_num(item_num);
-        }
-
+        int roulette_reward = refundDAO.getTicketRewardByItem_num(item_num);
+        
         //환불해야 하는 포인트
         int refund_point = (item.getItem_price()/ 100) + roulette_reward;
         //유저 보유 포인트
@@ -78,9 +74,12 @@ public class RefundFormAction implements Action {
         int afterRefund = 0;
         if(refund_point > point) {
            shortage = Math.abs(point - refund_point);
+           System.out.println(roulette_reward);
         }else if (point > refund_point) {
         	shortage = 0;
         	afterRefund = point - refund_point;
+        	System.out.println(roulette_reward);
+        	System.out.println(item_num);
         }
         //아이템 구매로 얻은 룰렛 티켓 사용 여부 구하기
         
