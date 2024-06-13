@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="book-writer1">${book.bk_writer}</div>
                                     <div class="book-publisher1">${book.bk_publisher}</div>
-                                    <div class="book-count1">현재 판매 매수 : ${book.bk_count}</div>
+                                    <div class="book-count1">재고 : ${book.bk_count}</div>
                                 </div>
                                 <div class="book-price1">
                                     <div class="original-price1">정가: <fmt:formatNumber value="${book.bk_price}"/>원</div>

@@ -26,7 +26,7 @@ public class UpdateGenreFormAction implements Action {
 		if(user_num!=genre.getUser_num()) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
-		
+		 
 		//큰 따옴표 처리
 		//수정폼의 input 태그에서 큰 따옴표 오류 보정
 		genre.setBg_title(StringUtil.parseQuot(genre.getBg_title()));

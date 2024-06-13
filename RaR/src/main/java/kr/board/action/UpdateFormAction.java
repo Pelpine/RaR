@@ -17,7 +17,7 @@ public class UpdateFormAction implements Action {
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		if(user_num==null) {//로그인이 되지않았다
 			return "redirect:/member/loginForm.do";
-		}
+		} 
 		//로그인 된경우
 		int board_num=Integer.parseInt(request.getParameter("board_num"));
 		BoardDAO dao = BoardDAO.getInstance();
