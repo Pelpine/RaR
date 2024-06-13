@@ -28,7 +28,7 @@
         <div>출판사 : ${book.bk_publisher}</div>
         <div>정가 : <fmt:formatNumber value="${book.bk_price}"/>원</div>
         <div>최저가 : <fmt:formatNumber value="${book.itemVO.item_price}"/>원</div>
-        <div>설명 : ${book.bk_description}</div>
+        <div>소개 : ${book.bk_description}</div>
     </div>
 </div>
 <script>
