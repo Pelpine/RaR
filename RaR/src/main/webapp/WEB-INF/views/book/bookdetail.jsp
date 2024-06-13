@@ -46,7 +46,7 @@
                     <select name="status" class="select-status">
                         <option value="1" <c:if test="${book.status==1}">selected</c:if>>미승인</option>
                         <option value="2" <c:if test="${book.status==2}">selected</c:if>>승인</option>
-                        <option value="3" <c:if test="${book.status==3}">selected</c:if>>반출</option>
+                        <option value="3" <c:if test="${book.status==3}">selected</c:if>>반려</option>
                     </select>
                 </c:if>
             </label>
