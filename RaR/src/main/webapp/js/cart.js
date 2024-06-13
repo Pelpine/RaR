@@ -19,7 +19,11 @@ $(function(){
 				$(param.list).each(function(index,item){
 					let output = '<tr>';
 					//체크박스
-					output += '<td class="checkbox"><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';
+					if(item.itemVO.item_status==1){
+						output += '<td class="checkbox"><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck" checked></td>';						
+					}else{
+						output += '<td class="checkbox"><input type="checkbox" data-cartnum="' + item.cart_num + '" class="selectCheck"></td>';
+					}
 					//상품정보 : 책 이미지
 					output += '<td class="item_img list_height">'
 							+ '<a href="../book/booksdetail.do?bk_num=' + item.bk_num + '&re_num=2">'

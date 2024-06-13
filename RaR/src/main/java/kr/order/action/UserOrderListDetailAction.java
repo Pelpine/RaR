@@ -34,17 +34,17 @@ public class UserOrderListDetailAction implements Action{
 			//구매자 회원번호와 로그인한 회원번호가 불일치할 경우
 			return "/WEB-INF/views/common/notice.jsp";
 		}
-		RefundDAO refundDAO = RefundDAO.getInstance();
-		//환불 기한
-		Date deadline = refundDAO.getRefundDeadLineByOrder_Num(order_num);
 		
 		//주문한 개별상품 정보 반환
 		List<OrderDetailVO> detailList = dao.getOrderListDetail(order_num);
 		
+		//환불 기한
+		RefundDAO refundDAO = RefundDAO.getInstance();
+		Date deadline = refundDAO.getRefundDeadLineByOrder_Num(order_num);
+
 		LocalDate today = LocalDate.now();
         Date currentDate = Date.valueOf(today);
         
-		
 		request.setAttribute("order", order);
 		request.setAttribute("detailList", detailList);
 		request.setAttribute("currentDate", currentDate);
