@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>${result_title}</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
  <script type="text/javascript">
  window.onload = function() {
         history.pushState(null, null, location.href);
@@ -16,8 +15,8 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>${result_title}</h2>
 		<div class="result-display">
@@ -30,6 +29,7 @@
 		</div>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
 

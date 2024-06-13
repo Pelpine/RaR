@@ -9,7 +9,7 @@
                 <option value="Author" <c:if test="${param.ck=='Author'}">selected</c:if>>저자</option>
                 <option value="Publisher" <c:if test="${param.ck=='Publisher'}">selected</c:if>>출판사</option>
             </select>
-        </div>
+        </div> 
         <div class="search-input">
             <input type="search" name="sheck" placeholder="검색어를 입력하세요" id="sheck" value="${param.sheck}">
             <input type="hidden" value="${param.start != null ? param.start : 1}" id="start" name="start">
@@ -33,6 +33,8 @@
         const searchInput = document.getElementById('sheck');
         const currentSearchInput = document.getElementById('currentSearch');
         const count = document.getElementById('count');
+        const form = document.getElementById('myForm');
+        const input = document.getElementById('myInput');
 
         let currentPage = parseInt(startInput.value);
         count.textContent = currentPage;
@@ -63,6 +65,22 @@
             if (searchInput.value.trim() === '') {
                 alert('검색어를 입력하세요.');
                 event.preventDefault();
+            }
+            // 공백 검사 추가
+            if (searchInput.value.includes(" ")) {
+                event.preventDefault(); // 폼 제출 막기
+                alert("검색어에 띄어쓰기가 포함되어 있습니다. 다시 입력해 주세요.");
+                searchInput.value = ""; // 입력 필드 비우기
+            }
+        });
+
+        form.addEventListener("submit", function(event) {
+            var inputValue = input.value;
+
+            if (inputValue.includes(" ")) {
+                event.preventDefault(); // 폼 제출 막기
+                alert("입력 값에 띄어쓰기가 포함되어 있습니다. 다시 입력해 주세요.");
+                input.value = ""; // 입력 필드 비우기
             }
         });
     });

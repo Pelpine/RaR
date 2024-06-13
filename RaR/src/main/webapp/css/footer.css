@@ -1,6 +1,7 @@
 @charset "UTF-8";
 footer{
-	margin: 0auto;
+	margin: 0 auto;
+	margin-bottom: 40px;
 }
 .footer-main {
 	width:1200px;

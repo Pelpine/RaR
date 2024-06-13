@@ -25,14 +25,12 @@
 		<c:if test="${count>0}">
 		<table class="book-table">
 			<tr>
-				<th>게시글 번호</th>
 				<th>제목</th>
 				<th>작성일</th>
 				<th>조회수</th>
 			</tr>
 			<c:forEach var="board" items="${list}">
 			<tr>
-				<td>${board.board_num}</td>
 				<td><a href="detail.do?board_num=${board.board_num}">${board.title}</a></td>
 				<td>${board.reg_date}</td>
 				<td>${board.hit}</td>
