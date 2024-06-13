@@ -101,7 +101,7 @@ public class BookApprovalDAO {
 					//검색 처리
 					if(keyfield.equals("1")) sub_sql += " where status = 1 "; 
 					else if(keyfield.equals("2")) sub_sql += "where status = 2 ";
-					else if(keyfield.equals("3")) sub_sql += " where status = 0 ";
+					else if(keyfield.equals("3")) sub_sql += " where status = 3 ";
 				}
 				sql = "select * from(select a.*,rownum rnum from(select * from book_approval join member using (user_num) "+sub_sql+" order by approval_id desc)a) where rnum >= ? and rnum <= ?";
 				pstmt = conn.prepareStatement(sql);
