@@ -73,8 +73,8 @@ window.onload=function(){
 					<c:if test="${order.order_status == 1}">배송대기</c:if>
 					<c:if test="${order.order_status == 2}">배송준비중</c:if>
 					<c:if test="${order.order_status == 3}">배송중</c:if>
-					<c:if test="${order.order_status == 4}">배송완료</c:if>
-					<c:if test="${order.order_status == 5}">주문취소</c:if>
+					<c:if test="${order.order_status == 4}"><b>배송완료</b></c:if>
+					<c:if test="${order.order_status == 5}"><b>주문취소</b></c:if>
 				</td>
 			</tr>
 			</c:forEach>
