@@ -49,5 +49,4 @@ public class Bookslist implements Action{
 		request.setAttribute("page", page.getPage());
 		return "/WEB-INF/views/book/booklist.jsp";
 	}
-
 }
