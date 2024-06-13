@@ -90,7 +90,7 @@ input[type="number"]{
     border-radius: 4px;
     height:25px;
 }
-.button1:hover, .button2:hover, .button3:hover, .button4:hover .button5:hover{
+.button1:hover, .button2:hover, .button3:hover, .button4:hover, .button5:hover{
 	background-color: orange; /* 더 진한 주황색 호버 */
 }
 .button1{

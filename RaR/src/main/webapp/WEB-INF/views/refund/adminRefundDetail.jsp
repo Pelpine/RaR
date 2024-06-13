@@ -73,8 +73,8 @@
 </style>
 </head>
 <body>
-<div class="page-main">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="page-main">
     <div class="content-main">
         <h2 class="h2">환불 신청 정보</h2>    
         <!-- 테이블로 환불 상품 정보 표시 -->
@@ -113,6 +113,10 @@
     <div class="refund-item">
         <span class="refund-label">환불번호:</span>
         <span class="refund-value highlight">${refund.refund_num}</span>
+    </div>
+    <div class="refund-item">
+        <span class="refund-label">상품번호:</span>
+        <span class="refund-value highlight">${refund.item_num}</span>
     </div>
     <div class="refund-item">
         <span class="refund-label">신청일:</span>

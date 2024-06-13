@@ -29,7 +29,7 @@
                     </div>
                     <div class="review-image">
                         <c:if test="${not empty re.re_img}">
-                            <img src="${pageContext.request.contextPath}/upload/${re.re_img}" alt="리뷰 이미지" width="150" height="150">
+                            <img src="../upload/${re.re_img}" alt="리뷰 이미지" width="150" height="150">
                         </c:if>
                     </div>
                     <div class="review-comment">

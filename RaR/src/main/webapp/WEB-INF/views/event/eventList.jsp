@@ -10,9 +10,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
     <div class="content-main">
-        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
         <div id="mainWrapper">
             <ul>
                 <!-- 검색 폼 영역 -->

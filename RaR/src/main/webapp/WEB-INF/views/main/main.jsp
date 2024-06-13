@@ -33,7 +33,7 @@
 	    </div>
 		<!-- 캐러셀 끝 -->
        <div class="image-space">
-         <div class="Topic"><h2 class="Topic-h4">&nbsp 최근 입고된 중고 서적</h2></div>
+         <div class="Topic"><h2 class="Topic-h4">&nbsp 최근 입고된 중고 도서</h2></div>
          <c:forEach var="item" items="${itemList}">
          <div class="horizontal-area">
              <img src="${item.bookVO.bk_img}" 

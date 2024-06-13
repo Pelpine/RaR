@@ -188,7 +188,7 @@ public class RefundDAO {
 			conn = DBUtil.getConnection();
 			sql = "SELECT reward FROM roulette_ticket WHERE item_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reward);
+			pstmt.setInt(1, item_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				reward = rs.getInt(1);

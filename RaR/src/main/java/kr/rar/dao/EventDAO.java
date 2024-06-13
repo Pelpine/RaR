@@ -435,22 +435,39 @@ public class EventDAO {
 	    Connection conn = null;
 	    String sql = null;
 	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    int ticketNum = -1;
 	    try {
 	        conn = DBUtil.getConnection();
-	        sql = "UPDATE roulette_ticket SET status = 0, reward =?"
-	        		+ "WHERE ticket_num = (SELECT ticket_num "
-	        		+ "FROM (SELECT ticket_num FROM roulette_ticket "
-	        		+ "WHERE user_num = ? ORDER BY get_date) WHERE ROWNUM = 1)";
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, point);
-	        pstmt.setInt(2, user_num);
-	        pstmt.executeUpdate();
+	        
+	        // Step 1: Get the ticket number
+	        String subQuery = "SELECT ticket_num FROM (SELECT ticket_num FROM roulette_ticket WHERE user_num = ? and status = 1 ORDER BY get_date) WHERE ROWNUM = 1";
+	        pstmt = conn.prepareStatement(subQuery);
+	        pstmt.setInt(1, user_num);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            ticketNum = rs.getInt("ticket_num");
+	        }
+	        rs.close();
+	        pstmt.close();
+	        
+	        // Step 2: Update the ticket status and reward if a ticket was found
+	        if (ticketNum != -1) {
+	            sql = "UPDATE roulette_ticket SET status = 0, reward = ? WHERE ticket_num = ?";
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setInt(1, point);
+	            pstmt.setInt(2, ticketNum);
+	            pstmt.executeUpdate();
+	        } else {
+	            throw new Exception("No ticket found for the given user.");
+	        }
 	    } catch(Exception e) {
 	        throw new Exception(e);
 	    } finally {
-	        DBUtil.executeClose(null, pstmt, conn);
+	        DBUtil.executeClose(rs, pstmt, conn);
 	    }
 	}
+
 	//추천인 이벤트 중복 참여 방지
 	public boolean checkParticipationReferenceEvent(int user_num) throws Exception{
 	boolean check = false;

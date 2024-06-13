@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>추천인 이메일 입력</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/khc.css" type="text/css">
 <script type="text/javascript">
 window.onload = function(){
@@ -53,8 +52,8 @@ window.onload = function(){
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="page-main">
 	<div class="content-main">
 		<h2>추천인 이벤트</h2>
 		<div class="result-display">
@@ -74,6 +73,9 @@ window.onload = function(){
 		</div>
 	</div>
 </div>
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
 </body>
 </html>
 
